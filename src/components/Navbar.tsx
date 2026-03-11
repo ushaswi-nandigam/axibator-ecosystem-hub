@@ -22,7 +22,7 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md">
       <div className="container flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center">
-          <img src={axibatorLogo} alt="Axibator" className="h-9 md:h-10" />
+          <img src={axibatorLogo} alt="Axibator" className="h-9 md:h-10 dark:brightness-0 dark:invert" />
         </Link>
 
         {/* Desktop nav */}
