@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,21 +7,21 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 220 20% 10%;
+    --foreground: 220 25% 8%;
 
     --card: 0 0% 100%;
-    --card-foreground: 220 20% 10%;
+    --card-foreground: 220 25% 8%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 20% 10%;
+    --popover-foreground: 220 25% 8%;
 
     --primary: 24 100% 50%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 60% 18%;
+    --secondary: 213 100% 29%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 220 14% 96%;
+    --muted: 220 20% 96%;
     --muted-foreground: 220 10% 46%;
 
     --accent: 210 55% 45%;
@@ -34,13 +36,13 @@
 
     --radius: 0.75rem;
 
-    --deep-blue: 213 80% 29%;
+    --deep-blue: 213 100% 29%;
     --accent-blue: 210 55% 45%;
     --neutral-grey: 0 0% 92%;
     --neutral-grey-dark: 0 0% 75%;
-    --ecosystem-bg: 220 14% 96%;
-    --warm-bg: 30 20% 97%;
-    --dark-section: 220 20% 10%;
+    --ecosystem-bg: 220 20% 97%;
+    --warm-bg: 30 25% 97%;
+    --dark-section: 220 30% 6%;
     --dark-section-foreground: 220 14% 96%;
 
     --sidebar-background: 0 0% 98%;
@@ -54,22 +56,22 @@
   }
 
   .dark {
-    --background: 220 20% 4%;
+    --background: 220 25% 4%;
     --foreground: 220 14% 92%;
 
-    --card: 220 18% 8%;
+    --card: 220 20% 7%;
     --card-foreground: 220 14% 92%;
 
-    --popover: 220 18% 8%;
+    --popover: 220 20% 7%;
     --popover-foreground: 220 14% 92%;
 
     --primary: 24 100% 50%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 30% 18%;
-    --secondary-foreground: 220 14% 85%;
+    --secondary: 213 60% 22%;
+    --secondary-foreground: 220 14% 92%;
 
-    --muted: 220 16% 12%;
+    --muted: 220 18% 11%;
     --muted-foreground: 220 10% 55%;
 
     --accent: 210 50% 50%;
@@ -84,11 +86,11 @@
 
     --deep-blue: 210 50% 50%;
     --accent-blue: 210 45% 55%;
-    --neutral-grey: 220 14% 18%;
+    --neutral-grey: 220 14% 16%;
     --neutral-grey-dark: 0 0% 45%;
-    --ecosystem-bg: 220 18% 6%;
-    --warm-bg: 220 18% 6%;
-    --dark-section: 220 20% 8%;
+    --ecosystem-bg: 220 22% 6%;
+    --warm-bg: 220 22% 5%;
+    --dark-section: 220 25% 5%;
     --dark-section-foreground: 220 14% 92%;
 
     --sidebar-background: 220 18% 5%;
@@ -118,23 +120,23 @@
 
 @layer components {
   .section-padding {
-    @apply py-24 md:py-32;
+    @apply py-28 md:py-36;
   }
 
   .section-header {
-    @apply mb-14 md:mb-20;
+    @apply mb-16 md:mb-20;
   }
 
   .section-label {
-    @apply text-xs font-semibold uppercase tracking-[0.2em] text-primary;
+    @apply text-xs font-semibold uppercase tracking-[0.25em] text-primary mb-4 block;
   }
 
   .section-title {
-    @apply mt-4 text-3xl font-bold md:text-4xl lg:text-5xl;
+    @apply text-4xl font-bold md:text-5xl lg:text-6xl leading-[1.1];
   }
 
   .section-desc {
-    @apply mt-4 max-w-2xl text-base text-muted-foreground md:text-lg leading-relaxed;
+    @apply mt-5 max-w-2xl text-lg text-muted-foreground md:text-xl leading-relaxed;
   }
 
   .ecosystem-counter {
@@ -154,7 +156,7 @@
   }
 
   .premium-card {
-    @apply rounded-2xl bg-card p-7 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+    @apply rounded-2xl bg-card p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1;
   }
 
   .dark-section {

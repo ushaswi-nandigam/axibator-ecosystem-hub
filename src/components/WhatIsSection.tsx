@@ -1,111 +1,105 @@
 import { motion } from "framer-motion";
-import { Zap, Users, Target, Flame } from "lucide-react";
-
-const principles = [
-  { icon: Users, title: "No hierarchy.", desc: "Just squads." },
-  { icon: Zap, title: "No waiting.", desc: "Just building." },
-  { icon: Target, title: "No pitch decks needed.", desc: "Just progress." },
-  { icon: Flame, title: "No startup surname.", desc: "Just hustle." },
-];
+import { Target } from "lucide-react";
 
 const WhatIsSection = () => {
   return (
     <section className="section-padding bg-ecosystem-bg">
       <div className="container">
-        <div className="grid items-center gap-16 lg:grid-cols-2">
+        <div className="grid items-center gap-20 lg:grid-cols-2">
           {/* Left — Text */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.7 }}
           >
-            <p className="section-label">What is Axibator?</p>
+            <span className="section-label">What is Axibator?</span>
             <h2 className="section-title">
-              Axis <span className="text-muted-foreground font-normal">(Direction)</span>{" "}
+              <span className="text-primary">Axis</span>{" "}
+              <span className="text-muted-foreground font-normal text-3xl md:text-4xl">(Direction)</span>{" "}
               <span className="text-primary">+</span>{" "}
-              Incubator <span className="text-muted-foreground font-normal">(Nurture)</span>
+              <span>Incubator</span>{" "}
+              <span className="text-muted-foreground font-normal text-3xl md:text-4xl">(Nurture)</span>
             </h2>
             <p className="section-desc">
-              An execution-first launchpad to help India's next generation of founders
+              An execution-first launchpad helping India's next generation of founders
               launch and grow from day one. We don't teach entrepreneurship — we build alongside you.
             </p>
 
-            {/* Principles as premium highlight blocks */}
-            <div className="mt-10 grid gap-3 sm:grid-cols-2">
-              {principles.map((item, i) => (
+            {/* Premium emphasis blocks */}
+            <div className="mt-12 space-y-4">
+              {[
+                { bold: "No hierarchy.", rest: "Just squads." },
+                { bold: "No waiting.", rest: "Just building." },
+                { bold: "No pitch decks needed.", rest: "Just progress." },
+                { bold: "No startup surname.", rest: "Just hustle." },
+              ].map((item, i) => (
                 <motion.div
-                  key={item.title}
-                  initial={{ opacity: 0, x: -10 }}
+                  key={item.bold}
+                  initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: 0.1 * i + 0.2 }}
-                  className="flex items-center gap-3 rounded-xl bg-card p-4 shadow-sm"
+                  transition={{ delay: 0.15 * i + 0.3 }}
+                  className="flex items-center gap-4 border-l-2 border-primary/30 pl-6 py-2 hover:border-primary transition-colors duration-300"
                 >
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10">
-                    <item.icon className="h-4 w-4 text-primary" />
-                  </div>
-                  <p className="text-sm">
-                    <span className="font-bold text-foreground">{item.title}</span>{" "}
-                    <span className="text-muted-foreground">{item.desc}</span>
+                  <p className="text-lg">
+                    <span className="font-bold text-foreground">{item.bold}</span>{" "}
+                    <span className="text-muted-foreground">{item.rest}</span>
                   </p>
                 </motion.div>
               ))}
             </div>
           </motion.div>
 
-          {/* Right — Visual element */}
+          {/* Right — Visual */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
             className="relative flex items-center justify-center"
           >
             <div className="relative w-full max-w-md mx-auto">
-              {/* Abstract ecosystem graphic */}
-              <div className="aspect-square rounded-3xl bg-gradient-to-br from-secondary to-accent p-1">
-                <div className="h-full w-full rounded-[1.25rem] bg-card p-8 flex flex-col items-center justify-center text-center gap-6">
+              <div className="aspect-square rounded-3xl bg-gradient-to-br from-secondary via-secondary to-accent overflow-hidden p-px">
+                <div className="h-full w-full rounded-[1.4rem] bg-card flex flex-col items-center justify-center text-center gap-8 p-10">
                   {/* Central node */}
                   <div className="relative">
-                    <div className="h-20 w-20 rounded-full bg-primary/10 flex items-center justify-center">
-                      <div className="h-12 w-12 rounded-full bg-primary flex items-center justify-center">
-                        <Target className="h-6 w-6 text-primary-foreground" />
+                    <div className="h-24 w-24 rounded-full bg-primary/10 flex items-center justify-center">
+                      <div className="h-16 w-16 rounded-full bg-primary flex items-center justify-center shadow-xl shadow-primary/30">
+                        <Target className="h-7 w-7 text-primary-foreground" />
                       </div>
                     </div>
-                    {/* Orbit dots */}
-                    {[0, 60, 120, 180, 240, 300].map((deg) => (
+                    {[0, 72, 144, 216, 288].map((deg) => (
                       <motion.div
                         key={deg}
-                        className="absolute h-2.5 w-2.5 rounded-full bg-accent"
+                        className="absolute h-3 w-3 rounded-full bg-accent/60"
                         style={{
-                          top: `${50 - 45 * Math.cos((deg * Math.PI) / 180)}%`,
-                          left: `${50 + 45 * Math.sin((deg * Math.PI) / 180)}%`,
+                          top: `${50 - 55 * Math.cos((deg * Math.PI) / 180)}%`,
+                          left: `${50 + 55 * Math.sin((deg * Math.PI) / 180)}%`,
                           transform: 'translate(-50%, -50%)',
                         }}
-                        animate={{ scale: [1, 1.3, 1], opacity: [0.5, 1, 0.5] }}
-                        transition={{ duration: 2, delay: deg / 360, repeat: Infinity }}
+                        animate={{ scale: [1, 1.4, 1], opacity: [0.4, 1, 0.4] }}
+                        transition={{ duration: 3, delay: deg / 400, repeat: Infinity }}
                       />
                     ))}
                   </div>
 
                   <div>
-                    <p className="text-lg font-bold text-foreground">Direction + Nurture</p>
-                    <p className="mt-1 text-sm text-muted-foreground">
-                      Building India's grassroots startup ecosystem
+                    <p className="text-2xl font-bold text-foreground">Direction + Nurture</p>
+                    <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                      Building India's grassroots<br/>startup ecosystem
                     </p>
                   </div>
 
-                  {/* Stats row */}
-                  <div className="flex gap-6 text-center">
+                  <div className="flex gap-8 text-center">
                     {[
                       { n: "50+", l: "Founders" },
                       { n: "6", l: "Programs" },
                       { n: "4", l: "Cities" },
                     ].map((s) => (
                       <div key={s.l}>
-                        <p className="text-xl font-bold text-primary">{s.n}</p>
-                        <p className="text-xs text-muted-foreground">{s.l}</p>
+                        <p className="text-2xl font-bold text-primary">{s.n}</p>
+                        <p className="text-xs text-muted-foreground font-medium">{s.l}</p>
                       </div>
                     ))}
                   </div>
