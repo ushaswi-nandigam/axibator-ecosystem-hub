@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import InnovationBackground from "@/components/InnovationBackground";
 import HeroSection from "@/components/HeroSection";
 import WhatIsSection from "@/components/WhatIsSection";
 import FounderJourney from "@/components/FounderJourney";
@@ -12,9 +13,10 @@ import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="relative min-h-screen bg-background">
+      <InnovationBackground />
       <Navbar />
-      <main>
+      <main className="relative z-10">
         <HeroSection />
         <WhatIsSection />
         <FounderJourney />

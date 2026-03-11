@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Zap, Users } from "lucide-react";
+import { Zap, Users, Target, Flame } from "lucide-react";
 
 const WhatIsSection = () => {
   return (
@@ -22,35 +22,30 @@ const WhatIsSection = () => {
           </motion.div>
 
           {/* Right — Principles as cards */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="grid gap-4 sm:grid-cols-2"
-          >
+          <div className="grid gap-4 sm:grid-cols-2">
             {[
               { icon: Users, title: "No hierarchy.", desc: "Just squads." },
               { icon: Zap, title: "No waiting.", desc: "Just building." },
-              { icon: Zap, title: "No pitch decks needed.", desc: "Just progress." },
-              { icon: Users, title: "No startup surname.", desc: "Just hustle." },
+              { icon: Target, title: "No pitch decks needed.", desc: "Just progress." },
+              { icon: Flame, title: "No startup surname.", desc: "Just hustle." },
             ].map((item, i) => (
               <motion.div
                 key={item.title}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.05 * i + 0.15 }}
-                className="rounded-2xl border border-border bg-card p-5 shadow-sm"
+                transition={{ delay: 0.05 * i + 0.15, duration: 0.5 }}
+                whileHover={{ y: -4, scale: 1.02 }}
+                className="group rounded-2xl border border-border bg-card p-5 shadow-sm transition-all duration-300 hover:border-primary/30 hover:shadow-md cursor-pointer"
               >
-                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10">
-                  <item.icon className="h-4 w-4 text-primary" />
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 transition-all duration-300 group-hover:bg-primary group-hover:shadow-md group-hover:shadow-primary/20">
+                  <item.icon className="h-4 w-4 text-primary transition-colors group-hover:text-primary-foreground" />
                 </div>
                 <p className="mt-3 text-sm font-bold text-foreground">{item.title}</p>
                 <p className="text-sm text-muted-foreground">{item.desc}</p>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

@@ -3,13 +3,45 @@ import { Building2, GraduationCap, Landmark, TrendingUp, Rocket, Home } from "lu
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
+const getLogoUrl = (domain: string) => `https://logo.clearbit.com/${domain}`;
+
 const categories = [
-  { label: "Corporate Partners", icon: Building2, partners: ["AWS Activate", "Google for Startups", "Microsoft Founders Hub", "NASSCOM"] },
-  { label: "Universities", icon: GraduationCap, partners: ["IIT Hyderabad", "IIIT Vizag", "GITAM University", "Andhra University"] },
-  { label: "Government", icon: Landmark, partners: ["Startup India", "MSME Ministry", "T-Hub", "TASK Telangana"] },
-  { label: "VCs & Investors", icon: TrendingUp, partners: ["100X.VC", "Antler India", "Village Capital", "Kalaari Capital"] },
-  { label: "Startup Programs", icon: Rocket, partners: ["Y Combinator Community", "Techstars", "Google Launchpad", "AWS EdStart"] },
-  { label: "Incubators", icon: Home, partners: ["T-Hub", "IIIT-H CIE", "IKP Knowledge Park", "AIC-CCMB"] },
+  { label: "Corporate Partners", icon: Building2, partners: [
+    { name: "AWS Activate", domain: "aws.amazon.com" },
+    { name: "Google for Startups", domain: "google.com" },
+    { name: "Microsoft Founders Hub", domain: "microsoft.com" },
+    { name: "NASSCOM", domain: "nasscom.in" },
+  ]},
+  { label: "Universities", icon: GraduationCap, partners: [
+    { name: "IIT Hyderabad", domain: "iith.ac.in" },
+    { name: "IIIT Vizag", domain: "iiitdm.ac.in" },
+    { name: "GITAM University", domain: "gitam.edu" },
+    { name: "Andhra University", domain: "andhrauniversity.edu.in" },
+  ]},
+  { label: "Government", icon: Landmark, partners: [
+    { name: "Startup India", domain: "startupindia.gov.in" },
+    { name: "MSME Ministry", domain: "msme.gov.in" },
+    { name: "T-Hub", domain: "t-hub.co" },
+    { name: "TASK Telangana", domain: "task.telangana.gov.in" },
+  ]},
+  { label: "VCs & Investors", icon: TrendingUp, partners: [
+    { name: "100X.VC", domain: "100x.vc" },
+    { name: "Antler India", domain: "antler.co" },
+    { name: "Village Capital", domain: "vilcap.com" },
+    { name: "Kalaari Capital", domain: "kalaari.com" },
+  ]},
+  { label: "Startup Programs", icon: Rocket, partners: [
+    { name: "Y Combinator Community", domain: "ycombinator.com" },
+    { name: "Techstars", domain: "techstars.com" },
+    { name: "Google Launchpad", domain: "google.com" },
+    { name: "AWS EdStart", domain: "aws.amazon.com" },
+  ]},
+  { label: "Incubators", icon: Home, partners: [
+    { name: "T-Hub", domain: "t-hub.co" },
+    { name: "IIIT-H CIE", domain: "cie.iiit.ac.in" },
+    { name: "IKP Knowledge Park", domain: "ikpknowledgepark.com" },
+    { name: "AIC-CCMB", domain: "ccmb.res.in" },
+  ]},
 ];
 
 const Partners = () => {
@@ -47,15 +79,30 @@ const Partners = () => {
                   </div>
                   <div className="mt-5 flex flex-col gap-2">
                     {cat.partners.map((p) => (
-                      <div
-                        key={p}
+                      <motion.div
+                        key={p.name}
+                        whileHover={{ x: 4 }}
                         className="flex items-center gap-3 rounded-xl border border-border bg-muted/30 px-4 py-3 transition-all duration-200 hover:border-primary/20 hover:bg-muted/60"
                       >
-                        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-accent/10 text-xs font-bold text-accent">
-                          {p[0]}
+                        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white overflow-hidden">
+                          <img
+                            src={getLogoUrl(p.domain)}
+                            alt={p.name}
+                            className="h-5 w-5 object-contain"
+                            onError={(e) => {
+                              const target = e.currentTarget;
+                              target.style.display = 'none';
+                              const parent = target.parentElement;
+                              if (parent) {
+                                parent.classList.add('bg-accent/10');
+                                parent.classList.remove('bg-white');
+                                parent.innerHTML = `<span class="text-xs font-bold text-accent">${p.name[0]}</span>`;
+                              }
+                            }}
+                          />
                         </div>
-                        <span className="text-sm font-medium text-foreground">{p}</span>
-                      </div>
+                        <span className="text-sm font-medium text-foreground">{p.name}</span>
+                      </motion.div>
                     ))}
                   </div>
                 </motion.div>
