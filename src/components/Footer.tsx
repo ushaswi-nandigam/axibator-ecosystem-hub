@@ -9,7 +9,7 @@ const Footer = () => {
         <div className="grid gap-10 md:grid-cols-4">
           <div className="md:col-span-2">
             <Link to="/" className="inline-block">
-              <img src={axibatorLogo} alt="Axibator" className="h-8" />
+              <img src={axibatorLogo} alt="Axibator" className="h-10" />
             </Link>
             <p className="mt-3 max-w-md text-sm leading-relaxed text-muted-foreground">
               Building first-mile infrastructure for grassroots founders.
