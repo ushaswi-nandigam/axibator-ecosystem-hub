@@ -9,6 +9,7 @@ import StartupsSection from "@/components/StartupsSection";
 import PartnersSection from "@/components/PartnersSection";
 import EventsSection from "@/components/EventsSection";
 import CTASection from "@/components/CTASection";
+import BuilderNestSection from "@/components/BuilderNestSection";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -22,6 +23,7 @@ const Index = () => {
         <FounderJourney />
         <EcosystemStats />
         <ProgramsSection />
+        <BuilderNestSection />
         <StartupsSection />
         <PartnersSection />
         <EventsSection />
