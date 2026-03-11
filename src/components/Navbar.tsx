@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
+import axibatorLogo from "@/assets/axibator-logo.png";
 
 const navItems = [
   { label: "Home", path: "/" },
