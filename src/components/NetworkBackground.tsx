@@ -41,6 +41,9 @@ const NetworkBackground = () => {
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const isDark = document.documentElement.classList.contains("dark");
+      const lineAlphaMax = isDark ? 0.15 : 0.08;
+      const nodeAlpha = isDark ? 0.5 : 0.25;
 
       nodes.forEach((node) => {
         node.x += node.vx;
@@ -49,14 +52,13 @@ const NetworkBackground = () => {
         if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
       });
 
-      // Draw connections
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
           const dx = nodes[i].x - nodes[j].x;
           const dy = nodes[i].y - nodes[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < connectionDistance) {
-            const opacity = (1 - dist / connectionDistance) * 0.15;
+            const opacity = (1 - dist / connectionDistance) * lineAlphaMax;
             ctx.beginPath();
             ctx.strokeStyle = `rgba(58, 110, 165, ${opacity})`;
             ctx.lineWidth = 0.5;
@@ -67,10 +69,9 @@ const NetworkBackground = () => {
         }
       }
 
-      // Draw nodes
       nodes.forEach((node) => {
         ctx.beginPath();
-        ctx.fillStyle = "rgba(58, 110, 165, 0.5)";
+        ctx.fillStyle = `rgba(58, 110, 165, ${nodeAlpha})`;
         ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
         ctx.fill();
       });
