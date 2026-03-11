@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles, Download } from "lucide-react";
-import heroSvg from "@/assets/axibator-hero.svg";
+import heroImg from "@/assets/axibator-hero-custom.png";
 
 const HeroSection = () => {
   return (
