@@ -18,8 +18,8 @@ const Index = () => {
         <HeroSection />
         <WhatIsSection />
         <FounderJourney />
-        <ProgramsSection />
         <EcosystemStats />
+        <ProgramsSection />
         <StartupsSection />
         <PartnersSection />
         <EventsSection />
