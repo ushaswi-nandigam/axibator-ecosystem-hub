@@ -13,6 +13,7 @@ import Apply from "./pages/Apply";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
+import BuilderNest from "./pages/BuilderNest";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/builder-nest" element={<BuilderNest />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

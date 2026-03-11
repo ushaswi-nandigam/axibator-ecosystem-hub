@@ -8,6 +8,7 @@ import axibatorLogo from "@/assets/axibator-logo.png";
 const navItems = [
   { label: "Home", path: "/" },
   { label: "Programs", path: "/programs" },
+  { label: "Builder Nest", path: "/builder-nest" },
   { label: "Startups", path: "/startups" },
   { label: "Partners", path: "/partners" },
   { label: "Events", path: "/events" },
