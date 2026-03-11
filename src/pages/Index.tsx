@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import InnovationBackground from "@/components/InnovationBackground";
 import HeroSection from "@/components/HeroSection";
 import WhatIsSection from "@/components/WhatIsSection";
 import FounderJourney from "@/components/FounderJourney";
