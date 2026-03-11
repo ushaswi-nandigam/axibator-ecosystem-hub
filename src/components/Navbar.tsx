@@ -38,6 +38,7 @@ const Navbar = () => {
         </div>
 
         <div className="hidden items-center gap-3 md:flex">
+          <ThemeToggle />
           <Link to="/apply">
             <Button variant="hero" size="sm">Apply</Button>
           </Link>
