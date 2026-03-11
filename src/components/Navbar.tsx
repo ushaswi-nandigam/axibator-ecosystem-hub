@@ -19,10 +19,10 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/90 backdrop-blur-md">
-      <div className="container flex h-16 items-center justify-between md:h-[4.5rem]">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md">
+      <div className="container flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center">
-          <img src={axibatorLogo} alt="Axibator" className="h-10 md:h-12" />
+          <img src={axibatorLogo} alt="Axibator" className="h-9 md:h-10" />
         </Link>
 
         {/* Desktop nav */}
@@ -31,10 +31,10 @@ const Navbar = () => {
             <Link
               key={item.path}
               to={item.path}
-              className={`rounded-lg px-3.5 py-2 text-sm font-medium transition-colors duration-200 ${
+              className={`rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 ${
                 location.pathname === item.path
-                  ? "bg-muted text-foreground"
-                  : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
+                  ? "bg-accent text-accent-foreground"
+                  : "text-muted-foreground hover:text-foreground"
               }`}
             >
               {item.label}
@@ -48,15 +48,17 @@ const Navbar = () => {
             <Button variant="ghost" size="sm" className="text-muted-foreground">Login</Button>
           </Link>
           <Link to="/apply">
-            <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90">Apply</Button>
+            <Button size="sm" className="rounded-full bg-primary px-5 text-primary-foreground font-semibold hover:bg-primary/90">
+              Apply Now
+            </Button>
           </Link>
         </div>
 
-        {/* Mobile toggle */}
+        {/* Mobile */}
         <div className="flex items-center gap-2 md:hidden">
           <ThemeToggle />
           <button
-            className="flex h-10 w-10 items-center justify-center rounded-lg text-foreground hover:bg-muted"
+            className="flex h-10 w-10 items-center justify-center rounded-full text-foreground hover:bg-muted"
             onClick={() => setMobileOpen(!mobileOpen)}
           >
             {mobileOpen ? <X size={20} /> : <Menu size={20} />}
@@ -64,7 +66,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile nav */}
       {mobileOpen && (
         <div className="border-t border-border bg-background md:hidden">
           <div className="container flex flex-col gap-1 py-4">
@@ -74,8 +75,8 @@ const Navbar = () => {
                 to={item.path}
                 className={`rounded-lg px-4 py-2.5 text-sm font-medium transition-colors ${
                   location.pathname === item.path
-                    ? "bg-muted text-foreground"
-                    : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
+                    ? "bg-accent text-accent-foreground"
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
                 onClick={() => setMobileOpen(false)}
               >
@@ -87,7 +88,7 @@ const Navbar = () => {
                 <Button variant="ghost" size="sm">Login</Button>
               </Link>
               <Link to="/apply" onClick={() => setMobileOpen(false)}>
-                <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90">Apply</Button>
+                <Button size="sm" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90">Apply Now</Button>
               </Link>
             </div>
           </div>
