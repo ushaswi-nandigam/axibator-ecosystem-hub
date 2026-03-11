@@ -1,55 +1,52 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
 
 const stages = [
-  { stage: "Discover", program: "Ignite", color: "text-primary" },
-  { stage: "Build", program: "LaunchPad", color: "text-accent" },
-  { stage: "Launch", program: "BuildLab", color: "text-primary" },
-  { stage: "Scale", program: "GrowthTrack", color: "text-accent" },
-  { stage: "Global", program: "Global Catalyst", color: "text-primary" },
+  { stage: "Discover", program: "Ignite" },
+  { stage: "Build", program: "LaunchPad" },
+  { stage: "Launch", program: "BuildLab" },
+  { stage: "Scale", program: "GrowthTrack" },
+  { stage: "Global", program: "Global Catalyst" },
 ];
 
 const FounderJourney = () => {
-  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
-
   return (
-    <section className="py-24">
+    <section className="section-padding">
       <div className="container">
-        <motion.h2
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          className="text-3xl font-bold md:text-4xl"
-        >
-          Founder Journey
-        </motion.h2>
-        <p className="mt-3 text-muted-foreground">Your path from idea to global impact.</p>
+        <div className="section-header">
+          <motion.h2
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-2xl font-bold md:text-4xl"
+          >
+            Founder Journey
+          </motion.h2>
+          <p className="mt-2 text-muted-foreground">Your path from idea to global impact.</p>
+        </div>
 
-        <div className="horizontal-scroll mt-12">
+        {/* Horizontal roadmap */}
+        <div className="relative flex flex-col gap-0 md:flex-row md:items-start md:justify-between">
+          {/* Connecting line (desktop) */}
+          <div className="absolute left-6 top-6 hidden h-px w-[calc(100%-3rem)] bg-border md:block" />
+          {/* Connecting line (mobile) */}
+          <div className="absolute left-6 top-0 h-full w-px bg-border md:hidden" />
+
           {stages.map((s, i) => (
             <motion.div
               key={s.stage}
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              onMouseEnter={() => setHoveredIdx(i)}
-              onMouseLeave={() => setHoveredIdx(null)}
-              className="panel group relative flex w-56 flex-col rounded-lg p-6 md:w-64"
+              transition={{ delay: i * 0.08 }}
+              className="relative z-10 flex items-start gap-4 py-3 md:flex-col md:items-center md:py-0 md:text-center"
             >
-              <span className="font-display text-xs font-medium uppercase tracking-widest text-muted-foreground">
-                Stage {i + 1}
-              </span>
-              <span className={`mt-2 font-display text-2xl font-bold ${s.color}`}>
-                {s.stage}
-              </span>
-              <div className={`mt-4 overflow-hidden transition-all duration-300 ${hoveredIdx === i ? "max-h-20 opacity-100" : "max-h-0 opacity-0"}`}>
-                <span className="text-sm text-muted-foreground">Program:</span>
-                <span className="ml-2 font-display text-sm font-semibold text-foreground">{s.program}</span>
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-primary bg-background text-sm font-bold text-primary">
+                {i + 1}
               </div>
-              {i < stages.length - 1 && (
-                <div className="absolute -right-4 top-1/2 hidden h-px w-8 bg-border md:block" />
-              )}
+              <div className="md:mt-4">
+                <p className="text-base font-bold text-foreground">{s.stage}</p>
+                <p className="mt-0.5 text-sm text-primary">{s.program}</p>
+              </div>
             </motion.div>
           ))}
         </div>

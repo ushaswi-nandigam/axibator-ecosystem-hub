@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const programs = [
   { name: "Ignite", subtitle: "Campus Pre-Incubation", desc: "From Idea to MVP & First Customers in 60 Days." },
@@ -12,57 +12,41 @@ const programs = [
 ];
 
 const ProgramsSection = () => {
-  const [expanded, setExpanded] = useState<number | null>(null);
-
   return (
-    <section className="py-24">
+    <section className="section-padding border-t border-border bg-ecosystem-bg">
       <div className="container">
-        <motion.h2
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          className="text-3xl font-bold md:text-4xl"
-        >
-          Programs
-        </motion.h2>
-        <p className="mt-3 text-muted-foreground">Structured paths for every stage of your journey.</p>
+        <div className="section-header">
+          <motion.h2
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-2xl font-bold md:text-4xl"
+          >
+            Programs
+          </motion.h2>
+          <p className="mt-2 text-muted-foreground">Structured paths for every stage of your journey.</p>
+        </div>
 
-        <div className="mt-12 flex flex-col gap-2">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {programs.map((p, i) => (
             <motion.div
               key={p.name}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.05 }}
-              className="panel cursor-pointer rounded-lg"
-              onClick={() => setExpanded(expanded === i ? null : i)}
+              transition={{ delay: i * 0.06 }}
+              className="group rounded-xl border border-border bg-card p-6 shadow-sm transition-all duration-200 hover:border-primary/30 hover:shadow-md"
             >
-              <div className="flex items-center justify-between p-5">
-                <div className="flex items-center gap-4">
-                  <span className="font-display text-lg font-bold text-primary">{p.name}</span>
-                  <span className="text-sm text-muted-foreground">— {p.subtitle}</span>
-                </div>
-                <ChevronRight
-                  size={18}
-                  className={`text-muted-foreground transition-transform duration-200 ${expanded === i ? "rotate-90" : ""}`}
-                />
-              </div>
-              <AnimatePresence>
-                {expanded === i && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="overflow-hidden"
-                  >
-                    <div className="border-t border-border/50 px-5 pb-5 pt-4">
-                      <p className="text-muted-foreground">{p.desc}</p>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              <h3 className="font-display text-lg font-bold text-foreground">{p.name}</h3>
+              <p className="mt-1 text-sm text-primary">{p.subtitle}</p>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
+              <Link
+                to="/programs"
+                className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent transition-colors hover:text-primary"
+              >
+                Learn more
+                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+              </Link>
             </motion.div>
           ))}
         </div>

@@ -18,19 +18,23 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl">
-      <div className="container flex h-16 items-center justify-between">
+    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/90 backdrop-blur-md">
+      <div className="container flex h-16 items-center justify-between md:h-[4.5rem]">
         <Link to="/" className="font-display text-xl font-bold tracking-tight text-foreground">
           <span className="text-primary">Axi</span>bator
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="hidden items-center gap-1 md:flex">
           {navItems.map((item) => (
             <Link
               key={item.path}
               to={item.path}
-              className={`nav-link ${location.pathname === item.path ? "active" : ""}`}
+              className={`rounded-lg px-3.5 py-2 text-sm font-medium transition-colors duration-200 ${
+                location.pathname === item.path
+                  ? "bg-muted text-foreground"
+                  : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
+              }`}
             >
               {item.label}
             </Link>
@@ -39,43 +43,50 @@ const Navbar = () => {
 
         <div className="hidden items-center gap-3 md:flex">
           <ThemeToggle />
-          <Link to="/apply">
-            <Button variant="hero" size="sm">Apply</Button>
-          </Link>
           <Link to="/login">
             <Button variant="ghost" size="sm" className="text-muted-foreground">Login</Button>
+          </Link>
+          <Link to="/apply">
+            <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90">Apply</Button>
           </Link>
         </div>
 
         {/* Mobile toggle */}
-        <button
-          className="text-foreground md:hidden"
-          onClick={() => setMobileOpen(!mobileOpen)}
-        >
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          <ThemeToggle />
+          <button
+            className="flex h-10 w-10 items-center justify-center rounded-lg text-foreground hover:bg-muted"
+            onClick={() => setMobileOpen(!mobileOpen)}
+          >
+            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile nav */}
       {mobileOpen && (
-        <div className="border-t border-border/50 bg-background/95 backdrop-blur-xl md:hidden">
-          <div className="container flex flex-col gap-4 py-6">
+        <div className="border-t border-border bg-background md:hidden">
+          <div className="container flex flex-col gap-1 py-4">
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`nav-link text-base ${location.pathname === item.path ? "active" : ""}`}
+                className={`rounded-lg px-4 py-2.5 text-sm font-medium transition-colors ${
+                  location.pathname === item.path
+                    ? "bg-muted text-foreground"
+                    : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
+                }`}
                 onClick={() => setMobileOpen(false)}
               >
                 {item.label}
               </Link>
             ))}
-            <div className="flex gap-3 pt-4">
-              <Link to="/apply" onClick={() => setMobileOpen(false)}>
-                <Button variant="hero" size="sm">Apply</Button>
-              </Link>
+            <div className="mt-3 flex gap-3 border-t border-border pt-4">
               <Link to="/login" onClick={() => setMobileOpen(false)}>
                 <Button variant="ghost" size="sm">Login</Button>
+              </Link>
+              <Link to="/apply" onClick={() => setMobileOpen(false)}>
+                <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90">Apply</Button>
               </Link>
             </div>
           </div>
