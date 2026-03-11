@@ -13,6 +13,7 @@ import Apply from "./pages/Apply";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
+import BuilderNest from "./pages/BuilderNest";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
