@@ -224,7 +224,7 @@ const HeroSection = () => {
                 className="absolute -bottom-6 -left-6 rounded-xl border border-border bg-card px-5 py-3 shadow-md"
               >
                 <div className="flex items-center gap-2">
-                  <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
+                  <div className="h-2 w-2 rounded-full bg-primary animate-pulse" />
                   <p className="text-xs font-semibold text-foreground">500+ Founders Active</p>
                 </div>
               </motion.div>
