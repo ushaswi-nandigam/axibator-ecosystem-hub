@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronRight } from "lucide-react";
+import { ChevronDown, ArrowRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import NetworkBackground from "@/components/NetworkBackground";
 
 const programs = [
   { name: "SparkLab", subtitle: "School Innovation Bootcamp", desc: "Introducing innovation thinking to high school students through hands-on bootcamps." },
@@ -32,42 +31,46 @@ const Programs = () => {
   const [expanded, setExpanded] = useState<number | null>(null);
 
   return (
-    <div className="relative min-h-screen">
-      <NetworkBackground />
+    <div className="min-h-screen bg-background">
       <Navbar />
-      <main className="relative z-10 pt-24">
-        <div className="container pb-24">
-          <motion.h1
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="text-4xl font-bold md:text-5xl"
-          >
-            All <span className="text-primary">Programs</span>
-          </motion.h1>
-          <p className="mt-4 max-w-2xl text-muted-foreground">
-            {programs.length} programs designed for every stage and type of founder.
-          </p>
+      <main className="pt-24 pb-16">
+        <div className="container">
+          {/* Page header */}
+          <div className="section-header">
+            <motion.h1
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-3xl font-bold md:text-4xl"
+            >
+              All <span className="text-primary">Programs</span>
+            </motion.h1>
+            <p className="mt-2 text-muted-foreground">
+              {programs.length} programs designed for every stage and type of founder.
+            </p>
+          </div>
 
-          <div className="mt-12 flex flex-col gap-2">
+          <div className="flex flex-col gap-3">
             {programs.map((p, i) => (
               <motion.div
                 key={p.name}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.03 }}
-                className="panel cursor-pointer rounded-lg"
-                onClick={() => setExpanded(expanded === i ? null : i)}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.02 }}
+                className="rounded-xl border border-border bg-card shadow-sm transition-all duration-200 hover:border-primary/30"
               >
-                <div className="flex items-center justify-between p-5">
-                  <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-4">
-                    <span className="font-display text-lg font-bold text-primary">{p.name}</span>
-                    <span className="text-sm text-muted-foreground">— {p.subtitle}</span>
+                <button
+                  onClick={() => setExpanded(expanded === i ? null : i)}
+                  className="flex w-full items-center justify-between p-5 text-left"
+                >
+                  <div className="flex flex-col gap-0.5 sm:flex-row sm:items-center sm:gap-3">
+                    <span className="font-display text-base font-bold text-foreground">{p.name}</span>
+                    <span className="text-sm text-primary">{p.subtitle}</span>
                   </div>
-                  <ChevronRight
-                    size={18}
-                    className={`shrink-0 text-muted-foreground transition-transform duration-200 ${expanded === i ? "rotate-90" : ""}`}
+                  <ChevronDown
+                    size={16}
+                    className={`shrink-0 text-muted-foreground transition-transform duration-200 ${expanded === i ? "rotate-180" : ""}`}
                   />
-                </div>
+                </button>
                 <AnimatePresence>
                   {expanded === i && (
                     <motion.div
@@ -77,8 +80,11 @@ const Programs = () => {
                       transition={{ duration: 0.2 }}
                       className="overflow-hidden"
                     >
-                      <div className="border-t border-border/50 px-5 pb-5 pt-4">
-                        <p className="text-muted-foreground">{p.desc}</p>
+                      <div className="border-t border-border px-5 pb-5 pt-4">
+                        <p className="text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
+                        <a href="/apply" className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-accent hover:text-primary">
+                          Apply now <ArrowRight className="h-3.5 w-3.5" />
+                        </a>
                       </div>
                     </motion.div>
                   )}
