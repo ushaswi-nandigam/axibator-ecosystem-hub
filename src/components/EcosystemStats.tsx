@@ -48,20 +48,20 @@ const AnimatedCounter = ({ target, prefix = "", suffix = "" }: { target: number;
 
 const EcosystemStats = () => {
   return (
-    <section className="py-24">
+    <section className="section-padding">
       <div className="container">
-        <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
           {stats.map((s, i) => (
             <motion.div
               key={s.label}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="panel flex flex-col items-center rounded-lg p-8 text-center"
+              transition={{ delay: i * 0.08 }}
+              className="rounded-xl border border-border bg-card p-6 text-center shadow-sm md:p-8"
             >
               <AnimatedCounter target={s.value} prefix={s.prefix} suffix={s.suffix} />
-              <span className="mt-3 text-sm text-muted-foreground">{s.label}</span>
+              <span className="mt-2 block text-sm text-muted-foreground">{s.label}</span>
             </motion.div>
           ))}
         </div>

@@ -1,4 +1,3 @@
-import NetworkBackground from "@/components/NetworkBackground";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import WhatIsSection from "@/components/WhatIsSection";
@@ -13,10 +12,9 @@ import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <div className="relative min-h-screen">
-      <NetworkBackground />
+    <div className="min-h-screen bg-background">
       <Navbar />
-      <main className="relative z-10">
+      <main>
         <HeroSection />
         <WhatIsSection />
         <FounderJourney />

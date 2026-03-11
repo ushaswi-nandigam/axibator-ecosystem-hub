@@ -14,41 +14,41 @@ const startups = [
 
 const StartupsSection = () => {
   return (
-    <section className="py-24">
+    <section className="section-padding border-t border-border bg-ecosystem-bg">
       <div className="container">
-        <div className="flex items-end justify-between">
+        <div className="section-header flex items-end justify-between">
           <div>
             <motion.h2
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-3xl font-bold md:text-4xl"
+              className="text-2xl font-bold md:text-4xl"
             >
               Startups Ecosystem
             </motion.h2>
-            <p className="mt-3 text-muted-foreground">Ventures building the future.</p>
+            <p className="mt-2 text-muted-foreground">Ventures building the future.</p>
           </div>
           <Link to="/startups">
-            <Button variant="ecosystem" size="sm">Explore All Startups</Button>
+            <Button variant="outline" size="sm">View All Startups</Button>
           </Link>
         </div>
 
-        <div className="horizontal-scroll mt-10">
+        <div className="horizontal-scroll">
           {startups.map((s, i) => (
             <motion.div
               key={s.name}
-              initial={{ opacity: 0, x: 40 }}
+              initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
-              className="panel group w-72 rounded-lg p-6"
+              transition={{ delay: i * 0.06 }}
+              className="group w-64 rounded-xl border border-border bg-card p-5 shadow-sm transition-all duration-200 hover:border-primary/30 hover:shadow-md"
             >
               <div className="flex items-start justify-between">
-                <h3 className="font-display text-lg font-bold text-foreground">{s.name}</h3>
+                <h3 className="font-display text-base font-bold text-foreground">{s.name}</h3>
                 <ExternalLink size={14} className="text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100" />
               </div>
               <p className="mt-1 text-sm text-muted-foreground">{s.founder}</p>
-              <div className="mt-4 flex gap-2">
+              <div className="mt-3 flex flex-wrap gap-1.5">
                 <span className="tag">{s.industry}</span>
                 <span className="tag">{s.program}</span>
               </div>
