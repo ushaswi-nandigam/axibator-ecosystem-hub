@@ -7,14 +7,14 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: "1.5rem",
+      padding: "2rem",
       screens: {
-        "2xl": "1280px",
+        "2xl": "1320px",
       },
     },
     extend: {
       fontFamily: {
-        display: ['"DM Sans"', 'system-ui', 'sans-serif'],
+        display: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
         body: ['"Inter"', 'system-ui', 'sans-serif'],
       },
       colors: {

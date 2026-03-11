@@ -40,7 +40,7 @@ const AnimatedCounter = ({ target, prefix = "", suffix = "" }: { target: number;
   }, [target]);
 
   return (
-    <div ref={ref} className="ecosystem-counter">
+    <div ref={ref} className="font-display text-6xl font-bold text-foreground tabular-nums md:text-7xl">
       {prefix}{count}{suffix}
     </div>
   );
@@ -51,15 +51,12 @@ const EcosystemStats = () => {
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
   return (
-    <section className="section-padding relative overflow-hidden" ref={sectionRef}>
-      {/* Accent gradient bg */}
-      <div className="absolute inset-0 bg-gradient-to-r from-primary/[0.03] via-transparent to-accent/[0.03]" />
-
+    <section className="section-padding relative overflow-hidden bg-warm-bg" ref={sectionRef}>
       <div className="container relative">
-        <div className="section-header text-center">
-          <p className="section-label">Impact</p>
+        <div className="text-center max-w-3xl mx-auto mb-20">
+          <span className="section-label">Impact</span>
           <motion.h2
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="section-title"
@@ -68,17 +65,17 @@ const EcosystemStats = () => {
           </motion.h2>
         </div>
 
-        <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-12">
           {stats.map((s, i) => (
             <motion.div
               key={s.label}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: i * 0.12, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="relative rounded-2xl bg-card p-8 text-center shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1 md:p-10"
+              transition={{ delay: i * 0.12, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="text-center"
             >
               <AnimatedCounter target={s.value} prefix={s.prefix} suffix={s.suffix} />
-              <span className="mt-3 block text-sm font-medium text-muted-foreground">{s.label}</span>
+              <span className="mt-4 block text-sm font-medium text-muted-foreground tracking-wide">{s.label}</span>
             </motion.div>
           ))}
         </div>

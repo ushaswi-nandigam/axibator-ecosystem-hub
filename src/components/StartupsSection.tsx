@@ -1,17 +1,17 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Rocket } from "lucide-react";
 
 const StartupsSection = () => {
   return (
-    <section className="section-padding bg-ecosystem-bg">
+    <section className="section-padding">
       <div className="container">
-        <div className="section-header flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between mb-16">
           <div>
-            <p className="section-label">Portfolio</p>
+            <span className="section-label">Portfolio</span>
             <motion.h2
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               className="section-title"
@@ -21,26 +21,27 @@ const StartupsSection = () => {
             <p className="section-desc">Meet the grassroots founders building the future of India.</p>
           </div>
           <Link to="/startups">
-            <Button variant="outline" size="sm" className="rounded-full gap-2">
-              View All Founders
-              <ArrowRight className="h-3.5 w-3.5" />
+            <Button variant="outline" className="rounded-full gap-2 font-semibold">
+              View All Startups
+              <ArrowRight className="h-4 w-4" />
             </Button>
           </Link>
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="rounded-2xl bg-card p-16 text-center shadow-sm"
+          className="rounded-3xl bg-muted/50 p-16 md:p-20 text-center"
         >
-          <p className="text-lg font-medium text-muted-foreground">
+          <Rocket className="mx-auto h-12 w-12 text-muted-foreground/20" />
+          <p className="mt-6 text-xl font-semibold text-muted-foreground">
             Founder profiles will appear here as startups join the ecosystem.
           </p>
           <Link to="/apply">
-            <Button size="sm" className="mt-6 rounded-full bg-primary text-primary-foreground gap-2">
+            <Button className="mt-8 rounded-full bg-primary text-primary-foreground gap-2 px-8 font-semibold shadow-lg shadow-primary/20">
               Become a Featured Founder
-              <ArrowRight className="h-3.5 w-3.5" />
+              <ArrowRight className="h-4 w-4" />
             </Button>
           </Link>
         </motion.div>
