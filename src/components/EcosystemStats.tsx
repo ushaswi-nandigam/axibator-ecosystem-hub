@@ -2,10 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 const stats = [
-  { value: 50, suffix: "+", label: "Startup Teams" },
-  { value: 75, suffix: "+", label: "Global Startup Program Partners" },
-  { value: 500, prefix: "$", suffix: "K+", label: "Startup Credits Available" },
-  { value: 300, suffix: "+", label: "Mentors Network" },
+  { value: 25, suffix: "+", label: "MVPs Launching" },
+  { value: 500, suffix: "+", label: "Founders in Community" },
+  { value: 5, prefix: "₹", suffix: "L+", label: "Builder Credits Ready" },
+  { value: 5, suffix: "+", label: "Rural Labs Piloting" },
 ];
 
 const AnimatedCounter = ({ target, prefix = "", suffix = "" }: { target: number; prefix?: string; suffix?: string }) => {
@@ -50,7 +50,19 @@ const EcosystemStats = () => {
   return (
     <section className="section-padding">
       <div className="container">
-        <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
+        <div className="section-header text-center">
+          <p className="text-xs font-semibold uppercase tracking-widest text-primary">Built for Founders Who Don't Wait</p>
+          <motion.h2
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-3 text-3xl font-bold md:text-4xl"
+          >
+            Ecosystem at a Glance
+          </motion.h2>
+        </div>
+
+        <div className="grid grid-cols-2 gap-5 md:grid-cols-4">
           {stats.map((s, i) => (
             <motion.div
               key={s.label}
@@ -58,13 +70,17 @@ const EcosystemStats = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
-              className="rounded-xl border border-border bg-card p-6 text-center shadow-sm md:p-8"
+              className="rounded-2xl border border-border bg-card p-6 text-center shadow-sm md:p-8"
             >
               <AnimatedCounter target={s.value} prefix={s.prefix} suffix={s.suffix} />
               <span className="mt-2 block text-sm text-muted-foreground">{s.label}</span>
             </motion.div>
           ))}
         </div>
+
+        <p className="mt-8 text-center text-sm text-muted-foreground italic">
+          No pitch decks needed to join. Just progress.
+        </p>
       </div>
     </section>
   );

@@ -3,31 +3,32 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const programs = [
-  { name: "Ignite", subtitle: "Campus Pre-Incubation", desc: "From Idea to MVP & First Customers in 60 Days." },
-  { name: "LaunchPad", subtitle: "Student Startup Incubator", desc: "Structured incubation helping campus ventures move from MVP to early market entry." },
-  { name: "BuildLab", subtitle: "Core Startup Incubation", desc: "Focused on product-market fit, customer pilots, and investor readiness." },
-  { name: "TechXcelerate", subtitle: "Deep Tech Accelerator", desc: "AI, robotics, EV, and emerging technology ventures." },
-  { name: "HerPreneur", subtitle: "Women Entrepreneurship Accelerator", desc: "Empowering women founders with tailored support and funding access." },
-  { name: "Rural Innovators", subtitle: "Grassroots Innovation", desc: "Grassroots innovation and agriculture entrepreneurship." },
+  { name: "Axibator Ignite", duration: "8 Weeks", desc: "Idea validation bootcamp for first-time founders. No pitch decks, just progress.", features: ["Idea validation sprint", "Customer interview training", "MVP wireframing"] },
+  { name: "Core Incubation", duration: "12 Weeks", desc: "Our flagship build journey. Action-first, no-jargon learning for grassroots founders.", features: ["Weekly build sprints", "Mentor squad access", "Launch preparation"] },
+  { name: "Village Innovation Labs", duration: "4-8 Weeks", desc: "On-ground rural residencies for founders solving real problems in Tier 2/3 cities.", features: ["Rural immersion", "Community partnership", "Real impact measurement"] },
+  { name: "TechXcelerate", duration: "12 Weeks", desc: "AI, robotics, EV, and emerging technology ventures pushing boundaries.", features: ["Deep tech mentors", "Lab access", "Demo day"] },
+  { name: "HerPreneur", duration: "10 Weeks", desc: "Empowering women founders with tailored mentorship and funding access.", features: ["Women-led networks", "Funding access", "Community support"] },
+  { name: "GrowthTrack", duration: "8 Weeks", desc: "Revenue growth, scaling operations, and preparing for Series A.", features: ["Revenue strategy", "Investor readiness", "Scale operations"] },
 ];
 
 const ProgramsSection = () => {
   return (
-    <section className="section-padding border-t border-border bg-ecosystem-bg">
+    <section className="section-padding bg-ecosystem-bg">
       <div className="container">
         <div className="section-header">
+          <p className="text-xs font-semibold uppercase tracking-widest text-primary">Expeditions</p>
           <motion.h2
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-2xl font-bold md:text-4xl"
+            className="mt-3 text-3xl font-bold md:text-4xl"
           >
-            Programs
+            Key Offerings
           </motion.h2>
-          <p className="mt-2 text-muted-foreground">Structured paths for every stage of your journey.</p>
+          <p className="mt-3 text-muted-foreground">Action-first programs designed for grassroots founders at every stage.</p>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {programs.map((p, i) => (
             <motion.div
               key={p.name}
@@ -35,16 +36,29 @@ const ProgramsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.06 }}
-              className="group rounded-xl border border-border bg-card p-6 shadow-sm transition-all duration-200 hover:border-primary/30 hover:shadow-md"
+              className="group flex flex-col rounded-2xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:border-primary/30 hover:shadow-md"
             >
-              <h3 className="font-display text-lg font-bold text-foreground">{p.name}</h3>
-              <p className="mt-1 text-sm text-primary">{p.subtitle}</p>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
+              <div className="flex items-center justify-between">
+                <span className="rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">{p.duration}</span>
+              </div>
+
+              <h3 className="mt-4 text-lg font-bold text-foreground">{p.name}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
+
+              <ul className="mt-4 space-y-2">
+                {p.features.map((f) => (
+                  <li key={f} className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <span className="h-1 w-1 shrink-0 rounded-full bg-primary" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+
               <Link
                 to="/programs"
-                className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent transition-colors hover:text-primary"
+                className="mt-auto pt-5 inline-flex items-center gap-1 text-sm font-semibold text-accent transition-colors hover:text-primary"
               >
-                Learn more
+                Learn More
                 <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
               </Link>
             </motion.div>

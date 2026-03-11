@@ -4,92 +4,94 @@
 
 @layer base {
   :root {
-    --background: 0 0% 99%;
-    --foreground: 215 25% 15%;
+    --background: 40 20% 98%;
+    --foreground: 210 25% 12%;
 
     --card: 0 0% 100%;
-    --card-foreground: 215 25% 15%;
+    --card-foreground: 210 25% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 215 25% 15%;
+    --popover-foreground: 210 25% 12%;
 
     --primary: 24 100% 50%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 212 60% 95%;
-    --secondary-foreground: 212 100% 30%;
+    --secondary: 168 45% 92%;
+    --secondary-foreground: 168 60% 28%;
 
-    --muted: 210 15% 95%;
-    --muted-foreground: 215 15% 45%;
+    --muted: 40 10% 94%;
+    --muted-foreground: 210 10% 45%;
 
-    --accent: 212 46% 44%;
+    --accent: 200 80% 24%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 15% 90%;
-    --input: 210 15% 88%;
+    --border: 40 10% 90%;
+    --input: 40 10% 88%;
     --ring: 24 100% 50%;
 
-    --radius: 0.75rem;
+    --radius: 1rem;
 
-    --deep-blue: 212 100% 30%;
-    --accent-blue: 212 46% 44%;
+    --deep-blue: 200 80% 24%;
+    --accent-blue: 200 60% 35%;
     --neutral-grey: 0 0% 75%;
-    --ecosystem-bg: 210 20% 97%;
+    --ecosystem-bg: 40 15% 96%;
+    --warm-bg: 35 25% 95%;
 
     --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 215 25% 15%;
+    --sidebar-foreground: 210 25% 12%;
     --sidebar-primary: 24 100% 50%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 212 46% 44%;
+    --sidebar-accent: 200 80% 24%;
     --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 210 15% 90%;
+    --sidebar-border: 40 10% 90%;
     --sidebar-ring: 24 100% 50%;
   }
 
   .dark {
-    --background: 220 20% 6%;
-    --foreground: 210 15% 90%;
+    --background: 220 25% 5%;
+    --foreground: 40 10% 92%;
 
     --card: 220 20% 9%;
-    --card-foreground: 210 15% 90%;
+    --card-foreground: 40 10% 92%;
 
     --popover: 220 20% 9%;
-    --popover-foreground: 210 15% 90%;
+    --popover-foreground: 40 10% 92%;
 
     --primary: 24 100% 50%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 212 40% 15%;
-    --secondary-foreground: 210 15% 90%;
+    --secondary: 168 30% 12%;
+    --secondary-foreground: 168 40% 70%;
 
-    --muted: 220 15% 14%;
-    --muted-foreground: 210 10% 55%;
+    --muted: 220 15% 13%;
+    --muted-foreground: 210 10% 50%;
 
-    --accent: 212 46% 50%;
+    --accent: 200 60% 45%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 15% 16%;
-    --input: 220 15% 18%;
+    --border: 220 15% 15%;
+    --input: 220 15% 17%;
     --ring: 24 100% 50%;
 
-    --deep-blue: 212 100% 30%;
-    --accent-blue: 212 46% 50%;
-    --neutral-grey: 0 0% 55%;
-    --ecosystem-bg: 220 20% 8%;
+    --deep-blue: 200 60% 45%;
+    --accent-blue: 200 50% 50%;
+    --neutral-grey: 0 0% 45%;
+    --ecosystem-bg: 220 20% 7%;
+    --warm-bg: 220 20% 7%;
 
-    --sidebar-background: 220 20% 7%;
-    --sidebar-foreground: 210 15% 90%;
+    --sidebar-background: 220 20% 6%;
+    --sidebar-foreground: 40 10% 92%;
     --sidebar-primary: 24 100% 50%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 212 46% 50%;
-    --sidebar-accent-foreground: 210 15% 90%;
-    --sidebar-border: 220 15% 16%;
+    --sidebar-accent: 200 60% 45%;
+    --sidebar-accent-foreground: 40 10% 92%;
+    --sidebar-border: 220 15% 15%;
     --sidebar-ring: 24 100% 50%;
   }
 }
@@ -110,32 +112,15 @@
 
 @layer components {
   .section-padding {
-    @apply py-16 md:py-20;
+    @apply py-20 md:py-28;
   }
 
   .section-header {
-    @apply mb-10 md:mb-12;
+    @apply mb-12 md:mb-16;
   }
 
   .ecosystem-counter {
     @apply font-display text-4xl font-bold text-primary tabular-nums md:text-5xl;
-  }
-
-  .horizontal-scroll {
-    @apply flex gap-5 overflow-x-auto pb-4;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-
-  .horizontal-scroll::-webkit-scrollbar {
-    display: none;
-  }
-
-  .horizontal-scroll > * {
-    scroll-snap-align: start;
-    flex-shrink: 0;
   }
 
   .nav-link {
@@ -148,5 +133,14 @@
 
   .tag {
     @apply inline-flex items-center rounded-full border border-border bg-muted/50 px-3.5 py-1.5 text-xs font-medium text-muted-foreground transition-all duration-200 hover:border-primary/30 hover:text-foreground;
+  }
+
+  /* Journey progress line */
+  .journey-line {
+    @apply relative;
+  }
+  .journey-line::before {
+    content: '';
+    @apply absolute left-6 top-0 h-full w-px bg-gradient-to-b from-primary via-accent to-border;
   }
 }

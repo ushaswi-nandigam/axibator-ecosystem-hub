@@ -5,31 +5,36 @@ import axibatorLogo from "@/assets/axibator-logo.png";
 const Footer = () => {
   return (
     <footer className="border-t border-border bg-card">
-      <div className="container py-12 md:py-16">
+      <div className="container py-14 md:py-16">
         <div className="grid gap-10 md:grid-cols-4">
           <div className="md:col-span-2">
             <Link to="/" className="inline-block">
-              <img src={axibatorLogo} alt="Axibator" className="h-10" />
+              <img src={axibatorLogo} alt="Axibator" className="h-9" />
             </Link>
-            <p className="mt-3 max-w-md text-sm leading-relaxed text-muted-foreground">
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
               Building first-mile infrastructure for grassroots founders.
               Action-first support for builders who don't wait for permission to start.
             </p>
             <div className="mt-5 flex gap-3">
-              {["X", "Li", "Ig", "Yt"].map((s) => (
+              {[
+                { label: "X", href: "#" },
+                { label: "Li", href: "#" },
+                { label: "Ig", href: "#" },
+                { label: "Yt", href: "#" },
+              ].map((s) => (
                 <a
-                  key={s}
-                  href="#"
-                  className="flex h-8 w-8 items-center justify-center rounded-lg border border-border text-xs font-medium text-muted-foreground transition-colors hover:border-primary/30 hover:text-foreground"
+                  key={s.label}
+                  href={s.href}
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-xs font-medium text-muted-foreground transition-colors hover:border-primary/30 hover:text-foreground"
                 >
-                  {s}
+                  {s.label}
                 </a>
               ))}
             </div>
           </div>
 
           <div>
-            <h4 className="text-sm font-semibold text-foreground">Quick Links</h4>
+            <h4 className="text-sm font-semibold text-foreground">Routes</h4>
             <div className="mt-3 flex flex-col gap-2.5">
               {["Programs", "Startups", "Partners", "Events", "Resources", "Apply"].map((l) => (
                 <Link key={l} to={`/${l.toLowerCase()}`} className="text-sm text-muted-foreground transition-colors hover:text-foreground">

@@ -1,14 +1,18 @@
 import { motion } from "framer-motion";
 
-const partners = [
-  { name: "Google for Startups", type: "Startup Programs" },
-  { name: "Microsoft Founders Hub", type: "Startup Programs" },
-  { name: "AWS Activate", type: "Corporate Partners" },
-  { name: "NASSCOM", type: "Corporate Partners" },
-  { name: "IIT Hyderabad", type: "Universities" },
-  { name: "T-Hub", type: "Incubators" },
-  { name: "IIIT Vizag", type: "Universities" },
-  { name: "Startup India", type: "Government" },
+const categories = [
+  {
+    label: "Allied Ports — Corporate Partners",
+    partners: ["Google for Startups", "Microsoft Founders Hub", "AWS Activate", "NASSCOM"],
+  },
+  {
+    label: "Allied Ports — Universities",
+    partners: ["IIT Hyderabad", "IIIT Vizag", "GITAM University", "Andhra University"],
+  },
+  {
+    label: "Allied Ports — Government & Programs",
+    partners: ["Startup India", "T-Hub", "TASK Telangana", "MSME Ministry"],
+  },
 ];
 
 const PartnersSection = () => {
@@ -16,32 +20,41 @@ const PartnersSection = () => {
     <section className="section-padding">
       <div className="container">
         <div className="section-header">
+          <p className="text-xs font-semibold uppercase tracking-widest text-primary">Allied Ports</p>
           <motion.h2
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-2xl font-bold md:text-4xl"
+            className="mt-3 text-3xl font-bold md:text-4xl"
           >
-            Partners Ecosystem
+            Ecosystem Partners
           </motion.h2>
-          <p className="mt-2 text-muted-foreground">Collaborating with the best to support founders.</p>
+          <p className="mt-3 text-muted-foreground">Organizations powering the Axibator ecosystem.</p>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
-          {partners.map((p, i) => (
+        <div className="space-y-8">
+          {categories.map((cat, ci) => (
             <motion.div
-              key={p.name}
-              initial={{ opacity: 0, y: 10 }}
+              key={cat.label}
+              initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.05 }}
-              className="group flex flex-col items-center rounded-xl border border-border bg-card p-5 text-center shadow-sm transition-all duration-200 hover:border-primary/30 hover:shadow-md"
+              transition={{ delay: ci * 0.06 }}
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-muted text-lg font-bold text-accent">
-                {p.name[0]}
+              <h3 className="mb-4 text-sm font-semibold text-foreground">{cat.label}</h3>
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+                {cat.partners.map((p) => (
+                  <div
+                    key={p}
+                    className="flex items-center gap-3 rounded-2xl border border-border bg-card p-4 shadow-sm transition-all duration-200 hover:border-primary/30 hover:shadow-md"
+                  >
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-muted text-sm font-bold text-accent">
+                      {p[0]}
+                    </div>
+                    <span className="text-sm font-medium text-foreground">{p}</span>
+                  </div>
+                ))}
               </div>
-              <h3 className="mt-3 text-sm font-semibold text-foreground">{p.name}</h3>
-              <span className="mt-1 text-xs text-muted-foreground">{p.type}</span>
             </motion.div>
           ))}
         </div>

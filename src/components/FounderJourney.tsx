@@ -1,36 +1,35 @@
 import { motion } from "framer-motion";
+import { Compass, Hammer, Rocket, TrendingUp, Globe } from "lucide-react";
 
 const stages = [
-  { stage: "Discover", program: "Ignite" },
-  { stage: "Build", program: "LaunchPad" },
-  { stage: "Launch", program: "BuildLab" },
-  { stage: "Scale", program: "GrowthTrack" },
-  { stage: "Global", program: "Global Catalyst" },
+  { stage: "Discover", program: "Ignite", icon: Compass, desc: "Validate your idea in 8 weeks" },
+  { stage: "Build", program: "Core Incubation", icon: Hammer, desc: "12-week action-first build journey" },
+  { stage: "Launch", program: "BuildLab", icon: Rocket, desc: "Find product-market fit" },
+  { stage: "Scale", program: "GrowthTrack", icon: TrendingUp, desc: "Revenue growth and funding readiness" },
+  { stage: "Go Global", program: "Global Catalyst", icon: Globe, desc: "Expand to international markets" },
 ];
 
 const FounderJourney = () => {
   return (
     <section className="section-padding">
       <div className="container">
-        <div className="section-header">
+        <div className="section-header text-center">
+          <p className="text-xs font-semibold uppercase tracking-widest text-primary">The Pathway</p>
           <motion.h2
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-2xl font-bold md:text-4xl"
+            className="mt-3 text-3xl font-bold md:text-4xl"
           >
-            Founder Journey
+            Your Founder Journey
           </motion.h2>
-          <p className="mt-2 text-muted-foreground">Your path from idea to global impact.</p>
+          <p className="mx-auto mt-3 max-w-lg text-muted-foreground">
+            Each stage is a checkpoint. Axibator guides you from uncertainty to clarity.
+          </p>
         </div>
 
-        {/* Horizontal roadmap */}
-        <div className="relative flex flex-col gap-0 md:flex-row md:items-start md:justify-between">
-          {/* Connecting line (desktop) */}
-          <div className="absolute left-6 top-6 hidden h-px w-[calc(100%-3rem)] bg-border md:block" />
-          {/* Connecting line (mobile) */}
-          <div className="absolute left-6 top-0 h-full w-px bg-border md:hidden" />
-
+        {/* Journey cards */}
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {stages.map((s, i) => (
             <motion.div
               key={s.stage}
@@ -38,15 +37,27 @@ const FounderJourney = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
-              className="relative z-10 flex items-start gap-4 py-3 md:flex-col md:items-center md:py-0 md:text-center"
+              className="group relative rounded-2xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:border-primary/30 hover:shadow-md"
             >
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-primary bg-background text-sm font-bold text-primary">
-                {i + 1}
+              {/* Step number */}
+              <span className="absolute top-4 right-4 font-display text-xs font-bold text-muted-foreground/40">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 transition-colors group-hover:bg-primary/20">
+                <s.icon className="h-5 w-5 text-primary" />
               </div>
-              <div className="md:mt-4">
-                <p className="text-base font-bold text-foreground">{s.stage}</p>
-                <p className="mt-0.5 text-sm text-primary">{s.program}</p>
-              </div>
+
+              <h3 className="mt-4 text-lg font-bold text-foreground">{s.stage}</h3>
+              <p className="mt-1 text-xs font-semibold text-primary">{s.program}</p>
+              <p className="mt-2 text-sm text-muted-foreground">{s.desc}</p>
+
+              {/* Directional connector on desktop */}
+              {i < stages.length - 1 && (
+                <div className="absolute -right-3 top-1/2 z-10 hidden h-6 w-6 items-center justify-center rounded-full border border-border bg-background text-muted-foreground lg:flex">
+                  <span className="text-xs">→</span>
+                </div>
+              )}
             </motion.div>
           ))}
         </div>
