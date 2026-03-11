@@ -1,5 +1,6 @@
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { Compass, Hammer, Rocket, TrendingUp, Globe } from "lucide-react";
+import { useRef } from "react";
 
 const stages = [
   { stage: "Discover", program: "Ignite", icon: Compass, desc: "Validate your idea in 8 weeks" },
@@ -10,6 +11,9 @@ const stages = [
 ];
 
 const FounderJourney = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
+
   return (
     <section className="section-padding">
       <div className="container">
@@ -29,23 +33,28 @@ const FounderJourney = () => {
         </div>
 
         {/* Journey cards */}
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <div ref={ref} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {stages.map((s, i) => (
             <motion.div
               key={s.stage}
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
-              className="group relative rounded-2xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:border-primary/30 hover:shadow-md"
+              initial={{ opacity: 0, y: 30, scale: 0.95 }}
+              animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+              transition={{ delay: i * 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ y: -6, scale: 1.03 }}
+              className="group relative rounded-2xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:border-primary/30 hover:shadow-lg cursor-pointer"
             >
               {/* Step number */}
-              <span className="absolute top-4 right-4 font-display text-xs font-bold text-muted-foreground/40">
+              <motion.span
+                initial={{ opacity: 0 }}
+                animate={isInView ? { opacity: 1 } : {}}
+                transition={{ delay: i * 0.1 + 0.3 }}
+                className="absolute top-4 right-4 font-display text-3xl font-bold text-muted-foreground/10 transition-colors group-hover:text-primary/15"
+              >
                 {String(i + 1).padStart(2, "0")}
-              </span>
+              </motion.span>
 
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 transition-colors group-hover:bg-primary/20">
-                <s.icon className="h-5 w-5 text-primary" />
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 transition-all duration-300 group-hover:bg-primary group-hover:shadow-md group-hover:shadow-primary/20">
+                <s.icon className="h-5 w-5 text-primary transition-colors group-hover:text-primary-foreground" />
               </div>
 
               <h3 className="mt-4 text-lg font-bold text-foreground">{s.stage}</h3>
@@ -54,9 +63,14 @@ const FounderJourney = () => {
 
               {/* Directional connector on desktop */}
               {i < stages.length - 1 && (
-                <div className="absolute -right-3 top-1/2 z-10 hidden h-6 w-6 items-center justify-center rounded-full border border-border bg-background text-muted-foreground lg:flex">
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={isInView ? { scale: 1 } : {}}
+                  transition={{ delay: i * 0.1 + 0.4, type: "spring", stiffness: 300 }}
+                  className="absolute -right-3 top-1/2 z-10 hidden h-6 w-6 items-center justify-center rounded-full border border-border bg-background text-muted-foreground shadow-sm lg:flex"
+                >
                   <span className="text-xs">→</span>
-                </div>
+                </motion.div>
               )}
             </motion.div>
           ))}

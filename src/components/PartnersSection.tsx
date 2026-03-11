@@ -1,17 +1,35 @@
 import { motion } from "framer-motion";
 
+// Partner logos via Clearbit Logo API (free, no auth needed)
+const getLogoUrl = (domain: string) => `https://logo.clearbit.com/${domain}`;
+
 const categories = [
   {
     label: "Allied Ports — Corporate Partners",
-    partners: ["Google for Startups", "Microsoft Founders Hub", "AWS Activate", "NASSCOM"],
+    partners: [
+      { name: "Google for Startups", domain: "google.com" },
+      { name: "Microsoft Founders Hub", domain: "microsoft.com" },
+      { name: "AWS Activate", domain: "aws.amazon.com" },
+      { name: "NASSCOM", domain: "nasscom.in" },
+    ],
   },
   {
     label: "Allied Ports — Universities",
-    partners: ["IIT Hyderabad", "IIIT Vizag", "GITAM University", "Andhra University"],
+    partners: [
+      { name: "IIT Hyderabad", domain: "iith.ac.in" },
+      { name: "IIIT Vizag", domain: "iiitdm.ac.in" },
+      { name: "GITAM University", domain: "gitam.edu" },
+      { name: "Andhra University", domain: "andhrauniversity.edu.in" },
+    ],
   },
   {
     label: "Allied Ports — Government & Programs",
-    partners: ["Startup India", "T-Hub", "TASK Telangana", "MSME Ministry"],
+    partners: [
+      { name: "Startup India", domain: "startupindia.gov.in" },
+      { name: "T-Hub", domain: "t-hub.co" },
+      { name: "TASK Telangana", domain: "task.telangana.gov.in" },
+      { name: "MSME Ministry", domain: "msme.gov.in" },
+    ],
   },
 ];
 
@@ -44,15 +62,31 @@ const PartnersSection = () => {
               <h3 className="mb-4 text-sm font-semibold text-foreground">{cat.label}</h3>
               <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
                 {cat.partners.map((p) => (
-                  <div
-                    key={p}
+                  <motion.div
+                    key={p.name}
+                    whileHover={{ scale: 1.03, y: -2 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
                     className="flex items-center gap-3 rounded-2xl border border-border bg-card p-4 shadow-sm transition-all duration-200 hover:border-primary/30 hover:shadow-md"
                   >
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-muted text-sm font-bold text-accent">
-                      {p[0]}
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white overflow-hidden">
+                      <img
+                        src={getLogoUrl(p.domain)}
+                        alt={p.name}
+                        className="h-7 w-7 object-contain"
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          target.style.display = 'none';
+                          const parent = target.parentElement;
+                          if (parent) {
+                            parent.classList.add('bg-muted', 'text-accent');
+                            parent.classList.remove('bg-white');
+                            parent.innerHTML = `<span class="text-sm font-bold">${p.name[0]}</span>`;
+                          }
+                        }}
+                      />
                     </div>
-                    <span className="text-sm font-medium text-foreground">{p}</span>
-                  </div>
+                    <span className="text-sm font-medium text-foreground">{p.name}</span>
+                  </motion.div>
                 ))}
               </div>
             </motion.div>
