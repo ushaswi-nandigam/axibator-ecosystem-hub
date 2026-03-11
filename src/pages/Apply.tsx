@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { Send } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { toast } from "sonner";
 
 const programOptions = [
-  "Ignite", "LaunchPad", "BuildLab", "GrowthTrack", "TechXcelerate",
-  "HerPreneur", "Rural Innovators", "Social Impact Accelerator", "Other",
+  "SparkLab", "Ignite", "LaunchPad", "IdeaForge", "BuildLab", "GrowthTrack",
+  "Axibator X", "HerPreneur", "Rural Innovators", "Social Impact Accelerator",
+  "TechXcelerate", "CreativeLab", "Global Catalyst", "Other",
 ];
 
 const Apply = () => {
@@ -21,18 +23,21 @@ const Apply = () => {
     setForm({ name: "", email: "", idea: "", industry: "", teamSize: "", stage: "", program: "" });
   };
 
-  const inputClass = "mt-1.5 block w-full rounded-lg border border-border bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary/20";
+  const inputClass = "mt-1.5 block w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary/20";
 
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
       <main className="pt-24 pb-16">
         <div className="container max-w-2xl">
-          <div className="section-header">
-            <motion.h1 initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} className="text-3xl font-bold md:text-4xl">
+          <div className="section-header text-center">
+            <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-xs font-semibold uppercase tracking-widest text-primary">
+              Begin Your Expedition
+            </motion.p>
+            <motion.h1 initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} className="mt-3 text-3xl font-bold md:text-4xl">
               <span className="text-primary">Apply</span> to Axibator
             </motion.h1>
-            <p className="mt-2 text-muted-foreground">Tell us about yourself and your startup idea.</p>
+            <p className="mt-3 text-muted-foreground">Tell us about yourself and your startup idea.</p>
           </div>
 
           <motion.form
@@ -40,7 +45,7 @@ const Apply = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
             onSubmit={handleSubmit}
-            className="rounded-xl border border-border bg-card p-6 shadow-sm md:p-8"
+            className="rounded-2xl border border-border bg-card p-6 shadow-sm md:p-10"
           >
             <div className="flex flex-col gap-5">
               <div>
@@ -53,7 +58,7 @@ const Apply = () => {
               </div>
               <div>
                 <label className="text-sm font-medium text-foreground">Startup Idea</label>
-                <textarea required rows={3} value={form.idea} onChange={(e) => setForm({ ...form, idea: e.target.value })} className={inputClass} placeholder="Describe your startup idea" />
+                <textarea required rows={3} value={form.idea} onChange={(e) => setForm({ ...form, idea: e.target.value })} className={inputClass} placeholder="Describe your startup idea in a few sentences" />
               </div>
               <div className="grid gap-5 sm:grid-cols-2">
                 <div>
@@ -85,8 +90,8 @@ const Apply = () => {
                   </select>
                 </div>
               </div>
-              <Button size="lg" type="submit" className="mt-2 w-full bg-primary text-primary-foreground font-semibold hover:bg-primary/90">
-                Submit Application
+              <Button size="lg" type="submit" variant="hero" className="mt-3 w-full">
+                <Send size={16} className="mr-2" /> Submit Application
               </Button>
             </div>
           </motion.form>
