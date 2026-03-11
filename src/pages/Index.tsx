@@ -22,6 +22,7 @@ const Index = () => {
         <WhatIsSection />
         <FounderJourney />
         <EcosystemStats />
+        <NorthStarGoals />
         <ProgramsSection />
         <BuilderNestSection />
         <StartupsSection />
