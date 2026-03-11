@@ -5,30 +5,11 @@ import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const resources = [
-  { title: "Startup Playbook", category: "Playbooks", desc: "Step-by-step guide from idea validation to first revenue." },
-  { title: "Pitch Deck Template", category: "Pitch Decks", desc: "Investor-ready pitch deck structure used by top YC startups." },
-  { title: "Funding Readiness Checklist", category: "Funding", desc: "Everything you need before approaching angel investors." },
-  { title: "Co-Founder Agreement Template", category: "Legal", desc: "Legal template for equity splits, roles, and vesting." },
-  { title: "Customer Discovery Toolkit", category: "Playbooks", desc: "Frameworks for identifying and validating your ideal customer." },
-  { title: "Financial Model Template", category: "Funding", desc: "Excel/Sheets model for projections and unit economics." },
-  { title: "Brand Identity Worksheet", category: "Toolkit", desc: "Define your startup's brand voice, values, and visual identity." },
-  { title: "Market Research Template", category: "Playbooks", desc: "TAM SAM SOM analysis and competitive landscape mapping." },
-  { title: "Term Sheet Guide", category: "Legal", desc: "Understanding term sheets and common investor terms." },
-  { title: "Growth Metrics Dashboard", category: "Toolkit", desc: "Key metrics every early-stage startup should track." },
-];
-
 const categories = ["All", "Playbooks", "Pitch Decks", "Funding", "Legal", "Toolkit"];
 
 const Resources = () => {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All");
-
-  const filtered = resources.filter(
-    (r) =>
-      (category === "All" || r.category === category) &&
-      (search === "" || r.title.toLowerCase().includes(search.toLowerCase()))
-  );
 
   return (
     <div className="min-h-screen bg-background">
@@ -76,32 +57,18 @@ const Resources = () => {
             </div>
           </div>
 
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {filtered.map((r, i) => (
-              <motion.div
-                key={r.title}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.03 }}
-                className="group flex flex-col rounded-2xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:border-primary/30 hover:shadow-md"
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent/10">
-                    <BookOpen size={18} className="text-accent" />
-                  </div>
-                  <span className="rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">{r.category}</span>
-                </div>
-                <h3 className="mt-4 font-display text-base font-bold text-foreground">{r.title}</h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{r.desc}</p>
-                <Button variant="outline" size="sm" className="mt-5 w-full">
-                  <Download size={14} className="mr-1.5" /> Download
-                </Button>
-              </motion.div>
-            ))}
-          </div>
-          {filtered.length === 0 && (
-            <p className="mt-12 text-center text-muted-foreground">No resources found.</p>
-          )}
+          {/* Empty state */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="rounded-2xl border border-dashed border-border bg-card/50 p-16 text-center"
+          >
+            <BookOpen className="mx-auto h-10 w-10 text-muted-foreground/40" />
+            <h3 className="mt-4 text-lg font-semibold text-foreground">Resources coming soon</h3>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Playbooks, templates, and founder toolkits will be available here.
+            </p>
+          </motion.div>
         </div>
       </main>
       <Footer />
