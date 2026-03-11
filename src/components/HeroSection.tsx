@@ -131,9 +131,9 @@ const HeroSection = () => {
             className="hidden lg:flex items-center justify-center"
           >
             <img
-              src={heroSvg}
-              alt="Axibator - Startup Incubator Journey"
-              className="w-full max-w-md xl:max-w-lg dark:brightness-90 dark:contrast-110"
+              src={heroImg}
+              alt="Axibator - Grassroots founder journey from small towns to thriving startups"
+              className="w-full max-w-lg xl:max-w-xl drop-shadow-lg"
             />
           </motion.div>
         </div>
