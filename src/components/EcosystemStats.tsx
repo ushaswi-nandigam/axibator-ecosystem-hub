@@ -2,10 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 
 const stats = [
-  { value: 25, suffix: "+", label: "MVPs Launching" },
-  { value: 500, suffix: "+", label: "Founders in Community" },
-  { value: 5, prefix: "₹", suffix: "L+", label: "Builder Credits Ready" },
-  { value: 5, suffix: "+", label: "Rural Labs Piloting" },
+  { value: 50, suffix: "+", label: "Startup Teams" },
+  { value: 75, suffix: "+", label: "Global Startup Program Partners" },
+  { value: 500, prefix: "$", suffix: "K+", label: "Startup Credits" },
+  { value: 300, suffix: "+", label: "Mentors Network" },
 ];
 
 const AnimatedCounter = ({ target, prefix = "", suffix = "" }: { target: number; prefix?: string; suffix?: string }) => {
@@ -51,47 +51,37 @@ const EcosystemStats = () => {
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
   return (
-    <section className="section-padding" ref={sectionRef}>
-      <div className="container">
+    <section className="section-padding relative overflow-hidden" ref={sectionRef}>
+      {/* Accent gradient bg */}
+      <div className="absolute inset-0 bg-gradient-to-r from-primary/[0.03] via-transparent to-accent/[0.03]" />
+
+      <div className="container relative">
         <div className="section-header text-center">
-          <p className="text-xs font-semibold uppercase tracking-widest text-primary">Built for Founders Who Don't Wait</p>
+          <p className="section-label">Impact</p>
           <motion.h2
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mt-3 text-3xl font-bold md:text-4xl"
+            className="section-title"
           >
             Ecosystem at a Glance
           </motion.h2>
         </div>
 
-        <div className="grid grid-cols-2 gap-5 md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
           {stats.map((s, i) => (
             <motion.div
               key={s.label}
-              initial={{ opacity: 0, y: 30, scale: 0.95 }}
-              animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: i * 0.12, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ y: -4, scale: 1.02 }}
-              className="group rounded-2xl border border-border bg-card p-6 text-center shadow-sm transition-all duration-300 hover:border-primary/30 hover:shadow-lg md:p-8"
+              className="relative rounded-2xl bg-card p-8 text-center shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1 md:p-10"
             >
               <AnimatedCounter target={s.value} prefix={s.prefix} suffix={s.suffix} />
-              <span className="mt-2 block text-sm text-muted-foreground">{s.label}</span>
-              {/* Subtle glow on hover */}
-              <div className="absolute inset-0 rounded-2xl bg-primary/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100 -z-10" />
+              <span className="mt-3 block text-sm font-medium text-muted-foreground">{s.label}</span>
             </motion.div>
           ))}
         </div>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.6 }}
-          className="mt-8 text-center text-sm text-muted-foreground italic"
-        >
-          No pitch decks needed to join. Just progress.
-        </motion.p>
       </div>
     </section>
   );

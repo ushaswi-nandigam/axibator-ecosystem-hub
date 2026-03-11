@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Calendar, MapPin, Users } from "lucide-react";
+import { Calendar, ArrowRight } from "lucide-react";
 
 const EventsSection = () => {
   return (
@@ -9,19 +9,22 @@ const EventsSection = () => {
       <div className="container">
         <div className="section-header flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-primary">Voyages</p>
+            <p className="section-label">Events</p>
             <motion.h2
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="mt-3 text-3xl font-bold md:text-4xl"
+              className="section-title"
             >
               Upcoming Events
             </motion.h2>
-            <p className="mt-3 text-muted-foreground">Join our community events across India.</p>
+            <p className="section-desc">Join our community events across India.</p>
           </div>
           <Link to="/events">
-            <Button variant="outline" size="sm" className="rounded-full">See Full Calendar</Button>
+            <Button variant="outline" size="sm" className="rounded-full gap-2">
+              See Full Calendar
+              <ArrowRight className="h-3.5 w-3.5" />
+            </Button>
           </Link>
         </div>
 
@@ -29,11 +32,15 @@ const EventsSection = () => {
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="rounded-2xl border border-dashed border-border bg-card/50 p-12 text-center"
+          className="rounded-2xl bg-card p-16 text-center shadow-sm"
         >
-          <Calendar className="mx-auto h-8 w-8 text-muted-foreground/50" />
-          <p className="mt-3 text-muted-foreground">Events will be listed here once scheduled.</p>
-          <p className="mt-1 text-sm text-muted-foreground/70">Stay tuned for build sprints, networking nights, and cohort kickoffs.</p>
+          <Calendar className="mx-auto h-10 w-10 text-muted-foreground/30" />
+          <p className="mt-4 text-lg font-medium text-muted-foreground">
+            Events will be listed here once scheduled.
+          </p>
+          <p className="mt-2 text-sm text-muted-foreground/70">
+            Stay tuned for build sprints, networking nights, and cohort kickoffs.
+          </p>
         </motion.div>
       </div>
     </section>
