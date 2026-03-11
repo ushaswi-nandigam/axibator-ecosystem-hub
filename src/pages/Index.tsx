@@ -5,6 +5,7 @@ import WhatIsSection from "@/components/WhatIsSection";
 import FounderJourney from "@/components/FounderJourney";
 import ProgramsSection from "@/components/ProgramsSection";
 import EcosystemStats from "@/components/EcosystemStats";
+import NorthStarGoals from "@/components/NorthStarGoals";
 import StartupsSection from "@/components/StartupsSection";
 import PartnersSection from "@/components/PartnersSection";
 import EventsSection from "@/components/EventsSection";
