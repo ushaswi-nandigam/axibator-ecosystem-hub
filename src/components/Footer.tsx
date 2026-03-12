@@ -24,10 +24,9 @@ const Footer = () => {
     <footer className="border-t border-border/50 bg-card">
       <div className="container py-20 md:py-24">
         <div className="grid gap-16 md:grid-cols-2 lg:grid-cols-5">
-          {/* Brand — spans 2 cols */}
           <div className="lg:col-span-2">
             <Link to="/" className="inline-block">
-              <img src={axibatorLogo} alt="Axibator" className="h-9 dark:brightness-0 dark:invert" />
+              <img src={axibatorLogo} alt="Axibator" className="h-9" />
             </Link>
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-muted-foreground">
               Building first-mile infrastructure for grassroots founders.
@@ -51,7 +50,6 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Programs */}
           <div>
             <h4 className="text-sm font-bold text-foreground tracking-wide">Programs</h4>
             <div className="mt-5 flex flex-col gap-3">
@@ -63,7 +61,6 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Ecosystem */}
           <div>
             <h4 className="text-sm font-bold text-foreground tracking-wide">Explore</h4>
             <div className="mt-5 flex flex-col gap-3">
@@ -75,7 +72,6 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Contact */}
           <div>
             <h4 className="text-sm font-bold text-foreground tracking-wide">Contact</h4>
             <div className="mt-5 flex flex-col gap-4">

@@ -21,7 +21,6 @@ const PartnersSection = () => {
           <p className="section-desc">Destinations and collaboration points across the journey.</p>
         </div>
 
-        {/* Category tags */}
         <div className="flex flex-wrap gap-3 mb-12">
           {categories.map((cat) => (
             <span key={cat} className="rounded-full border border-border bg-muted/50 px-5 py-2 text-sm font-medium text-muted-foreground">

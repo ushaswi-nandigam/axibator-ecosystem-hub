@@ -2,7 +2,6 @@ import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import ThemeToggle from "@/components/ThemeToggle";
 import axibatorLogo from "@/assets/axibator-logo.png";
 
 const navItems = [
@@ -23,7 +22,7 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/40 bg-background/80 backdrop-blur-xl">
       <div className="container flex h-18 items-center justify-between py-4">
         <Link to="/" className="flex items-center">
-          <img src={axibatorLogo} alt="Axibator" className="h-8 md:h-9 dark:brightness-0 dark:invert" />
+          <img src={axibatorLogo} alt="Axibator" className="h-8 md:h-9" />
         </Link>
 
         {/* Desktop nav */}
@@ -44,7 +43,6 @@ const Navbar = () => {
         </div>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <ThemeToggle />
           <Link to="/login">
             <Button variant="ghost" size="sm" className="text-muted-foreground font-medium">Login</Button>
           </Link>
@@ -57,7 +55,6 @@ const Navbar = () => {
 
         {/* Mobile */}
         <div className="flex items-center gap-2 lg:hidden">
-          <ThemeToggle />
           <button
             className="flex h-10 w-10 items-center justify-center rounded-full text-foreground hover:bg-muted"
             onClick={() => setMobileOpen(!mobileOpen)}

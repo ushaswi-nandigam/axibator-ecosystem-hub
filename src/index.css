@@ -42,10 +42,8 @@
     --neutral-grey-dark: 0 0% 75%;
     --ecosystem-bg: 220 20% 97%;
     --warm-bg: 30 25% 97%;
-    --dark-section: 220 30% 6%;
-    --dark-section-foreground: 220 14% 96%;
-    --story-dark: 220 25% 4%;
-    --story-dark-foreground: 220 14% 92%;
+    --cool-bg: 210 30% 97%;
+    --section-alt: 220 15% 96%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 220 20% 10%;
@@ -54,56 +52,6 @@
     --sidebar-accent: 210 55% 45%;
     --sidebar-accent-foreground: 0 0% 100%;
     --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 24 100% 50%;
-  }
-
-  .dark {
-    --background: 220 25% 4%;
-    --foreground: 220 14% 92%;
-
-    --card: 220 20% 7%;
-    --card-foreground: 220 14% 92%;
-
-    --popover: 220 20% 7%;
-    --popover-foreground: 220 14% 92%;
-
-    --primary: 24 100% 50%;
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 213 60% 22%;
-    --secondary-foreground: 220 14% 92%;
-
-    --muted: 220 18% 11%;
-    --muted-foreground: 220 10% 55%;
-
-    --accent: 210 50% 50%;
-    --accent-foreground: 0 0% 100%;
-
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 220 16% 14%;
-    --input: 220 16% 16%;
-    --ring: 24 100% 50%;
-
-    --deep-blue: 210 50% 50%;
-    --accent-blue: 210 45% 55%;
-    --neutral-grey: 220 14% 16%;
-    --neutral-grey-dark: 0 0% 45%;
-    --ecosystem-bg: 220 22% 6%;
-    --warm-bg: 220 22% 5%;
-    --dark-section: 220 25% 5%;
-    --dark-section-foreground: 220 14% 92%;
-    --story-dark: 220 25% 3%;
-    --story-dark-foreground: 220 14% 92%;
-
-    --sidebar-background: 220 18% 5%;
-    --sidebar-foreground: 220 14% 92%;
-    --sidebar-primary: 24 100% 50%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 210 50% 50%;
-    --sidebar-accent-foreground: 220 14% 92%;
-    --sidebar-border: 220 16% 14%;
     --sidebar-ring: 24 100% 50%;
   }
 }
@@ -155,15 +103,20 @@
     @apply rounded-2xl bg-card p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1;
   }
 
-  .dark-section {
-    @apply bg-dark-section text-dark-section-foreground;
+  /* Light gradient section variants */
+  .section-warm {
+    background: linear-gradient(135deg, hsl(30 25% 97%), hsl(24 30% 96%));
   }
 
-  .story-section {
-    @apply bg-story-dark text-story-dark-foreground;
+  .section-cool {
+    background: linear-gradient(135deg, hsl(210 30% 97%), hsl(220 25% 96%));
   }
 
-  .story-section-alt {
-    @apply bg-dark-section text-dark-section-foreground;
+  .section-hero-light {
+    background: linear-gradient(160deg, hsl(220 20% 98%), hsl(210 25% 96%) 50%, hsl(24 15% 97%));
+  }
+
+  .section-accent-soft {
+    background: linear-gradient(135deg, hsl(213 20% 97%), hsl(210 30% 96%));
   }
 }
