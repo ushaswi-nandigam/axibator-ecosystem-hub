@@ -72,24 +72,52 @@ const BuilderNestSection = () => {
             transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="relative hidden lg:flex items-center justify-center"
           >
-            <div className="relative w-full max-w-sm mx-auto aspect-square">
-              {/* Map grid background */}
-              <div className="absolute inset-0 rounded-2xl opacity-[0.04]" style={{
-                backgroundImage: `linear-gradient(hsl(var(--primary)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)`,
-                backgroundSize: '30px 30px'
+            <div className="relative w-full max-w-md mx-auto aspect-square">
+              {/* Outer rounded border */}
+              <div className="absolute inset-0 rounded-3xl border-2 border-dashed border-primary/15" />
+              {/* Middle border */}
+              <div className="absolute inset-[6%] rounded-2xl border border-dashed border-primary/12" />
+              {/* Inner border */}
+              <div className="absolute inset-[12%] rounded-xl border border-primary/8" />
+
+              {/* Subtle dot grid */}
+              <div className="absolute inset-[6%] rounded-2xl opacity-[0.04]" style={{
+                backgroundImage: `radial-gradient(circle, hsl(var(--primary)) 1px, transparent 1px)`,
+                backgroundSize: '24px 24px'
               }} />
 
-              {/* Soft boundary */}
-              <div className="absolute inset-[5%] rounded-2xl border border-primary/10" />
-              <div className="absolute inset-[10%] rounded-2xl border border-dashed border-primary/8" />
+              {/* Curved connecting lines */}
+              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 400">
+                {/* Elegant crossing curves from active cities */}
+                <motion.path
+                  d="M 100 100 C 160 200, 240 200, 300 300"
+                  fill="none"
+                  stroke="hsl(var(--primary))"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  animate={isInView ? { pathLength: 1, opacity: 0.3 } : {}}
+                  transition={{ delay: 0.6, duration: 1.2, ease: "easeInOut" }}
+                />
+                <motion.path
+                  d="M 310 100 C 240 200, 160 200, 100 320"
+                  fill="none"
+                  stroke="hsl(var(--primary))"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  animate={isInView ? { pathLength: 1, opacity: 0.25 } : {}}
+                  transition={{ delay: 0.8, duration: 1.2, ease: "easeInOut" }}
+                />
+              </svg>
 
-              {/* Location cards */}
+              {/* Location pins */}
               {locations.map((loc, i) => {
                 const positions = [
-                  { top: '18%', left: '18%' },
-                  { top: '22%', right: '18%' },
-                  { bottom: '28%', left: '22%' },
-                  { bottom: '18%', right: '22%' },
+                  { top: '12%', left: '12%' },
+                  { top: '12%', right: '12%' },
+                  { bottom: '22%', left: '14%' },
+                  { bottom: '10%', right: '14%' },
                 ];
                 const isActive = loc.status === 'Active';
                 return (
@@ -99,45 +127,28 @@ const BuilderNestSection = () => {
                     style={positions[i]}
                     initial={{ scale: 0, opacity: 0 }}
                     animate={isInView ? { scale: 1, opacity: 1 } : {}}
-                    transition={{ delay: 0.6 + i * 0.15, type: "spring" }}
+                    transition={{ delay: 0.5 + i * 0.15, type: "spring", stiffness: 200 }}
                   >
                     <motion.div
-                      animate={isActive ? { y: [0, -3, 0] } : {}}
-                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: i * 0.3 }}
-                      className={`h-10 w-10 rounded-lg flex items-center justify-center ${isActive ? 'bg-primary/15 border border-primary/30' : 'bg-muted/50 border border-muted-foreground/10'}`}
+                      animate={isActive ? { y: [0, -4, 0] } : {}}
+                      transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: i * 0.4 }}
+                      className={`h-14 w-14 rounded-xl flex items-center justify-center shadow-lg transition-all duration-300 ${
+                        isActive
+                          ? 'bg-primary/10 border-2 border-primary/30 shadow-primary/10'
+                          : 'bg-muted/60 border border-border shadow-muted/10'
+                      }`}
                     >
-                      <MapPin className={`h-5 w-5 ${isActive ? 'text-primary' : 'text-muted-foreground/40'}`} />
+                      <MapPin className={`h-6 w-6 ${isActive ? 'text-primary' : 'text-muted-foreground/40'}`} />
                     </motion.div>
-                    <span className="mt-1.5 text-[10px] font-bold tracking-wider text-foreground/70">{loc.city}</span>
-                    <span className={`text-[8px] font-bold uppercase tracking-wider ${isActive ? 'text-primary' : 'text-muted-foreground/50'}`}>
+                    <span className="mt-2 text-xs font-bold tracking-wide text-foreground/80">{loc.city}</span>
+                    <span className={`text-[9px] font-extrabold uppercase tracking-[0.15em] ${
+                      isActive ? 'text-primary' : 'text-muted-foreground/50'
+                    }`}>
                       {loc.status}
                     </span>
                   </motion.div>
                 );
               })}
-
-
-              {/* Connecting lines from center to pins */}
-              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 300 300">
-                {[
-                  { x: 54, y: 54 },
-                  { x: 240, y: 66 },
-                  { x: 66, y: 216 },
-                  { x: 228, y: 240 },
-                ].map((pos, i) => (
-                  <motion.path
-                    key={i}
-                    d={`M 150 150 Q ${150 + (pos.x - 150) * 0.3} ${pos.y} ${pos.x} ${pos.y}`}
-                    fill="none"
-                    stroke="hsl(var(--primary))"
-                    strokeWidth="1.5"
-                    strokeDasharray="4 6"
-                    initial={{ pathLength: 0, opacity: 0 }}
-                    animate={isInView ? { pathLength: 1, opacity: 0.25 } : {}}
-                    transition={{ delay: 0.8 + i * 0.12, duration: 0.8 }}
-                  />
-                ))}
-              </svg>
             </div>
           </motion.div>
         </div>
