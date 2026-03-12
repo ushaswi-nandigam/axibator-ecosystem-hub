@@ -10,11 +10,11 @@ interface CityNode {
 }
 
 const cities: CityNode[] = [
-  { city: "Amaravati", status: "Active", angle: -90, distance: 1 },
-  { city: "Vizag", status: "Active", angle: -18, distance: 1 },
-  { city: "Anantapur", status: "Active", angle: -155, distance: 1 },
-  { city: "Warangal", status: "Upcoming", angle: 210, distance: 1 },
-  { city: "Vijayawada", status: "Scouting", angle: 135, distance: 1 },
+  { city: "Amaravati", status: "Active", angle: -72, distance: 1 },
+  { city: "Vizag", status: "Active", angle: 0, distance: 1 },
+  { city: "Anantapur", status: "Active", angle: -144, distance: 1 },
+  { city: "Warangal", status: "Upcoming", angle: 144, distance: 1 },
+  { city: "Vijayawada", status: "Scouting", angle: 72, distance: 1 },
 ];
 
 const statusConfig = {
