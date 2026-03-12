@@ -17,7 +17,6 @@ const CTASection = () => {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="relative overflow-hidden rounded-3xl bg-secondary px-10 py-24 text-center text-secondary-foreground md:px-20 md:py-32"
         >
-          {/* Background accents */}
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-10 left-10 h-64 w-64 rounded-full bg-primary blur-[120px]" />
             <div className="absolute bottom-10 right-10 h-52 w-52 rounded-full bg-accent blur-[120px]" />

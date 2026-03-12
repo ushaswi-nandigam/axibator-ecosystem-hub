@@ -13,10 +13,10 @@ const programs = [
 
 const ProgramsSection = () => {
   return (
-    <section className="section-padding dark-section relative overflow-hidden">
+    <section className="section-padding section-accent-soft relative overflow-hidden">
       {/* Subtle grid pattern */}
       <div className="absolute inset-0 opacity-[0.02]" style={{
-        backgroundImage: `linear-gradient(hsl(var(--dark-section-foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--dark-section-foreground)) 1px, transparent 1px)`,
+        backgroundImage: `linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)`,
         backgroundSize: '80px 80px'
       }} />
 
@@ -27,11 +27,11 @@ const ProgramsSection = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="section-title text-dark-section-foreground"
+            className="section-title"
           >
             Where Ideas Become Startups
           </motion.h2>
-          <p className="section-desc mx-auto text-center text-dark-section-foreground/50">
+          <p className="section-desc mx-auto text-center">
             Action-first programs designed for grassroots founders at every stage of the journey.
           </p>
         </div>
@@ -44,17 +44,17 @@ const ProgramsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08, duration: 0.5 }}
-              className="group rounded-2xl bg-dark-section-foreground/[0.03] border border-dark-section-foreground/[0.06] p-8 md:p-10 transition-all duration-500 hover:bg-dark-section-foreground/[0.06] hover:border-primary/20 hover:-translate-y-1"
+              className="group rounded-2xl bg-card border border-border/60 p-8 md:p-10 transition-all duration-500 hover:border-primary/20 hover:-translate-y-1 hover:shadow-xl"
             >
               <div className="flex items-center justify-between">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 transition-all duration-300 group-hover:bg-primary/20">
                   <p.icon className="h-5 w-5 text-primary/70 transition-all duration-300 group-hover:text-primary" />
                 </div>
-                <span className="text-[10px] font-semibold text-dark-section-foreground/30 tracking-[0.2em] uppercase">{p.duration}</span>
+                <span className="text-[10px] font-semibold text-muted-foreground tracking-[0.2em] uppercase">{p.duration}</span>
               </div>
 
-              <h3 className="mt-7 text-2xl font-bold text-dark-section-foreground">{p.name}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-dark-section-foreground/40">{p.desc}</p>
+              <h3 className="mt-7 text-2xl font-bold text-foreground">{p.name}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
 
               <Link
                 to="/programs"
