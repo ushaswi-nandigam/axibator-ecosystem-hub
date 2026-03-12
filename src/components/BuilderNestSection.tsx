@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Home, Users, Wrench, Coffee, ArrowRight, MapPin, Anchor } from "lucide-react";
+import { Home, Users, Wrench, Coffee, ArrowRight, MapPin } from "lucide-react";
 
 const features = [
   { icon: Home, title: "Founder-First Spaces", desc: "Cozy, gritty houses — not corporate offices" },
@@ -20,15 +20,19 @@ const locations = [
 
 const BuilderNestSection = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section ref={ref} id="builder-nest" className="section-padding relative overflow-hidden bg-ecosystem-bg">
+    <section ref={ref} id="builder-nest" className="section-padding relative overflow-hidden" style={{
+      background: 'linear-gradient(160deg, hsl(30 25% 97%) 0%, hsl(24 35% 95%) 40%, hsl(30 20% 97%) 100%)'
+    }}>
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary/35 to-transparent" />
+
       <div className="container relative">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mx-auto max-w-3xl text-center"
         >
           <span className="section-label">The Shipyard</span>
@@ -43,13 +47,13 @@ const BuilderNestSection = () => {
           {features.map((f, i) => (
             <motion.div
               key={f.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.1 + i * 0.1 }}
-              className="group rounded-2xl bg-card border border-border/50 p-8 transition-all duration-500 hover:shadow-xl hover:-translate-y-1 hover:border-primary/20"
+              initial={{ opacity: 0, y: 50, scale: 0.9 }}
+              animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+              transition={{ duration: 0.7, delay: 0.15 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+              className="group rounded-2xl bg-card border border-border/50 p-8 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 hover:border-primary/30 hover:shadow-primary/10"
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-muted transition-all duration-300 group-hover:bg-primary/10">
-                <f.icon className="h-5 w-5 text-muted-foreground transition-all duration-300 group-hover:text-primary" />
+              <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-muted transition-all duration-300 group-hover:bg-primary/15 group-hover:shadow-lg group-hover:shadow-primary/10">
+                <f.icon className="h-6 w-6 text-muted-foreground transition-all duration-300 group-hover:text-primary" />
               </div>
               <h3 className="mt-6 text-lg font-bold text-foreground">{f.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.desc}</p>
@@ -58,16 +62,16 @@ const BuilderNestSection = () => {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.6 }}
+          transition={{ duration: 0.6, delay: 0.7 }}
           className="mt-16 flex flex-col items-center gap-10 lg:flex-row lg:justify-between"
         >
           <div className="flex flex-wrap justify-center gap-3">
             {locations.map((loc) => (
               <div
                 key={loc.city}
-                className="flex items-center gap-2.5 rounded-full border border-border bg-card px-5 py-2.5 text-sm"
+                className="flex items-center gap-2.5 rounded-full border border-border bg-card px-5 py-2.5 text-sm shadow-sm transition-all duration-300 hover:shadow-md hover:border-primary/20"
               >
                 <MapPin className="h-3.5 w-3.5 text-primary" />
                 <span className="font-medium text-foreground">{loc.city}</span>
@@ -82,7 +86,7 @@ const BuilderNestSection = () => {
 
           <div className="flex gap-4">
             <Link to="/builder-nest">
-              <Button className="group rounded-full bg-primary px-8 text-primary-foreground font-semibold hover:bg-primary/90 shadow-lg shadow-primary/20 transition-all duration-300">
+              <Button className="group rounded-full bg-primary px-8 text-primary-foreground font-semibold hover:bg-primary/90 shadow-lg shadow-primary/25 transition-all duration-300">
                 Explore the Nest
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Button>
@@ -95,6 +99,8 @@ const BuilderNestSection = () => {
           </div>
         </motion.div>
       </div>
+
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent" />
     </section>
   );
 };

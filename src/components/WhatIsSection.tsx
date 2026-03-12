@@ -3,14 +3,19 @@ import { Compass } from "lucide-react";
 
 const WhatIsSection = () => {
   return (
-    <section className="section-padding section-warm relative overflow-hidden">
+    <section className="section-padding relative overflow-hidden" style={{
+      background: 'linear-gradient(160deg, hsl(30 30% 97%) 0%, hsl(24 40% 95%) 40%, hsl(30 25% 97%) 100%)'
+    }}>
+      {/* Top accent line */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+
       <div className="container">
         <div className="grid items-center gap-20 lg:grid-cols-2">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           >
             <span className="section-label">The Compass</span>
             <h2 className="section-title">
@@ -34,11 +39,11 @@ const WhatIsSection = () => {
               ].map((item, i) => (
                 <motion.div
                   key={item.bold}
-                  initial={{ opacity: 0, x: -30 }}
+                  initial={{ opacity: 0, x: -50 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.15 * i + 0.3 }}
-                  className="relative pl-8 py-1 before:absolute before:left-0 before:top-0 before:h-full before:w-1 before:rounded-full before:bg-gradient-to-b before:from-primary before:to-primary/20"
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ delay: 0.2 * i + 0.3, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                  className="relative pl-8 py-2 before:absolute before:left-0 before:top-0 before:h-full before:w-1.5 before:rounded-full before:bg-gradient-to-b before:from-primary before:to-primary/30"
                 >
                   <p className="text-xl md:text-2xl">
                     <span className="font-bold text-foreground">{item.bold}</span>{" "}
@@ -50,25 +55,25 @@ const WhatIsSection = () => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            initial={{ opacity: 0, scale: 0.8, rotate: -15 }}
+            whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="relative flex items-center justify-center"
           >
             <div className="relative w-full max-w-md mx-auto aspect-square">
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
-              <div className="absolute inset-[2px] rounded-full border border-border/30" />
-              <div className="absolute inset-[15%] rounded-full border border-primary/10" />
-              <div className="absolute inset-[30%] rounded-full border border-accent/10" />
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/10 via-transparent to-accent/10" />
+              <div className="absolute inset-[2px] rounded-full border-2 border-primary/15" />
+              <div className="absolute inset-[15%] rounded-full border border-primary/20" />
+              <div className="absolute inset-[30%] rounded-full border border-accent/15" />
 
               <div className="absolute inset-0 flex items-center justify-center">
                 <motion.div
                   animate={{ rotate: [0, 360] }}
                   transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-                  className="h-28 w-28 rounded-full border border-primary/15 flex items-center justify-center"
+                  className="h-28 w-28 rounded-full border-2 border-primary/25 flex items-center justify-center"
                 >
-                  <div className="h-20 w-20 rounded-full bg-primary/10 flex items-center justify-center">
+                  <div className="h-20 w-20 rounded-full bg-primary/15 flex items-center justify-center shadow-lg shadow-primary/20">
                     <Compass className="h-9 w-9 text-primary" />
                   </div>
                 </motion.div>
@@ -78,7 +83,7 @@ const WhatIsSection = () => {
                 { label: "Direction", angle: 30, radius: 42 },
                 { label: "Nurture", angle: 150, radius: 42 },
                 { label: "Execute", angle: 270, radius: 42 },
-              ].map((item) => (
+              ].map((item, i) => (
                 <motion.div
                   key={item.label}
                   className="absolute"
@@ -90,19 +95,19 @@ const WhatIsSection = () => {
                   initial={{ opacity: 0, scale: 0 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: 0.8, type: "spring" }}
+                  transition={{ delay: 0.6 + i * 0.15, type: "spring", stiffness: 200 }}
                 >
-                  <div className="rounded-full bg-card border border-primary/20 px-4 py-2 text-xs font-semibold text-primary tracking-wide shadow-sm">
+                  <div className="rounded-full bg-card border-2 border-primary/25 px-5 py-2.5 text-xs font-bold text-primary tracking-wide shadow-md shadow-primary/10">
                     {item.label}
                   </div>
                 </motion.div>
               ))}
 
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 1 }}
+                transition={{ delay: 1, duration: 0.6 }}
                 className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex gap-8"
               >
                 {[
@@ -120,6 +125,8 @@ const WhatIsSection = () => {
           </motion.div>
         </div>
       </div>
+
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent" />
     </section>
   );
 };
