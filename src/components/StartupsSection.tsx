@@ -1,7 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ArrowRight, Navigation, Sailboat, Flag } from "lucide-react";
+import { ArrowRight, Navigation, Sailboat } from "lucide-react";
 import { useRef } from "react";
 
 const StartupsSection = () => {
