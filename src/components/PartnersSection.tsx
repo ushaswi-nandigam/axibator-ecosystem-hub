@@ -57,22 +57,22 @@ const PartnerLogo = ({ name, logo }: { name: string; logo: string | null }) => {
   const [failed, setFailed] = useState(false);
 
   return (
-    <div className="flex flex-col items-center justify-center gap-2.5 px-5 min-w-[110px]">
-      <div className="h-12 w-12 rounded-xl bg-card border border-border flex items-center justify-center overflow-hidden shadow-sm">
+    <div className="flex flex-col items-center justify-center gap-3 px-6 min-w-[130px]">
+      <div className="h-16 w-16 rounded-2xl bg-card border border-border flex items-center justify-center overflow-hidden shadow-md hover:shadow-lg hover:border-primary/30 transition-all duration-300 hover:scale-105">
         {logo && !failed ? (
           <img
             src={logo}
             alt={name}
-            className="h-8 w-8 object-contain"
+            className="h-10 w-10 object-contain"
             onError={() => setFailed(true)}
           />
         ) : (
-          <span className="text-xs font-bold text-primary">
+          <span className="text-sm font-bold text-primary">
             {name.slice(0, 2).toUpperCase()}
           </span>
         )}
       </div>
-      <span className="text-[11px] font-medium text-muted-foreground whitespace-nowrap">{name}</span>
+      <span className="text-xs font-medium text-muted-foreground whitespace-nowrap">{name}</span>
     </div>
   );
 };
@@ -85,10 +85,19 @@ const PartnersSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section ref={ref} className="section-padding relative overflow-hidden" style={{
-      background: 'linear-gradient(160deg, hsl(0 0% 99%) 0%, hsl(220 20% 95%) 50%, hsl(210 25% 96%) 100%)'
+    <section ref={ref} className="py-32 relative overflow-hidden" style={{
+      background: 'linear-gradient(160deg, hsl(220 25% 97%) 0%, hsl(215 30% 93%) 40%, hsl(210 20% 95%) 70%, hsl(220 25% 97%) 100%)'
     }}>
       <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-primary/35 to-transparent" />
+      {/* Background depth elements */}
+      <div className="absolute top-[15%] left-[-5%] w-[400px] h-[400px] rounded-full bg-primary/[0.04] blur-[100px]" />
+      <div className="absolute bottom-[20%] right-[-5%] w-[350px] h-[350px] rounded-full bg-accent/[0.05] blur-[90px]" />
+      <div className="absolute top-[50%] left-[30%] w-[250px] h-[250px] rounded-full bg-secondary/[0.03] blur-[80px]" />
+      {/* Subtle grid pattern */}
+      <div className="absolute inset-0 opacity-[0.03]" style={{
+        backgroundImage: 'radial-gradient(circle, hsl(var(--primary)) 1px, transparent 1px)',
+        backgroundSize: '40px 40px'
+      }} />
 
       <div className="container">
         <motion.div
@@ -106,7 +115,7 @@ const PartnersSection = () => {
       </div>
 
       {/* Scrolling carousel rows */}
-      <div className="space-y-6">
+      <div className="space-y-8">
         {/* Row 1 - scrolls left */}
         <div className="relative">
           <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10" />
