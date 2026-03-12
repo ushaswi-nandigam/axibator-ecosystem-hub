@@ -183,7 +183,7 @@ const CompassGraphic = () => (
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden pt-20" style={{
+    <section className="relative min-h-screen flex items-center overflow-hidden pt-20 pb-24" style={{
       background: 'linear-gradient(160deg, hsl(220 30% 96%) 0%, hsl(210 40% 92%) 40%, hsl(24 30% 94%) 100%)'
     }}>
       <div className="absolute inset-0 opacity-[0.06]" style={{
