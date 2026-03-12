@@ -165,11 +165,11 @@ const HeroSection = () => {
               </Link>
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.1, duration: 0.7 }} className="mt-14 grid grid-cols-2 gap-6 sm:grid-cols-4 border-t-2 border-primary/15 pt-8">
+            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.1, duration: 0.7 }} className="mt-14 grid grid-cols-2 gap-x-8 gap-y-6 sm:grid-cols-4 border-t-2 border-primary/15 pt-8">
               {metrics.map((m, i) => (
-                <motion.div key={m.label} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.2 + i * 0.12, duration: 0.5 }}>
-                  <p className="text-2xl font-extrabold text-foreground md:text-3xl">{m.value}</p>
-                  <p className="mt-1 text-xs font-semibold text-muted-foreground tracking-wide">{m.label}</p>
+                <motion.div key={m.label} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.2 + i * 0.12, duration: 0.5 }} className="min-w-0">
+                  <p className="text-2xl font-extrabold text-foreground md:text-3xl whitespace-nowrap">{m.value}</p>
+                  <p className="mt-1.5 text-[11px] font-semibold text-muted-foreground tracking-wide leading-tight">{m.label}</p>
                 </motion.div>
               ))}
             </motion.div>
