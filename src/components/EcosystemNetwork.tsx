@@ -143,12 +143,12 @@ const EcosystemNetwork = () => {
               className="relative z-10"
             >
               <motion.div
-                className="absolute -inset-4 rounded-full bg-primary/8"
+                className="absolute -inset-5 rounded-full bg-primary/8"
                 animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
                 transition={{ duration: 3, repeat: Infinity }}
               />
               <div className="relative h-24 w-24 rounded-full bg-primary/15 border-2 border-primary/30 flex items-center justify-center shadow-xl shadow-primary/15">
-                <span className="text-sm font-extrabold text-primary tracking-wider">AXI</span>
+                <span className="text-[10px] font-extrabold text-primary tracking-widest">Axibator</span>
               </div>
             </motion.div>
 
