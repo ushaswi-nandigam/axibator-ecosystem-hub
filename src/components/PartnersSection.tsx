@@ -1,81 +1,82 @@
 import { motion, useInView } from "framer-motion";
 import { Handshake } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 const partners = [
-  { name: "HubSpot", domain: "hubspot.com" },
-  { name: "Atlassian", domain: "atlassian.com" },
-  { name: "Apollo", domain: "apollo.io" },
-  { name: "Asana", domain: "asana.com" },
-  { name: "Intercom", domain: "intercom.com" },
-  { name: "Zendesk", domain: "zendesk.com" },
-  { name: "Zoho", domain: "zoho.com" },
-  { name: "Notion", domain: "notion.so" },
-  { name: "Make.com", domain: "make.com" },
-  { name: "Tally", domain: "tally.so" },
-  { name: "Webflow", domain: "webflow.com" },
-  { name: "PostHog", domain: "posthog.com" },
-  { name: "DevRev.ai", domain: "devrev.ai" },
-  { name: "SendPulse", domain: "sendpulse.com" },
-  { name: "Typeform", domain: "typeform.com" },
-  { name: "Mixpanel", domain: "mixpanel.com" },
-  { name: "Framer", domain: "framer.com" },
-  { name: "Doola", domain: "doola.com" },
-  { name: "Crisp", domain: "crisp.chat" },
-  { name: "JetBrains", domain: "jetbrains.com" },
-  { name: "Mergify", domain: "mergify.io" },
-  { name: "Miro", domain: "miro.com" },
-  { name: "Mux", domain: "mux.com" },
-  { name: "Appwrite", domain: "appwrite.io" },
-  { name: "Statsig", domain: "statsig.com" },
-  { name: "Databricks", domain: "databricks.com" },
-  { name: "Retool", domain: "retool.com" },
-  { name: "ClickUp", domain: "clickup.com" },
-  { name: "GitHub", domain: "github.com" },
-  { name: "E2E Networks", domain: "e2enetworks.com" },
-  { name: "MilesWeb", domain: "milesweb.com" },
-  { name: "CIVO", domain: "civo.com" },
-  { name: "OVHCloud", domain: "ovhcloud.com" },
-  { name: "Brevo", domain: "brevo.com" },
-  { name: "Stytch", domain: "stytch.com" },
-  { name: "Exotel", domain: "exotel.com" },
-  { name: "DronaHQ", domain: "dronahq.com" },
-  { name: "Gumlet", domain: "gumlet.com" },
-  { name: "Customer.io", domain: "customer.io" },
-  { name: "Msg91", domain: "msg91.com" },
-  { name: "Callerdesk", domain: "callerdesk.io" },
+  { name: "HubSpot", logo: "/partners/hubspot.png" },
+  { name: "Atlassian", logo: "/partners/atlassian.png" },
+  { name: "Apollo", logo: "/partners/apollo.png" },
+  { name: "Asana", logo: "/partners/asana.png" },
+  { name: "Intercom", logo: "/partners/intercom.png" },
+  { name: "Zendesk", logo: "/partners/zendesk.png" },
+  { name: "Zoho", logo: "/partners/zoho.png" },
+  { name: "Notion", logo: "/partners/notion.png" },
+  { name: "Make.com", logo: "/partners/make.png" },
+  { name: "Tally", logo: "/partners/tally.png" },
+  { name: "Webflow", logo: "/partners/webflow.png" },
+  { name: "PostHog", logo: "/partners/posthog.png" },
+  { name: "DevRev.ai", logo: "/partners/devrev.png" },
+  { name: "SendPulse", logo: "/partners/sendpulse.png" },
+  { name: "Typeform", logo: "/partners/typeform.png" },
+  { name: "Mixpanel", logo: "/partners/mixpanel.png" },
+  { name: "Framer", logo: "/partners/framer.png" },
+  { name: "Doola", logo: "/partners/doola.png" },
+  { name: "Crisp", logo: "/partners/crisp.png" },
+  { name: "JetBrains", logo: "/partners/jetbrains.png" },
+  { name: "Mergify", logo: "/partners/mergify.png" },
+  { name: "Miro", logo: "/partners/miro.png" },
+  { name: "Mux", logo: "/partners/mux.png" },
+  { name: "Appwrite", logo: "/partners/appwrite.png" },
+  { name: "Statsig", logo: "/partners/statsig.png" },
+  { name: "Databricks", logo: "/partners/databricks.png" },
+  { name: "Retool", logo: "/partners/retool.png" },
+  { name: "ClickUp", logo: "/partners/clickup.png" },
+  { name: "GitHub", logo: "/partners/github.png" },
+  { name: "E2E Networks", logo: "/partners/e2enetworks.png" },
+  { name: "MilesWeb", logo: "/partners/milesweb.png" },
+  { name: "CIVO", logo: "/partners/civo.png" },
+  { name: "OVHCloud", logo: "/partners/ovhcloud.png" },
+  { name: "Brevo", logo: null },
+  { name: "Stytch", logo: "/partners/stytch.png" },
+  { name: "Exotel", logo: "/partners/exotel.png" },
+  { name: "DronaHQ", logo: "/partners/dronahq.png" },
+  { name: "Gumlet", logo: "/partners/gumlet.png" },
+  { name: "Customer.io", logo: "/partners/customerio.png" },
+  { name: "Msg91", logo: "/partners/msg91.png" },
+  { name: "Callerdesk", logo: "/partners/callerdesk.png" },
+  { name: "Wispr.ai", logo: "/partners/wispr.png" },
+  { name: "Smartbot", logo: "/partners/smartbot.png" },
+  { name: "ScaleGrid", logo: "/partners/scalegrid.png" },
+  { name: "Prodcamp", logo: null },
+  { name: "Nicnames", logo: "/partners/nicnames.png" },
+  { name: "Teamcamp", logo: "/partners/teamcamp.png" },
 ];
 
-const PartnerLogo = ({ name, domain }: { name: string; domain: string }) => {
-  const logoUrl = `https://logo.clearbit.com/${domain}`;
+const PartnerLogo = ({ name, logo }: { name: string; logo: string | null }) => {
+  const [failed, setFailed] = useState(false);
 
   return (
-    <div className="flex flex-col items-center justify-center gap-2.5 px-6 min-w-[120px]">
+    <div className="flex flex-col items-center justify-center gap-2.5 px-5 min-w-[110px]">
       <div className="h-12 w-12 rounded-xl bg-card border border-border flex items-center justify-center overflow-hidden shadow-sm">
-        <img
-          src={logoUrl}
-          alt={name}
-          className="h-8 w-8 object-contain"
-          onError={(e) => {
-            const target = e.target as HTMLImageElement;
-            target.style.display = "none";
-            const parent = target.parentElement;
-            if (parent) {
-              const fallback = document.createElement("span");
-              fallback.className = "text-xs font-bold text-primary";
-              fallback.textContent = name.slice(0, 2).toUpperCase();
-              parent.appendChild(fallback);
-            }
-          }}
-        />
+        {logo && !failed ? (
+          <img
+            src={logo}
+            alt={name}
+            className="h-8 w-8 object-contain"
+            onError={() => setFailed(true)}
+          />
+        ) : (
+          <span className="text-xs font-bold text-primary">
+            {name.slice(0, 2).toUpperCase()}
+          </span>
+        )}
       </div>
       <span className="text-[11px] font-medium text-muted-foreground whitespace-nowrap">{name}</span>
     </div>
   );
 };
 
-// Split partners into two rows for dual-direction scrolling
 const row1 = partners.slice(0, Math.ceil(partners.length / 2));
 const row2 = partners.slice(Math.ceil(partners.length / 2));
 
@@ -99,7 +100,7 @@ const PartnersSection = () => {
           <span className="section-label">Allied Ports</span>
           <h2 className="section-title">Ecosystem Partners</h2>
           <p className="section-desc mx-auto max-w-lg">
-            40+ organizations powering the Axibator ecosystem — from dev tools to cloud infrastructure.
+            45+ organizations powering the Axibator ecosystem — from dev tools to cloud infrastructure.
           </p>
         </motion.div>
       </div>
@@ -118,7 +119,7 @@ const PartnersSection = () => {
           >
             <div className="flex animate-scroll-left">
               {[...row1, ...row1, ...row1].map((p, i) => (
-                <PartnerLogo key={`r1-${i}`} name={p.name} domain={p.domain} />
+                <PartnerLogo key={`r1-${i}`} name={p.name} logo={p.logo} />
               ))}
             </div>
           </motion.div>
@@ -136,7 +137,7 @@ const PartnersSection = () => {
           >
             <div className="flex animate-scroll-right">
               {[...row2, ...row2, ...row2].map((p, i) => (
-                <PartnerLogo key={`r2-${i}`} name={p.name} domain={p.domain} />
+                <PartnerLogo key={`r2-${i}`} name={p.name} logo={p.logo} />
               ))}
             </div>
           </motion.div>
