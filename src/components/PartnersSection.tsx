@@ -115,7 +115,7 @@ const PartnersSection = () => {
       </div>
 
       {/* Scrolling carousel rows */}
-      <div className="space-y-6">
+      <div className="space-y-8">
         {/* Row 1 - scrolls left */}
         <div className="relative">
           <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10" />
