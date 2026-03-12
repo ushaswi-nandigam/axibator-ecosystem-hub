@@ -44,10 +44,7 @@ const ProblemSection = () => {
                 transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
               />
               {/* Middle ring with gap effect */}
-              <motion.div
-                className="absolute inset-[15%] rounded-full border border-muted-foreground/10"
-                style={{ borderStyle: 'dashed', borderDashoffset: '10' }}
-              />
+              <div className="absolute inset-[15%] rounded-full border border-dashed border-muted-foreground/10" />
               {/* Inner ring */}
               <div className="absolute inset-[30%] rounded-full border border-muted-foreground/8" />
 
