@@ -55,7 +55,7 @@ const EcosystemStats = () => {
     <section className="section-padding relative overflow-hidden" ref={sectionRef} style={{
       background: 'linear-gradient(160deg, hsl(30 40% 94%) 0%, hsl(24 50% 90%) 50%, hsl(30 35% 93%) 100%)'
     }}>
-      <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-primary/55 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-primary/55 to-transparent section-divider-shimmer relative" />
       <div className="absolute top-[20%] right-[10%] w-[400px] h-[400px] rounded-full bg-primary/[0.10] blur-[100px]" />
       <div className="absolute bottom-[10%] left-[5%] w-[350px] h-[350px] rounded-full bg-accent/[0.07] blur-[80px]" />
 
@@ -84,9 +84,10 @@ const EcosystemStats = () => {
           {stats.map((s, i) => (
             <motion.div
               key={s.label}
-              initial={{ opacity: 0, y: 50, scale: 0.9 }}
+              initial={{ opacity: 0, y: 60, scale: 0.85 }}
               animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-              transition={{ delay: i * 0.15, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ delay: i * 0.18, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ scale: 1.05, transition: { duration: 0.25 } }}
               className="relative text-center rounded-2xl bg-card/60 border border-border/50 p-6 md:p-8"
             >
               <motion.div

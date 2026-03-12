@@ -18,7 +18,7 @@ const FounderJourney = () => {
     <section className="section-padding relative overflow-hidden" style={{
       background: 'linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(220 25% 93%) 50%, hsl(210 30% 92%) 100%)'
     }}>
-      <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-secondary/40 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-secondary/40 to-transparent section-divider-shimmer relative" />
       <div className="absolute bottom-[20%] left-0 w-[500px] h-[500px] rounded-full bg-accent/[0.07] blur-[100px]" />
       <div className="absolute top-[30%] right-0 w-[400px] h-[400px] rounded-full bg-primary/[0.06] blur-[80px]" />
 

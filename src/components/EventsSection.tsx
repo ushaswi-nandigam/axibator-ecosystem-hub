@@ -19,7 +19,7 @@ const EventsSection = () => {
     <section ref={ref} className="section-padding relative overflow-hidden" style={{
       background: 'linear-gradient(160deg, hsl(30 35% 95%) 0%, hsl(24 45% 91%) 50%, hsl(30 30% 94%) 100%)'
     }}>
-      <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-primary/50 to-transparent section-divider-shimmer relative" />
       <div className="absolute bottom-[20%] right-0 w-[400px] h-[400px] rounded-full bg-primary/[0.08] blur-[100px]" />
 
       <div className="container">
@@ -100,10 +100,11 @@ const EventsSection = () => {
             {upcomingEvents.map((event, i) => (
               <motion.div
                 key={event.name}
-                initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                initial={{ opacity: 0, y: 60, scale: 0.92 }}
                 animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-                transition={{ delay: 0.2 + i * 0.12, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                className="group rounded-2xl border-2 border-border bg-card p-6 transition-all duration-500 hover:border-primary/40 hover:shadow-2xl hover:-translate-y-2 hover:shadow-primary/15"
+                transition={{ delay: 0.2 + i * 0.15, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                whileHover={{ y: -8, transition: { duration: 0.3 } }}
+                className="group rounded-2xl border-2 border-border bg-card p-6 transition-all duration-500 hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/15"
               >
                 <div className="flex items-center gap-2 mb-4">
                   <Calendar className="h-4 w-4 text-primary" />
