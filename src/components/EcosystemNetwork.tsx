@@ -16,9 +16,10 @@ const EcosystemNetwork = () => {
 
   return (
     <section className="section-padding relative overflow-hidden" ref={ref} style={{
-      background: 'linear-gradient(180deg, hsl(210 30% 97%) 0%, hsl(213 35% 94%) 50%, hsl(220 25% 96%) 100%)'
+      background: 'linear-gradient(180deg, hsl(210 35% 95%) 0%, hsl(213 40% 91%) 50%, hsl(220 30% 94%) 100%)'
     }}>
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent/35 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-accent/50 to-transparent" />
+      <div className="absolute top-[30%] left-0 w-[400px] h-[400px] rounded-full bg-accent/[0.08] blur-[100px]" />
 
       <div className="container relative">
         <div className="text-center max-w-3xl mx-auto mb-20">
@@ -62,10 +63,10 @@ const EcosystemNetwork = () => {
                   x1="200" y1="200"
                   x2={cx} y2={cy}
                   stroke="hsl(var(--primary))"
-                  strokeWidth="2"
+                  strokeWidth="2.5"
                   strokeDasharray="6 4"
                   initial={{ pathLength: 0, opacity: 0 }}
-                  animate={isInView ? { pathLength: 1, opacity: 0.4 } : {}}
+                  animate={isInView ? { pathLength: 1, opacity: 0.5 } : {}}
                   transition={{ delay: 0.3 + i * 0.15, duration: 0.8 }}
                 />
               );
@@ -74,10 +75,10 @@ const EcosystemNetwork = () => {
               cx="200" cy="200" r="160"
               fill="none"
               stroke="hsl(var(--primary))"
-              strokeWidth="1.5"
+              strokeWidth="2"
               strokeDasharray="6 6"
               initial={{ pathLength: 0, opacity: 0 }}
-              animate={isInView ? { pathLength: 1, opacity: 0.25 } : {}}
+              animate={isInView ? { pathLength: 1, opacity: 0.35 } : {}}
               transition={{ delay: 0.8, duration: 1.5 }}
             />
           </svg>
@@ -86,9 +87,9 @@ const EcosystemNetwork = () => {
             initial={{ scale: 0, opacity: 0 }}
             animate={isInView ? { scale: 1, opacity: 1 } : {}}
             transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-            className="relative z-10 h-24 w-24 rounded-full bg-primary/15 border-2 border-primary/30 flex items-center justify-center shadow-lg shadow-primary/15"
+            className="relative z-10 h-24 w-24 rounded-full bg-primary/20 border-2 border-primary/40 flex items-center justify-center shadow-xl shadow-primary/20"
           >
-            <span className="text-sm font-bold text-primary tracking-wider">AXI</span>
+            <span className="text-sm font-extrabold text-primary tracking-wider">AXI</span>
           </motion.div>
 
           {nodes.map((node, i) => {
@@ -104,7 +105,7 @@ const EcosystemNetwork = () => {
                 animate={isInView ? { scale: 1, opacity: 1 } : {}}
                 transition={{ delay: 0.5 + i * 0.15, type: "spring", stiffness: 200 }}
               >
-                <div className="h-16 w-16 rounded-full bg-card border-2 border-border flex items-center justify-center transition-all duration-300 hover:border-primary/40 hover:bg-primary/10 hover:shadow-xl hover:shadow-primary/10 shadow-md">
+                <div className="h-16 w-16 rounded-full bg-card border-2 border-border flex items-center justify-center transition-all duration-300 hover:border-primary/50 hover:bg-primary/15 hover:shadow-xl hover:shadow-primary/15 shadow-lg">
                   <node.icon className={`h-6 w-6 ${node.color}`} />
                 </div>
                 <span className="text-[11px] font-bold text-foreground tracking-wider uppercase">{node.label}</span>
@@ -121,10 +122,10 @@ const EcosystemNetwork = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.6 }}
-              className="flex items-center gap-3 rounded-xl border border-border bg-card p-4 shadow-md"
+              className="flex items-center gap-3 rounded-xl border-2 border-border bg-card p-4 shadow-md"
             >
               <node.icon className={`h-5 w-5 ${node.color}`} />
-              <span className="text-sm font-semibold text-foreground">{node.label}</span>
+              <span className="text-sm font-bold text-foreground">{node.label}</span>
             </motion.div>
           ))}
         </div>

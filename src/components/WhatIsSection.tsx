@@ -4,10 +4,10 @@ import { Compass } from "lucide-react";
 const WhatIsSection = () => {
   return (
     <section className="section-padding relative overflow-hidden" style={{
-      background: 'linear-gradient(160deg, hsl(30 30% 97%) 0%, hsl(24 40% 95%) 40%, hsl(30 25% 97%) 100%)'
+      background: 'linear-gradient(160deg, hsl(30 40% 95%) 0%, hsl(24 50% 91%) 40%, hsl(30 35% 94%) 100%)'
     }}>
-      {/* Top accent line */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+      <div className="absolute top-[20%] right-0 w-[500px] h-[500px] rounded-full bg-primary/[0.08] blur-[120px]" />
 
       <div className="container">
         <div className="grid items-center gap-20 lg:grid-cols-2">
@@ -19,9 +19,9 @@ const WhatIsSection = () => {
           >
             <span className="section-label">The Compass</span>
             <h2 className="section-title">
-              <span className="text-primary">Axis</span>{" "}
+              <span className="text-primary font-extrabold">Axis</span>{" "}
               <span className="text-muted-foreground font-normal text-2xl md:text-3xl">(Direction)</span>{" "}
-              <span className="text-primary">+</span>{" "}
+              <span className="text-primary font-extrabold">+</span>{" "}
               <span className="text-foreground">Incubator</span>{" "}
               <span className="text-muted-foreground font-normal text-2xl md:text-3xl">(Nurture)</span>
             </h2>
@@ -43,7 +43,7 @@ const WhatIsSection = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ delay: 0.2 * i + 0.3, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                  className="relative pl-8 py-2 before:absolute before:left-0 before:top-0 before:h-full before:w-1.5 before:rounded-full before:bg-gradient-to-b before:from-primary before:to-primary/30"
+                  className="relative pl-8 py-2 before:absolute before:left-0 before:top-0 before:h-full before:w-2 before:rounded-full before:bg-gradient-to-b before:from-primary before:to-primary/40"
                 >
                   <p className="text-xl md:text-2xl">
                     <span className="font-bold text-foreground">{item.bold}</span>{" "}
@@ -62,18 +62,18 @@ const WhatIsSection = () => {
             className="relative flex items-center justify-center"
           >
             <div className="relative w-full max-w-md mx-auto aspect-square">
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/10 via-transparent to-accent/10" />
-              <div className="absolute inset-[2px] rounded-full border-2 border-primary/15" />
-              <div className="absolute inset-[15%] rounded-full border border-primary/20" />
-              <div className="absolute inset-[30%] rounded-full border border-accent/15" />
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/15 via-transparent to-accent/15" />
+              <div className="absolute inset-[2px] rounded-full border-2 border-primary/25" />
+              <div className="absolute inset-[15%] rounded-full border-2 border-primary/20" />
+              <div className="absolute inset-[30%] rounded-full border border-accent/25" />
 
               <div className="absolute inset-0 flex items-center justify-center">
                 <motion.div
                   animate={{ rotate: [0, 360] }}
                   transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-                  className="h-28 w-28 rounded-full border-2 border-primary/25 flex items-center justify-center"
+                  className="h-28 w-28 rounded-full border-2 border-primary/35 flex items-center justify-center"
                 >
-                  <div className="h-20 w-20 rounded-full bg-primary/15 flex items-center justify-center shadow-lg shadow-primary/20">
+                  <div className="h-20 w-20 rounded-full bg-primary/20 flex items-center justify-center shadow-xl shadow-primary/25">
                     <Compass className="h-9 w-9 text-primary" />
                   </div>
                 </motion.div>
@@ -97,7 +97,7 @@ const WhatIsSection = () => {
                   viewport={{ once: true }}
                   transition={{ delay: 0.6 + i * 0.15, type: "spring", stiffness: 200 }}
                 >
-                  <div className="rounded-full bg-card border-2 border-primary/25 px-5 py-2.5 text-xs font-bold text-primary tracking-wide shadow-md shadow-primary/10">
+                  <div className="rounded-full bg-card border-2 border-primary/35 px-5 py-2.5 text-xs font-bold text-primary tracking-wide shadow-lg shadow-primary/15">
                     {item.label}
                   </div>
                 </motion.div>
@@ -116,8 +116,8 @@ const WhatIsSection = () => {
                   { n: "4", l: "Cities" },
                 ].map((s) => (
                   <div key={s.l} className="text-center">
-                    <p className="text-2xl font-bold text-primary">{s.n}</p>
-                    <p className="text-[10px] text-muted-foreground font-medium tracking-wider uppercase">{s.l}</p>
+                    <p className="text-2xl font-extrabold text-primary">{s.n}</p>
+                    <p className="text-[10px] text-muted-foreground font-semibold tracking-wider uppercase">{s.l}</p>
                   </div>
                 ))}
               </motion.div>
