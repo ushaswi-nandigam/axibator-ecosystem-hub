@@ -16,7 +16,7 @@ const ProgramsSection = () => {
     <section className="section-padding relative overflow-hidden" style={{
       background: 'linear-gradient(160deg, hsl(213 30% 94%) 0%, hsl(210 40% 90%) 50%, hsl(220 25% 93%) 100%)'
     }}>
-      <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-accent/45 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-accent/45 to-transparent section-divider-shimmer relative" />
       <div className="absolute top-[30%] right-0 w-[450px] h-[450px] rounded-full bg-secondary/[0.06] blur-[100px]" />
 
       <div className="absolute inset-0 opacity-[0.03]" style={{
