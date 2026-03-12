@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Navigation, Compass } from "lucide-react";
+import FloatingParticles from "./FloatingParticles";
 
 const metrics = [
   { value: "50+", label: "Startup Teams" },
