@@ -84,7 +84,7 @@ const EcosystemNetwork = () => {
               />
               {/* Connection lines with animated dash */}
               {nodes.map((node, i) => {
-                const radius = 160;
+                const radius = 190;
                 const cx = 200 + radius * Math.sin((node.angle * Math.PI) / 180);
                 const cy = 200 - radius * Math.cos((node.angle * Math.PI) / 180);
                 return (
