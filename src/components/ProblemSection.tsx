@@ -59,26 +59,12 @@ const ProblemSection = () => {
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ delay: 0.5, duration: 0.8 }}
-            className="relative mt-20 flex flex-wrap justify-center gap-4 md:gap-6"
-          >
-            {["No mentors", "No structure", "No funding path", "No community"].map((item, i) => (
-              <motion.div
-                key={item}
-                initial={{ opacity: 0, y: 30, rotate: (i - 1.5) * 6 }}
-                whileInView={{ opacity: 1, y: 0, rotate: (i - 1.5) * 3 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ delay: 0.6 + i * 0.12, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className="rounded-xl border border-primary/15 bg-card px-6 py-3.5 text-sm font-medium text-foreground shadow-md shadow-primary/5 transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:-translate-y-1"
-              >
-                <HelpCircle className="mr-2 inline h-4 w-4 text-primary/60" />
-                {item}
-              </motion.div>
-            ))}
-          </motion.div>
+            className="relative mt-20 mx-auto max-w-md w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"
+          />
         </div>
       </div>
 
