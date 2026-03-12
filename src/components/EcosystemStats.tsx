@@ -41,7 +41,7 @@ const AnimatedCounter = ({ target, prefix = "", suffix = "" }: { target: number;
   }, [target]);
 
   return (
-    <div ref={ref} className="font-display text-5xl font-extrabold tabular-nums md:text-6xl lg:text-7xl text-primary drop-shadow-sm">
+    <div ref={ref} className="font-display text-3xl font-extrabold tabular-nums md:text-4xl lg:text-5xl text-primary">
       {prefix}{count}{suffix}
     </div>
   );
@@ -60,7 +60,7 @@ const EcosystemStats = () => {
       <div className="absolute bottom-[10%] left-[5%] w-[350px] h-[350px] rounded-full bg-accent/[0.07] blur-[80px]" />
 
       <div className="container relative">
-        <div className="text-center max-w-3xl mx-auto mb-20">
+        <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -80,25 +80,25 @@ const EcosystemStats = () => {
           </motion.h2>
         </div>
 
-        <div className="grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-8">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
           {stats.map((s, i) => (
             <motion.div
               key={s.label}
               initial={{ opacity: 0, y: 50, scale: 0.9 }}
               animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
               transition={{ delay: i * 0.15, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="relative text-center rounded-2xl bg-card/60 border border-border/50 p-8 md:p-10"
+              className="relative text-center rounded-2xl bg-card/60 border border-border/50 p-6 md:p-8"
             >
               <motion.div
                 initial={{ scale: 0 }}
                 animate={isInView ? { scale: 1 } : {}}
                 transition={{ delay: i * 0.15 + 0.3, type: "spring" }}
-                className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10"
+                className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10"
               >
-                <s.icon className="h-5 w-5 text-primary" />
+                <s.icon className="h-4 w-4 text-primary" />
               </motion.div>
               <AnimatedCounter target={s.value} prefix={s.prefix} suffix={s.suffix} />
-              <span className="mt-3 block text-sm font-bold text-foreground tracking-wide">{s.label}</span>
+              <span className="mt-2 block text-xs font-bold text-foreground tracking-wide">{s.label}</span>
             </motion.div>
           ))}
         </div>

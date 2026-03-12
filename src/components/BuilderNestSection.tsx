@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Home, Users, Wrench, Coffee, ArrowRight, MapPin, Anchor } from "lucide-react";
+import { Home, Users, Wrench, Coffee, ArrowRight, MapPin, Flag } from "lucide-react";
 
 const features = [
   { icon: Home, title: "Founder-First Spaces", desc: "Cozy, gritty houses — not corporate offices" },
@@ -65,7 +65,7 @@ const BuilderNestSection = () => {
             </div>
           </div>
 
-          {/* Right: Shipyard visual */}
+          {/* Right: Location map visual */}
           <motion.div
             initial={{ opacity: 0, scale: 0.85 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
@@ -73,19 +73,25 @@ const BuilderNestSection = () => {
             className="relative hidden lg:flex items-center justify-center"
           >
             <div className="relative w-full max-w-sm mx-auto aspect-square">
-              {/* Harbor rings */}
-              <div className="absolute inset-0 rounded-2xl border-2 border-dashed border-primary/15 rotate-6" />
-              <div className="absolute inset-[8%] rounded-2xl border border-accent/15 -rotate-3" />
-              <div className="absolute inset-[16%] rounded-2xl border border-primary/10 rotate-2" />
+              {/* Map grid background */}
+              <div className="absolute inset-0 rounded-2xl opacity-[0.04]" style={{
+                backgroundImage: `linear-gradient(hsl(var(--primary)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)`,
+                backgroundSize: '30px 30px'
+              }} />
 
-              {/* Location pins */}
+              {/* Soft boundary */}
+              <div className="absolute inset-[5%] rounded-2xl border border-primary/10" />
+              <div className="absolute inset-[10%] rounded-2xl border border-dashed border-primary/8" />
+
+              {/* Location cards */}
               {locations.map((loc, i) => {
                 const positions = [
-                  { top: '15%', left: '20%' },
-                  { top: '25%', right: '15%' },
-                  { bottom: '25%', left: '25%' },
-                  { bottom: '15%', right: '20%' },
+                  { top: '18%', left: '18%' },
+                  { top: '22%', right: '18%' },
+                  { bottom: '28%', left: '22%' },
+                  { bottom: '18%', right: '22%' },
                 ];
+                const isActive = loc.status === 'Active';
                 return (
                   <motion.div
                     key={loc.city}
@@ -95,43 +101,59 @@ const BuilderNestSection = () => {
                     animate={isInView ? { scale: 1, opacity: 1 } : {}}
                     transition={{ delay: 0.6 + i * 0.15, type: "spring" }}
                   >
-                    <MapPin className={`h-6 w-6 ${loc.status === 'Active' ? 'text-primary' : 'text-muted-foreground/40'}`} />
-                    <span className="mt-1 text-[9px] font-bold tracking-wider text-foreground/70">{loc.city}</span>
-                    <span className={`text-[8px] font-bold uppercase ${loc.status === 'Active' ? 'text-primary' : 'text-muted-foreground/50'}`}>
+                    <motion.div
+                      animate={isActive ? { y: [0, -3, 0] } : {}}
+                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: i * 0.3 }}
+                      className={`h-10 w-10 rounded-lg flex items-center justify-center ${isActive ? 'bg-primary/15 border border-primary/30' : 'bg-muted/50 border border-muted-foreground/10'}`}
+                    >
+                      <MapPin className={`h-5 w-5 ${isActive ? 'text-primary' : 'text-muted-foreground/40'}`} />
+                    </motion.div>
+                    <span className="mt-1.5 text-[10px] font-bold tracking-wider text-foreground/70">{loc.city}</span>
+                    <span className={`text-[8px] font-bold uppercase tracking-wider ${isActive ? 'text-primary' : 'text-muted-foreground/50'}`}>
                       {loc.status}
                     </span>
                   </motion.div>
                 );
               })}
 
-              {/* Center anchor */}
+              {/* Center hub */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <motion.div
-                  animate={{ rotate: [0, 10, -10, 5, 0] }}
-                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                  className="h-20 w-20 rounded-2xl bg-primary/15 border-2 border-primary/30 flex items-center justify-center shadow-xl shadow-primary/15"
+                  initial={{ scale: 0 }}
+                  animate={isInView ? { scale: 1 } : {}}
+                  transition={{ delay: 0.4, type: "spring" }}
+                  className="relative"
                 >
-                  <Anchor className="h-8 w-8 text-primary" />
+                  <motion.div
+                    className="absolute -inset-3 rounded-xl bg-primary/8"
+                    animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0.5, 0.3] }}
+                    transition={{ duration: 3, repeat: Infinity }}
+                  />
+                  <div className="relative h-16 w-auto px-5 rounded-xl bg-card border-2 border-primary/25 flex items-center gap-2 shadow-lg">
+                    <Flag className="h-4 w-4 text-primary" />
+                    <span className="text-xs font-extrabold text-primary tracking-wider">AXIBATOR PORT</span>
+                  </div>
                 </motion.div>
               </div>
 
-              {/* Connecting dotted lines from center to pins */}
+              {/* Connecting lines from center to pins */}
               <svg className="absolute inset-0 w-full h-full" viewBox="0 0 300 300">
                 {[
-                  { x: 60, y: 45 },
-                  { x: 240, y: 75 },
-                  { x: 75, y: 225 },
-                  { x: 225, y: 240 },
+                  { x: 54, y: 54 },
+                  { x: 240, y: 66 },
+                  { x: 66, y: 216 },
+                  { x: 228, y: 240 },
                 ].map((pos, i) => (
-                  <motion.line
+                  <motion.path
                     key={i}
-                    x1="150" y1="150" x2={pos.x} y2={pos.y}
+                    d={`M 150 150 Q ${150 + (pos.x - 150) * 0.3} ${pos.y} ${pos.x} ${pos.y}`}
+                    fill="none"
                     stroke="hsl(var(--primary))"
-                    strokeWidth="1"
-                    strokeDasharray="3 5"
+                    strokeWidth="1.5"
+                    strokeDasharray="4 6"
                     initial={{ pathLength: 0, opacity: 0 }}
-                    animate={isInView ? { pathLength: 1, opacity: 0.3 } : {}}
-                    transition={{ delay: 0.8 + i * 0.1, duration: 0.6 }}
+                    animate={isInView ? { pathLength: 1, opacity: 0.25 } : {}}
+                    transition={{ delay: 0.8 + i * 0.12, duration: 0.8 }}
                   />
                 ))}
               </svg>

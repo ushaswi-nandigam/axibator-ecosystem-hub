@@ -32,14 +32,11 @@ const EcosystemNetwork = () => {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <span className="section-label">The Ecosystem</span>
-            <h2 className="section-title">
-              Connected Navigation Points
-            </h2>
+            <h2 className="section-title">Connected Navigation Points</h2>
             <p className="section-desc">
               A network of founders, mentors, partners, and programs — all connected through Axibator.
             </p>
 
-            {/* Node list with counts */}
             <div className="mt-10 space-y-4">
               {nodes.map((node, i) => (
                 <motion.div
@@ -72,10 +69,7 @@ const EcosystemNetwork = () => {
               {/* Outer ring */}
               <motion.circle
                 cx="200" cy="200" r="170"
-                fill="none"
-                stroke="hsl(var(--primary))"
-                strokeWidth="1"
-                strokeDasharray="4 8"
+                fill="none" stroke="hsl(var(--primary))" strokeWidth="1" strokeDasharray="4 8"
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={isInView ? { pathLength: 1, opacity: 0.2 } : {}}
                 transition={{ delay: 0.5, duration: 2 }}
@@ -83,44 +77,29 @@ const EcosystemNetwork = () => {
               {/* Inner ring */}
               <motion.circle
                 cx="200" cy="200" r="130"
-                fill="none"
-                stroke="hsl(var(--accent))"
-                strokeWidth="1"
-                strokeDasharray="6 6"
+                fill="none" stroke="hsl(var(--accent))" strokeWidth="1" strokeDasharray="6 6"
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={isInView ? { pathLength: 1, opacity: 0.15 } : {}}
                 transition={{ delay: 0.8, duration: 1.5 }}
               />
-              {/* Connection lines */}
+              {/* Connection lines with animated dash */}
               {nodes.map((node, i) => {
                 const radius = 160;
                 const cx = 200 + radius * Math.sin((node.angle * Math.PI) / 180);
                 const cy = 200 - radius * Math.cos((node.angle * Math.PI) / 180);
                 return (
                   <g key={node.label}>
-                    {/* Glow line */}
                     <motion.line
                       x1="200" y1="200" x2={cx} y2={cy}
-                      stroke="hsl(var(--primary))"
-                      strokeWidth="6"
+                      stroke="hsl(var(--primary))" strokeWidth="2" strokeDasharray="6 4"
                       initial={{ pathLength: 0, opacity: 0 }}
-                      animate={isInView ? { pathLength: 1, opacity: 0.08 } : {}}
-                      transition={{ delay: 0.3 + i * 0.15, duration: 0.8 }}
-                    />
-                    {/* Main line */}
-                    <motion.line
-                      x1="200" y1="200" x2={cx} y2={cy}
-                      stroke="hsl(var(--primary))"
-                      strokeWidth="2"
-                      strokeDasharray="6 4"
-                      initial={{ pathLength: 0, opacity: 0 }}
-                      animate={isInView ? { pathLength: 1, opacity: 0.5 } : {}}
+                      animate={isInView ? { pathLength: 1, opacity: 0.4 } : {}}
                       transition={{ delay: 0.3 + i * 0.15, duration: 0.8 }}
                     />
                   </g>
                 );
               })}
-              {/* Cross connections */}
+              {/* Star cross connections */}
               {nodes.map((node, i) => {
                 const nextNode = nodes[(i + 2) % nodes.length];
                 const r = 160;
@@ -132,15 +111,28 @@ const EcosystemNetwork = () => {
                   <motion.line
                     key={`cross-${i}`}
                     x1={x1} y1={y1} x2={x2} y2={y2}
-                    stroke="hsl(var(--accent))"
-                    strokeWidth="1"
-                    strokeDasharray="3 6"
+                    stroke="hsl(var(--accent))" strokeWidth="1" strokeDasharray="3 6"
                     initial={{ pathLength: 0, opacity: 0 }}
                     animate={isInView ? { pathLength: 1, opacity: 0.15 } : {}}
                     transition={{ delay: 1.2 + i * 0.1, duration: 0.8 }}
                   />
                 );
               })}
+              {/* Animated pulse rings at center */}
+              <motion.circle
+                cx="200" cy="200" r="40"
+                fill="none" stroke="hsl(var(--primary))" strokeWidth="1"
+                initial={{ opacity: 0 }}
+                animate={isInView ? { opacity: [0, 0.3, 0], r: [40, 80, 120] } : {}}
+                transition={{ delay: 1.5, duration: 3, repeat: Infinity, ease: "easeOut" }}
+              />
+              <motion.circle
+                cx="200" cy="200" r="40"
+                fill="none" stroke="hsl(var(--primary))" strokeWidth="0.5"
+                initial={{ opacity: 0 }}
+                animate={isInView ? { opacity: [0, 0.2, 0], r: [40, 90, 140] } : {}}
+                transition={{ delay: 2.5, duration: 3, repeat: Infinity, ease: "easeOut" }}
+              />
             </svg>
 
             {/* Center hub */}
@@ -151,11 +143,11 @@ const EcosystemNetwork = () => {
               className="relative z-10"
             >
               <motion.div
-                className="absolute -inset-3 rounded-full bg-primary/10"
-                animate={{ scale: [1, 1.2, 1] }}
+                className="absolute -inset-4 rounded-full bg-primary/8"
+                animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
                 transition={{ duration: 3, repeat: Infinity }}
               />
-              <div className="relative h-24 w-24 rounded-full bg-primary/20 border-2 border-primary/40 flex items-center justify-center shadow-xl shadow-primary/20">
+              <div className="relative h-24 w-24 rounded-full bg-primary/15 border-2 border-primary/30 flex items-center justify-center shadow-xl shadow-primary/15">
                 <span className="text-sm font-extrabold text-primary tracking-wider">AXI</span>
               </div>
             </motion.div>
@@ -176,7 +168,9 @@ const EcosystemNetwork = () => {
                 >
                   <motion.div
                     whileHover={{ scale: 1.15 }}
-                    className={`h-16 w-16 rounded-full bg-card border-2 border-border flex items-center justify-center transition-all duration-300 hover:border-primary/50 ${node.bg.replace('15', '10')} hover:shadow-xl hover:shadow-primary/15 shadow-lg`}
+                    animate={{ y: [0, -3, 0] }}
+                    transition={{ duration: 3, delay: i * 0.4, repeat: Infinity, ease: "easeInOut" }}
+                    className="h-16 w-16 rounded-full bg-card border-2 border-border flex items-center justify-center transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/15 shadow-lg"
                   >
                     <node.icon className={`h-6 w-6 ${node.color}`} />
                   </motion.div>
@@ -189,16 +183,23 @@ const EcosystemNetwork = () => {
             <motion.div
               className="absolute inset-[8%]"
               animate={{ rotate: 360 }}
-              transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
             >
-              <div className="absolute top-0 left-1/2 h-2 w-2 rounded-full bg-primary/40 shadow shadow-primary/30" />
+              <div className="absolute top-0 left-1/2 h-2 w-2 rounded-full bg-primary/50 shadow shadow-primary/30" />
             </motion.div>
             <motion.div
               className="absolute inset-[15%]"
               animate={{ rotate: -360 }}
-              transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
+              transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
             >
-              <div className="absolute bottom-0 right-1/4 h-1.5 w-1.5 rounded-full bg-accent/50" />
+              <div className="absolute bottom-0 right-1/4 h-1.5 w-1.5 rounded-full bg-accent/60" />
+            </motion.div>
+            <motion.div
+              className="absolute inset-[3%]"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+            >
+              <div className="absolute top-1/4 left-0 h-1 w-1 rounded-full bg-primary/30" />
             </motion.div>
           </motion.div>
 
