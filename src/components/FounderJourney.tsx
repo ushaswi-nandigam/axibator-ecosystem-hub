@@ -16,9 +16,10 @@ const FounderJourney = () => {
 
   return (
     <section className="section-padding relative overflow-hidden" style={{
-      background: 'linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(220 20% 96%) 50%, hsl(210 25% 95%) 100%)'
+      background: 'linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(220 25% 93%) 50%, hsl(210 30% 92%) 100%)'
     }}>
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-secondary/30 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-secondary/40 to-transparent" />
+      <div className="absolute bottom-[20%] left-0 w-[500px] h-[500px] rounded-full bg-accent/[0.07] blur-[100px]" />
 
       <div className="container">
         <div className="text-center max-w-3xl mx-auto">
@@ -51,7 +52,6 @@ const FounderJourney = () => {
         </div>
 
         <div ref={ref} className="relative mt-24">
-          {/* Navigation route line */}
           <div className="absolute top-20 left-[10%] right-[10%] hidden lg:block">
             <svg className="w-full h-16" preserveAspectRatio="none" viewBox="0 0 1000 60">
               <motion.path
@@ -61,7 +61,7 @@ const FounderJourney = () => {
                 strokeWidth="3"
                 strokeDasharray="8 4"
                 initial={{ pathLength: 0, opacity: 0 }}
-                animate={isInView ? { pathLength: 1, opacity: 0.5 } : {}}
+                animate={isInView ? { pathLength: 1, opacity: 0.6 } : {}}
                 transition={{ duration: 2.5, delay: 0.3, ease: "easeInOut" }}
               />
             </svg>
@@ -80,7 +80,7 @@ const FounderJourney = () => {
                   <motion.div
                     whileHover={{ scale: 1.15, y: -5 }}
                     transition={{ type: "spring", stiffness: 300 }}
-                    className="flex h-28 w-28 items-center justify-center rounded-full bg-card border-2 border-border transition-all duration-500 group-hover:border-primary/50 group-hover:bg-primary/10 group-hover:shadow-2xl group-hover:shadow-primary/15"
+                    className="flex h-28 w-28 items-center justify-center rounded-full bg-card border-2 border-border shadow-md transition-all duration-500 group-hover:border-primary/50 group-hover:bg-primary/15 group-hover:shadow-2xl group-hover:shadow-primary/20"
                   >
                     <s.icon className="h-8 w-8 text-muted-foreground transition-all duration-300 group-hover:text-primary group-hover:scale-110" />
                   </motion.div>
@@ -90,7 +90,7 @@ const FounderJourney = () => {
                 </div>
 
                 <h3 className="mt-6 text-lg font-bold">{s.stage}</h3>
-                <p className="mt-1 text-sm font-semibold text-primary">{s.program}</p>
+                <p className="mt-1 text-sm font-bold text-primary">{s.program}</p>
                 <p className="mt-3 text-sm text-muted-foreground leading-relaxed max-w-[180px]">{s.desc}</p>
               </motion.div>
             ))}
