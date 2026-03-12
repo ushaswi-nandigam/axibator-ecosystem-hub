@@ -84,9 +84,14 @@ const PartnersSection = () => {
                     animate={isInView ? { scale: 1 } : {}}
                     transition={{ delay: 0.6 + i * 0.12, type: "spring" }}
                   >
-                    <div className="h-12 w-12 rounded-full bg-card border-2 border-border flex items-center justify-center shadow-md transition-all duration-300 hover:border-primary/40 hover:shadow-xl">
-                      <categories[i].icon className="h-5 w-5 text-primary/70" />
-                    </div>
+                    {(() => {
+                      const CatIcon = categories[i].icon;
+                      return (
+                        <div className="h-12 w-12 rounded-full bg-card border-2 border-border flex items-center justify-center shadow-md transition-all duration-300 hover:border-primary/40 hover:shadow-xl">
+                          <CatIcon className="h-5 w-5 text-primary/70" />
+                        </div>
+                      );
+                    })()}
                   </motion.div>
                 );
               })}
