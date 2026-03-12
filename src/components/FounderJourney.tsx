@@ -1,13 +1,13 @@
 import { motion, useInView } from "framer-motion";
-import { Compass, Hammer, Rocket, TrendingUp, Globe } from "lucide-react";
+import { Compass, Hammer, Rocket, TrendingUp, Globe, Navigation } from "lucide-react";
 import { useRef } from "react";
 
 const stages = [
-  { stage: "Discover", program: "Ignite", icon: Compass, desc: "Validate your idea in 8 weeks" },
-  { stage: "Build", program: "LaunchPad", icon: Hammer, desc: "12-week action-first build journey" },
-  { stage: "Launch", program: "BuildLab", icon: Rocket, desc: "Find product-market fit" },
-  { stage: "Scale", program: "GrowthTrack", icon: TrendingUp, desc: "Revenue growth & funding readiness" },
-  { stage: "Go Global", program: "Global Catalyst", icon: Globe, desc: "Expand to international markets" },
+  { stage: "Discover", program: "Ignite", icon: Compass, desc: "Validate your idea in 8 weeks", color: "from-primary/20 to-primary/5" },
+  { stage: "Build", program: "LaunchPad", icon: Hammer, desc: "12-week action-first build journey", color: "from-accent/20 to-accent/5" },
+  { stage: "Launch", program: "BuildLab", icon: Rocket, desc: "Find product-market fit", color: "from-primary/20 to-primary/5" },
+  { stage: "Scale", program: "GrowthTrack", icon: TrendingUp, desc: "Revenue growth & funding readiness", color: "from-accent/20 to-accent/5" },
+  { stage: "Go Global", program: "Global Catalyst", icon: Globe, desc: "Expand to international markets", color: "from-primary/20 to-primary/5" },
 ];
 
 const FounderJourney = () => {
@@ -20,6 +20,7 @@ const FounderJourney = () => {
     }}>
       <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-secondary/40 to-transparent" />
       <div className="absolute bottom-[20%] left-0 w-[500px] h-[500px] rounded-full bg-accent/[0.07] blur-[100px]" />
+      <div className="absolute top-[30%] right-0 w-[400px] h-[400px] rounded-full bg-primary/[0.06] blur-[80px]" />
 
       <div className="container">
         <div className="text-center max-w-3xl mx-auto">
@@ -52,19 +53,59 @@ const FounderJourney = () => {
         </div>
 
         <div ref={ref} className="relative mt-24">
-          <div className="absolute top-20 left-[10%] right-[10%] hidden lg:block">
-            <svg className="w-full h-16" preserveAspectRatio="none" viewBox="0 0 1000 60">
+          {/* Main route SVG with multiple layers */}
+          <div className="absolute top-20 left-[8%] right-[8%] hidden lg:block">
+            <svg className="w-full h-20" preserveAspectRatio="none" viewBox="0 0 1000 70">
+              {/* Shadow/glow path */}
               <motion.path
-                d="M 0 30 Q 125 5, 250 30 Q 375 55, 500 30 Q 625 5, 750 30 Q 875 55, 1000 30"
+                d="M 0 35 Q 125 8, 250 35 Q 375 62, 500 35 Q 625 8, 750 35 Q 875 62, 1000 35"
+                fill="none"
+                stroke="hsl(var(--primary))"
+                strokeWidth="8"
+                strokeLinecap="round"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={isInView ? { pathLength: 1, opacity: 0.1 } : {}}
+                transition={{ duration: 2.5, delay: 0.2, ease: "easeInOut" }}
+              />
+              {/* Main dashed route */}
+              <motion.path
+                d="M 0 35 Q 125 8, 250 35 Q 375 62, 500 35 Q 625 8, 750 35 Q 875 62, 1000 35"
                 fill="none"
                 stroke="hsl(var(--primary))"
                 strokeWidth="3"
-                strokeDasharray="8 4"
+                strokeDasharray="10 5"
+                strokeLinecap="round"
                 initial={{ pathLength: 0, opacity: 0 }}
-                animate={isInView ? { pathLength: 1, opacity: 0.6 } : {}}
-                transition={{ duration: 2.5, delay: 0.3, ease: "easeInOut" }}
+                animate={isInView ? { pathLength: 1, opacity: 0.7 } : {}}
+                transition={{ duration: 3, delay: 0.3, ease: "easeInOut" }}
               />
+              {/* Animated traveler dot */}
+              <motion.circle
+                r="5"
+                fill="hsl(var(--primary))"
+                initial={{ opacity: 0 }}
+                animate={isInView ? { opacity: [0, 1, 1, 0] } : {}}
+                transition={{ delay: 3.5, duration: 4, repeat: Infinity }}
+              >
+                <animateMotion
+                  dur="4s"
+                  repeatCount="indefinite"
+                  begin="3.5s"
+                  path="M 0 35 Q 125 8, 250 35 Q 375 62, 500 35 Q 625 8, 750 35 Q 875 62, 1000 35"
+                />
+              </motion.circle>
             </svg>
+          </div>
+
+          {/* Vertical route for mobile */}
+          <div className="absolute left-8 top-0 bottom-0 w-px lg:hidden">
+            <motion.div
+              className="h-full w-full bg-gradient-to-b from-primary/50 via-primary/30 to-primary/10"
+              initial={{ scaleY: 0 }}
+              animate={isInView ? { scaleY: 1 } : {}}
+              transition={{ duration: 2, ease: "easeInOut" }}
+              style={{ transformOrigin: 'top' }}
+            />
           </div>
 
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
@@ -74,20 +115,37 @@ const FounderJourney = () => {
                 initial={{ opacity: 0, y: 60, scale: 0.9 }}
                 animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
                 transition={{ delay: 0.4 + i * 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="group relative flex flex-col items-center text-center"
+                className="group relative flex flex-col items-center text-center pl-12 lg:pl-0"
               >
+                {/* Mobile waypoint marker */}
+                <div className="absolute left-4 top-4 h-8 w-8 rounded-full bg-primary flex items-center justify-center text-[10px] font-bold text-primary-foreground lg:hidden">
+                  {i + 1}
+                </div>
+
                 <div className="relative z-10">
                   <motion.div
                     whileHover={{ scale: 1.15, y: -5 }}
                     transition={{ type: "spring", stiffness: 300 }}
-                    className="flex h-28 w-28 items-center justify-center rounded-full bg-card border-2 border-border shadow-md transition-all duration-500 group-hover:border-primary/50 group-hover:bg-primary/15 group-hover:shadow-2xl group-hover:shadow-primary/20"
+                    className={`flex h-28 w-28 items-center justify-center rounded-full bg-gradient-to-br ${s.color} border-2 border-border shadow-lg transition-all duration-500 group-hover:border-primary/50 group-hover:shadow-2xl group-hover:shadow-primary/20`}
                   >
                     <s.icon className="h-8 w-8 text-muted-foreground transition-all duration-300 group-hover:text-primary group-hover:scale-110" />
                   </motion.div>
-                  <span className="absolute -top-1 -right-1 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground shadow-lg shadow-primary/40">
+                  <span className="absolute -top-1 -right-1 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground shadow-lg shadow-primary/40 hidden lg:flex">
                     {i + 1}
                   </span>
                 </div>
+
+                {/* Arrow connector between stages */}
+                {i < stages.length - 1 && (
+                  <motion.div
+                    className="absolute -right-4 top-14 hidden lg:block"
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={isInView ? { opacity: 0.4, x: 0 } : {}}
+                    transition={{ delay: 0.8 + i * 0.2 }}
+                  >
+                    <Navigation className="h-4 w-4 text-primary rotate-90" />
+                  </motion.div>
+                )}
 
                 <h3 className="mt-6 text-lg font-bold">{s.stage}</h3>
                 <p className="mt-1 text-sm font-bold text-primary">{s.program}</p>
