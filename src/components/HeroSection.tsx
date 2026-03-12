@@ -1,8 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
-import heroImg from "@/assets/axibator-hero-custom.png";
+import { ArrowRight, Navigation } from "lucide-react";
 
 const metrics = [
   { value: "50+", label: "Startup Teams" },
@@ -11,18 +10,116 @@ const metrics = [
   { value: "$500K+", label: "Credits Available" },
 ];
 
+const CompassGraphic = () => (
+  <div className="relative w-full max-w-lg mx-auto aspect-square flex items-center justify-center">
+    {/* Outer ring */}
+    <motion.div
+      className="absolute inset-0 rounded-full border border-primary/10"
+      initial={{ scale: 0, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ duration: 1.2, delay: 0.5 }}
+    />
+    <motion.div
+      className="absolute inset-[8%] rounded-full border border-accent/15"
+      initial={{ scale: 0, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ duration: 1, delay: 0.7 }}
+    />
+    <motion.div
+      className="absolute inset-[16%] rounded-full border border-primary/10"
+      initial={{ scale: 0, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ duration: 0.8, delay: 0.9 }}
+    />
+
+    {/* Navigation lines */}
+    {[0, 45, 90, 135, 180, 225, 270, 315].map((deg, i) => (
+      <motion.div
+        key={deg}
+        className="absolute top-1/2 left-1/2 origin-left"
+        style={{ transform: `translate(-50%, -50%) rotate(${deg}deg)` }}
+        initial={{ scaleX: 0, opacity: 0 }}
+        animate={{ scaleX: 1, opacity: 1 }}
+        transition={{ delay: 1 + i * 0.08, duration: 0.6 }}
+      >
+        <div className={`h-px w-16 ${deg % 90 === 0 ? 'bg-primary/30' : 'bg-muted-foreground/10'}`} style={{ marginLeft: '60px' }} />
+      </motion.div>
+    ))}
+
+    {/* Cardinal direction labels */}
+    {[
+      { label: "DISCOVER", pos: "top-[5%] left-1/2 -translate-x-1/2" },
+      { label: "SCALE", pos: "bottom-[5%] left-1/2 -translate-x-1/2" },
+      { label: "BUILD", pos: "right-[2%] top-1/2 -translate-y-1/2" },
+      { label: "LAUNCH", pos: "left-[2%] top-1/2 -translate-y-1/2" },
+    ].map((d, i) => (
+      <motion.span
+        key={d.label}
+        className={`absolute ${d.pos} text-[10px] font-bold tracking-[0.3em] text-primary/50`}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5 + i * 0.15 }}
+      >
+        {d.label}
+      </motion.span>
+    ))}
+
+    {/* Compass needle */}
+    <motion.div
+      className="absolute inset-[25%] flex items-center justify-center"
+      animate={{ rotate: [0, 45, 30, 50, 35] }}
+      transition={{ duration: 8, ease: "easeInOut", repeat: Infinity }}
+    >
+      <div className="relative h-full w-px">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[6px] border-r-[6px] border-b-[40px] border-l-transparent border-r-transparent border-b-primary" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[4px] border-r-[4px] border-t-[30px] border-l-transparent border-r-transparent border-t-muted-foreground/30" />
+      </div>
+    </motion.div>
+
+    {/* Center hub */}
+    <motion.div
+      className="relative z-10 h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center backdrop-blur-sm"
+      initial={{ scale: 0 }}
+      animate={{ scale: 1 }}
+      transition={{ delay: 0.8, type: "spring" }}
+    >
+      <div className="h-10 w-10 rounded-full bg-primary flex items-center justify-center shadow-lg shadow-primary/30">
+        <Navigation className="h-4 w-4 text-primary-foreground" />
+      </div>
+    </motion.div>
+
+    {/* Glowing route dots */}
+    {[
+      { x: "25%", y: "20%", delay: 1.8 },
+      { x: "75%", y: "30%", delay: 2.0 },
+      { x: "70%", y: "70%", delay: 2.2 },
+      { x: "30%", y: "75%", delay: 2.4 },
+      { x: "50%", y: "15%", delay: 2.6 },
+    ].map((dot, i) => (
+      <motion.div
+        key={i}
+        className="absolute h-2 w-2 rounded-full bg-primary/60"
+        style={{ left: dot.x, top: dot.y }}
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: [0, 1.2, 1], opacity: [0, 1, 0.6] }}
+        transition={{ delay: dot.delay, duration: 0.6, repeat: Infinity, repeatDelay: 4 }}
+      />
+    ))}
+  </div>
+);
+
 const HeroSection = () => {
   return (
-    <section className="relative min-h-[90vh] flex items-center overflow-hidden pt-20">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-muted/40 via-background to-background" />
-      <div className="absolute inset-0 opacity-[0.02]" style={{
-        backgroundImage: `radial-gradient(hsl(var(--foreground)) 1px, transparent 1px)`,
-        backgroundSize: '32px 32px'
+    <section className="relative min-h-screen flex items-center overflow-hidden pt-20 dark-section">
+      {/* Dark gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-dark-section via-dark-section to-secondary/20" />
+      <div className="absolute inset-0 opacity-[0.03]" style={{
+        backgroundImage: `radial-gradient(hsl(var(--primary)) 1px, transparent 1px)`,
+        backgroundSize: '40px 40px'
       }} />
 
       <div className="container relative">
-        <div className="grid items-center gap-16 lg:grid-cols-2 lg:gap-24">
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
           {/* Left */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -39,7 +136,7 @@ const HeroSection = () => {
               EXECUTION-FIRST INCUBATOR
             </motion.div>
 
-            <h1 className="mt-8 text-5xl font-bold leading-[1.05] tracking-tight md:text-6xl lg:text-7xl">
+            <h1 className="mt-8 text-4xl font-bold leading-[1.08] tracking-tight text-dark-section-foreground md:text-5xl lg:text-6xl xl:text-7xl">
               <motion.span
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -60,7 +157,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.6 }}
-                className="block text-muted-foreground/60 text-3xl md:text-4xl lg:text-5xl mt-2"
+                className="block text-dark-section-foreground/40 text-2xl md:text-3xl lg:text-4xl mt-2 font-medium"
               >
                 — and the Grit to Build Bold.
               </motion.span>
@@ -70,9 +167,9 @@ const HeroSection = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.65 }}
-              className="mt-8 max-w-lg text-lg leading-relaxed text-muted-foreground"
+              className="mt-8 max-w-lg text-lg leading-relaxed text-dark-section-foreground/50"
             >
-              Axibator is an execution-first incubator and growth accelerator helping student and grassroots founders move from idea to MVP to market-ready startups.
+              Axibator is an execution-first incubator helping student and grassroots founders navigate the journey from idea to startup.
             </motion.p>
 
             <motion.div
@@ -82,14 +179,14 @@ const HeroSection = () => {
               className="mt-10 flex flex-wrap items-center gap-4"
             >
               <Link to="/apply">
-                <Button size="lg" className="group h-14 rounded-full bg-primary px-10 text-base font-bold text-primary-foreground hover:bg-primary/90 shadow-xl shadow-primary/25 hover:shadow-2xl hover:shadow-primary/30 transition-all duration-300">
+                <Button size="lg" className="group h-14 rounded-full bg-primary px-10 text-base font-bold text-primary-foreground hover:bg-primary/90 shadow-xl shadow-primary/25 transition-all duration-300">
                   Apply to Cohort
                   <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                 </Button>
               </Link>
               <Link to="/programs">
-                <Button variant="outline" size="lg" className="h-14 rounded-full px-10 text-base font-medium border-border/60 hover:bg-muted transition-all duration-300">
-                  Explore Programs
+                <Button variant="outline" size="lg" className="h-14 rounded-full px-10 text-base font-medium border-dark-section-foreground/20 text-dark-section-foreground hover:bg-dark-section-foreground/5 transition-all duration-300">
+                  Explore the Journey
                 </Button>
               </Link>
             </motion.div>
@@ -99,7 +196,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1 }}
-              className="mt-14 grid grid-cols-2 gap-6 sm:grid-cols-4 border-t border-border/50 pt-8"
+              className="mt-14 grid grid-cols-2 gap-6 sm:grid-cols-4 border-t border-dark-section-foreground/10 pt-8"
             >
               {metrics.map((m, i) => (
                 <motion.div
@@ -108,32 +205,39 @@ const HeroSection = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1.1 + i * 0.1 }}
                 >
-                  <p className="text-2xl font-bold text-foreground md:text-3xl">{m.value}</p>
-                  <p className="mt-1 text-xs font-medium text-muted-foreground tracking-wide">{m.label}</p>
+                  <p className="text-2xl font-bold text-dark-section-foreground md:text-3xl">{m.value}</p>
+                  <p className="mt-1 text-xs font-medium text-dark-section-foreground/40 tracking-wide">{m.label}</p>
                 </motion.div>
               ))}
             </motion.div>
           </motion.div>
 
-          {/* Right — Hero visual */}
+          {/* Right — Compass */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, x: 40 }}
-            animate={{ opacity: 1, scale: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="hidden lg:flex items-center justify-center"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="hidden lg:block"
           >
-            <div className="relative">
-              <div className="absolute -inset-12 rounded-full bg-primary/5 blur-3xl" />
-              <div className="absolute -inset-20 rounded-full bg-accent/3 blur-[100px]" />
-              <img
-                src={heroImg}
-                alt="Axibator - Grassroots founder journey from small towns to thriving startups"
-                className="relative w-full max-w-xl drop-shadow-2xl"
-              />
-            </div>
+            <CompassGraphic />
           </motion.div>
         </div>
       </div>
+
+      {/* Bottom scroll indicator */}
+      <motion.div
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2 }}
+      >
+        <span className="text-[10px] tracking-[0.3em] text-dark-section-foreground/30 uppercase">Scroll to explore</span>
+        <motion.div
+          className="h-8 w-px bg-gradient-to-b from-primary/50 to-transparent"
+          animate={{ scaleY: [1, 0.5, 1] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        />
+      </motion.div>
     </section>
   );
 };

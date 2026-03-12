@@ -44,6 +44,8 @@
     --warm-bg: 30 25% 97%;
     --dark-section: 220 30% 6%;
     --dark-section-foreground: 220 14% 96%;
+    --story-dark: 220 25% 4%;
+    --story-dark-foreground: 220 14% 92%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 220 20% 10%;
@@ -92,6 +94,8 @@
     --warm-bg: 220 22% 5%;
     --dark-section: 220 25% 5%;
     --dark-section-foreground: 220 14% 92%;
+    --story-dark: 220 25% 3%;
+    --story-dark-foreground: 220 14% 92%;
 
     --sidebar-background: 220 18% 5%;
     --sidebar-foreground: 220 14% 92%;
@@ -139,10 +143,6 @@
     @apply mt-5 max-w-2xl text-lg text-muted-foreground md:text-xl leading-relaxed;
   }
 
-  .ecosystem-counter {
-    @apply font-display text-5xl font-bold text-primary tabular-nums md:text-6xl;
-  }
-
   .nav-link {
     @apply relative text-sm font-medium text-muted-foreground transition-colors duration-200 hover:text-foreground;
   }
@@ -151,15 +151,19 @@
     @apply text-foreground font-semibold;
   }
 
-  .tag {
-    @apply inline-flex items-center rounded-full bg-muted px-4 py-1.5 text-xs font-medium text-muted-foreground transition-all duration-200 hover:text-foreground;
-  }
-
   .premium-card {
     @apply rounded-2xl bg-card p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1;
   }
 
   .dark-section {
+    @apply bg-dark-section text-dark-section-foreground;
+  }
+
+  .story-section {
+    @apply bg-story-dark text-story-dark-foreground;
+  }
+
+  .story-section-alt {
     @apply bg-dark-section text-dark-section-foreground;
   }
 }

@@ -3,34 +3,40 @@ import { ArrowRight, Compass, Hammer, Rocket, Cpu, Heart, Sprout } from "lucide-
 import { Link } from "react-router-dom";
 
 const programs = [
-  { name: "Ignite", duration: "8 Weeks", desc: "Idea validation bootcamp for first-time founders. No pitch decks, just progress.", icon: Compass },
-  { name: "LaunchPad", duration: "12 Weeks", desc: "Our flagship build journey. Action-first, no-jargon learning for grassroots founders.", icon: Hammer },
-  { name: "BuildLab", duration: "10 Weeks", desc: "Product-market fit exploration with customer discovery and launch preparation.", icon: Rocket },
-  { name: "TechXcelerate", duration: "12 Weeks", desc: "AI, robotics, EV, and emerging technology ventures pushing boundaries.", icon: Cpu },
-  { name: "HerPreneur", duration: "10 Weeks", desc: "Empowering women founders with tailored mentorship and funding access.", icon: Heart },
-  { name: "Rural Innovators", duration: "4-8 Weeks", desc: "On-ground rural residencies for founders solving real problems in Tier 2/3 cities.", icon: Sprout },
+  { name: "Ignite", duration: "8 Weeks", desc: "Idea validation bootcamp for first-time founders.", icon: Compass },
+  { name: "LaunchPad", duration: "12 Weeks", desc: "Action-first build journey for grassroots founders.", icon: Hammer },
+  { name: "BuildLab", duration: "10 Weeks", desc: "Product-market fit with customer discovery.", icon: Rocket },
+  { name: "TechXcelerate", duration: "12 Weeks", desc: "AI, robotics, and emerging tech ventures.", icon: Cpu },
+  { name: "HerPreneur", duration: "10 Weeks", desc: "Empowering women founders with mentorship.", icon: Heart },
+  { name: "Rural Innovators", duration: "4-8 Weeks", desc: "On-ground residencies solving Tier 2/3 problems.", icon: Sprout },
 ];
 
 const ProgramsSection = () => {
   return (
-    <section className="section-padding bg-ecosystem-bg">
-      <div className="container">
-        <div className="section-header text-center max-w-3xl mx-auto">
-          <span className="section-label">Programs</span>
+    <section className="section-padding dark-section relative overflow-hidden">
+      {/* Subtle grid pattern */}
+      <div className="absolute inset-0 opacity-[0.02]" style={{
+        backgroundImage: `linear-gradient(hsl(var(--dark-section-foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--dark-section-foreground)) 1px, transparent 1px)`,
+        backgroundSize: '80px 80px'
+      }} />
+
+      <div className="container relative">
+        <div className="text-center max-w-3xl mx-auto mb-20">
+          <span className="section-label">The Builder Zone</span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="section-title"
+            className="section-title text-dark-section-foreground"
           >
-            Key Offerings
+            Where Ideas Become Startups
           </motion.h2>
-          <p className="section-desc mx-auto text-center">
-            Action-first programs designed for grassroots founders at every stage.
+          <p className="section-desc mx-auto text-center text-dark-section-foreground/50">
+            Action-first programs designed for grassroots founders at every stage of the journey.
           </p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {programs.map((p, i) => (
             <motion.div
               key={p.name}
@@ -38,17 +44,17 @@ const ProgramsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08, duration: 0.5 }}
-              className="group rounded-2xl bg-card p-8 md:p-10 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2"
+              className="group rounded-2xl bg-dark-section-foreground/[0.03] border border-dark-section-foreground/[0.06] p-8 md:p-10 transition-all duration-500 hover:bg-dark-section-foreground/[0.06] hover:border-primary/20 hover:-translate-y-1"
             >
               <div className="flex items-center justify-between">
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-muted transition-all duration-300 group-hover:bg-primary/10">
-                  <p.icon className="h-6 w-6 text-muted-foreground transition-all duration-300 group-hover:text-primary group-hover:scale-110" />
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 transition-all duration-300 group-hover:bg-primary/20">
+                  <p.icon className="h-5 w-5 text-primary/70 transition-all duration-300 group-hover:text-primary" />
                 </div>
-                <span className="text-xs font-semibold text-muted-foreground tracking-wider uppercase">{p.duration}</span>
+                <span className="text-[10px] font-semibold text-dark-section-foreground/30 tracking-[0.2em] uppercase">{p.duration}</span>
               </div>
 
-              <h3 className="mt-7 text-2xl font-bold text-foreground">{p.name}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
+              <h3 className="mt-7 text-2xl font-bold text-dark-section-foreground">{p.name}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-dark-section-foreground/40">{p.desc}</p>
 
               <Link
                 to="/programs"
