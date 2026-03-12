@@ -84,7 +84,7 @@ const EcosystemNetwork = () => {
               />
               {/* Connection lines with animated dash */}
               {nodes.map((node, i) => {
-                const radius = 160;
+                const radius = 190;
                 const cx = 200 + radius * Math.sin((node.angle * Math.PI) / 180);
                 const cy = 200 - radius * Math.cos((node.angle * Math.PI) / 180);
                 return (
@@ -102,7 +102,7 @@ const EcosystemNetwork = () => {
               {/* Star cross connections */}
               {nodes.map((node, i) => {
                 const nextNode = nodes[(i + 2) % nodes.length];
-                const r = 160;
+                const r = 190;
                 const x1 = 200 + r * Math.sin((node.angle * Math.PI) / 180);
                 const y1 = 200 - r * Math.cos((node.angle * Math.PI) / 180);
                 const x2 = 200 + r * Math.sin((nextNode.angle * Math.PI) / 180);
@@ -143,18 +143,18 @@ const EcosystemNetwork = () => {
               className="relative z-10"
             >
               <motion.div
-                className="absolute -inset-4 rounded-full bg-primary/8"
+                className="absolute -inset-5 rounded-full bg-primary/8"
                 animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
                 transition={{ duration: 3, repeat: Infinity }}
               />
               <div className="relative h-24 w-24 rounded-full bg-primary/15 border-2 border-primary/30 flex items-center justify-center shadow-xl shadow-primary/15">
-                <span className="text-sm font-extrabold text-primary tracking-wider">AXI</span>
+                <span className="text-[10px] font-extrabold text-primary tracking-widest">Axibator</span>
               </div>
             </motion.div>
 
-            {/* Nodes */}
+            {/* Nodes - pushed to edges */}
             {nodes.map((node, i) => {
-              const radius = 40;
+              const radius = 48;
               const top = `${50 - radius * Math.cos((node.angle * Math.PI) / 180)}%`;
               const left = `${50 + radius * Math.sin((node.angle * Math.PI) / 180)}%`;
               return (
@@ -168,7 +168,7 @@ const EcosystemNetwork = () => {
                 >
                   <motion.div
                     whileHover={{ scale: 1.15 }}
-                    animate={{ y: [0, -3, 0] }}
+                    animate={{ y: [0, -4, 0], scale: [1, 1.05, 1] }}
                     transition={{ duration: 3, delay: i * 0.4, repeat: Infinity, ease: "easeInOut" }}
                     className="h-16 w-16 rounded-full bg-card border-2 border-border flex items-center justify-center transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/15 shadow-lg"
                   >
