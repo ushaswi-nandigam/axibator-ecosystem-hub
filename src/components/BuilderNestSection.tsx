@@ -116,25 +116,6 @@ const BuilderNestSection = () => {
                 );
               })}
 
-              {/* Center hub */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={isInView ? { scale: 1 } : {}}
-                  transition={{ delay: 0.4, type: "spring" }}
-                  className="relative"
-                >
-                  <motion.div
-                    className="absolute -inset-3 rounded-xl bg-primary/8"
-                    animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0.5, 0.3] }}
-                    transition={{ duration: 3, repeat: Infinity }}
-                  />
-                  <div className="relative h-16 w-auto px-5 rounded-xl bg-card border-2 border-primary/25 flex items-center gap-2 shadow-lg">
-                    <Flag className="h-4 w-4 text-primary" />
-                    <span className="text-xs font-extrabold text-primary tracking-wider">AXIBATOR PORT</span>
-                  </div>
-                </motion.div>
-              </div>
 
               {/* Connecting lines from center to pins */}
               <svg className="absolute inset-0 w-full h-full" viewBox="0 0 300 300">
