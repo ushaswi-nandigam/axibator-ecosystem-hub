@@ -39,14 +39,14 @@ const ProblemSection = () => {
             <div className="relative w-full max-w-[320px] mx-auto aspect-square">
               {/* Outer broken ring */}
               <motion.div
-                className="absolute inset-0 rounded-full border-2 border-dashed border-muted-foreground/15"
+                className="absolute inset-0 rounded-full border-2 border-dashed border-primary/25"
                 animate={{ rotate: -360 }}
                 transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
               />
               {/* Middle ring with gap effect */}
-              <div className="absolute inset-[15%] rounded-full border border-dashed border-muted-foreground/10" />
+              <div className="absolute inset-[15%] rounded-full border border-dashed border-primary/15" />
               {/* Inner ring */}
-              <div className="absolute inset-[30%] rounded-full border border-muted-foreground/8" />
+              <div className="absolute inset-[30%] rounded-full border border-primary/12" />
 
               {/* Erratic needle */}
               <motion.div
