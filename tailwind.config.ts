@@ -56,10 +56,6 @@ export default {
         "neutral-grey": "hsl(var(--neutral-grey))",
         "ecosystem-bg": "hsl(var(--ecosystem-bg))",
         "warm-bg": "hsl(var(--warm-bg))",
-        "dark-section": "hsl(var(--dark-section))",
-        "dark-section-foreground": "hsl(var(--dark-section-foreground))",
-        "story-dark": "hsl(var(--story-dark))",
-        "story-dark-foreground": "hsl(var(--story-dark-foreground))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
