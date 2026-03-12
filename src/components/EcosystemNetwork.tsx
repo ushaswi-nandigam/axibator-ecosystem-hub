@@ -152,9 +152,9 @@ const EcosystemNetwork = () => {
               </div>
             </motion.div>
 
-            {/* Nodes */}
+            {/* Nodes - pushed to edges */}
             {nodes.map((node, i) => {
-              const radius = 40;
+              const radius = 48;
               const top = `${50 - radius * Math.cos((node.angle * Math.PI) / 180)}%`;
               const left = `${50 + radius * Math.sin((node.angle * Math.PI) / 180)}%`;
               return (
@@ -168,7 +168,7 @@ const EcosystemNetwork = () => {
                 >
                   <motion.div
                     whileHover={{ scale: 1.15 }}
-                    animate={{ y: [0, -3, 0] }}
+                    animate={{ y: [0, -4, 0], scale: [1, 1.05, 1] }}
                     transition={{ duration: 3, delay: i * 0.4, repeat: Infinity, ease: "easeInOut" }}
                     className="h-16 w-16 rounded-full bg-card border-2 border-border flex items-center justify-center transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/15 shadow-lg"
                   >
