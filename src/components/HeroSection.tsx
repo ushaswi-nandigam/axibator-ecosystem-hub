@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Navigation, Compass } from "lucide-react";
-import FloatingParticles from "./FloatingParticles";
 
 const metrics = [
   { value: "50+", label: "Startup Teams" },
@@ -184,9 +183,10 @@ const CompassGraphic = () => (
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden pt-20 pb-24 animated-gradient-hero">
-      <FloatingParticles />
-      <div className="absolute inset-0 opacity-[0.04]" style={{
+    <section className="relative min-h-screen flex items-center overflow-hidden pt-20 pb-24" style={{
+      background: 'linear-gradient(160deg, hsl(220 30% 96%) 0%, hsl(210 40% 92%) 40%, hsl(24 30% 94%) 100%)'
+    }}>
+      <div className="absolute inset-0 opacity-[0.06]" style={{
         backgroundImage: `radial-gradient(hsl(var(--primary)) 1px, transparent 1px)`,
         backgroundSize: '40px 40px'
       }} />

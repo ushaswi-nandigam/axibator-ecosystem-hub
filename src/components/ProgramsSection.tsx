@@ -16,7 +16,7 @@ const ProgramsSection = () => {
     <section className="section-padding relative overflow-hidden" style={{
       background: 'linear-gradient(160deg, hsl(213 30% 94%) 0%, hsl(210 40% 90%) 50%, hsl(220 25% 93%) 100%)'
     }}>
-      <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-accent/45 to-transparent section-divider-shimmer relative" />
+      <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-accent/45 to-transparent" />
       <div className="absolute top-[30%] right-0 w-[450px] h-[450px] rounded-full bg-secondary/[0.06] blur-[100px]" />
 
       <div className="absolute inset-0 opacity-[0.03]" style={{
@@ -58,12 +58,11 @@ const ProgramsSection = () => {
           {programs.map((p, i) => (
             <motion.div
               key={p.name}
-              initial={{ opacity: 0, y: 60, scale: 0.92 }}
+              initial={{ opacity: 0, y: 50, scale: 0.95 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: i * 0.12, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ y: -8, transition: { duration: 0.3 } }}
-              className="group rounded-2xl bg-card border-2 border-border p-8 md:p-10 transition-all duration-500 hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/15"
+              viewport={{ once: true, margin: "-30px" }}
+              transition={{ delay: i * 0.1, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="group rounded-2xl bg-card border-2 border-border p-8 md:p-10 transition-all duration-500 hover:border-primary/40 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/15"
             >
               <div className="flex items-center justify-between">
                 <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/15 transition-all duration-300 group-hover:bg-primary/25 group-hover:shadow-lg group-hover:shadow-primary/15">

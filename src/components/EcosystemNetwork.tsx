@@ -23,7 +23,7 @@ const EcosystemNetwork = () => {
         background: "linear-gradient(180deg, hsl(210 35% 95%) 0%, hsl(213 40% 91%) 50%, hsl(220 30% 94%) 100%)",
       }}
     >
-      <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-accent/50 to-transparent section-divider-shimmer relative" />
+      <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-accent/50 to-transparent" />
       <div className="absolute top-[30%] left-0 w-[400px] h-[400px] rounded-full bg-accent/[0.08] blur-[100px]" />
       <div className="absolute bottom-[20%] right-0 w-[350px] h-[350px] rounded-full bg-primary/[0.06] blur-[80px]" />
 
