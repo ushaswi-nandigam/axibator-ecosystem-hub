@@ -55,7 +55,7 @@ const PartnersSection = () => {
             </div>
           </div>
 
-          {/* Right: Port visualization */}
+          {/* Right: Animated network visualization */}
           <motion.div
             initial={{ opacity: 0, scale: 0.85 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
@@ -63,53 +63,40 @@ const PartnersSection = () => {
             className="relative hidden lg:flex items-center justify-center"
           >
             <div className="relative w-full max-w-sm mx-auto aspect-square">
-              {/* World map hint */}
-              <div className="absolute inset-0 rounded-full border-2 border-dashed border-accent/15" />
-              <div className="absolute inset-[15%] rounded-full border border-primary/10" />
+              {/* Rotating outer ring */}
+              <motion.div
+                className="absolute inset-0 rounded-full border-2 border-dashed border-primary/15"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+              />
+              {/* Counter-rotating middle ring */}
+              <motion.div
+                className="absolute inset-[15%] rounded-full border border-dashed border-accent/12"
+                animate={{ rotate: -360 }}
+                transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
+              />
+              {/* Pulsing inner ring */}
+              <motion.div
+                className="absolute inset-[30%] rounded-full border border-primary/10"
+                animate={{ scale: [1, 1.05, 1], opacity: [0.3, 0.6, 0.3] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              />
 
-              {/* Partner dots around globe */}
-              {categories.map((_, i) => {
-                const angle = (i * 360) / categories.length - 90;
-                const r = 42;
-                return (
-                  <motion.div
-                    key={i}
-                    className="absolute"
-                    style={{
-                      top: `${50 - r * Math.cos((angle * Math.PI) / 180)}%`,
-                      left: `${50 + r * Math.sin((angle * Math.PI) / 180)}%`,
-                      transform: 'translate(-50%, -50%)',
-                    }}
-                    initial={{ scale: 0 }}
-                    animate={isInView ? { scale: 1 } : {}}
-                    transition={{ delay: 0.6 + i * 0.12, type: "spring" }}
-                  >
-                    {(() => {
-                      const CatIcon = categories[i].icon;
-                      return (
-                        <div className="h-12 w-12 rounded-full bg-card border-2 border-border flex items-center justify-center shadow-md transition-all duration-300 hover:border-primary/40 hover:shadow-xl">
-                          <CatIcon className="h-5 w-5 text-primary/70" />
-                        </div>
-                      );
-                    })()}
-                  </motion.div>
-                );
-              })}
-
-              {/* Center */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={isInView ? { scale: 1 } : {}}
-                  transition={{ delay: 0.4, type: "spring" }}
-                  className="h-16 w-16 rounded-full bg-primary/15 border-2 border-primary/30 flex items-center justify-center shadow-lg"
-                >
-                  <Globe className="h-7 w-7 text-primary" />
-                </motion.div>
-              </div>
-
-              {/* Connecting lines */}
+              {/* Pulse waves from center */}
               <svg className="absolute inset-0 w-full h-full" viewBox="0 0 300 300">
+                <motion.circle
+                  cx="150" cy="150" r="30"
+                  fill="none" stroke="hsl(var(--primary))" strokeWidth="1"
+                  animate={isInView ? { opacity: [0, 0.4, 0], r: [30, 70, 110] } : {}}
+                  transition={{ delay: 1, duration: 3, repeat: Infinity, ease: "easeOut" }}
+                />
+                <motion.circle
+                  cx="150" cy="150" r="30"
+                  fill="none" stroke="hsl(var(--accent))" strokeWidth="0.5"
+                  animate={isInView ? { opacity: [0, 0.25, 0], r: [30, 80, 130] } : {}}
+                  transition={{ delay: 2, duration: 3, repeat: Infinity, ease: "easeOut" }}
+                />
+                {/* Animated connection lines */}
                 {categories.map((_, i) => {
                   const angle = ((i * 360) / categories.length - 90) * Math.PI / 180;
                   const r = 126;
@@ -123,12 +110,74 @@ const PartnersSection = () => {
                       strokeWidth="1.5"
                       strokeDasharray="4 6"
                       initial={{ pathLength: 0, opacity: 0 }}
-                      animate={isInView ? { pathLength: 1, opacity: 0.3 } : {}}
-                      transition={{ delay: 0.5 + i * 0.1, duration: 0.6 }}
+                      animate={isInView ? { pathLength: 1, opacity: 0.35 } : {}}
+                      transition={{ delay: 0.5 + i * 0.15, duration: 0.8 }}
                     />
                   );
                 })}
               </svg>
+
+              {/* Partner nodes with bounce */}
+              {categories.map((cat, i) => {
+                const angle = (i * 360) / categories.length - 90;
+                const r = 42;
+                const CatIcon = cat.icon;
+                return (
+                  <motion.div
+                    key={i}
+                    className="absolute"
+                    style={{
+                      top: `${50 - r * Math.cos((angle * Math.PI) / 180)}%`,
+                      left: `${50 + r * Math.sin((angle * Math.PI) / 180)}%`,
+                      transform: 'translate(-50%, -50%)',
+                    }}
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={isInView ? { scale: 1, opacity: 1 } : {}}
+                    transition={{ delay: 0.6 + i * 0.12, type: "spring", stiffness: 200 }}
+                  >
+                    <motion.div
+                      animate={{ y: [0, -4, 0] }}
+                      transition={{ duration: 2.5 + i * 0.3, repeat: Infinity, ease: "easeInOut" }}
+                      className="h-14 w-14 rounded-full bg-card border-2 border-border flex items-center justify-center shadow-lg transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/15"
+                    >
+                      <CatIcon className="h-6 w-6 text-primary/70" />
+                    </motion.div>
+                  </motion.div>
+                );
+              })}
+
+              {/* Center hub */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <motion.div
+                  className="absolute h-20 w-20 rounded-full bg-primary/8"
+                  animate={{ scale: [1, 1.4, 1], opacity: [0.2, 0.5, 0.2] }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                />
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={isInView ? { scale: 1 } : {}}
+                  transition={{ delay: 0.4, type: "spring" }}
+                  className="relative h-16 w-16 rounded-full bg-primary/15 border-2 border-primary/30 flex items-center justify-center shadow-lg shadow-primary/15"
+                >
+                  <Globe className="h-7 w-7 text-primary" />
+                </motion.div>
+              </div>
+
+              {/* Orbiting particles */}
+              <motion.div
+                className="absolute inset-[5%]"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+              >
+                <div className="absolute top-0 left-1/2 h-2 w-2 rounded-full bg-primary/50 shadow shadow-primary/30" />
+              </motion.div>
+              <motion.div
+                className="absolute inset-[12%]"
+                animate={{ rotate: -360 }}
+                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+              >
+                <div className="absolute bottom-0 right-1/3 h-1.5 w-1.5 rounded-full bg-accent/60" />
+              </motion.div>
             </div>
           </motion.div>
         </div>

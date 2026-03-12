@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Users, Handshake, Calendar, BookOpen, Rocket, Navigation } from "lucide-react";
+import { Users, Handshake, Calendar, BookOpen, Rocket, Navigation, Flag } from "lucide-react";
 
 const nodes = [
   { label: "Startups", icon: Rocket, angle: 0, color: "text-primary", bg: "bg-primary/15" },
@@ -147,8 +147,9 @@ const EcosystemNetwork = () => {
                 animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
                 transition={{ duration: 3, repeat: Infinity }}
               />
-              <div className="relative h-24 w-24 rounded-full bg-primary/15 border-2 border-primary/30 flex items-center justify-center shadow-xl shadow-primary/15">
-                <span className="text-sm font-extrabold text-primary tracking-wider">AXI</span>
+              <div className="relative h-24 w-24 rounded-2xl bg-card border-2 border-primary/30 flex items-center justify-center shadow-xl shadow-primary/15">
+                <Flag className="h-4 w-4 text-primary mr-1.5" />
+                <span className="text-[11px] font-extrabold text-primary tracking-wider">AXIBATOR</span>
               </div>
             </motion.div>
 

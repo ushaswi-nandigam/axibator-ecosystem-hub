@@ -39,14 +39,14 @@ const ProblemSection = () => {
             <div className="relative w-full max-w-[320px] mx-auto aspect-square">
               {/* Outer broken ring */}
               <motion.div
-                className="absolute inset-0 rounded-full border-2 border-dashed border-muted-foreground/15"
+                className="absolute inset-0 rounded-full border-2 border-dashed border-primary/25"
                 animate={{ rotate: -360 }}
                 transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
               />
               {/* Middle ring with gap effect */}
-              <div className="absolute inset-[15%] rounded-full border border-dashed border-muted-foreground/10" />
+              <div className="absolute inset-[15%] rounded-full border border-dashed border-primary/15" />
               {/* Inner ring */}
-              <div className="absolute inset-[30%] rounded-full border border-muted-foreground/8" />
+              <div className="absolute inset-[30%] rounded-full border border-primary/12" />
 
               {/* Erratic needle */}
               <motion.div
@@ -55,8 +55,8 @@ const ProblemSection = () => {
                 transition={{ duration: 10, ease: "easeInOut", repeat: Infinity }}
               >
                 <div className="relative h-full w-px">
-                  <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[4px] border-r-[4px] border-b-[24px] border-l-transparent border-r-transparent border-b-muted-foreground/20" />
-                  <div className="absolute bottom-[20%] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[3px] border-r-[3px] border-t-[18px] border-l-transparent border-r-transparent border-t-muted-foreground/12" />
+                  <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[4px] border-r-[4px] border-b-[24px] border-l-transparent border-r-transparent border-b-primary/35" />
+                  <div className="absolute bottom-[20%] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[3px] border-r-[3px] border-t-[18px] border-l-transparent border-r-transparent border-t-primary/20" />
                 </div>
               </motion.div>
 
@@ -102,11 +102,11 @@ const ProblemSection = () => {
               {/* Center - dim compass icon */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <motion.div
-                  className="h-14 w-14 rounded-full bg-muted/50 border border-muted-foreground/10 flex items-center justify-center"
-                  animate={{ opacity: [0.5, 0.8, 0.5] }}
+                  className="h-14 w-14 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center"
+                  animate={{ opacity: [0.5, 0.9, 0.5] }}
                   transition={{ duration: 4, repeat: Infinity }}
                 >
-                  <Compass className="h-6 w-6 text-muted-foreground/30" />
+                  <Compass className="h-6 w-6 text-primary/50" />
                 </motion.div>
               </div>
             </div>
