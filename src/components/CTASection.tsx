@@ -17,24 +17,21 @@ const CTASection = () => {
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           className="relative overflow-hidden rounded-3xl bg-secondary px-10 py-24 text-center text-secondary-foreground md:px-20 md:py-32"
         >
-          {/* Background effects */}
-          <div className="absolute inset-0 opacity-15">
-            <div className="absolute top-10 left-10 h-64 w-64 rounded-full bg-primary blur-[120px]" />
-            <div className="absolute bottom-10 right-10 h-52 w-52 rounded-full bg-accent blur-[100px]" />
-          </div>
+          {/* Subtle gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-secondary via-secondary to-accent/10" />
 
           {/* Animated compass lines */}
           <svg className="absolute inset-0 w-full h-full opacity-[0.06]" viewBox="0 0 800 500" preserveAspectRatio="none">
             <motion.path
               d="M 0 250 Q 200 100, 400 250 Q 600 400, 800 250"
-              fill="none" stroke="white" strokeWidth="2" strokeDasharray="8 6"
+              fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="8 6"
               initial={{ pathLength: 0 }}
               animate={isInView ? { pathLength: 1 } : {}}
               transition={{ delay: 0.5, duration: 2 }}
             />
             <motion.path
               d="M 0 300 Q 200 150, 400 300 Q 600 450, 800 300"
-              fill="none" stroke="white" strokeWidth="1.5" strokeDasharray="4 8"
+              fill="none" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 8"
               initial={{ pathLength: 0 }}
               animate={isInView ? { pathLength: 1 } : {}}
               transition={{ delay: 0.8, duration: 2.5 }}
@@ -53,10 +50,10 @@ const CTASection = () => {
               className="absolute"
               style={{ left: pos.x, top: pos.y }}
               initial={{ opacity: 0, scale: 0 }}
-              animate={isInView ? { opacity: 0.15, scale: 1 } : {}}
+              animate={isInView ? { opacity: 0.12, scale: 1 } : {}}
               transition={{ delay: pos.delay, type: "spring" }}
             >
-              <Navigation className="h-6 w-6 text-primary-foreground" />
+              <Navigation className="h-6 w-6 text-secondary-foreground/50" />
             </motion.div>
           ))}
 
@@ -67,12 +64,17 @@ const CTASection = () => {
             className="relative mx-auto mb-8"
           >
             <motion.div
-              className="absolute -inset-4 rounded-full bg-primary/20"
-              animate={{ scale: [1, 1.3, 1] }}
-              transition={{ duration: 3, repeat: Infinity }}
+              className="absolute -inset-5 rounded-full bg-secondary-foreground/5"
+              animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             />
-            <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-primary/30 shadow-xl shadow-primary/25 mx-auto">
-              <Compass className="h-9 w-9 text-primary" />
+            <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-secondary-foreground/10 border border-secondary-foreground/15 shadow-lg mx-auto">
+              <motion.div
+                animate={{ rotate: [0, 360] }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              >
+                <Compass className="h-9 w-9 text-secondary-foreground/80" />
+              </motion.div>
             </div>
           </motion.div>
 
