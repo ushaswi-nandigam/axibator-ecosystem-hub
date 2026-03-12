@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { Compass, Hammer, Rocket, TrendingUp, Globe, Navigation } from "lucide-react";
 import { useRef } from "react";
 
@@ -12,33 +12,17 @@ const stages = [
 
 const FounderJourney = () => {
   const ref = useRef<HTMLDivElement>(null);
-  const svgRef = useRef<HTMLDivElement>(null);
-  
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-
-  // Scroll-linked route path animation
-  const pathLength = useTransform(scrollYProgress, [0.1, 0.6], [0, 1]);
-  const pathOpacity = useTransform(scrollYProgress, [0.05, 0.15], [0, 0.7]);
-  const glowOpacity = useTransform(scrollYProgress, [0.05, 0.15], [0, 0.1]);
-
-  // Parallax for background
-  const bgY = useTransform(scrollYProgress, [0, 1], [-50, 50]);
+  const isInView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
     <section className="section-padding relative overflow-hidden" style={{
       background: 'linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(220 25% 93%) 50%, hsl(210 30% 92%) 100%)'
     }}>
       <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-secondary/40 to-transparent" />
-      
-      <motion.div style={{ y: bgY }} className="absolute inset-0 pointer-events-none">
-        <div className="absolute bottom-[20%] left-0 w-[500px] h-[500px] rounded-full bg-accent/[0.07] blur-[100px]" />
-        <div className="absolute top-[30%] right-0 w-[400px] h-[400px] rounded-full bg-primary/[0.06] blur-[80px]" />
-      </motion.div>
+      <div className="absolute bottom-[20%] left-0 w-[500px] h-[500px] rounded-full bg-accent/[0.07] blur-[100px]" />
+      <div className="absolute top-[30%] right-0 w-[400px] h-[400px] rounded-full bg-primary/[0.06] blur-[80px]" />
 
-      <div className="container" ref={ref}>
+      <div className="container">
         <div className="text-center max-w-3xl mx-auto">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
@@ -68,8 +52,8 @@ const FounderJourney = () => {
           </motion.p>
         </div>
 
-        <div className="relative mt-24" ref={svgRef}>
-          {/* Main route SVG - scroll-linked */}
+        <div ref={ref} className="relative mt-24">
+          {/* Main route SVG with multiple layers */}
           <div className="absolute top-20 left-[8%] right-[8%] hidden lg:block">
             <svg className="w-full h-20" preserveAspectRatio="none" viewBox="0 0 1000 70">
               {/* Shadow/glow path */}
@@ -79,7 +63,9 @@ const FounderJourney = () => {
                 stroke="hsl(var(--primary))"
                 strokeWidth="8"
                 strokeLinecap="round"
-                style={{ pathLength, opacity: glowOpacity }}
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={isInView ? { pathLength: 1, opacity: 0.1 } : {}}
+                transition={{ duration: 2.5, delay: 0.2, ease: "easeInOut" }}
               />
               {/* Main dashed route */}
               <motion.path
@@ -89,14 +75,16 @@ const FounderJourney = () => {
                 strokeWidth="3"
                 strokeDasharray="10 5"
                 strokeLinecap="round"
-                style={{ pathLength, opacity: pathOpacity }}
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={isInView ? { pathLength: 1, opacity: 0.7 } : {}}
+                transition={{ duration: 3, delay: 0.3, ease: "easeInOut" }}
               />
-              {/* Traveler dot */}
+              {/* Animated traveler dot */}
               <motion.circle
                 r="5"
                 fill="hsl(var(--primary))"
                 initial={{ opacity: 0 }}
-                animate={{ opacity: [0, 1, 1, 0] }}
+                animate={isInView ? { opacity: [0, 1, 1, 0] } : {}}
                 transition={{ delay: 3.5, duration: 4, repeat: Infinity }}
               >
                 <animateMotion
@@ -113,7 +101,10 @@ const FounderJourney = () => {
           <div className="absolute left-8 top-0 bottom-0 w-px lg:hidden">
             <motion.div
               className="h-full w-full bg-gradient-to-b from-primary/50 via-primary/30 to-primary/10"
-              style={{ scaleY: pathLength, transformOrigin: 'top' }}
+              initial={{ scaleY: 0 }}
+              animate={isInView ? { scaleY: 1 } : {}}
+              transition={{ duration: 2, ease: "easeInOut" }}
+              style={{ transformOrigin: 'top' }}
             />
           </div>
 
@@ -122,9 +113,8 @@ const FounderJourney = () => {
               <motion.div
                 key={s.stage}
                 initial={{ opacity: 0, y: 60, scale: 0.9 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ delay: i * 0.15, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+                transition={{ delay: 0.4 + i * 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 className="group relative flex flex-col items-center text-center pl-12 lg:pl-0"
               >
                 {/* Mobile waypoint marker */}
@@ -145,14 +135,13 @@ const FounderJourney = () => {
                   </span>
                 </div>
 
-                {/* Arrow connector */}
+                {/* Arrow connector between stages */}
                 {i < stages.length - 1 && (
                   <motion.div
                     className="absolute -right-4 top-14 hidden lg:block"
                     initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 0.4, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3 + i * 0.15 }}
+                    animate={isInView ? { opacity: 0.4, x: 0 } : {}}
+                    transition={{ delay: 0.8 + i * 0.2 }}
                   >
                     <Navigation className="h-4 w-4 text-primary rotate-90" />
                   </motion.div>

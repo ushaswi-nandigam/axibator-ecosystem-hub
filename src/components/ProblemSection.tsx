@@ -1,7 +1,6 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { Compass, HelpCircle, AlertTriangle, Users, X } from "lucide-react";
 import { useRef } from "react";
-import { Parallax } from "@/components/ScrollAnimations";
 
 const challenges = [
   { icon: Compass, label: "No direction", desc: "No clear path from idea to product" },
@@ -12,12 +11,7 @@ const challenges = [
 
 const ProblemSection = () => {
   const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-  const compassRotate = useTransform(scrollYProgress, [0, 1], [-30, 30]);
-  const bgY = useTransform(scrollYProgress, [0, 1], [-30, 30]);
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
     <section ref={ref} className="section-padding relative overflow-hidden" style={{
@@ -30,29 +24,28 @@ const ProblemSection = () => {
         backgroundSize: '30px 30px'
       }} />
 
-      <motion.div style={{ y: bgY }} className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 left-[10%] w-[400px] h-[400px] rounded-full bg-accent/[0.06] blur-[100px]" />
-        <div className="absolute bottom-10 right-[10%] w-[350px] h-[350px] rounded-full bg-primary/[0.04] blur-[80px]" />
-      </motion.div>
+      <div className="absolute top-20 left-[10%] w-[400px] h-[400px] rounded-full bg-accent/[0.06] blur-[100px]" />
+      <div className="absolute bottom-10 right-[10%] w-[350px] h-[350px] rounded-full bg-primary/[0.04] blur-[80px]" />
 
       <div className="container relative">
         <div className="grid items-center gap-16 lg:grid-cols-2">
-          {/* Left: Broken compass visual with scroll-linked rotation */}
+          {/* Left: Broken compass visual */}
           <motion.div
             initial={{ opacity: 0, x: -60 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
             className="relative flex items-center justify-center"
           >
-            <motion.div style={{ rotate: compassRotate }} className="relative w-full max-w-[320px] mx-auto aspect-square">
+            <div className="relative w-full max-w-[320px] mx-auto aspect-square">
               {/* Outer broken ring */}
               <motion.div
                 className="absolute inset-0 rounded-full border-2 border-dashed border-muted-foreground/15"
                 animate={{ rotate: -360 }}
                 transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
               />
+              {/* Middle ring with gap effect */}
               <div className="absolute inset-[15%] rounded-full border border-dashed border-muted-foreground/10" />
+              {/* Inner ring */}
               <div className="absolute inset-[30%] rounded-full border border-muted-foreground/8" />
 
               {/* Erratic needle */}
@@ -67,7 +60,7 @@ const ProblemSection = () => {
                 </div>
               </motion.div>
 
-              {/* X marks */}
+              {/* X marks scattered - "lost" markers */}
               {[
                 { x: 10, y: 15, size: 14 },
                 { x: 78, y: 12, size: 12 },
@@ -79,8 +72,7 @@ const ProblemSection = () => {
                   className="absolute"
                   style={{ left: `${mark.x}%`, top: `${mark.y}%` }}
                   initial={{ opacity: 0, scale: 0 }}
-                  whileInView={{ opacity: 0.15, scale: 1 }}
-                  viewport={{ once: true }}
+                  animate={isInView ? { opacity: 0.15, scale: 1 } : {}}
                   transition={{ delay: 0.8 + i * 0.15, type: "spring" }}
                 >
                   <X className="text-destructive/40" style={{ width: mark.size, height: mark.size }} />
@@ -107,7 +99,7 @@ const ProblemSection = () => {
                 </motion.span>
               ))}
 
-              {/* Center */}
+              {/* Center - dim compass icon */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <motion.div
                   className="h-14 w-14 rounded-full bg-muted/50 border border-muted-foreground/10 flex items-center justify-center"
@@ -117,14 +109,13 @@ const ProblemSection = () => {
                   <Compass className="h-6 w-6 text-muted-foreground/30" />
                 </motion.div>
               </div>
-            </motion.div>
+            </div>
           </motion.div>
 
           {/* Right: Text + challenge cards */}
           <motion.div
             initial={{ opacity: 0, x: 60 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
           >
             <span className="section-label">The Problem</span>
@@ -142,9 +133,8 @@ const ProblemSection = () => {
                 <motion.div
                   key={c.label}
                   initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2 + i * 0.1, duration: 0.6 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: 0.4 + i * 0.1, duration: 0.6 }}
                   className="rounded-xl border-2 border-border bg-card p-5 transition-all duration-300 hover:border-primary/30 hover:shadow-lg"
                 >
                   <c.icon className="h-5 w-5 text-primary/60 mb-3" />

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { Target, TrendingUp, Award, Users } from "lucide-react";
 
 const stats = [
@@ -50,22 +50,14 @@ const AnimatedCounter = ({ target, prefix = "", suffix = "" }: { target: number;
 const EcosystemStats = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
-  const bgY = useTransform(scrollYProgress, [0, 1], [-30, 30]);
 
   return (
     <section className="section-padding relative overflow-hidden" ref={sectionRef} style={{
       background: 'linear-gradient(160deg, hsl(30 40% 94%) 0%, hsl(24 50% 90%) 50%, hsl(30 35% 93%) 100%)'
     }}>
       <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-primary/55 to-transparent" />
-      
-      <motion.div style={{ y: bgY }} className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-[20%] right-[10%] w-[400px] h-[400px] rounded-full bg-primary/[0.10] blur-[100px]" />
-        <div className="absolute bottom-[10%] left-[5%] w-[350px] h-[350px] rounded-full bg-accent/[0.07] blur-[80px]" />
-      </motion.div>
+      <div className="absolute top-[20%] right-[10%] w-[400px] h-[400px] rounded-full bg-primary/[0.10] blur-[100px]" />
+      <div className="absolute bottom-[10%] left-[5%] w-[350px] h-[350px] rounded-full bg-accent/[0.07] blur-[80px]" />
 
       <div className="container relative">
         <div className="text-center max-w-3xl mx-auto mb-16">
