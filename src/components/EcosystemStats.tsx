@@ -40,7 +40,7 @@ const AnimatedCounter = ({ target, prefix = "", suffix = "" }: { target: number;
   }, [target]);
 
   return (
-    <div ref={ref} className="font-display text-6xl font-bold text-foreground tabular-nums md:text-7xl">
+    <div ref={ref} className="font-display text-5xl font-bold tabular-nums md:text-6xl lg:text-7xl">
       {prefix}{count}{suffix}
     </div>
   );
@@ -51,7 +51,7 @@ const EcosystemStats = () => {
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
   return (
-    <section className="section-padding relative overflow-hidden bg-warm-bg" ref={sectionRef}>
+    <section className="section-padding relative overflow-hidden bg-background" ref={sectionRef}>
       <div className="container relative">
         <div className="text-center max-w-3xl mx-auto mb-20">
           <span className="section-label">Impact</span>

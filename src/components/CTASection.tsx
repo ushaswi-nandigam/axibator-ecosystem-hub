@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Compass } from "lucide-react";
 import { useRef } from "react";
 
 const CTASection = () => {
@@ -9,7 +9,7 @@ const CTASection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="section-padding">
+    <section className="section-padding bg-background">
       <div className="container" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -23,11 +23,20 @@ const CTASection = () => {
             <div className="absolute bottom-10 right-10 h-52 w-52 rounded-full bg-accent blur-[120px]" />
           </div>
 
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={isInView ? { scale: 1 } : {}}
+            transition={{ delay: 0.3, type: "spring" }}
+            className="relative mx-auto mb-8 flex h-16 w-16 items-center justify-center rounded-full bg-primary/20"
+          >
+            <Compass className="h-7 w-7 text-primary" />
+          </motion.div>
+
           <h2 className="relative text-4xl font-bold md:text-5xl lg:text-6xl leading-[1.1]">
-            Ready to Build<br/>Without Waiting?
+            Ready to Set<br/>Your Course?
           </h2>
           <p className="relative mx-auto mt-6 max-w-lg text-secondary-foreground/60 text-lg md:text-xl">
-            Join grassroots founders turning ideas into reality. Your journey from idea to impact starts here.
+            Join founders who are building the future with Axibator. Your journey from idea to impact starts here.
           </p>
           <div className="relative mt-12 flex flex-wrap justify-center gap-4">
             <Link to="/apply">
