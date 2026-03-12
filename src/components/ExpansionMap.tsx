@@ -133,7 +133,7 @@ const ExpansionMap = () => {
           {/* Outer orbit ring */}
           <motion.circle
             cx={center} cy={center} r={orbitRadius + 15}
-            fill="none" stroke="hsl(24 100% 50% / 0.06)" strokeWidth="1"
+            fill="none" stroke="hsl(24 100% 50% / 0.2)" strokeWidth="1.5"
             initial={{ scale: 0.8, opacity: 0 }}
             animate={isInView ? { scale: 1, opacity: 1 } : {}}
             transition={{ duration: 1.2 }}
@@ -142,7 +142,7 @@ const ExpansionMap = () => {
           {/* Main orbit ring - animated dash */}
           <motion.circle
             cx={center} cy={center} r={orbitRadius}
-            fill="none" stroke="hsl(24 100% 50% / 0.15)" strokeWidth="1.5"
+            fill="none" stroke="hsl(24 100% 50% / 0.35)" strokeWidth="2"
             strokeDasharray="3 12"
             initial={{ strokeDashoffset: 0 }}
             animate={{ strokeDashoffset: -60 }}
@@ -151,7 +151,7 @@ const ExpansionMap = () => {
           {/* Inner orbit */}
           <motion.circle
             cx={center} cy={center} r={orbitRadius * 0.5}
-            fill="none" stroke="hsl(24 100% 50% / 0.07)" strokeWidth="1"
+            fill="none" stroke="hsl(24 100% 50% / 0.2)" strokeWidth="1.5"
             strokeDasharray="2 10"
             initial={{ strokeDashoffset: 0 }}
             animate={{ strokeDashoffset: 40 }}
