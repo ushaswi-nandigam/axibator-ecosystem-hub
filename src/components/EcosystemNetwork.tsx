@@ -15,9 +15,13 @@ const EcosystemNetwork = () => {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="section-padding relative overflow-hidden" ref={ref} style={{
-      background: 'linear-gradient(180deg, hsl(210 35% 95%) 0%, hsl(213 40% 91%) 50%, hsl(220 30% 94%) 100%)'
-    }}>
+    <section
+      className="section-padding relative overflow-hidden"
+      ref={ref}
+      style={{
+        background: "linear-gradient(180deg, hsl(210 35% 95%) 0%, hsl(213 40% 91%) 50%, hsl(220 30% 94%) 100%)",
+      }}
+    >
       <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-accent/50 to-transparent" />
       <div className="absolute top-[30%] left-0 w-[400px] h-[400px] rounded-full bg-accent/[0.08] blur-[100px]" />
       <div className="absolute bottom-[20%] right-0 w-[350px] h-[350px] rounded-full bg-primary/[0.06] blur-[80px]" />
@@ -68,16 +72,26 @@ const EcosystemNetwork = () => {
             <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 400">
               {/* Outer ring */}
               <motion.circle
-                cx="200" cy="200" r="170"
-                fill="none" stroke="hsl(var(--primary))" strokeWidth="1" strokeDasharray="4 8"
+                cx="200"
+                cy="200"
+                r="170"
+                fill="none"
+                stroke="hsl(var(--primary))"
+                strokeWidth="1"
+                strokeDasharray="4 8"
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={isInView ? { pathLength: 1, opacity: 0.2 } : {}}
                 transition={{ delay: 0.5, duration: 2 }}
               />
               {/* Inner ring */}
               <motion.circle
-                cx="200" cy="200" r="130"
-                fill="none" stroke="hsl(var(--accent))" strokeWidth="1" strokeDasharray="6 6"
+                cx="200"
+                cy="200"
+                r="130"
+                fill="none"
+                stroke="hsl(var(--accent))"
+                strokeWidth="1"
+                strokeDasharray="6 6"
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={isInView ? { pathLength: 1, opacity: 0.15 } : {}}
                 transition={{ delay: 0.8, duration: 1.5 }}
@@ -90,8 +104,13 @@ const EcosystemNetwork = () => {
                 return (
                   <g key={node.label}>
                     <motion.line
-                      x1="200" y1="200" x2={cx} y2={cy}
-                      stroke="hsl(var(--primary))" strokeWidth="2" strokeDasharray="6 4"
+                      x1="200"
+                      y1="200"
+                      x2={cx}
+                      y2={cy}
+                      stroke="hsl(var(--primary))"
+                      strokeWidth="2"
+                      strokeDasharray="6 4"
                       initial={{ pathLength: 0, opacity: 0 }}
                       animate={isInView ? { pathLength: 1, opacity: 0.4 } : {}}
                       transition={{ delay: 0.3 + i * 0.15, duration: 0.8 }}
@@ -110,8 +129,13 @@ const EcosystemNetwork = () => {
                 return (
                   <motion.line
                     key={`cross-${i}`}
-                    x1={x1} y1={y1} x2={x2} y2={y2}
-                    stroke="hsl(var(--accent))" strokeWidth="1" strokeDasharray="3 6"
+                    x1={x1}
+                    y1={y1}
+                    x2={x2}
+                    y2={y2}
+                    stroke="hsl(var(--accent))"
+                    strokeWidth="1"
+                    strokeDasharray="3 6"
                     initial={{ pathLength: 0, opacity: 0 }}
                     animate={isInView ? { pathLength: 1, opacity: 0.15 } : {}}
                     transition={{ delay: 1.2 + i * 0.1, duration: 0.8 }}
@@ -120,15 +144,23 @@ const EcosystemNetwork = () => {
               })}
               {/* Animated pulse rings at center */}
               <motion.circle
-                cx="200" cy="200" r="40"
-                fill="none" stroke="hsl(var(--primary))" strokeWidth="1"
+                cx="200"
+                cy="200"
+                r="40"
+                fill="none"
+                stroke="hsl(var(--primary))"
+                strokeWidth="1"
                 initial={{ opacity: 0 }}
                 animate={isInView ? { opacity: [0, 0.3, 0], r: [40, 80, 120] } : {}}
                 transition={{ delay: 1.5, duration: 3, repeat: Infinity, ease: "easeOut" }}
               />
               <motion.circle
-                cx="200" cy="200" r="40"
-                fill="none" stroke="hsl(var(--primary))" strokeWidth="0.5"
+                cx="200"
+                cy="200"
+                r="40"
+                fill="none"
+                stroke="hsl(var(--primary))"
+                strokeWidth="0.5"
                 initial={{ opacity: 0 }}
                 animate={isInView ? { opacity: [0, 0.2, 0], r: [40, 90, 140] } : {}}
                 transition={{ delay: 2.5, duration: 3, repeat: Infinity, ease: "easeOut" }}
@@ -147,9 +179,8 @@ const EcosystemNetwork = () => {
                 animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
                 transition={{ duration: 3, repeat: Infinity }}
               />
-              <div className="relative h-24 w-24 rounded-2xl bg-card border-2 border-primary/30 flex items-center justify-center shadow-xl shadow-primary/15">
-                <Flag className="h-4 w-4 text-primary mr-1.5" />
-                <span className="text-[11px] font-extrabold text-primary tracking-wider">AXIBATOR</span>
+              <div className="relative h-14 w-16 rounded-xl bg-card border border-primary/30 flex items-center justify-center shadow-lg shadow-primary/10">
+                <span className="text-[10px] font-bold text-primary tracking-wide">Axibator</span>
               </div>
             </motion.div>
 
@@ -162,7 +193,7 @@ const EcosystemNetwork = () => {
                 <motion.div
                   key={node.label}
                   className="absolute flex flex-col items-center gap-2"
-                  style={{ top, left, transform: 'translate(-50%, -50%)' }}
+                  style={{ top, left, transform: "translate(-50%, -50%)" }}
                   initial={{ scale: 0, opacity: 0 }}
                   animate={isInView ? { scale: 1, opacity: 1 } : {}}
                   transition={{ delay: 0.5 + i * 0.15, type: "spring", stiffness: 200 }}
