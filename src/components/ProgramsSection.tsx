@@ -58,11 +58,12 @@ const ProgramsSection = () => {
           {programs.map((p, i) => (
             <motion.div
               key={p.name}
-              initial={{ opacity: 0, y: 50, scale: 0.95 }}
+              initial={{ opacity: 0, y: 60, scale: 0.92 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, margin: "-30px" }}
-              transition={{ delay: i * 0.1, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="group rounded-2xl bg-card border-2 border-border p-8 md:p-10 transition-all duration-500 hover:border-primary/40 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/15"
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: i * 0.12, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ y: -8, transition: { duration: 0.3 } }}
+              className="group rounded-2xl bg-card border-2 border-border p-8 md:p-10 transition-all duration-500 hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/15"
             >
               <div className="flex items-center justify-between">
                 <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/15 transition-all duration-300 group-hover:bg-primary/25 group-hover:shadow-lg group-hover:shadow-primary/15">
