@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
+import { Target, TrendingUp, Award, Users } from "lucide-react";
 
 const stats = [
-  { value: 50, suffix: "+", label: "Startup Teams" },
-  { value: 75, suffix: "+", label: "Global Startup Program Partners" },
-  { value: 500, prefix: "$", suffix: "K+", label: "Startup Credits" },
-  { value: 300, suffix: "+", label: "Mentors Network" },
+  { value: 50, suffix: "+", label: "Startup Teams", icon: Target },
+  { value: 75, suffix: "+", label: "Global Partners", icon: Award },
+  { value: 500, prefix: "$", suffix: "K+", label: "Startup Credits", icon: TrendingUp },
+  { value: 300, suffix: "+", label: "Mentors Network", icon: Users },
 ];
 
 const AnimatedCounter = ({ target, prefix = "", suffix = "" }: { target: number; prefix?: string; suffix?: string }) => {
@@ -79,17 +80,25 @@ const EcosystemStats = () => {
           </motion.h2>
         </div>
 
-        <div className="grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-12">
+        <div className="grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-8">
           {stats.map((s, i) => (
             <motion.div
               key={s.label}
               initial={{ opacity: 0, y: 50, scale: 0.9 }}
               animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
               transition={{ delay: i * 0.15, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="text-center"
+              className="relative text-center rounded-2xl bg-card/60 border border-border/50 p-8 md:p-10"
             >
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={isInView ? { scale: 1 } : {}}
+                transition={{ delay: i * 0.15 + 0.3, type: "spring" }}
+                className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10"
+              >
+                <s.icon className="h-5 w-5 text-primary" />
+              </motion.div>
               <AnimatedCounter target={s.value} prefix={s.prefix} suffix={s.suffix} />
-              <span className="mt-4 block text-sm font-bold text-foreground tracking-wide">{s.label}</span>
+              <span className="mt-3 block text-sm font-bold text-foreground tracking-wide">{s.label}</span>
             </motion.div>
           ))}
         </div>
