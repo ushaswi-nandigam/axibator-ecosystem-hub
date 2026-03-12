@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Users, Handshake, Calendar, BookOpen, Rocket, Navigation } from "lucide-react";
+import { Users, Handshake, Calendar, BookOpen, Rocket, Navigation, Flag } from "lucide-react";
 
 const nodes = [
   { label: "Startups", icon: Rocket, angle: 0, color: "text-primary", bg: "bg-primary/15" },

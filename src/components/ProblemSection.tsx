@@ -102,11 +102,11 @@ const ProblemSection = () => {
               {/* Center - dim compass icon */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <motion.div
-                  className="h-14 w-14 rounded-full bg-muted/50 border border-muted-foreground/10 flex items-center justify-center"
-                  animate={{ opacity: [0.5, 0.8, 0.5] }}
+                  className="h-14 w-14 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center"
+                  animate={{ opacity: [0.5, 0.9, 0.5] }}
                   transition={{ duration: 4, repeat: Infinity }}
                 >
-                  <Compass className="h-6 w-6 text-muted-foreground/30" />
+                  <Compass className="h-6 w-6 text-primary/50" />
                 </motion.div>
               </div>
             </div>
