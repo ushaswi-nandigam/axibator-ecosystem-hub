@@ -117,11 +117,11 @@ export const ScrollProgressBar = () => {
 };
 
 // Hook to get scroll-linked values for a section
-export const useScrollSection = (offset?: [string, string]) => {
+export const useScrollSection = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: offset || ["start end", "end start"],
+    offset: ["start end", "end start"],
   });
   return { ref, scrollYProgress };
 };
