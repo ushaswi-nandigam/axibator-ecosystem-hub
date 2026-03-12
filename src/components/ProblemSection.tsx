@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { HelpCircle, Map } from "lucide-react";
+import { Map } from "lucide-react";
 
 const ProblemSection = () => {
   return (
