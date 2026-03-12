@@ -102,7 +102,7 @@ const EcosystemNetwork = () => {
               {/* Star cross connections */}
               {nodes.map((node, i) => {
                 const nextNode = nodes[(i + 2) % nodes.length];
-                const r = 160;
+                const r = 190;
                 const x1 = 200 + r * Math.sin((node.angle * Math.PI) / 180);
                 const y1 = 200 - r * Math.cos((node.angle * Math.PI) / 180);
                 const x2 = 200 + r * Math.sin((nextNode.angle * Math.PI) / 180);

@@ -39,24 +39,66 @@ const ProblemSection = () => {
             <div className="relative w-full max-w-[320px] mx-auto aspect-square">
               {/* Outer broken ring */}
               <motion.div
-                className="absolute inset-0 rounded-full border-2 border-dashed border-muted-foreground/15"
+                className="absolute inset-0 rounded-full border-2 border-dashed border-primary/20"
                 animate={{ rotate: -360 }}
                 transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
               />
               {/* Middle ring with gap effect */}
-              <div className="absolute inset-[15%] rounded-full border border-dashed border-muted-foreground/10" />
+              <div className="absolute inset-[15%] rounded-full border border-dashed border-primary/15" />
               {/* Inner ring */}
-              <div className="absolute inset-[30%] rounded-full border border-muted-foreground/8" />
+              <div className="absolute inset-[30%] rounded-full border border-primary/12" />
 
-              {/* Erratic needle */}
+              {/* Compass tick marks */}
+              <svg className="absolute inset-[5%] w-[90%] h-[90%]" viewBox="0 0 200 200">
+                {Array.from({ length: 12 }).map((_, i) => {
+                  const angle = (i * 30 * Math.PI) / 180;
+                  const isMajor = i % 3 === 0;
+                  const r1 = isMajor ? 85 : 88;
+                  const r2 = 95;
+                  return (
+                    <line
+                      key={i}
+                      x1={100 + r1 * Math.sin(angle)}
+                      y1={100 - r1 * Math.cos(angle)}
+                      x2={100 + r2 * Math.sin(angle)}
+                      y2={100 - r2 * Math.cos(angle)}
+                      stroke="hsl(var(--primary))"
+                      strokeWidth={isMajor ? "2" : "1"}
+                      opacity={isMajor ? 0.35 : 0.15}
+                    />
+                  );
+                })}
+                {/* Cardinal labels */}
+                {[
+                  { label: "N", x: 100, y: 18 },
+                  { label: "E", x: 185, y: 104 },
+                  { label: "S", x: 100, y: 190 },
+                  { label: "W", x: 15, y: 104 },
+                ].map((dir) => (
+                  <text
+                    key={dir.label}
+                    x={dir.x}
+                    y={dir.y}
+                    textAnchor="middle"
+                    fill="hsl(var(--primary))"
+                    fontSize="10"
+                    fontWeight="bold"
+                    opacity="0.35"
+                  >
+                    {dir.label}
+                  </text>
+                ))}
+              </svg>
+
+              {/* Erratic needle - using primary/accent colors */}
               <motion.div
                 className="absolute inset-[25%] flex items-center justify-center"
                 animate={{ rotate: [0, 120, -60, 200, -90, 150, 30] }}
                 transition={{ duration: 10, ease: "easeInOut", repeat: Infinity }}
               >
                 <div className="relative h-full w-px">
-                  <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[4px] border-r-[4px] border-b-[24px] border-l-transparent border-r-transparent border-b-muted-foreground/20" />
-                  <div className="absolute bottom-[20%] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[3px] border-r-[3px] border-t-[18px] border-l-transparent border-r-transparent border-t-muted-foreground/12" />
+                  <div className="absolute top-[15%] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[5px] border-r-[5px] border-b-[28px] border-l-transparent border-r-transparent border-b-primary/50" />
+                  <div className="absolute bottom-[15%] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[4px] border-r-[4px] border-t-[22px] border-l-transparent border-r-transparent border-t-accent/40" />
                 </div>
               </motion.div>
 
@@ -72,10 +114,10 @@ const ProblemSection = () => {
                   className="absolute"
                   style={{ left: `${mark.x}%`, top: `${mark.y}%` }}
                   initial={{ opacity: 0, scale: 0 }}
-                  animate={isInView ? { opacity: 0.15, scale: 1 } : {}}
+                  animate={isInView ? { opacity: 0.2, scale: 1 } : {}}
                   transition={{ delay: 0.8 + i * 0.15, type: "spring" }}
                 >
-                  <X className="text-destructive/40" style={{ width: mark.size, height: mark.size }} />
+                  <X className="text-destructive/50" style={{ width: mark.size, height: mark.size }} />
                 </motion.div>
               ))}
 
@@ -90,23 +132,23 @@ const ProblemSection = () => {
               ].map((q, i) => (
                 <motion.span
                   key={i}
-                  className="absolute text-muted-foreground/15 font-bold text-lg select-none"
+                  className="absolute text-primary/20 font-bold text-lg select-none"
                   style={{ left: `${q.x}%`, top: `${q.y}%` }}
-                  animate={{ opacity: [0.1, 0.25, 0.1], y: [0, -4, 0] }}
+                  animate={{ opacity: [0.1, 0.3, 0.1], y: [0, -4, 0] }}
                   transition={{ duration: 3.5, delay: q.delay, repeat: Infinity }}
                 >
                   ?
                 </motion.span>
               ))}
 
-              {/* Center - dim compass icon */}
+              {/* Center - compass icon with primary color */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <motion.div
-                  className="h-14 w-14 rounded-full bg-muted/50 border border-muted-foreground/10 flex items-center justify-center"
-                  animate={{ opacity: [0.5, 0.8, 0.5] }}
+                  className="h-16 w-16 rounded-full bg-primary/10 border-2 border-primary/20 flex items-center justify-center shadow-lg shadow-primary/10"
+                  animate={{ opacity: [0.6, 1, 0.6], scale: [0.95, 1, 0.95] }}
                   transition={{ duration: 4, repeat: Infinity }}
                 >
-                  <Compass className="h-6 w-6 text-muted-foreground/30" />
+                  <Compass className="h-7 w-7 text-primary/50" />
                 </motion.div>
               </div>
             </div>

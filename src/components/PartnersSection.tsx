@@ -1,5 +1,5 @@
 import { motion, useInView } from "framer-motion";
-import { Anchor, Globe, Building, GraduationCap, Handshake, Landmark } from "lucide-react";
+import { Building, GraduationCap, Anchor, Globe, Landmark, Handshake } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useRef } from "react";
 
@@ -55,7 +55,7 @@ const PartnersSection = () => {
             </div>
           </div>
 
-          {/* Right: Port visualization */}
+          {/* Right: Hexagonal grid visualization */}
           <motion.div
             initial={{ opacity: 0, scale: 0.85 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
@@ -63,72 +63,130 @@ const PartnersSection = () => {
             className="relative hidden lg:flex items-center justify-center"
           >
             <div className="relative w-full max-w-sm mx-auto aspect-square">
-              {/* World map hint */}
-              <div className="absolute inset-0 rounded-full border-2 border-dashed border-accent/15" />
-              <div className="absolute inset-[15%] rounded-full border border-primary/10" />
+              {/* Honeycomb hex grid */}
+              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 300 300">
+                {/* Background hex pattern */}
+                {[
+                  { cx: 150, cy: 150 },
+                  { cx: 100, cy: 80 },
+                  { cx: 200, cy: 80 },
+                  { cx: 60, cy: 150 },
+                  { cx: 240, cy: 150 },
+                  { cx: 100, cy: 220 },
+                  { cx: 200, cy: 220 },
+                ].map((hex, i) => {
+                  const size = i === 0 ? 42 : 35;
+                  const points = Array.from({ length: 6 }, (_, j) => {
+                    const angle = (Math.PI / 3) * j - Math.PI / 6;
+                    return `${hex.cx + size * Math.cos(angle)},${hex.cy + size * Math.sin(angle)}`;
+                  }).join(' ');
+                  return (
+                    <g key={i}>
+                      <motion.polygon
+                        points={points}
+                        fill="none"
+                        stroke={i === 0 ? "hsl(var(--primary))" : "hsl(var(--accent))"}
+                        strokeWidth={i === 0 ? "2" : "1"}
+                        initial={{ opacity: 0, scale: 0.5 }}
+                        animate={isInView ? { opacity: i === 0 ? 0.5 : 0.2, scale: 1 } : {}}
+                        transition={{ delay: 0.3 + i * 0.1, duration: 0.6 }}
+                        style={{ transformOrigin: `${hex.cx}px ${hex.cy}px` }}
+                      />
+                      {/* Connecting lines from outer hexes to center */}
+                      {i > 0 && (
+                        <motion.line
+                          x1={hex.cx} y1={hex.cy} x2={150} y2={150}
+                          stroke="hsl(var(--primary))"
+                          strokeWidth="1"
+                          strokeDasharray="4 6"
+                          initial={{ pathLength: 0, opacity: 0 }}
+                          animate={isInView ? { pathLength: 1, opacity: 0.2 } : {}}
+                          transition={{ delay: 0.8 + i * 0.1, duration: 0.6 }}
+                        />
+                      )}
+                    </g>
+                  );
+                })}
 
-              {/* Partner dots around globe */}
-              {categories.map((_, i) => {
-                const angle = (i * 360) / categories.length - 90;
-                const r = 42;
+                {/* Animated data flow particles along connections */}
+                {[
+                  { from: { x: 100, y: 80 }, to: { x: 150, y: 150 } },
+                  { from: { x: 200, y: 80 }, to: { x: 150, y: 150 } },
+                  { from: { x: 60, y: 150 }, to: { x: 150, y: 150 } },
+                  { from: { x: 240, y: 150 }, to: { x: 150, y: 150 } },
+                  { from: { x: 100, y: 220 }, to: { x: 150, y: 150 } },
+                  { from: { x: 200, y: 220 }, to: { x: 150, y: 150 } },
+                ].map((line, i) => (
+                  <motion.circle
+                    key={`particle-${i}`}
+                    r="3"
+                    fill="hsl(var(--primary))"
+                    initial={{ opacity: 0 }}
+                    animate={isInView ? {
+                      cx: [line.from.x, line.to.x],
+                      cy: [line.from.y, line.to.y],
+                      opacity: [0, 0.6, 0],
+                    } : {}}
+                    transition={{
+                      delay: 1.5 + i * 0.4,
+                      duration: 2,
+                      repeat: Infinity,
+                      repeatDelay: 1.5,
+                      ease: "easeInOut",
+                    }}
+                  />
+                ))}
+              </svg>
+
+              {/* Category icons on outer hexes */}
+              {[
+                { x: 33, y: 27, idx: 0 },
+                { x: 67, y: 27, idx: 1 },
+                { x: 20, y: 50, idx: 2 },
+                { x: 80, y: 50, idx: 3 },
+                { x: 33, y: 73, idx: 4 },
+              ].map((pos, i) => {
+                const CatIcon = categories[pos.idx].icon;
                 return (
                   <motion.div
                     key={i}
-                    className="absolute"
-                    style={{
-                      top: `${50 - r * Math.cos((angle * Math.PI) / 180)}%`,
-                      left: `${50 + r * Math.sin((angle * Math.PI) / 180)}%`,
-                      transform: 'translate(-50%, -50%)',
-                    }}
-                    initial={{ scale: 0 }}
-                    animate={isInView ? { scale: 1 } : {}}
+                    className="absolute flex flex-col items-center gap-1.5"
+                    style={{ left: `${pos.x}%`, top: `${pos.y}%`, transform: 'translate(-50%, -50%)' }}
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={isInView ? { scale: 1, opacity: 1 } : {}}
                     transition={{ delay: 0.6 + i * 0.12, type: "spring" }}
                   >
-                    {(() => {
-                      const CatIcon = categories[i].icon;
-                      return (
-                        <div className="h-12 w-12 rounded-full bg-card border-2 border-border flex items-center justify-center shadow-md transition-all duration-300 hover:border-primary/40 hover:shadow-xl">
-                          <CatIcon className="h-5 w-5 text-primary/70" />
-                        </div>
-                      );
-                    })()}
+                    <motion.div
+                      whileHover={{ scale: 1.15 }}
+                      animate={{ y: [0, -3, 0] }}
+                      transition={{ duration: 3 + i * 0.5, repeat: Infinity, ease: "easeInOut" }}
+                      className="h-12 w-12 rounded-xl bg-card border-2 border-border flex items-center justify-center shadow-md transition-all duration-300 hover:border-primary/40 hover:shadow-xl"
+                    >
+                      <CatIcon className="h-5 w-5 text-primary/70" />
+                    </motion.div>
+                    <span className="text-[9px] font-bold text-foreground/70 tracking-wider uppercase whitespace-nowrap">{categories[pos.idx].name}</span>
                   </motion.div>
                 );
               })}
 
-              {/* Center */}
+              {/* Center hub */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={isInView ? { scale: 1 } : {}}
                   transition={{ delay: 0.4, type: "spring" }}
-                  className="h-16 w-16 rounded-full bg-primary/15 border-2 border-primary/30 flex items-center justify-center shadow-lg"
+                  className="relative"
                 >
-                  <Globe className="h-7 w-7 text-primary" />
+                  <motion.div
+                    className="absolute -inset-4 rounded-xl bg-primary/10"
+                    animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
+                    transition={{ duration: 3, repeat: Infinity }}
+                  />
+                  <div className="h-14 w-14 rounded-xl bg-primary/15 border-2 border-primary/30 flex items-center justify-center shadow-lg">
+                    <Handshake className="h-6 w-6 text-primary" />
+                  </div>
                 </motion.div>
               </div>
-
-              {/* Connecting lines */}
-              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 300 300">
-                {categories.map((_, i) => {
-                  const angle = ((i * 360) / categories.length - 90) * Math.PI / 180;
-                  const r = 126;
-                  return (
-                    <motion.line
-                      key={i}
-                      x1="150" y1="150"
-                      x2={150 + r * Math.cos(angle)}
-                      y2={150 + r * Math.sin(angle)}
-                      stroke="hsl(var(--primary))"
-                      strokeWidth="1.5"
-                      strokeDasharray="4 6"
-                      initial={{ pathLength: 0, opacity: 0 }}
-                      animate={isInView ? { pathLength: 1, opacity: 0.3 } : {}}
-                      transition={{ delay: 0.5 + i * 0.1, duration: 0.6 }}
-                    />
-                  );
-                })}
-              </svg>
             </div>
           </motion.div>
         </div>
