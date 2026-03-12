@@ -77,6 +77,18 @@ const StartupsSection = () => {
                 </motion.div>
               ))}
 
+              {/* Harbor flag */}
+              <motion.div
+                className="absolute bottom-[23%] left-1/2 -translate-x-1/2"
+                initial={{ scale: 0 }}
+                animate={isInView ? { scale: 1 } : {}}
+                transition={{ delay: 0.4, type: "spring" }}
+              >
+                <div className="flex items-center gap-2 rounded-full bg-card border-2 border-primary/30 px-4 py-2 shadow-lg">
+                  <Flag className="h-4 w-4 text-primary" />
+                  <span className="text-xs font-bold text-primary">AXIBATOR PORT</span>
+                </div>
+              </motion.div>
             </div>
           </motion.div>
 
