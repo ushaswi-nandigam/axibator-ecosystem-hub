@@ -85,10 +85,19 @@ const PartnersSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section ref={ref} className="section-padding relative overflow-hidden" style={{
-      background: 'linear-gradient(160deg, hsl(0 0% 99%) 0%, hsl(220 20% 95%) 50%, hsl(210 25% 96%) 100%)'
+    <section ref={ref} className="py-32 relative overflow-hidden" style={{
+      background: 'linear-gradient(160deg, hsl(220 25% 97%) 0%, hsl(215 30% 93%) 40%, hsl(210 20% 95%) 70%, hsl(220 25% 97%) 100%)'
     }}>
       <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-primary/35 to-transparent" />
+      {/* Background depth elements */}
+      <div className="absolute top-[15%] left-[-5%] w-[400px] h-[400px] rounded-full bg-primary/[0.04] blur-[100px]" />
+      <div className="absolute bottom-[20%] right-[-5%] w-[350px] h-[350px] rounded-full bg-accent/[0.05] blur-[90px]" />
+      <div className="absolute top-[50%] left-[30%] w-[250px] h-[250px] rounded-full bg-secondary/[0.03] blur-[80px]" />
+      {/* Subtle grid pattern */}
+      <div className="absolute inset-0 opacity-[0.03]" style={{
+        backgroundImage: 'radial-gradient(circle, hsl(var(--primary)) 1px, transparent 1px)',
+        backgroundSize: '40px 40px'
+      }} />
 
       <div className="container">
         <motion.div
