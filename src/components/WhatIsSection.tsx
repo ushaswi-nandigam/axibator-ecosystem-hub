@@ -1,15 +1,27 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Compass } from "lucide-react";
+import { useRef } from "react";
 
 const WhatIsSection = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const compassRotate = useTransform(scrollYProgress, [0, 1], [0, 360]);
+  const bgY = useTransform(scrollYProgress, [0, 1], [-40, 40]);
+
   return (
-    <section className="section-padding relative overflow-hidden" style={{
+    <section ref={ref} className="section-padding relative overflow-hidden" style={{
       background: 'linear-gradient(160deg, hsl(30 40% 95%) 0%, hsl(24 50% 91%) 40%, hsl(30 35% 94%) 100%)'
     }}>
       <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
-      <div className="absolute top-[20%] right-0 w-[500px] h-[500px] rounded-full bg-primary/[0.08] blur-[120px]" />
 
-      <div className="container">
+      <motion.div style={{ y: bgY }} className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-[20%] right-0 w-[500px] h-[500px] rounded-full bg-primary/[0.08] blur-[120px]" />
+      </motion.div>
+
+      <div className="container relative">
         <div className="grid items-center gap-20 lg:grid-cols-2">
           <motion.div
             initial={{ opacity: 0, x: -60 }}
@@ -69,8 +81,7 @@ const WhatIsSection = () => {
 
               <div className="absolute inset-0 flex items-center justify-center">
                 <motion.div
-                  animate={{ rotate: [0, 360] }}
-                  transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+                  style={{ rotate: compassRotate }}
                   className="h-28 w-28 rounded-full border-2 border-primary/35 flex items-center justify-center"
                 >
                   <div className="h-20 w-20 rounded-full bg-primary/20 flex items-center justify-center shadow-xl shadow-primary/25">
