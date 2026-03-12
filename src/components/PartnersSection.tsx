@@ -57,22 +57,22 @@ const PartnerLogo = ({ name, logo }: { name: string; logo: string | null }) => {
   const [failed, setFailed] = useState(false);
 
   return (
-    <div className="flex flex-col items-center justify-center gap-2.5 px-5 min-w-[110px]">
-      <div className="h-12 w-12 rounded-xl bg-card border border-border flex items-center justify-center overflow-hidden shadow-sm">
+    <div className="flex flex-col items-center justify-center gap-3 px-6 min-w-[130px]">
+      <div className="h-16 w-16 rounded-2xl bg-card border border-border flex items-center justify-center overflow-hidden shadow-md hover:shadow-lg hover:border-primary/30 transition-all duration-300 hover:scale-105">
         {logo && !failed ? (
           <img
             src={logo}
             alt={name}
-            className="h-8 w-8 object-contain"
+            className="h-10 w-10 object-contain"
             onError={() => setFailed(true)}
           />
         ) : (
-          <span className="text-xs font-bold text-primary">
+          <span className="text-sm font-bold text-primary">
             {name.slice(0, 2).toUpperCase()}
           </span>
         )}
       </div>
-      <span className="text-[11px] font-medium text-muted-foreground whitespace-nowrap">{name}</span>
+      <span className="text-xs font-medium text-muted-foreground whitespace-nowrap">{name}</span>
     </div>
   );
 };
