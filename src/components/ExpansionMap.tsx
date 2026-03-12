@@ -151,7 +151,7 @@ const ExpansionMap = () => {
           {/* Inner orbit */}
           <motion.circle
             cx={center} cy={center} r={orbitRadius * 0.5}
-            fill="none" stroke="hsl(24 100% 50% / 0.07)" strokeWidth="1"
+            fill="none" stroke="hsl(24 100% 50% / 0.2)" strokeWidth="1.5"
             strokeDasharray="2 10"
             initial={{ strokeDashoffset: 0 }}
             animate={{ strokeDashoffset: 40 }}
