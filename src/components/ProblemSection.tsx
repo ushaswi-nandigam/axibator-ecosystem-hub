@@ -36,17 +36,20 @@ const ProblemSection = () => {
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
             className="relative flex items-center justify-center"
           >
-            <div className="relative w-full max-w-[320px] mx-auto aspect-square">
+            <div className="relative w-full max-w-[340px] mx-auto aspect-square">
+              {/* Ambient glow */}
+              <div className="absolute inset-[-15%] rounded-full bg-primary/[0.08] blur-[60px]" />
+              
               {/* Outer broken ring */}
               <motion.div
-                className="absolute inset-0 rounded-full border-2 border-dashed border-primary/25"
+                className="absolute inset-0 rounded-full border-[2.5px] border-dashed border-primary/45"
                 animate={{ rotate: -360 }}
                 transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
               />
-              {/* Middle ring with gap effect */}
-              <div className="absolute inset-[15%] rounded-full border border-dashed border-primary/15" />
+              {/* Middle ring */}
+              <div className="absolute inset-[15%] rounded-full border-[2px] border-dashed border-destructive/30" />
               {/* Inner ring */}
-              <div className="absolute inset-[30%] rounded-full border border-primary/12" />
+              <div className="absolute inset-[30%] rounded-full border-[1.5px] border-primary/25" />
 
               {/* Erratic needle */}
               <motion.div
@@ -55,27 +58,27 @@ const ProblemSection = () => {
                 transition={{ duration: 10, ease: "easeInOut", repeat: Infinity }}
               >
                 <div className="relative h-full w-px">
-                  <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[4px] border-r-[4px] border-b-[24px] border-l-transparent border-r-transparent border-b-primary/35" />
-                  <div className="absolute bottom-[20%] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[3px] border-r-[3px] border-t-[18px] border-l-transparent border-r-transparent border-t-primary/20" />
+                  <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[5px] border-r-[5px] border-b-[28px] border-l-transparent border-r-transparent border-b-primary/60" />
+                  <div className="absolute bottom-[20%] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[4px] border-r-[4px] border-t-[20px] border-l-transparent border-r-transparent border-t-destructive/40" />
                 </div>
               </motion.div>
 
-              {/* X marks scattered - "lost" markers */}
+              {/* X marks scattered */}
               {[
-                { x: 10, y: 15, size: 14 },
-                { x: 78, y: 12, size: 12 },
-                { x: 85, y: 70, size: 16 },
-                { x: 12, y: 75, size: 13 },
+                { x: 10, y: 15, size: 16 },
+                { x: 78, y: 12, size: 14 },
+                { x: 85, y: 70, size: 18 },
+                { x: 12, y: 75, size: 15 },
               ].map((mark, i) => (
                 <motion.div
                   key={i}
                   className="absolute"
                   style={{ left: `${mark.x}%`, top: `${mark.y}%` }}
                   initial={{ opacity: 0, scale: 0 }}
-                  animate={isInView ? { opacity: 0.15, scale: 1 } : {}}
+                  animate={isInView ? { opacity: 0.35, scale: 1 } : {}}
                   transition={{ delay: 0.8 + i * 0.15, type: "spring" }}
                 >
-                  <X className="text-destructive/40" style={{ width: mark.size, height: mark.size }} />
+                  <X className="text-destructive/70" style={{ width: mark.size, height: mark.size }} />
                 </motion.div>
               ))}
 
@@ -90,23 +93,23 @@ const ProblemSection = () => {
               ].map((q, i) => (
                 <motion.span
                   key={i}
-                  className="absolute text-muted-foreground/15 font-bold text-lg select-none"
+                  className="absolute text-primary/30 font-extrabold text-xl select-none"
                   style={{ left: `${q.x}%`, top: `${q.y}%` }}
-                  animate={{ opacity: [0.1, 0.25, 0.1], y: [0, -4, 0] }}
+                  animate={{ opacity: [0.15, 0.4, 0.15], y: [0, -4, 0] }}
                   transition={{ duration: 3.5, delay: q.delay, repeat: Infinity }}
                 >
                   ?
                 </motion.span>
               ))}
 
-              {/* Center - dim compass icon */}
+              {/* Center compass icon with glow */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <motion.div
-                  className="h-14 w-14 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center"
-                  animate={{ opacity: [0.5, 0.9, 0.5] }}
+                  className="h-16 w-16 rounded-full bg-primary/20 border-2 border-primary/40 flex items-center justify-center shadow-lg shadow-primary/25"
+                  animate={{ opacity: [0.6, 1, 0.6] }}
                   transition={{ duration: 4, repeat: Infinity }}
                 >
-                  <Compass className="h-6 w-6 text-primary/50" />
+                  <Compass className="h-7 w-7 text-primary/80" />
                 </motion.div>
               </div>
             </div>
