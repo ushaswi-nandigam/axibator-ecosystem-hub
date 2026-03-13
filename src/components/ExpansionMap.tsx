@@ -6,7 +6,7 @@ interface CityNode {
   city: string;
   status: "Active" | "Scouting" | "Upcoming";
   angle: number;
-  distance: number; // 0-1 multiplier on orbit radius
+  distance: number;
 }
 
 const cities: CityNode[] = [
@@ -20,39 +20,39 @@ const cities: CityNode[] = [
 const statusConfig = {
   Active: {
     color: "hsl(24 100% 50%)",
-    colorLight: "hsl(24 100% 50% / 0.08)",
-    border: "hsl(24 100% 50% / 0.35)",
-    glow: "0 0 24px -4px hsl(24 100% 50% / 0.25), 0 4px 16px -4px hsl(24 100% 50% / 0.12)",
-    routeOpacity: 0.4,
+    colorLight: "hsl(24 100% 50% / 0.15)",
+    border: "hsl(24 100% 50% / 0.6)",
+    glow: "0 0 20px -2px hsl(24 100% 50% / 0.35), 0 4px 12px -2px hsl(24 100% 50% / 0.2)",
+    routeOpacity: 0.65,
     icon: Zap,
-    badgeBg: "hsl(24 100% 50% / 0.12)",
-    badgeText: "hsl(24 100% 50%)",
+    badgeBg: "hsl(24 100% 50% / 0.18)",
+    badgeText: "hsl(24 100% 42%)",
   },
   Scouting: {
-    color: "hsl(212 100% 30%)",
-    colorLight: "hsl(212 100% 45% / 0.06)",
-    border: "hsl(212 100% 45% / 0.25)",
-    glow: "0 4px 16px -4px hsl(212 100% 45% / 0.12), 0 2px 8px -2px hsl(0 0% 0% / 0.04)",
-    routeOpacity: 0.18,
+    color: "hsl(212 80% 40%)",
+    colorLight: "hsl(212 80% 50% / 0.12)",
+    border: "hsl(212 80% 50% / 0.45)",
+    glow: "0 4px 16px -4px hsl(212 80% 45% / 0.25), 0 2px 8px -2px hsl(0 0% 0% / 0.08)",
+    routeOpacity: 0.4,
     icon: Radio,
-    badgeBg: "hsl(212 100% 45% / 0.1)",
-    badgeText: "hsl(212 100% 35%)",
+    badgeBg: "hsl(212 80% 50% / 0.15)",
+    badgeText: "hsl(212 80% 35%)",
   },
   Upcoming: {
-    color: "hsl(210 10% 50%)",
-    colorLight: "hsl(210 10% 50% / 0.05)",
-    border: "hsl(210 10% 50% / 0.18)",
-    glow: "0 4px 12px -4px hsl(0 0% 0% / 0.06)",
-    routeOpacity: 0.1,
+    color: "hsl(210 15% 40%)",
+    colorLight: "hsl(210 15% 50% / 0.1)",
+    border: "hsl(210 15% 50% / 0.35)",
+    glow: "0 4px 12px -4px hsl(0 0% 0% / 0.12)",
+    routeOpacity: 0.25,
     icon: MapPin,
-    badgeBg: "hsl(210 10% 50% / 0.08)",
-    badgeText: "hsl(210 10% 45%)",
+    badgeBg: "hsl(210 15% 50% / 0.12)",
+    badgeText: "hsl(210 15% 35%)",
   },
 };
 
 const svgSize = 560;
 const center = svgSize / 2;
-const orbitRadius = 210;
+const orbitRadius = 200;
 
 const getCityPos = (c: CityNode) => {
   const rad = (c.angle * Math.PI) / 180;
@@ -62,14 +62,13 @@ const getCityPos = (c: CityNode) => {
   };
 };
 
-// Smooth cubic bezier route from center to city
 const getRoute = (tx: number, ty: number, idx: number): string => {
   const dx = tx - center;
   const dy = ty - center;
   const len = Math.sqrt(dx * dx + dy * dy);
   const nx = -dy / len;
   const ny = dx / len;
-  const bend = (idx % 2 === 0 ? 1 : -1) * 40;
+  const bend = (idx % 2 === 0 ? 1 : -1) * 35;
   const cp1x = center + dx * 0.3 + nx * bend;
   const cp1y = center + dy * 0.3 + ny * bend;
   const cp2x = center + dx * 0.7 + nx * bend * 0.5;
@@ -91,36 +90,31 @@ const ExpansionMap = () => {
     <div ref={ref} className="relative w-full flex items-center justify-center py-4">
       <div className="relative w-full max-w-[560px] aspect-square">
 
-        {/* Layered ambient glows */}
-        <div className="absolute inset-[-10%] rounded-full bg-primary/[0.03] blur-[80px]" />
-        <div className="absolute top-[20%] left-[15%] w-[200px] h-[200px] rounded-full bg-primary/[0.06] blur-[60px]" />
-        <div className="absolute bottom-[25%] right-[10%] w-[160px] h-[160px] rounded-full bg-accent-blue/[0.04] blur-[50px]" />
+        {/* Strong ambient glows */}
+        <div className="absolute inset-[-15%] rounded-full bg-primary/[0.08] blur-[100px]" />
+        <div className="absolute top-[15%] left-[10%] w-[240px] h-[240px] rounded-full bg-primary/[0.12] blur-[70px]" />
+        <div className="absolute bottom-[20%] right-[5%] w-[200px] h-[200px] rounded-full bg-accent-blue/[0.08] blur-[60px]" />
 
         {/* Background grid texture */}
-        <div className="absolute inset-[5%] rounded-3xl opacity-[0.025]" style={{
+        <div className="absolute inset-[5%] rounded-3xl opacity-[0.06]" style={{
           backgroundImage: 'radial-gradient(circle, hsl(24 100% 50%) 0.8px, transparent 0.8px)',
           backgroundSize: '28px 28px',
         }} />
 
-        {/* SVG layer: rings, routes, pulses */}
+        {/* SVG layer */}
         <svg className="absolute inset-0 w-full h-full" viewBox={`0 0 ${svgSize} ${svgSize}`}>
           <defs>
-            {/* Radial gradient for orbit fill */}
             <radialGradient id="exp-orbit-fill" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="hsl(24 100% 50%)" stopOpacity="0.03" />
-              <stop offset="60%" stopColor="hsl(24 100% 50%)" stopOpacity="0.04" />
+              <stop offset="0%" stopColor="hsl(24 100% 50%)" stopOpacity="0.08" />
+              <stop offset="50%" stopColor="hsl(24 100% 50%)" stopOpacity="0.05" />
               <stop offset="100%" stopColor="hsl(24 100% 50%)" stopOpacity="0" />
             </radialGradient>
-            {/* Route gradient */}
-            <linearGradient id="route-active" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="hsl(24 100% 50%)" stopOpacity="0.6" />
-              <stop offset="100%" stopColor="hsl(24 100% 50%)" stopOpacity="0.2" />
-            </linearGradient>
-            {/* Pulse glow filter */}
             <filter id="pulse-glow" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur in="SourceGraphic" stdDeviation="3" />
+              <feGaussianBlur in="SourceGraphic" stdDeviation="4" />
             </filter>
-            {/* Define route paths for animateMotion */}
+            <filter id="route-glow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="2" />
+            </filter>
             {positioned.map((c) => {
               const pathD = getRoute(c.x, c.y, c.idx);
               return <path key={`def-${c.city}`} id={`exp-route-${c.idx}`} d={pathD} />;
@@ -128,35 +122,78 @@ const ExpansionMap = () => {
           </defs>
 
           {/* Orbit area fill */}
-          <circle cx={center} cy={center} r={orbitRadius + 30} fill="url(#exp-orbit-fill)" />
+          <circle cx={center} cy={center} r={orbitRadius + 40} fill="url(#exp-orbit-fill)" />
 
-          {/* Outer orbit ring */}
+          {/* Outermost ring */}
           <motion.circle
-            cx={center} cy={center} r={orbitRadius + 15}
-            fill="none" stroke="hsl(24 100% 50% / 0.2)" strokeWidth="1.5"
+            cx={center} cy={center} r={orbitRadius + 25}
+            fill="none" stroke="hsl(24 100% 50% / 0.12)" strokeWidth="1"
             initial={{ scale: 0.8, opacity: 0 }}
             animate={isInView ? { scale: 1, opacity: 1 } : {}}
             transition={{ duration: 1.2 }}
             style={{ transformOrigin: "center" }}
           />
-          {/* Main orbit ring - animated dash */}
+
+          {/* Outer orbit ring - solid */}
+          <motion.circle
+            cx={center} cy={center} r={orbitRadius + 10}
+            fill="none" stroke="hsl(24 100% 50% / 0.35)" strokeWidth="1.5"
+            initial={{ scale: 0.85, opacity: 0 }}
+            animate={isInView ? { scale: 1, opacity: 1 } : {}}
+            transition={{ duration: 1, delay: 0.1 }}
+            style={{ transformOrigin: "center" }}
+          />
+
+          {/* Main orbit ring - animated dashed, BOLD */}
           <motion.circle
             cx={center} cy={center} r={orbitRadius}
-            fill="none" stroke="hsl(24 100% 50% / 0.35)" strokeWidth="2"
-            strokeDasharray="3 12"
+            fill="none" stroke="hsl(24 100% 50% / 0.55)" strokeWidth="2.5"
+            strokeDasharray="6 10"
             initial={{ strokeDashoffset: 0 }}
-            animate={{ strokeDashoffset: -60 }}
+            animate={{ strokeDashoffset: -64 }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           />
-          {/* Inner orbit */}
+
+          {/* Inner orbit - medium */}
           <motion.circle
-            cx={center} cy={center} r={orbitRadius * 0.5}
-            fill="none" stroke="hsl(24 100% 50% / 0.2)" strokeWidth="1.5"
-            strokeDasharray="2 10"
+            cx={center} cy={center} r={orbitRadius * 0.55}
+            fill="none" stroke="hsl(24 100% 50% / 0.3)" strokeWidth="1.5"
+            strokeDasharray="4 8"
             initial={{ strokeDashoffset: 0 }}
             animate={{ strokeDashoffset: 40 }}
             transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
           />
+
+          {/* Innermost ring */}
+          <motion.circle
+            cx={center} cy={center} r={orbitRadius * 0.28}
+            fill="none" stroke="hsl(24 100% 50% / 0.2)" strokeWidth="1"
+            initial={{ scale: 0.5, opacity: 0 }}
+            animate={isInView ? { scale: 1, opacity: 1 } : {}}
+            transition={{ duration: 1, delay: 0.3 }}
+            style={{ transformOrigin: "center" }}
+          />
+
+          {/* Route glow layer (behind routes) */}
+          {positioned.map((c) => {
+            const pathD = getRoute(c.x, c.y, c.idx);
+            if (c.status !== "Active") return null;
+            return (
+              <motion.path
+                key={`route-glow-${c.city}`}
+                d={pathD}
+                fill="none"
+                stroke="hsl(24 100% 50%)"
+                strokeWidth={6}
+                strokeOpacity={0.1}
+                strokeLinecap="round"
+                filter="url(#route-glow)"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
+                transition={{ duration: 1.4, delay: 0.4 + c.idx * 0.12, ease: [0.16, 1, 0.3, 1] }}
+              />
+            );
+          })}
 
           {/* Routes */}
           {positioned.map((c) => {
@@ -168,10 +205,10 @@ const ExpansionMap = () => {
                 d={pathD}
                 fill="none"
                 stroke={cfg.color}
-                strokeWidth={c.status === "Active" ? 2 : 1.5}
+                strokeWidth={c.status === "Active" ? 2.5 : 1.5}
                 strokeOpacity={cfg.routeOpacity}
                 strokeLinecap="round"
-                strokeDasharray={c.status === "Active" ? "none" : "4 6"}
+                strokeDasharray={c.status === "Active" ? "none" : "5 7"}
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
                 transition={{ duration: 1.4, delay: 0.4 + c.idx * 0.12, ease: [0.16, 1, 0.3, 1] }}
@@ -184,38 +221,49 @@ const ExpansionMap = () => {
             if (c.status !== "Active") return null;
             return (
               <g key={`pulse-group-${c.city}`}>
-                {/* Main bright dot */}
-                <circle r="3.5" fill="hsl(24 100% 50%)" opacity="0">
-                  <animateMotion dur="3.5s" repeatCount="indefinite" begin={`${1.5 + c.idx * 0.8}s`}>
+                <circle r="4" fill="hsl(24 100% 55%)" opacity="0">
+                  <animateMotion dur="3s" repeatCount="indefinite" begin={`${1.2 + c.idx * 0.6}s`}>
                     <mpath href={`#exp-route-${c.idx}`} />
                   </animateMotion>
-                  <animate attributeName="opacity" values="0;1;1;0" dur="3.5s" repeatCount="indefinite" begin={`${1.5 + c.idx * 0.8}s`} />
+                  <animate attributeName="opacity" values="0;1;1;0" dur="3s" repeatCount="indefinite" begin={`${1.2 + c.idx * 0.6}s`} />
                 </circle>
-                {/* Soft glow trail */}
-                <circle r="10" fill="hsl(24 100% 50%)" opacity="0" filter="url(#pulse-glow)">
-                  <animateMotion dur="3.5s" repeatCount="indefinite" begin={`${1.5 + c.idx * 0.8}s`}>
+                <circle r="12" fill="hsl(24 100% 50%)" opacity="0" filter="url(#pulse-glow)">
+                  <animateMotion dur="3s" repeatCount="indefinite" begin={`${1.2 + c.idx * 0.6}s`}>
                     <mpath href={`#exp-route-${c.idx}`} />
                   </animateMotion>
-                  <animate attributeName="opacity" values="0;0.3;0.3;0" dur="3.5s" repeatCount="indefinite" begin={`${1.5 + c.idx * 0.8}s`} />
+                  <animate attributeName="opacity" values="0;0.4;0.4;0" dur="3s" repeatCount="indefinite" begin={`${1.2 + c.idx * 0.6}s`} />
                 </circle>
               </g>
             );
           })}
 
-          {/* Small decorative dots on orbit */}
-          {[0, 72, 144, 216, 288].map((angle) => {
+          {/* Decorative dots on outer orbit */}
+          {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => {
             const rad = (angle * Math.PI) / 180;
             return (
               <motion.circle
                 key={`orb-dot-${angle}`}
-                cx={center + Math.cos(rad) * (orbitRadius + 15)}
-                cy={center + Math.sin(rad) * (orbitRadius + 15)}
-                r="1.5"
-                fill="hsl(24 100% 50% / 0.2)"
+                cx={center + Math.cos(rad) * (orbitRadius + 10)}
+                cy={center + Math.sin(rad) * (orbitRadius + 10)}
+                r="2"
+                fill="hsl(24 100% 50% / 0.35)"
                 initial={{ opacity: 0 }}
-                animate={isInView ? { opacity: [0.15, 0.4, 0.15] } : {}}
-                transition={{ duration: 3, repeat: Infinity, delay: angle / 100 }}
+                animate={isInView ? { opacity: [0.2, 0.6, 0.2] } : {}}
+                transition={{ duration: 2.5, repeat: Infinity, delay: angle / 120 }}
               />
+            );
+          })}
+
+          {/* Small cross markers at mid-orbit */}
+          {[30, 150, 270].map((angle) => {
+            const rad = (angle * Math.PI) / 180;
+            const cx = center + Math.cos(rad) * (orbitRadius * 0.55);
+            const cy = center + Math.sin(rad) * (orbitRadius * 0.55);
+            return (
+              <g key={`cross-${angle}`}>
+                <line x1={cx - 3} y1={cy} x2={cx + 3} y2={cy} stroke="hsl(24 100% 50% / 0.25)" strokeWidth="1" />
+                <line x1={cx} y1={cy - 3} x2={cx} y2={cy + 3} stroke="hsl(24 100% 50% / 0.25)" strokeWidth="1" />
+              </g>
             );
           })}
         </svg>
@@ -229,36 +277,36 @@ const ExpansionMap = () => {
         >
           {/* Radiating rings */}
           <motion.div
-            className="absolute -inset-6 rounded-full border border-primary/15"
-            animate={{ scale: [1, 1.8, 1.8], opacity: [0.5, 0, 0] }}
-            transition={{ duration: 3.5, repeat: Infinity, ease: "easeOut" }}
+            className="absolute -inset-8 rounded-full border-2 border-primary/25"
+            animate={{ scale: [1, 2, 2], opacity: [0.6, 0, 0] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeOut" }}
           />
           <motion.div
-            className="absolute -inset-4 rounded-full border border-primary/10"
-            animate={{ scale: [1, 1.5, 1.5], opacity: [0.3, 0, 0] }}
-            transition={{ duration: 3.5, repeat: Infinity, ease: "easeOut", delay: 0.7 }}
+            className="absolute -inset-5 rounded-full border border-primary/20"
+            animate={{ scale: [1, 1.6, 1.6], opacity: [0.4, 0, 0] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeOut", delay: 0.6 }}
           />
 
           {/* Hub body */}
-          <div className="relative h-[72px] w-[72px] rounded-full flex flex-col items-center justify-center"
+          <div className="relative h-[80px] w-[80px] rounded-full flex flex-col items-center justify-center"
             style={{
-              background: 'linear-gradient(135deg, hsl(24 100% 50% / 0.18), hsl(24 100% 50% / 0.06))',
-              border: '2px solid hsl(24 100% 50% / 0.3)',
-              boxShadow: '0 0 30px -5px hsl(24 100% 50% / 0.2), inset 0 1px 0 hsl(0 0% 100% / 0.15)',
+              background: 'linear-gradient(135deg, hsl(24 100% 50% / 0.25), hsl(24 100% 50% / 0.1))',
+              border: '2.5px solid hsl(24 100% 50% / 0.5)',
+              boxShadow: '0 0 40px -5px hsl(24 100% 50% / 0.35), inset 0 1px 0 hsl(0 0% 100% / 0.2), 0 0 80px -10px hsl(24 100% 50% / 0.15)',
             }}
           >
             <motion.div
-              className="h-3.5 w-3.5 rounded-full bg-primary"
+              className="h-4 w-4 rounded-full bg-primary"
               animate={{
                 boxShadow: [
-                  "0 0 0 0 hsl(24 100% 50% / 0.4)",
-                  "0 0 16px 6px hsl(24 100% 50% / 0.15)",
-                  "0 0 0 0 hsl(24 100% 50% / 0.4)",
+                  "0 0 0 0 hsl(24 100% 50% / 0.5)",
+                  "0 0 20px 8px hsl(24 100% 50% / 0.2)",
+                  "0 0 0 0 hsl(24 100% 50% / 0.5)",
                 ],
               }}
               transition={{ duration: 2, repeat: Infinity }}
             />
-            <span className="mt-1.5 text-[7px] font-extrabold uppercase tracking-[0.2em] text-primary">
+            <span className="mt-1.5 text-[8px] font-extrabold uppercase tracking-[0.2em] text-primary">
               Axibator
             </span>
           </div>
@@ -280,40 +328,40 @@ const ExpansionMap = () => {
               initial={{ scale: 0, opacity: 0 }}
               animate={isInView ? { scale: 1, opacity: 1 } : {}}
               transition={{ delay: 0.55 + c.idx * 0.12, type: "spring", stiffness: 200, damping: 15 }}
-              whileHover={{ scale: 1.1, y: -3 }}
+              whileHover={{ scale: 1.12, y: -4 }}
             >
               {/* Active outer pulse */}
               {c.status === "Active" && (
                 <motion.div
-                  className="absolute -inset-1.5 rounded-2xl"
-                  style={{ border: `1px solid ${cfg.border}` }}
-                  animate={{ opacity: [0.2, 0.6, 0.2], scale: [1, 1.04, 1] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute -inset-2 rounded-2xl"
+                  style={{ border: `1.5px solid ${cfg.border}` }}
+                  animate={{ opacity: [0.3, 0.7, 0.3], scale: [1, 1.06, 1] }}
+                  transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
                 />
               )}
 
               <div
-                className="relative flex items-center gap-2.5 rounded-2xl px-4 py-3 backdrop-blur-md transition-all duration-300 cursor-default"
+                className="relative flex items-center gap-2.5 rounded-2xl px-4 py-3 backdrop-blur-lg transition-all duration-300 cursor-default"
                 style={{
-                  background: `linear-gradient(135deg, ${cfg.colorLight}, hsl(0 0% 100% / 0.7))`,
-                  border: `1.5px solid ${cfg.border}`,
+                  background: `linear-gradient(135deg, ${cfg.colorLight}, hsl(0 0% 100% / 0.85))`,
+                  border: `2px solid ${cfg.border}`,
                   boxShadow: cfg.glow,
                 }}
               >
                 {/* Icon circle */}
                 <div
-                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg"
+                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg"
                   style={{ background: cfg.badgeBg }}
                 >
-                  <StatusIcon className="h-3.5 w-3.5" style={{ color: cfg.color }} />
+                  <StatusIcon className="h-4 w-4" style={{ color: cfg.color }} />
                 </div>
 
                 <div className="flex flex-col">
-                  <span className="text-[11px] font-bold text-foreground leading-tight whitespace-nowrap">
+                  <span className="text-[12px] font-bold text-foreground leading-tight whitespace-nowrap">
                     {c.city}
                   </span>
                   <span
-                    className="text-[8px] font-extrabold uppercase tracking-[0.15em] leading-tight mt-0.5 whitespace-nowrap"
+                    className="text-[9px] font-extrabold uppercase tracking-[0.15em] leading-tight mt-0.5 whitespace-nowrap"
                     style={{ color: cfg.badgeText }}
                   >
                     ● {c.status}
