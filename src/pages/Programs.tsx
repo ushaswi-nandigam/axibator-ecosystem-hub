@@ -63,123 +63,184 @@ const Programs = () => {
   const [activeCategory, setActiveCategory] = useState(0);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="relative min-h-screen">
       <Navbar />
-      <main className="pt-24 pb-16">
-        <div className="container">
-          {/* Hero header */}
-          <div className="section-header text-center">
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-xs font-semibold uppercase tracking-widest text-primary"
-            >
-              Expeditions
-            </motion.p>
-            <motion.h1
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mt-3 text-3xl font-bold md:text-5xl"
-            >
-              All <span className="text-primary">Programs</span>
-            </motion.h1>
-            <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              {programCategories.reduce((acc, cat) => acc + cat.programs.length, 0)} programs designed for every stage and type of founder. Find your expedition.
-            </p>
-            <div className="mt-6 flex flex-wrap justify-center gap-3">
-              <Button asChild variant="hero" size="lg">
-                <Link to="/apply">Apply Now <ArrowRight className="ml-1 h-4 w-4" /></Link>
-              </Button>
-              <Button asChild variant="hero-outline" size="lg">
-                <Link to="/signup">Register as Founder</Link>
-              </Button>
-            </div>
-          </div>
+      <main className="relative z-10">
+        {/* Hero Section */}
+        <section className="relative overflow-hidden pt-28 pb-20 md:pt-36 md:pb-28" style={{
+          background: 'linear-gradient(160deg, hsl(220 30% 96%) 0%, hsl(210 40% 92%) 40%, hsl(24 30% 94%) 100%)'
+        }}>
+          <div className="absolute inset-0 opacity-[0.05]" style={{
+            backgroundImage: `radial-gradient(hsl(var(--primary)) 1px, transparent 1px)`,
+            backgroundSize: '40px 40px'
+          }} />
+          <div className="absolute top-10 right-0 w-[500px] h-[500px] rounded-full bg-primary/[0.08] blur-[120px]" />
+          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-accent/[0.08] blur-[100px]" />
 
-          {/* Category tabs */}
-          <div className="mb-10 flex flex-wrap justify-center gap-2">
-            {programCategories.map((cat, i) => (
-              <button
-                key={cat.label}
-                onClick={() => setActiveCategory(i)}
-                className={`rounded-full px-4 py-2 text-xs font-medium transition-all duration-200 ${
-                  activeCategory === i
-                    ? "bg-primary text-primary-foreground shadow-sm"
-                    : "bg-card border border-border text-muted-foreground hover:text-foreground hover:border-primary/30"
-                }`}
+          <div className="container relative">
+            <div className="text-center max-w-3xl mx-auto">
+              <motion.span
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="section-label"
               >
-                {cat.label}
-              </button>
-            ))}
-          </div>
-
-          {/* Programs grid */}
-          <motion.div
-            key={activeCategory}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
-            className="grid gap-5 md:grid-cols-2 lg:grid-cols-3"
-          >
-            {programCategories[activeCategory].programs.map((p, i) => {
-              const Icon = p.icon;
-              return (
-                <motion.div
-                  key={p.name}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.05 }}
-                  className="group flex flex-col rounded-2xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:border-primary/30 hover:shadow-md"
-                >
-                  <div className="flex items-center justify-between">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
-                      <Icon size={20} className="text-primary" />
-                    </div>
-                    <span className="rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">
-                      {p.duration}
-                    </span>
-                  </div>
-
-                  <h3 className="mt-4 font-display text-lg font-bold text-foreground">{p.name}</h3>
-                  <p className="mt-0.5 text-sm font-medium text-primary">{p.subtitle}</p>
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
-
-                  <div className="mt-5 flex items-center gap-3">
-                    <Button asChild size="sm" className="flex-1">
-                      <Link to="/apply">Apply Now</Link>
-                    </Button>
-                    <Button asChild variant="outline" size="sm" className="flex-1">
-                      <Link to="/signup">Register</Link>
-                    </Button>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </motion.div>
-
-          {/* Bottom CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-20 rounded-2xl border border-border bg-card p-8 text-center shadow-sm md:p-12"
-          >
-            <h2 className="font-display text-2xl font-bold text-foreground md:text-3xl">
-              Not sure which program fits?
-            </h2>
-            <p className="mx-auto mt-3 max-w-lg text-muted-foreground">
-              Talk to our team and we'll help you find the right expedition for your stage and goals.
-            </p>
-            <div className="mt-6 flex flex-wrap justify-center gap-3">
-              <Button asChild variant="hero" size="lg">
-                <Link to="/apply">Apply to Any Program <ArrowRight className="ml-1 h-4 w-4" /></Link>
-              </Button>
-              <Button asChild variant="hero-outline" size="lg">
-                <Link to="/signup">Create Founder Account</Link>
-              </Button>
+                Expeditions
+              </motion.span>
+              <motion.h1
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="section-title"
+              >
+                All <span className="text-primary">Programs</span>
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="section-desc mx-auto text-center"
+              >
+                {programCategories.reduce((acc, cat) => acc + cat.programs.length, 0)} programs designed for every stage and type of founder. Find your expedition.
+              </motion.p>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="mt-8 flex flex-wrap justify-center gap-4"
+              >
+                <Link to="/apply">
+                  <Button size="lg" className="group h-14 rounded-full bg-primary px-10 text-base font-bold text-primary-foreground hover:bg-primary/90 shadow-xl shadow-primary/35 transition-all duration-300">
+                    Apply Now <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                  </Button>
+                </Link>
+                <Link to="/signup">
+                  <Button variant="outline" size="lg" className="h-14 rounded-full px-10 text-base font-semibold border-2 border-border text-foreground hover:bg-muted hover:border-primary/30 transition-all duration-300">
+                    Register as Founder
+                  </Button>
+                </Link>
+              </motion.div>
             </div>
-          </motion.div>
-        </div>
+          </div>
+          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent" />
+        </section>
+
+        {/* Programs Content */}
+        <section className="section-padding relative overflow-hidden" style={{
+          background: 'linear-gradient(160deg, hsl(213 30% 94%) 0%, hsl(210 40% 90%) 50%, hsl(220 25% 93%) 100%)'
+        }}>
+          <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-accent/45 to-transparent" />
+          <div className="absolute top-[30%] right-0 w-[450px] h-[450px] rounded-full bg-secondary/[0.06] blur-[100px]" />
+          <div className="absolute inset-0 opacity-[0.03]" style={{
+            backgroundImage: `linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)`,
+            backgroundSize: '80px 80px'
+          }} />
+
+          <div className="container relative">
+            {/* Category tabs */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mb-14 flex flex-wrap justify-center gap-3"
+            >
+              {programCategories.map((cat, i) => (
+                <button
+                  key={cat.label}
+                  onClick={() => setActiveCategory(i)}
+                  className={`rounded-full px-5 py-2.5 text-xs font-bold tracking-wide transition-all duration-300 ${
+                    activeCategory === i
+                      ? "bg-primary text-primary-foreground shadow-lg shadow-primary/30"
+                      : "bg-card border-2 border-border text-muted-foreground hover:text-foreground hover:border-primary/40 hover:-translate-y-0.5"
+                  }`}
+                >
+                  {cat.label}
+                </button>
+              ))}
+            </motion.div>
+
+            {/* Programs grid */}
+            <motion.div
+              key={activeCategory}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="grid gap-5 md:grid-cols-2 lg:grid-cols-3"
+            >
+              {programCategories[activeCategory].programs.map((p, i) => {
+                const Icon = p.icon;
+                return (
+                  <motion.div
+                    key={p.name}
+                    initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    transition={{ delay: i * 0.1, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                    className="group flex flex-col rounded-2xl bg-card border-2 border-border p-8 md:p-10 transition-all duration-500 hover:border-primary/40 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/15"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/15 transition-all duration-300 group-hover:bg-primary/25 group-hover:shadow-lg group-hover:shadow-primary/15">
+                        <Icon className="h-6 w-6 text-primary transition-all duration-300 group-hover:scale-110" />
+                      </div>
+                      <span className="text-[11px] font-bold text-primary/70 tracking-[0.2em] uppercase bg-primary/10 px-3 py-1 rounded-full">{p.duration}</span>
+                    </div>
+
+                    <h3 className="mt-7 text-2xl font-bold text-foreground">{p.name}</h3>
+                    <p className="mt-1 text-sm font-semibold text-primary">{p.subtitle}</p>
+                    <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
+
+                    <div className="mt-8 flex items-center gap-3">
+                      <Link to="/apply" className="flex-1">
+                        <Button size="sm" className="w-full rounded-full bg-primary text-primary-foreground font-bold hover:bg-primary/90 shadow-md shadow-primary/20">
+                          Apply Now
+                        </Button>
+                      </Link>
+                      <Link to="/signup" className="flex-1">
+                        <Button variant="outline" size="sm" className="w-full rounded-full border-2 border-border font-semibold hover:border-primary/30">
+                          Register
+                        </Button>
+                      </Link>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </motion.div>
+          </div>
+          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent" />
+        </section>
+
+        {/* Bottom CTA */}
+        <section className="section-padding relative overflow-hidden" style={{
+          background: 'linear-gradient(160deg, hsl(24 30% 95%) 0%, hsl(30 35% 93%) 50%, hsl(220 25% 94%) 100%)'
+        }}>
+          <div className="absolute top-[20%] left-0 w-[400px] h-[400px] rounded-full bg-primary/[0.06] blur-[100px]" />
+          <div className="container relative">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="mx-auto max-w-3xl rounded-2xl border-2 border-primary/20 bg-card p-10 text-center shadow-2xl shadow-primary/10 md:p-14"
+            >
+              <h2 className="text-3xl font-bold text-foreground md:text-4xl">
+                Not sure which program fits?
+              </h2>
+              <p className="mx-auto mt-4 max-w-lg text-lg text-muted-foreground leading-relaxed">
+                Talk to our team and we'll help you find the right expedition for your stage and goals.
+              </p>
+              <div className="mt-8 flex flex-wrap justify-center gap-4">
+                <Link to="/apply">
+                  <Button size="lg" className="group h-14 rounded-full bg-primary px-10 text-base font-bold text-primary-foreground hover:bg-primary/90 shadow-xl shadow-primary/35">
+                    Apply to Any Program <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                  </Button>
+                </Link>
+                <Link to="/signup">
+                  <Button variant="outline" size="lg" className="h-14 rounded-full px-10 text-base font-semibold border-2 border-border hover:border-primary/30">
+                    Create Founder Account
+                  </Button>
+                </Link>
+              </div>
+            </motion.div>
+          </div>
+        </section>
       </main>
       <Footer />
     </div>
