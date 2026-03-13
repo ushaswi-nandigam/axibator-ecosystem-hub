@@ -125,8 +125,8 @@ const CompassGraphic = () => (
       transition={{ duration: 12, ease: "easeInOut", repeat: Infinity }}
     >
       <div className="relative h-full w-px">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[8px] border-r-[8px] border-b-[50px] border-l-transparent border-r-transparent border-b-primary drop-shadow-lg" />
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[6px] border-r-[6px] border-t-[38px] border-l-transparent border-r-transparent border-t-muted-foreground/40" />
+        <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[5px] border-r-[5px] border-b-[28px] border-l-transparent border-r-transparent border-b-primary/60" />
+        <div className="absolute bottom-[20%] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[4px] border-r-[4px] border-t-[20px] border-l-transparent border-r-transparent border-t-destructive/40" />
       </div>
     </motion.div>
 
