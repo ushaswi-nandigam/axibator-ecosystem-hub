@@ -70,7 +70,7 @@ const WhatIsSection = () => {
               <div className="absolute inset-0 flex items-center justify-center">
                 <motion.div
                   animate={{ rotate: [0, 360] }}
-                  transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+                  transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
                   className="h-28 w-28 rounded-full border-2 border-primary/35 flex items-center justify-center"
                 >
                   <div className="h-20 w-20 rounded-full bg-primary/20 flex items-center justify-center shadow-xl shadow-primary/25">
