@@ -105,9 +105,9 @@ const ExpansionMap = () => {
         <svg className="absolute inset-0 w-full h-full" viewBox={`0 0 ${svgSize} ${svgSize}`}>
           <defs>
             <radialGradient id="exp-orbit-fill" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="hsl(24 100% 50%)" stopOpacity="0.08" />
-              <stop offset="50%" stopColor="hsl(24 100% 50%)" stopOpacity="0.05" />
-              <stop offset="100%" stopColor="hsl(24 100% 50%)" stopOpacity="0" />
+              <stop offset="0%" stopColor="hsl(217 89% 56%)" stopOpacity="0.08" />
+              <stop offset="50%" stopColor="hsl(217 89% 56%)" stopOpacity="0.05" />
+              <stop offset="100%" stopColor="hsl(217 89% 56%)" stopOpacity="0" />
             </radialGradient>
             <filter id="pulse-glow" x="-50%" y="-50%" width="200%" height="200%">
               <feGaussianBlur in="SourceGraphic" stdDeviation="4" />
