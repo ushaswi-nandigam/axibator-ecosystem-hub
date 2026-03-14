@@ -147,7 +147,7 @@ const ExpansionMap = () => {
           {/* Main orbit ring - animated dashed, BOLD */}
           <motion.circle
             cx={center} cy={center} r={orbitRadius}
-            fill="none" stroke="hsl(24 100% 50% / 0.55)" strokeWidth="2.5"
+            fill="none" stroke="hsl(217 89% 56% / 0.55)" strokeWidth="2.5"
             strokeDasharray="6 10"
             initial={{ strokeDashoffset: 0 }}
             animate={{ strokeDashoffset: -64 }}
