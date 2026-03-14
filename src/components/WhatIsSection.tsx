@@ -4,7 +4,7 @@ import { Compass } from "lucide-react";
 const WhatIsSection = () => {
   return (
     <section className="section-padding relative overflow-hidden" style={{
-      background: 'linear-gradient(160deg, hsl(30 40% 95%) 0%, hsl(24 50% 91%) 40%, hsl(30 35% 94%) 100%)'
+      background: 'linear-gradient(160deg, hsl(215 30% 95%) 0%, hsl(217 40% 92%) 40%, hsl(210 35% 94%) 100%)'
     }}>
       <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
       <div className="absolute top-[20%] right-0 w-[500px] h-[500px] rounded-full bg-primary/[0.08] blur-[120px]" />

@@ -15,7 +15,7 @@ const Events = () => {
       <main className="relative z-10">
         {/* Hero */}
         <section className="relative overflow-hidden pt-28 pb-20 md:pt-36 md:pb-28" style={{
-          background: 'linear-gradient(160deg, hsl(220 30% 96%) 0%, hsl(210 40% 92%) 40%, hsl(24 30% 94%) 100%)'
+          background: 'linear-gradient(160deg, hsl(220 30% 96%) 0%, hsl(210 40% 92%) 40%, hsl(217 30% 94%) 100%)'
         }}>
           <div className="absolute inset-0 opacity-[0.05]" style={{
             backgroundImage: `radial-gradient(hsl(var(--primary)) 1px, transparent 1px)`,
