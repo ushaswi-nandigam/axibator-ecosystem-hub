@@ -7,52 +7,49 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 220 30% 6%;
+    --foreground: 220 30% 10%;
 
     --card: 0 0% 100%;
-    --card-foreground: 220 30% 6%;
+    --card-foreground: 220 30% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 30% 6%;
+    --popover-foreground: 220 30% 10%;
 
-    --primary: 217 89% 56%;
+    --primary: 21 100% 50%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 60% 12%;
+    --secondary: 211 100% 30%;
     --secondary-foreground: 210 20% 92%;
 
-    --muted: 220 20% 94%;
-    --muted-foreground: 220 12% 45%;
+    --muted: 0 0% 92%;
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 190 70% 50%;
+    --accent: 211 100% 30%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 15% 88%;
-    --input: 220 15% 88%;
-    --ring: 217 89% 56%;
+    --border: 0 0% 85%;
+    --input: 0 0% 85%;
+    --ring: 21 100% 50%;
 
     --radius: 0.75rem;
 
-    --deep-blue: 220 60% 12%;
-    --accent-blue: 190 70% 50%;
-    --neutral-grey: 0 0% 88%;
-    --neutral-grey-dark: 0 0% 65%;
-    --ecosystem-bg: 220 20% 95%;
-    --warm-bg: 220 20% 95%;
-    --cool-bg: 215 25% 95%;
-    --section-alt: 220 15% 94%;
+    --brand-orange: 21 100% 50%;
+    --brand-dark: 211 100% 30%;
+    --brand-blue: 213 47% 44%;
+    --neutral-light: 0 0% 92%;
+    --neutral-mid: 0 0% 75%;
 
     --sidebar-background: 0 0% 97%;
     --sidebar-foreground: 220 25% 8%;
-    --sidebar-primary: 217 89% 56%;
+    --sidebar-primary: 21 100% 50%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 190 70% 50%;
+    --sidebar-accent: 211 100% 30%;
     --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 220 15% 88%;
-    --sidebar-ring: 217 89% 56%;
+    --sidebar-border: 0 0% 85%;
+    --sidebar-ring: 21 100% 50%;
   }
 }
 
@@ -72,7 +69,7 @@
 
 @layer components {
   .section-padding {
-    @apply py-28 md:py-36;
+    @apply py-24 md:py-32;
   }
 
   .section-header {
@@ -84,7 +81,7 @@
   }
 
   .section-label-light {
-    @apply text-xs font-bold uppercase tracking-[0.25em] text-accent mb-4 block;
+    @apply text-xs font-bold uppercase tracking-[0.25em] text-primary mb-4 block;
   }
 
   .section-title {
@@ -104,28 +101,28 @@
   }
 
   .premium-card {
-    @apply rounded-2xl bg-card p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1;
+    @apply rounded-2xl bg-card p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
   }
 
-  /* Dark hero for pages */
+  /* Dark hero using brand dark blue */
   .hero-dark {
-    background: linear-gradient(160deg, hsl(220 60% 10%) 0%, hsl(220 55% 14%) 40%, hsl(215 50% 12%) 100%);
+    background: hsl(211 100% 30%);
   }
 
-  /* Light content sections */
+  /* Alternating section backgrounds */
+  .section-white {
+    background: hsl(0 0% 100%);
+  }
+
+  .section-grey {
+    background: hsl(0 0% 92%);
+  }
+
   .section-light {
-    background: linear-gradient(180deg, hsl(220 20% 97%) 0%, hsl(215 18% 95%) 100%);
+    background: hsl(0 0% 96%);
   }
 
   .section-light-alt {
-    background: linear-gradient(180deg, hsl(215 18% 95%) 0%, hsl(220 20% 97%) 100%);
-  }
-
-  .section-warm {
-    background: linear-gradient(135deg, hsl(220 20% 96%), hsl(215 18% 94%));
-  }
-
-  .section-cool {
-    background: linear-gradient(135deg, hsl(215 22% 96%), hsl(220 18% 94%));
+    background: hsl(0 0% 92%);
   }
 }
