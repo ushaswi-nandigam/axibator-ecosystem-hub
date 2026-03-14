@@ -290,9 +290,9 @@ const ExpansionMap = () => {
           {/* Hub body */}
           <div className="relative h-[80px] w-[80px] rounded-full flex flex-col items-center justify-center"
             style={{
-              background: 'linear-gradient(135deg, hsl(24 100% 50% / 0.25), hsl(24 100% 50% / 0.1))',
-              border: '2.5px solid hsl(24 100% 50% / 0.5)',
-              boxShadow: '0 0 40px -5px hsl(24 100% 50% / 0.35), inset 0 1px 0 hsl(0 0% 100% / 0.2), 0 0 80px -10px hsl(24 100% 50% / 0.15)',
+              background: 'linear-gradient(135deg, hsl(217 89% 56% / 0.25), hsl(217 89% 56% / 0.1))',
+              border: '2.5px solid hsl(217 89% 56% / 0.5)',
+              boxShadow: '0 0 40px -5px hsl(217 89% 56% / 0.35), inset 0 1px 0 hsl(0 0% 100% / 0.2), 0 0 80px -10px hsl(217 89% 56% / 0.15)',
             }}
           >
             <motion.div
