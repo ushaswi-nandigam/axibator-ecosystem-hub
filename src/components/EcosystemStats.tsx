@@ -41,7 +41,7 @@ const AnimatedCounter = ({ target, prefix = "", suffix = "" }: { target: number;
   }, [target]);
 
   return (
-    <div ref={ref} className="font-display text-3xl font-extrabold tabular-nums md:text-4xl lg:text-5xl text-primary">
+    <div ref={ref} className="font-display text-3xl font-extrabold tabular-nums md:text-4xl lg:text-5xl text-accent">
       {prefix}{count}{suffix}
     </div>
   );
@@ -52,30 +52,17 @@ const EcosystemStats = () => {
   const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
 
   return (
-    <section className="section-padding relative overflow-hidden" ref={sectionRef} style={{
-      background: 'linear-gradient(160deg, hsl(215 30% 94%) 0%, hsl(217 40% 91%) 50%, hsl(210 35% 93%) 100%)'
-    }}>
-      <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-primary/55 to-transparent" />
-      <div className="absolute top-[20%] right-[10%] w-[400px] h-[400px] rounded-full bg-primary/[0.10] blur-[100px]" />
-      <div className="absolute bottom-[10%] left-[5%] w-[350px] h-[350px] rounded-full bg-accent/[0.07] blur-[80px]" />
+    <section className="section-padding relative overflow-hidden section-light-alt" ref={sectionRef}>
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+      <div className="absolute top-[20%] right-[10%] w-[400px] h-[400px] rounded-full bg-accent/[0.06] blur-[100px]" />
+      <div className="absolute bottom-[10%] left-[5%] w-[350px] h-[350px] rounded-full bg-primary/[0.04] blur-[80px]" />
 
       <div className="container relative">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <motion.span
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="section-label"
-          >
+          <motion.span initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="section-label">
             Impact
           </motion.span>
-          <motion.h2
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="section-title"
-          >
+          <motion.h2 initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.1 }} className="section-title">
             Ecosystem at a Glance
           </motion.h2>
         </div>
@@ -89,13 +76,9 @@ const EcosystemStats = () => {
               transition={{ delay: i * 0.15, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
               className="relative text-center rounded-2xl bg-card/60 border border-border/50 p-6 md:p-8"
             >
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={isInView ? { scale: 1 } : {}}
-                transition={{ delay: i * 0.15 + 0.3, type: "spring" }}
-                className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10"
-              >
-                <s.icon className="h-4 w-4 text-primary" />
+              <motion.div initial={{ scale: 0 }} animate={isInView ? { scale: 1 } : {}} transition={{ delay: i * 0.15 + 0.3, type: "spring" }}
+                className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-accent/10">
+                <s.icon className="h-4 w-4 text-accent" />
               </motion.div>
               <AnimatedCounter target={s.value} prefix={s.prefix} suffix={s.suffix} />
               <span className="mt-2 block text-xs font-bold text-foreground tracking-wide">{s.label}</span>
