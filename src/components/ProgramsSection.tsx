@@ -13,43 +13,24 @@ const programs = [
 
 const ProgramsSection = () => {
   return (
-    <section className="section-padding relative overflow-hidden" style={{
-      background: 'linear-gradient(160deg, hsl(213 30% 94%) 0%, hsl(210 40% 90%) 50%, hsl(220 25% 93%) 100%)'
-    }}>
-      <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-accent/45 to-transparent" />
-      <div className="absolute top-[30%] right-0 w-[450px] h-[450px] rounded-full bg-secondary/[0.06] blur-[100px]" />
+    <section className="section-padding relative overflow-hidden section-light-alt">
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+      <div className="absolute top-[30%] right-0 w-[450px] h-[450px] rounded-full bg-primary/[0.04] blur-[100px]" />
 
-      <div className="absolute inset-0 opacity-[0.03]" style={{
+      <div className="absolute inset-0 opacity-[0.02]" style={{
         backgroundImage: `linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)`,
         backgroundSize: '80px 80px'
       }} />
 
       <div className="container relative">
         <div className="text-center max-w-3xl mx-auto mb-20">
-          <motion.span
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="section-label"
-          >
+          <motion.span initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="section-label">
             The Builder Zone
           </motion.span>
-          <motion.h2
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="section-title"
-          >
+          <motion.h2 initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }} className="section-title">
             Where Ideas Become Startups
           </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="section-desc mx-auto text-center"
-          >
+          <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="section-desc mx-auto text-center">
             Action-first programs designed for grassroots founders at every stage of the journey.
           </motion.p>
         </div>
@@ -62,13 +43,13 @@ const ProgramsSection = () => {
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: "-30px" }}
               transition={{ delay: i * 0.1, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="group rounded-2xl bg-card border-2 border-border p-8 md:p-10 transition-all duration-500 hover:border-primary/40 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/15"
+              className="group rounded-2xl bg-card border border-border p-8 md:p-10 transition-all duration-500 hover:border-accent/40 hover:-translate-y-2 hover:shadow-2xl hover:shadow-accent/10"
             >
               <div className="flex items-center justify-between">
-                <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/15 transition-all duration-300 group-hover:bg-primary/25 group-hover:shadow-lg group-hover:shadow-primary/15">
-                  <p.icon className="h-6 w-6 text-primary transition-all duration-300 group-hover:scale-110" />
+                <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 transition-all duration-300 group-hover:bg-accent/15 group-hover:shadow-lg group-hover:shadow-accent/10">
+                  <p.icon className="h-6 w-6 text-primary transition-all duration-300 group-hover:text-accent group-hover:scale-110" />
                 </div>
-                <span className="text-[11px] font-bold text-primary/70 tracking-[0.2em] uppercase bg-primary/10 px-3 py-1 rounded-full">{p.duration}</span>
+                <span className="text-[11px] font-bold text-accent/80 tracking-[0.2em] uppercase bg-accent/10 px-3 py-1 rounded-full">{p.duration}</span>
               </div>
 
               <h3 className="mt-7 text-2xl font-bold text-foreground">{p.name}</h3>
@@ -76,7 +57,7 @@ const ProgramsSection = () => {
 
               <Link
                 to="/programs"
-                className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-primary transition-all duration-300 hover:gap-3"
+                className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-accent transition-all duration-300 hover:gap-3"
               >
                 Learn More
                 <ArrowRight className="h-4 w-4" />
