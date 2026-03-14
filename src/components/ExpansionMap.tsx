@@ -227,7 +227,7 @@ const ExpansionMap = () => {
                   </animateMotion>
                   <animate attributeName="opacity" values="0;1;1;0" dur="3s" repeatCount="indefinite" begin={`${1.2 + c.idx * 0.6}s`} />
                 </circle>
-                <circle r="12" fill="hsl(24 100% 50%)" opacity="0" filter="url(#pulse-glow)">
+                <circle r="12" fill="hsl(217 89% 56%)" opacity="0" filter="url(#pulse-glow)">
                   <animateMotion dur="3s" repeatCount="indefinite" begin={`${1.2 + c.idx * 0.6}s`}>
                     <mpath href={`#exp-route-${c.idx}`} />
                   </animateMotion>
