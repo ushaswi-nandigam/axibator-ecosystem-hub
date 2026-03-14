@@ -127,7 +127,7 @@ const ExpansionMap = () => {
           {/* Outermost ring */}
           <motion.circle
             cx={center} cy={center} r={orbitRadius + 25}
-            fill="none" stroke="hsl(24 100% 50% / 0.12)" strokeWidth="1"
+            fill="none" stroke="hsl(217 89% 56% / 0.12)" strokeWidth="1"
             initial={{ scale: 0.8, opacity: 0 }}
             animate={isInView ? { scale: 1, opacity: 1 } : {}}
             transition={{ duration: 1.2 }}
