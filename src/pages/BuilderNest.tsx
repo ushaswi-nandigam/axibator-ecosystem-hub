@@ -100,7 +100,7 @@ const BuilderNest = () => {
       <main className="relative z-10">
         {/* Hero */}
         <section className="relative overflow-hidden pt-28 pb-20 md:pt-36 md:pb-28" style={{
-          background: 'linear-gradient(160deg, hsl(220 30% 96%) 0%, hsl(210 40% 92%) 40%, hsl(24 30% 94%) 100%)'
+          background: 'linear-gradient(160deg, hsl(220 30% 96%) 0%, hsl(210 40% 92%) 40%, hsl(217 30% 94%) 100%)'
         }}>
           <div className="absolute inset-0 opacity-[0.05]" style={{
             backgroundImage: `radial-gradient(hsl(var(--primary)) 1px, transparent 1px)`,
@@ -207,7 +207,7 @@ const BuilderNest = () => {
 
         {/* What Happens Inside */}
         <section className="section-padding relative overflow-hidden" style={{
-          background: 'linear-gradient(160deg, hsl(24 30% 95%) 0%, hsl(30 35% 93%) 50%, hsl(220 25% 94%) 100%)'
+          background: 'linear-gradient(160deg, hsl(217 30% 95%) 0%, hsl(215 30% 93%) 50%, hsl(220 25% 94%) 100%)'
         }}>
           <div className="absolute top-[20%] left-0 w-[400px] h-[400px] rounded-full bg-primary/[0.06] blur-[100px]" />
 
@@ -273,7 +273,7 @@ const BuilderNest = () => {
 
         {/* Amenities */}
         <section className="section-padding relative overflow-hidden" style={{
-          background: 'linear-gradient(160deg, hsl(24 30% 95%) 0%, hsl(30 35% 93%) 50%, hsl(220 25% 94%) 100%)'
+          background: 'linear-gradient(160deg, hsl(217 30% 95%) 0%, hsl(215 30% 93%) 50%, hsl(220 25% 94%) 100%)'
         }}>
           <div className="absolute top-[20%] left-0 w-[400px] h-[400px] rounded-full bg-primary/[0.06] blur-[100px]" />
 
@@ -369,7 +369,7 @@ const BuilderNest = () => {
 
         {/* Weekly Rhythm */}
         <section className="section-padding relative overflow-hidden" style={{
-          background: 'linear-gradient(160deg, hsl(24 30% 95%) 0%, hsl(30 35% 93%) 50%, hsl(220 25% 94%) 100%)'
+          background: 'linear-gradient(160deg, hsl(217 30% 95%) 0%, hsl(215 30% 93%) 50%, hsl(220 25% 94%) 100%)'
         }}>
           <div className="absolute top-[20%] left-0 w-[400px] h-[400px] rounded-full bg-primary/[0.06] blur-[100px]" />
 
@@ -431,7 +431,7 @@ const BuilderNest = () => {
 
         {/* Residency Tiers */}
         <section className="section-padding relative overflow-hidden" style={{
-          background: 'linear-gradient(160deg, hsl(24 30% 95%) 0%, hsl(30 35% 93%) 50%, hsl(220 25% 94%) 100%)'
+          background: 'linear-gradient(160deg, hsl(217 30% 95%) 0%, hsl(215 30% 93%) 50%, hsl(220 25% 94%) 100%)'
         }}>
           <div className="absolute top-[20%] left-0 w-[400px] h-[400px] rounded-full bg-primary/[0.06] blur-[100px]" />
 
@@ -524,7 +524,7 @@ const BuilderNest = () => {
 
         {/* Builder Ethos */}
         <section className="section-padding relative overflow-hidden" style={{
-          background: 'linear-gradient(160deg, hsl(24 30% 95%) 0%, hsl(30 35% 93%) 50%, hsl(220 25% 94%) 100%)'
+          background: 'linear-gradient(160deg, hsl(217 30% 95%) 0%, hsl(215 30% 93%) 50%, hsl(220 25% 94%) 100%)'
         }}>
           <div className="container relative text-center">
             <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-14">

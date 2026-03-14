@@ -68,7 +68,7 @@ const Programs = () => {
       <main className="relative z-10">
         {/* Hero Section */}
         <section className="relative overflow-hidden pt-28 pb-20 md:pt-36 md:pb-28" style={{
-          background: 'linear-gradient(160deg, hsl(220 30% 96%) 0%, hsl(210 40% 92%) 40%, hsl(24 30% 94%) 100%)'
+          background: 'linear-gradient(160deg, hsl(220 30% 96%) 0%, hsl(210 40% 92%) 40%, hsl(217 30% 94%) 100%)'
         }}>
           <div className="absolute inset-0 opacity-[0.05]" style={{
             backgroundImage: `radial-gradient(hsl(var(--primary)) 1px, transparent 1px)`,
@@ -209,7 +209,7 @@ const Programs = () => {
 
         {/* Bottom CTA */}
         <section className="section-padding relative overflow-hidden" style={{
-          background: 'linear-gradient(160deg, hsl(24 30% 95%) 0%, hsl(30 35% 93%) 50%, hsl(220 25% 94%) 100%)'
+          background: 'linear-gradient(160deg, hsl(217 30% 95%) 0%, hsl(215 30% 93%) 50%, hsl(220 25% 94%) 100%)'
         }}>
           <div className="absolute top-[20%] left-0 w-[400px] h-[400px] rounded-full bg-primary/[0.06] blur-[100px]" />
           <div className="container relative">

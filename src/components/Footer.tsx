@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin } from "lucide-react";
-import axibatorLogo from "@/assets/axibator-logo.png";
+import axibatorLogo from "@/assets/axibator-logo-new.jpeg";
 
 const footerLinks = {
   Programs: [

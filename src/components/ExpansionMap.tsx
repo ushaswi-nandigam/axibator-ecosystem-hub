@@ -19,14 +19,14 @@ const cities: CityNode[] = [
 
 const statusConfig = {
   Active: {
-    color: "hsl(24 100% 50%)",
-    colorLight: "hsl(24 100% 50% / 0.15)",
-    border: "hsl(24 100% 50% / 0.6)",
-    glow: "0 0 20px -2px hsl(24 100% 50% / 0.35), 0 4px 12px -2px hsl(24 100% 50% / 0.2)",
+    color: "hsl(217 89% 56%)",
+    colorLight: "hsl(217 89% 56% / 0.15)",
+    border: "hsl(217 89% 56% / 0.6)",
+    glow: "0 0 20px -2px hsl(217 89% 56% / 0.35), 0 4px 12px -2px hsl(217 89% 56% / 0.2)",
     routeOpacity: 0.65,
     icon: Zap,
-    badgeBg: "hsl(24 100% 50% / 0.18)",
-    badgeText: "hsl(24 100% 42%)",
+    badgeBg: "hsl(217 89% 56% / 0.18)",
+    badgeText: "hsl(217 89% 48%)",
   },
   Scouting: {
     color: "hsl(212 80% 40%)",
@@ -97,7 +97,7 @@ const ExpansionMap = () => {
 
         {/* Background grid texture */}
         <div className="absolute inset-[5%] rounded-3xl opacity-[0.06]" style={{
-          backgroundImage: 'radial-gradient(circle, hsl(24 100% 50%) 0.8px, transparent 0.8px)',
+          backgroundImage: 'radial-gradient(circle, hsl(217 89% 56%) 0.8px, transparent 0.8px)',
           backgroundSize: '28px 28px',
         }} />
 
@@ -105,9 +105,9 @@ const ExpansionMap = () => {
         <svg className="absolute inset-0 w-full h-full" viewBox={`0 0 ${svgSize} ${svgSize}`}>
           <defs>
             <radialGradient id="exp-orbit-fill" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="hsl(24 100% 50%)" stopOpacity="0.08" />
-              <stop offset="50%" stopColor="hsl(24 100% 50%)" stopOpacity="0.05" />
-              <stop offset="100%" stopColor="hsl(24 100% 50%)" stopOpacity="0" />
+              <stop offset="0%" stopColor="hsl(217 89% 56%)" stopOpacity="0.08" />
+              <stop offset="50%" stopColor="hsl(217 89% 56%)" stopOpacity="0.05" />
+              <stop offset="100%" stopColor="hsl(217 89% 56%)" stopOpacity="0" />
             </radialGradient>
             <filter id="pulse-glow" x="-50%" y="-50%" width="200%" height="200%">
               <feGaussianBlur in="SourceGraphic" stdDeviation="4" />
@@ -127,7 +127,7 @@ const ExpansionMap = () => {
           {/* Outermost ring */}
           <motion.circle
             cx={center} cy={center} r={orbitRadius + 25}
-            fill="none" stroke="hsl(24 100% 50% / 0.12)" strokeWidth="1"
+            fill="none" stroke="hsl(217 89% 56% / 0.12)" strokeWidth="1"
             initial={{ scale: 0.8, opacity: 0 }}
             animate={isInView ? { scale: 1, opacity: 1 } : {}}
             transition={{ duration: 1.2 }}
@@ -137,7 +137,7 @@ const ExpansionMap = () => {
           {/* Outer orbit ring - solid */}
           <motion.circle
             cx={center} cy={center} r={orbitRadius + 10}
-            fill="none" stroke="hsl(24 100% 50% / 0.35)" strokeWidth="1.5"
+            fill="none" stroke="hsl(217 89% 56% / 0.35)" strokeWidth="1.5"
             initial={{ scale: 0.85, opacity: 0 }}
             animate={isInView ? { scale: 1, opacity: 1 } : {}}
             transition={{ duration: 1, delay: 0.1 }}
@@ -147,7 +147,7 @@ const ExpansionMap = () => {
           {/* Main orbit ring - animated dashed, BOLD */}
           <motion.circle
             cx={center} cy={center} r={orbitRadius}
-            fill="none" stroke="hsl(24 100% 50% / 0.55)" strokeWidth="2.5"
+            fill="none" stroke="hsl(217 89% 56% / 0.55)" strokeWidth="2.5"
             strokeDasharray="6 10"
             initial={{ strokeDashoffset: 0 }}
             animate={{ strokeDashoffset: -64 }}
@@ -157,7 +157,7 @@ const ExpansionMap = () => {
           {/* Inner orbit - medium */}
           <motion.circle
             cx={center} cy={center} r={orbitRadius * 0.55}
-            fill="none" stroke="hsl(24 100% 50% / 0.3)" strokeWidth="1.5"
+            fill="none" stroke="hsl(217 89% 56% / 0.3)" strokeWidth="1.5"
             strokeDasharray="4 8"
             initial={{ strokeDashoffset: 0 }}
             animate={{ strokeDashoffset: 40 }}
@@ -167,7 +167,7 @@ const ExpansionMap = () => {
           {/* Innermost ring */}
           <motion.circle
             cx={center} cy={center} r={orbitRadius * 0.28}
-            fill="none" stroke="hsl(24 100% 50% / 0.2)" strokeWidth="1"
+            fill="none" stroke="hsl(217 89% 56% / 0.2)" strokeWidth="1"
             initial={{ scale: 0.5, opacity: 0 }}
             animate={isInView ? { scale: 1, opacity: 1 } : {}}
             transition={{ duration: 1, delay: 0.3 }}
@@ -183,7 +183,7 @@ const ExpansionMap = () => {
                 key={`route-glow-${c.city}`}
                 d={pathD}
                 fill="none"
-                stroke="hsl(24 100% 50%)"
+                stroke="hsl(217 89% 56%)"
                 strokeWidth={6}
                 strokeOpacity={0.1}
                 strokeLinecap="round"
@@ -221,13 +221,13 @@ const ExpansionMap = () => {
             if (c.status !== "Active") return null;
             return (
               <g key={`pulse-group-${c.city}`}>
-                <circle r="4" fill="hsl(24 100% 55%)" opacity="0">
+                <circle r="4" fill="hsl(217 89% 60%)" opacity="0">
                   <animateMotion dur="3s" repeatCount="indefinite" begin={`${1.2 + c.idx * 0.6}s`}>
                     <mpath href={`#exp-route-${c.idx}`} />
                   </animateMotion>
                   <animate attributeName="opacity" values="0;1;1;0" dur="3s" repeatCount="indefinite" begin={`${1.2 + c.idx * 0.6}s`} />
                 </circle>
-                <circle r="12" fill="hsl(24 100% 50%)" opacity="0" filter="url(#pulse-glow)">
+                <circle r="12" fill="hsl(217 89% 56%)" opacity="0" filter="url(#pulse-glow)">
                   <animateMotion dur="3s" repeatCount="indefinite" begin={`${1.2 + c.idx * 0.6}s`}>
                     <mpath href={`#exp-route-${c.idx}`} />
                   </animateMotion>
@@ -246,7 +246,7 @@ const ExpansionMap = () => {
                 cx={center + Math.cos(rad) * (orbitRadius + 10)}
                 cy={center + Math.sin(rad) * (orbitRadius + 10)}
                 r="2"
-                fill="hsl(24 100% 50% / 0.35)"
+                fill="hsl(217 89% 56% / 0.35)"
                 initial={{ opacity: 0 }}
                 animate={isInView ? { opacity: [0.2, 0.6, 0.2] } : {}}
                 transition={{ duration: 2.5, repeat: Infinity, delay: angle / 120 }}
@@ -261,8 +261,8 @@ const ExpansionMap = () => {
             const cy = center + Math.sin(rad) * (orbitRadius * 0.55);
             return (
               <g key={`cross-${angle}`}>
-                <line x1={cx - 3} y1={cy} x2={cx + 3} y2={cy} stroke="hsl(24 100% 50% / 0.25)" strokeWidth="1" />
-                <line x1={cx} y1={cy - 3} x2={cx} y2={cy + 3} stroke="hsl(24 100% 50% / 0.25)" strokeWidth="1" />
+                <line x1={cx - 3} y1={cy} x2={cx + 3} y2={cy} stroke="hsl(217 89% 56% / 0.25)" strokeWidth="1" />
+                <line x1={cx} y1={cy - 3} x2={cx} y2={cy + 3} stroke="hsl(217 89% 56% / 0.25)" strokeWidth="1" />
               </g>
             );
           })}
@@ -290,18 +290,18 @@ const ExpansionMap = () => {
           {/* Hub body */}
           <div className="relative h-[80px] w-[80px] rounded-full flex flex-col items-center justify-center"
             style={{
-              background: 'linear-gradient(135deg, hsl(24 100% 50% / 0.25), hsl(24 100% 50% / 0.1))',
-              border: '2.5px solid hsl(24 100% 50% / 0.5)',
-              boxShadow: '0 0 40px -5px hsl(24 100% 50% / 0.35), inset 0 1px 0 hsl(0 0% 100% / 0.2), 0 0 80px -10px hsl(24 100% 50% / 0.15)',
+              background: 'linear-gradient(135deg, hsl(217 89% 56% / 0.25), hsl(217 89% 56% / 0.1))',
+              border: '2.5px solid hsl(217 89% 56% / 0.5)',
+              boxShadow: '0 0 40px -5px hsl(217 89% 56% / 0.35), inset 0 1px 0 hsl(0 0% 100% / 0.2), 0 0 80px -10px hsl(217 89% 56% / 0.15)',
             }}
           >
             <motion.div
               className="h-4 w-4 rounded-full bg-primary"
               animate={{
                 boxShadow: [
-                  "0 0 0 0 hsl(24 100% 50% / 0.5)",
-                  "0 0 20px 8px hsl(24 100% 50% / 0.2)",
-                  "0 0 0 0 hsl(24 100% 50% / 0.5)",
+                  "0 0 0 0 hsl(217 89% 56% / 0.5)",
+                  "0 0 20px 8px hsl(217 89% 56% / 0.2)",
+                  "0 0 0 0 hsl(217 89% 56% / 0.5)",
                 ],
               }}
               transition={{ duration: 2, repeat: Infinity }}

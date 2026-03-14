@@ -14,7 +14,7 @@ const NotFound = () => {
 
   return (
     <div className="relative flex min-h-screen items-center justify-center px-4 overflow-hidden" style={{
-      background: 'linear-gradient(160deg, hsl(220 30% 96%) 0%, hsl(210 40% 92%) 40%, hsl(24 30% 94%) 100%)'
+      background: 'linear-gradient(160deg, hsl(220 30% 96%) 0%, hsl(210 40% 92%) 40%, hsl(217 30% 94%) 100%)'
     }}>
       <div className="absolute inset-0 opacity-[0.05]" style={{
         backgroundImage: `radial-gradient(hsl(var(--primary)) 1px, transparent 1px)`,
