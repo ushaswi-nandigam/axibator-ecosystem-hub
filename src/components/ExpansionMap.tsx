@@ -261,8 +261,8 @@ const ExpansionMap = () => {
             const cy = center + Math.sin(rad) * (orbitRadius * 0.55);
             return (
               <g key={`cross-${angle}`}>
-                <line x1={cx - 3} y1={cy} x2={cx + 3} y2={cy} stroke="hsl(24 100% 50% / 0.25)" strokeWidth="1" />
-                <line x1={cx} y1={cy - 3} x2={cx} y2={cy + 3} stroke="hsl(24 100% 50% / 0.25)" strokeWidth="1" />
+                <line x1={cx - 3} y1={cy} x2={cx + 3} y2={cy} stroke="hsl(217 89% 56% / 0.25)" strokeWidth="1" />
+                <line x1={cx} y1={cy - 3} x2={cx} y2={cy + 3} stroke="hsl(217 89% 56% / 0.25)" strokeWidth="1" />
               </g>
             );
           })}
