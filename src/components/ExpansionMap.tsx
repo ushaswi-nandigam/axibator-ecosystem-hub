@@ -97,7 +97,7 @@ const ExpansionMap = () => {
 
         {/* Background grid texture */}
         <div className="absolute inset-[5%] rounded-3xl opacity-[0.06]" style={{
-          backgroundImage: 'radial-gradient(circle, hsl(24 100% 50%) 0.8px, transparent 0.8px)',
+          backgroundImage: 'radial-gradient(circle, hsl(217 89% 56%) 0.8px, transparent 0.8px)',
           backgroundSize: '28px 28px',
         }} />
 
