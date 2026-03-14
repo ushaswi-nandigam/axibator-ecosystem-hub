@@ -17,21 +17,14 @@ const BuilderNestSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section ref={ref} id="builder-nest" className="section-padding relative overflow-hidden" style={{
-      background: 'linear-gradient(160deg, hsl(215 30% 96%) 0%, hsl(217 35% 93%) 40%, hsl(210 25% 95%) 100%)'
-    }}>
-      <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-primary/45 to-transparent" />
-      <div className="absolute bottom-[20%] right-0 w-[400px] h-[400px] rounded-full bg-primary/[0.07] blur-[100px]" />
+    <section ref={ref} id="builder-nest" className="section-padding relative overflow-hidden section-light">
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+      <div className="absolute bottom-[20%] right-0 w-[400px] h-[400px] rounded-full bg-accent/[0.05] blur-[100px]" />
 
       <div className="container relative">
         <div className="grid items-center gap-16 lg:grid-cols-2">
-          {/* Left: Text + cards */}
           <div>
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            >
+            <motion.div initial={{ opacity: 0, y: 50 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
               <span className="section-label">The Shipyard</span>
               <h2 className="section-title">Builder Nest</h2>
               <p className="section-desc">
@@ -42,15 +35,10 @@ const BuilderNestSection = () => {
 
             <div className="mt-12 grid grid-cols-2 gap-4">
               {features.map((f, i) => (
-                <motion.div
-                  key={f.title}
-                  initial={{ opacity: 0, y: 40 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 0.2 + i * 0.1 }}
-                  className="group rounded-xl bg-card border-2 border-border p-5 transition-all duration-500 hover:shadow-xl hover:-translate-y-1 hover:border-primary/30"
-                >
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 transition-all duration-300 group-hover:bg-primary/20">
-                    <f.icon className="h-5 w-5 text-primary/70 transition-colors group-hover:text-primary" />
+                <motion.div key={f.title} initial={{ opacity: 0, y: 40 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.2 + i * 0.1 }}
+                  className="group rounded-xl bg-card border border-border p-5 transition-all duration-500 hover:shadow-xl hover:-translate-y-1 hover:border-accent/30">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10 transition-all duration-300 group-hover:bg-accent/20">
+                    <f.icon className="h-5 w-5 text-accent/70 transition-colors group-hover:text-accent" />
                   </div>
                   <h3 className="mt-4 text-sm font-bold text-foreground">{f.title}</h3>
                   <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{f.desc}</p>
@@ -59,31 +47,20 @@ const BuilderNestSection = () => {
             </div>
           </div>
 
-          {/* Right: Expansion Map */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="hidden lg:block"
-          >
+          <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={isInView ? { opacity: 1, scale: 1 } : {}} transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }} className="hidden lg:block">
             <ExpansionMap />
           </motion.div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.8 }}
-          className="mt-16 flex flex-col items-center gap-6 sm:flex-row sm:justify-center"
-        >
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: 0.8 }}
+          className="mt-16 flex flex-col items-center gap-6 sm:flex-row sm:justify-center">
           <Link to="/builder-nest">
-            <Button className="group rounded-full bg-primary px-8 text-primary-foreground font-semibold hover:bg-primary/90 shadow-lg shadow-primary/25 transition-all duration-300">
-              Explore the Nest
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+            <Button className="group rounded-full bg-accent px-8 text-accent-foreground font-semibold hover:bg-accent/90 shadow-lg shadow-accent/20 transition-all duration-300">
+              Explore the Nest <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Button>
           </Link>
           <Link to="/apply">
-            <Button variant="outline" className="rounded-full px-8 font-medium border-2 hover:bg-muted transition-all duration-300">
+            <Button variant="outline" className="rounded-full px-8 font-medium border hover:bg-muted transition-all duration-300">
               Apply to Host
             </Button>
           </Link>
