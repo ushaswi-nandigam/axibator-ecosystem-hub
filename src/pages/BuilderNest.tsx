@@ -273,7 +273,7 @@ const BuilderNest = () => {
 
         {/* Amenities */}
         <section className="section-padding relative overflow-hidden" style={{
-          background: 'linear-gradient(160deg, hsl(24 30% 95%) 0%, hsl(30 35% 93%) 50%, hsl(220 25% 94%) 100%)'
+          background: 'linear-gradient(160deg, hsl(217 30% 95%) 0%, hsl(215 30% 93%) 50%, hsl(220 25% 94%) 100%)'
         }}>
           <div className="absolute top-[20%] left-0 w-[400px] h-[400px] rounded-full bg-primary/[0.06] blur-[100px]" />
 
