@@ -18,7 +18,7 @@ const BuilderNestSection = () => {
 
   return (
     <section ref={ref} id="builder-nest" className="section-padding relative overflow-hidden" style={{
-      background: 'linear-gradient(160deg, hsl(30 30% 96%) 0%, hsl(24 40% 93%) 40%, hsl(30 25% 95%) 100%)'
+      background: 'linear-gradient(160deg, hsl(215 30% 96%) 0%, hsl(217 35% 93%) 40%, hsl(210 25% 95%) 100%)'
     }}>
       <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-primary/45 to-transparent" />
       <div className="absolute bottom-[20%] right-0 w-[400px] h-[400px] rounded-full bg-primary/[0.07] blur-[100px]" />

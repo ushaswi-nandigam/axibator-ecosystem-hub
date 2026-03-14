@@ -299,9 +299,9 @@ const ExpansionMap = () => {
               className="h-4 w-4 rounded-full bg-primary"
               animate={{
                 boxShadow: [
-                  "0 0 0 0 hsl(24 100% 50% / 0.5)",
-                  "0 0 20px 8px hsl(24 100% 50% / 0.2)",
-                  "0 0 0 0 hsl(24 100% 50% / 0.5)",
+                  "0 0 0 0 hsl(217 89% 56% / 0.5)",
+                  "0 0 20px 8px hsl(217 89% 56% / 0.2)",
+                  "0 0 0 0 hsl(217 89% 56% / 0.5)",
                 ],
               }}
               transition={{ duration: 2, repeat: Infinity }}
