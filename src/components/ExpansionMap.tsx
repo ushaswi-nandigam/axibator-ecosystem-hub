@@ -183,7 +183,7 @@ const ExpansionMap = () => {
                 key={`route-glow-${c.city}`}
                 d={pathD}
                 fill="none"
-                stroke="hsl(24 100% 50%)"
+                stroke="hsl(217 89% 56%)"
                 strokeWidth={6}
                 strokeOpacity={0.1}
                 strokeLinecap="round"
