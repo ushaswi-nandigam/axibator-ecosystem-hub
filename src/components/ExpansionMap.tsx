@@ -19,14 +19,14 @@ const cities: CityNode[] = [
 
 const statusConfig = {
   Active: {
-    color: "hsl(24 100% 50%)",
-    colorLight: "hsl(24 100% 50% / 0.15)",
-    border: "hsl(24 100% 50% / 0.6)",
-    glow: "0 0 20px -2px hsl(24 100% 50% / 0.35), 0 4px 12px -2px hsl(24 100% 50% / 0.2)",
+    color: "hsl(217 89% 56%)",
+    colorLight: "hsl(217 89% 56% / 0.15)",
+    border: "hsl(217 89% 56% / 0.6)",
+    glow: "0 0 20px -2px hsl(217 89% 56% / 0.35), 0 4px 12px -2px hsl(217 89% 56% / 0.2)",
     routeOpacity: 0.65,
     icon: Zap,
-    badgeBg: "hsl(24 100% 50% / 0.18)",
-    badgeText: "hsl(24 100% 42%)",
+    badgeBg: "hsl(217 89% 56% / 0.18)",
+    badgeText: "hsl(217 89% 48%)",
   },
   Scouting: {
     color: "hsl(212 80% 40%)",
