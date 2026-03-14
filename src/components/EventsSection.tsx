@@ -17,7 +17,7 @@ const EventsSection = () => {
 
   return (
     <section ref={ref} className="section-padding relative overflow-hidden" style={{
-      background: 'linear-gradient(160deg, hsl(30 35% 95%) 0%, hsl(24 45% 91%) 50%, hsl(30 30% 94%) 100%)'
+      background: 'linear-gradient(160deg, hsl(215 30% 95%) 0%, hsl(217 35% 92%) 50%, hsl(210 30% 94%) 100%)'
     }}>
       <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
       <div className="absolute bottom-[20%] right-0 w-[400px] h-[400px] rounded-full bg-primary/[0.08] blur-[100px]" />
