@@ -524,7 +524,7 @@ const BuilderNest = () => {
 
         {/* Builder Ethos */}
         <section className="section-padding relative overflow-hidden" style={{
-          background: 'linear-gradient(160deg, hsl(24 30% 95%) 0%, hsl(30 35% 93%) 50%, hsl(220 25% 94%) 100%)'
+          background: 'linear-gradient(160deg, hsl(217 30% 95%) 0%, hsl(215 30% 93%) 50%, hsl(220 25% 94%) 100%)'
         }}>
           <div className="container relative text-center">
             <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-14">
