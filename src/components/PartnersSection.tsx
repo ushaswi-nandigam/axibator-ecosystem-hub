@@ -37,6 +37,7 @@ const partners = [
   { name: "MilesWeb", logo: "/partners/milesweb.png" },
   { name: "CIVO", logo: "/partners/civo.png" },
   { name: "OVHCloud", logo: "/partners/ovhcloud.png" },
+  { name: "Brevo", logo: null },
   { name: "Stytch", logo: "/partners/stytch.png" },
   { name: "Exotel", logo: "/partners/exotel.png" },
   { name: "DronaHQ", logo: "/partners/dronahq.png" },
@@ -47,20 +48,21 @@ const partners = [
   { name: "Wispr.ai", logo: "/partners/wispr.png" },
   { name: "Smartbot", logo: "/partners/smartbot.png" },
   { name: "ScaleGrid", logo: "/partners/scalegrid.png" },
+  { name: "Prodcamp", logo: null },
   { name: "Nicnames", logo: "/partners/nicnames.png" },
   { name: "Teamcamp", logo: "/partners/teamcamp.png" },
 ];
 
-const PartnerLogo = ({ name, logo }: { name: string; logo: string }) => {
+const PartnerLogo = ({ name, logo }: { name: string; logo: string | null }) => {
   const [failed, setFailed] = useState(false);
 
   return (
     <div className="flex flex-col items-center justify-center gap-3 px-6 min-w-[130px]">
-      <div className="h-14 w-14 rounded-xl bg-card border border-border flex items-center justify-center overflow-hidden transition-all duration-300 hover:shadow-md hover:border-primary/30 hover:scale-105">
-        {!failed ? (
-          <img src={logo} alt={name} className="h-9 w-9 object-contain" onError={() => setFailed(true)} />
+      <div className="h-16 w-16 rounded-2xl bg-card border border-border flex items-center justify-center overflow-hidden shadow-md hover:shadow-lg hover:border-accent/30 transition-all duration-300 hover:scale-105">
+        {logo && !failed ? (
+          <img src={logo} alt={name} className="h-10 w-10 object-contain" onError={() => setFailed(true)} />
         ) : (
-          <span className="text-xs font-bold text-primary">{name.slice(0, 2).toUpperCase()}</span>
+          <span className="text-sm font-bold text-accent">{name.slice(0, 2).toUpperCase()}</span>
         )}
       </div>
       <span className="text-xs font-medium text-muted-foreground whitespace-nowrap">{name}</span>
@@ -76,19 +78,27 @@ const PartnersSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section ref={ref} className="py-24 section-grey">
-      <div className="container mb-12">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} className="text-center">
-          <span className="section-label">Partners</span>
+    <section ref={ref} className="py-32 relative overflow-hidden section-light-alt">
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+      <div className="absolute top-[15%] left-[-5%] w-[400px] h-[400px] rounded-full bg-accent/[0.03] blur-[100px]" />
+      <div className="absolute bottom-[20%] right-[-5%] w-[350px] h-[350px] rounded-full bg-primary/[0.03] blur-[90px]" />
+      <div className="absolute inset-0 opacity-[0.02]" style={{
+        backgroundImage: 'radial-gradient(circle, hsl(var(--accent)) 1px, transparent 1px)',
+        backgroundSize: '40px 40px'
+      }} />
+
+      <div className="container">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} className="text-center mb-12">
+          <span className="section-label">Allied Ports</span>
           <h2 className="section-title">Ecosystem Partners</h2>
-          <p className="section-desc mx-auto max-w-lg text-center">45+ organizations powering the Axibator ecosystem.</p>
+          <p className="section-desc mx-auto max-w-lg">45+ organizations powering the Axibator ecosystem — from dev tools to cloud infrastructure.</p>
         </motion.div>
       </div>
 
       <div className="space-y-8">
         <div className="relative">
-          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-muted to-transparent z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-muted to-transparent z-10" />
+          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10" />
+          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10" />
           <motion.div initial={{ opacity: 0 }} animate={isInView ? { opacity: 1 } : {}} transition={{ delay: 0.3 }} className="overflow-hidden">
             <div className="flex animate-scroll-left">
               {[...row1, ...row1, ...row1].map((p, i) => (
@@ -99,8 +109,8 @@ const PartnersSection = () => {
         </div>
 
         <div className="relative">
-          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-muted to-transparent z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-muted to-transparent z-10" />
+          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10" />
+          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10" />
           <motion.div initial={{ opacity: 0 }} animate={isInView ? { opacity: 1 } : {}} transition={{ delay: 0.5 }} className="overflow-hidden">
             <div className="flex animate-scroll-right">
               {[...row2, ...row2, ...row2].map((p, i) => (
@@ -111,13 +121,17 @@ const PartnersSection = () => {
         </div>
       </div>
 
-      <div className="container mt-10 text-center">
-        <a href="mailto:connect@axibator.com">
-          <Button variant="outline" className="rounded-full px-8 font-semibold border">
-            <Handshake className="h-4 w-4 mr-2" /> Become a Partner
-          </Button>
-        </a>
+      <div className="container">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.8 }} className="mt-12 text-center">
+          <a href="mailto:connect@axibator.com">
+            <Button variant="outline" className="rounded-full px-8 font-semibold border transition-all duration-300 hover:border-accent/30">
+              <Handshake className="h-4 w-4 mr-2" /> Become a Partner
+            </Button>
+          </a>
+        </motion.div>
       </div>
+
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent" />
     </section>
   );
 };

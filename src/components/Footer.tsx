@@ -44,7 +44,7 @@ const Footer = () => {
                 <a
                   key={s.label}
                   href={s.href}
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white/[0.08] text-xs font-bold text-secondary-foreground/60 transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:shadow-lg hover:shadow-primary/20"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white/[0.08] text-xs font-bold text-secondary-foreground/60 transition-all duration-300 hover:bg-accent hover:text-accent-foreground hover:shadow-lg hover:shadow-accent/20"
                 >
                   {s.label}
                 </a>
@@ -77,14 +77,14 @@ const Footer = () => {
           <div>
             <h4 className="text-sm font-bold text-secondary-foreground tracking-wide">Contact</h4>
             <div className="mt-5 flex flex-col gap-4">
-              <a href="mailto:connect@axibator.com" className="flex items-center gap-3 text-sm text-secondary-foreground/50 hover:text-secondary-foreground transition-colors">
-                <Mail size={15} className="shrink-0 text-primary/60" /> connect@axibator.com
+              <a href="mailto:connect@axibator.com" className="flex items-center gap-3 text-sm text-secondary-foreground/50 hover:text-secondary-foreground transition-colors duration-200">
+                <Mail size={15} className="shrink-0 text-accent/60" /> connect@axibator.com
               </a>
-              <a href="tel:+919133063307" className="flex items-center gap-3 text-sm text-secondary-foreground/50 hover:text-secondary-foreground transition-colors">
-                <Phone size={15} className="shrink-0 text-primary/60" /> +91 91330 63307
+              <a href="tel:+919133063307" className="flex items-center gap-3 text-sm text-secondary-foreground/50 hover:text-secondary-foreground transition-colors duration-200">
+                <Phone size={15} className="shrink-0 text-accent/60" /> +91 91330 63307
               </a>
               <div className="flex items-start gap-3 text-sm text-secondary-foreground/50">
-                <MapPin size={15} className="mt-0.5 shrink-0 text-primary/60" />
+                <MapPin size={15} className="mt-0.5 shrink-0 text-accent/60" />
                 <span>Asian Sun City, 7th Floor,<br/>Kondapur, Hyderabad – India</span>
               </div>
             </div>

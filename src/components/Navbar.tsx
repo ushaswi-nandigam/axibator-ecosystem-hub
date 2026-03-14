@@ -25,6 +25,7 @@ const Navbar = () => {
           <img src={axibatorTextLogo} alt="Axibator" className="h-7 md:h-8" />
         </Link>
 
+        {/* Desktop nav */}
         <div className="hidden items-center gap-1 lg:flex">
           {navItems.map((item) => (
             <Link
@@ -46,12 +47,13 @@ const Navbar = () => {
             <Button variant="ghost" size="sm" className="text-white/60 font-medium hover:text-white hover:bg-white/10">Login</Button>
           </Link>
           <Link to="/apply">
-            <Button size="sm" className="rounded-full bg-primary px-6 text-primary-foreground font-bold hover:bg-primary/90 shadow-lg shadow-primary/25">
+            <Button size="sm" className="rounded-full bg-accent px-6 text-accent-foreground font-bold hover:bg-accent/90 shadow-lg shadow-accent/25">
               Apply Now
             </Button>
           </Link>
         </div>
 
+        {/* Mobile */}
         <div className="flex items-center gap-2 lg:hidden">
           <button
             className="flex h-10 w-10 items-center justify-center rounded-full text-white hover:bg-white/10"
@@ -84,7 +86,7 @@ const Navbar = () => {
                 <Button variant="ghost" size="sm" className="text-white/60 hover:text-white hover:bg-white/10">Login</Button>
               </Link>
               <Link to="/apply" onClick={() => setMobileOpen(false)}>
-                <Button size="sm" className="rounded-full bg-primary text-primary-foreground font-bold hover:bg-primary/90">Apply Now</Button>
+                <Button size="sm" className="rounded-full bg-accent text-accent-foreground font-bold hover:bg-accent/90">Apply Now</Button>
               </Link>
             </div>
           </div>

@@ -25,9 +25,9 @@ const Index = () => {
         <WhatIsSection />
         <FounderJourney />
         <ProgramsSection />
-        <EcosystemStats />
-        <EcosystemNetwork />
         <BuilderNestSection />
+        <EcosystemNetwork />
+        <EcosystemStats />
         <StartupsSection />
         <PartnersSection />
         <EventsSection />
