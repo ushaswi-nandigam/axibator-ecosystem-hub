@@ -221,7 +221,7 @@ const ExpansionMap = () => {
             if (c.status !== "Active") return null;
             return (
               <g key={`pulse-group-${c.city}`}>
-                <circle r="4" fill="hsl(24 100% 55%)" opacity="0">
+                <circle r="4" fill="hsl(217 89% 60%)" opacity="0">
                   <animateMotion dur="3s" repeatCount="indefinite" begin={`${1.2 + c.idx * 0.6}s`}>
                     <mpath href={`#exp-route-${c.idx}`} />
                   </animateMotion>
