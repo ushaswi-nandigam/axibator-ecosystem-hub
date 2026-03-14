@@ -246,7 +246,7 @@ const ExpansionMap = () => {
                 cx={center + Math.cos(rad) * (orbitRadius + 10)}
                 cy={center + Math.sin(rad) * (orbitRadius + 10)}
                 r="2"
-                fill="hsl(24 100% 50% / 0.35)"
+                fill="hsl(217 89% 56% / 0.35)"
                 initial={{ opacity: 0 }}
                 animate={isInView ? { opacity: [0.2, 0.6, 0.2] } : {}}
                 transition={{ duration: 2.5, repeat: Infinity, delay: angle / 120 }}
