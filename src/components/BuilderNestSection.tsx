@@ -1,15 +1,20 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
+import { ArrowRight, MapPin } from "lucide-react";
 import { useRef } from "react";
-import { Home, Users, Wrench, Coffee, ArrowRight } from "lucide-react";
-import ExpansionMap from "@/components/ExpansionMap";
+
+const locations = [
+  { city: "Vizag", status: "Active", color: "bg-primary text-primary-foreground" },
+  { city: "Amaravati", status: "Active", color: "bg-primary text-primary-foreground" },
+  { city: "Vijayawada", status: "Scouting", color: "bg-secondary text-secondary-foreground" },
+  { city: "Warangal", status: "Upcoming", color: "bg-muted text-muted-foreground" },
+];
 
 const features = [
-  { icon: Home, title: "Founder-First Spaces", desc: "Cozy, gritty houses — not corporate offices" },
-  { icon: Users, title: "Builder Community", desc: "Ship MVPs with fellow founders over chai" },
-  { icon: Wrench, title: "Build Jams & Hackathons", desc: "Weekend sprints that turn ideas into products" },
-  { icon: Coffee, title: "Chai-Fueled Chaos", desc: "Where chai breaks become co-founder meetings" },
+  { title: "Founder-First Spaces", desc: "Cozy, gritty houses — not corporate offices" },
+  { title: "Builder Community", desc: "Ship MVPs with fellow founders over chai" },
+  { title: "Build Jams & Hackathons", desc: "Weekend sprints that turn ideas into products" },
 ];
 
 const BuilderNestSection = () => {
@@ -17,57 +22,79 @@ const BuilderNestSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section ref={ref} id="builder-nest" className="section-padding relative overflow-hidden section-light">
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-      <div className="absolute bottom-[20%] right-0 w-[400px] h-[400px] rounded-full bg-accent/[0.05] blur-[100px]" />
-
-      <div className="container relative">
-        <div className="grid items-center gap-16 lg:grid-cols-2">
-          <div>
-            <motion.div initial={{ opacity: 0, y: 50 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
-              <span className="section-label">The Shipyard</span>
-              <h2 className="section-title">Builder Nest</h2>
-              <p className="section-desc">
-                Not a WeWork. Not an incubator. A home for founders to build bold things — together.
-                Physical, founder-first spaces in Tier 2/3 cities.
-              </p>
-            </motion.div>
-
-            <div className="mt-12 grid grid-cols-2 gap-4">
-              {features.map((f, i) => (
-                <motion.div key={f.title} initial={{ opacity: 0, y: 40 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.2 + i * 0.1 }}
-                  className="group rounded-xl bg-card border border-border p-5 transition-all duration-500 hover:shadow-xl hover:-translate-y-1 hover:border-accent/30">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10 transition-all duration-300 group-hover:bg-accent/20">
-                    <f.icon className="h-5 w-5 text-accent/70 transition-colors group-hover:text-accent" />
-                  </div>
-                  <h3 className="mt-4 text-sm font-bold text-foreground">{f.title}</h3>
-                  <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{f.desc}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={isInView ? { opacity: 1, scale: 1 } : {}} transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }} className="hidden lg:block">
-            <ExpansionMap />
-          </motion.div>
+    <section ref={ref} id="builder-nest" className="section-padding section-white">
+      <div className="container">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <motion.span initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} className="section-label">
+            Builder Nest
+          </motion.span>
+          <motion.h2 initial={{ opacity: 0, y: 30 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.1 }} className="section-title">
+            Where Builders Live & Ship
+          </motion.h2>
+          <motion.p initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.2 }} className="section-desc mx-auto text-center">
+            Physical, founder-first spaces in Tier 2/3 cities where startups get built — not pitched.
+          </motion.p>
         </div>
 
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: 0.8 }}
-          className="mt-16 flex flex-col items-center gap-6 sm:flex-row sm:justify-center">
+        <div className="grid gap-5 md:grid-cols-3 mb-12">
+          {features.map((f, i) => (
+            <motion.div
+              key={f.title}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.2 + i * 0.1, duration: 0.5 }}
+              className="rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:-translate-y-1"
+            >
+              <h3 className="text-base font-bold text-foreground">{f.title}</h3>
+              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Regional hubs */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.5, duration: 0.6 }}
+        >
+          <h3 className="text-center text-sm font-bold uppercase tracking-[0.2em] text-muted-foreground mb-6">Regional Hubs</h3>
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+            {locations.map((loc, i) => (
+              <motion.div
+                key={loc.city}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.6 + i * 0.1 }}
+                className="rounded-xl border border-border bg-card p-5 text-center transition-all duration-300 hover:shadow-md hover:-translate-y-1"
+              >
+                <MapPin className="mx-auto h-5 w-5 text-muted-foreground mb-2" />
+                <h4 className="text-base font-bold text-foreground">{loc.city}</h4>
+                <span className={`mt-2 inline-block rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wider ${loc.color}`}>
+                  {loc.status}
+                </span>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.8 }}
+          className="mt-12 flex flex-wrap justify-center gap-4"
+        >
           <Link to="/builder-nest">
-            <Button className="group rounded-full bg-accent px-8 text-accent-foreground font-semibold hover:bg-accent/90 shadow-lg shadow-accent/20 transition-all duration-300">
-              Explore the Nest <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+            <Button className="rounded-full bg-primary px-8 text-primary-foreground font-semibold hover:bg-primary/90 shadow-lg shadow-primary/20">
+              Explore the Nest <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </Link>
           <Link to="/apply">
-            <Button variant="outline" className="rounded-full px-8 font-medium border hover:bg-muted transition-all duration-300">
+            <Button variant="outline" className="rounded-full px-8 font-medium border">
               Apply to Host
             </Button>
           </Link>
         </motion.div>
       </div>
-
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent" />
     </section>
   );
 };
