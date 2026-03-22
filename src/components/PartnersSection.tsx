@@ -51,6 +51,16 @@ const partners = [
   { name: "Prodcamp", logo: null },
   { name: "Nicnames", logo: "/partners/nicnames.png" },
   { name: "Teamcamp", logo: "/partners/teamcamp.png" },
+  { name: "Lovable", logo: "/partners/lovable.png" },
+  { name: "Remote", logo: "/partners/remote.png" },
+  { name: "Rippling", logo: "/partners/rippling.png" },
+  { name: "Z.ai", logo: "/partners/zai.png" },
+  { name: "ElevenLabs", logo: "/partners/elevenlabs.png" },
+  { name: "Cloudflare", logo: "/partners/cloudflare.png" },
+  { name: "OVHCloud", logo: "/partners/ovhcloud.png" },
+  { name: "PayU", logo: "/partners/payu.png" },
+  { name: "JetBrains", logo: "/partners/jetbrains.png" },
+  { name: "BuildNinja", logo: "/partners/buildninja.png" },
 ];
 
 const PartnerLogo = ({ name, logo }: { name: string; logo: string | null }) => {
