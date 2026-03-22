@@ -43,7 +43,7 @@ const EcosystemNetwork = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.3 + i * 0.08, duration: 0.5 }}
-                  className="flex items-center gap-4 rounded-xl border border-border/60 bg-card p-4 transition-all duration-300 hover:border-accent/30 hover:shadow-md"
+                  className="flex items-center gap-4 p-4 transition-all duration-300"
                 >
                   <div className={`h-10 w-10 rounded-lg ${node.bg} flex items-center justify-center`}>
                     <node.icon className={`h-5 w-5 ${node.color}`} />
