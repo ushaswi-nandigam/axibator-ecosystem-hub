@@ -48,7 +48,7 @@ const partners = [
   { name: "Wispr.ai", logo: "/partners/wispr.png" },
   { name: "Smartbot", logo: "/partners/smartbot.png" },
   { name: "ScaleGrid", logo: "/partners/scalegrid.png" },
-  { name: "Prodcamp", logo: null },
+  { name: "Prodcamp", logo: "/partners/prodcamp.png" },
   { name: "Nicnames", logo: "/partners/nicnames.png" },
   { name: "Teamcamp", logo: "/partners/teamcamp.png" },
   { name: "Lovable", logo: "/partners/lovable.png" },
