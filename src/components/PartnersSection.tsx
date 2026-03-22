@@ -58,7 +58,7 @@ const PartnerLogo = ({ name, logo }: { name: string; logo: string | null }) => {
 
   return (
     <div className="flex flex-col items-center justify-center gap-3 px-6 min-w-[130px]">
-      <div className="h-16 w-16 rounded-2xl bg-card border border-border flex items-center justify-center overflow-hidden shadow-md hover:shadow-lg hover:border-accent/30 transition-all duration-300 hover:scale-105">
+      <div className="h-16 w-16 rounded-2xl bg-muted/50 flex items-center justify-center overflow-hidden transition-all duration-300 hover:scale-105">
         {logo && !failed ? (
           <img src={logo} alt={name} className="h-10 w-10 object-contain" onError={() => setFailed(true)} />
         ) : (

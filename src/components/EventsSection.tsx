@@ -30,7 +30,7 @@ const EventsSection = () => {
             </motion.div>
 
             <motion.div initial={{ opacity: 0, y: 30 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.3, duration: 0.7 }} className="mt-10 hidden lg:block">
-              <div className="relative rounded-2xl border border-border bg-card/50 p-8 overflow-hidden">
+              <div className="relative p-8 overflow-hidden">
                 <svg className="w-full h-32" viewBox="0 0 300 100">
                   <motion.path d="M 20 80 Q 80 20, 150 50 Q 220 80, 280 20" fill="none" stroke="hsl(var(--accent))" strokeWidth="2" strokeDasharray="6 4"
                     initial={{ pathLength: 0 }} animate={isInView ? { pathLength: 1 } : {}} transition={{ delay: 0.5, duration: 2 }} />
@@ -58,7 +58,7 @@ const EventsSection = () => {
             {upcomingEvents.map((event, i) => (
               <motion.div key={event.name} initial={{ opacity: 0, y: 50, scale: 0.95 }} animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
                 transition={{ delay: 0.2 + i * 0.12, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                className="group rounded-2xl border border-border bg-card p-6 transition-all duration-500 hover:border-accent/40 hover:shadow-2xl hover:-translate-y-2 hover:shadow-accent/10">
+                className="group p-6 transition-all duration-500 hover:-translate-y-1">
                 <div className="flex items-center gap-2 mb-4">
                   <Calendar className="h-4 w-4 text-accent" />
                   <span className="text-[10px] font-bold uppercase tracking-wider text-accent bg-accent/10 px-3 py-1 rounded-full">{event.date}</span>

@@ -128,7 +128,7 @@ const ProblemSection = () => {
                   initial={{ opacity: 0, y: 30 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ delay: 0.4 + i * 0.1, duration: 0.6 }}
-                  className="rounded-xl border border-border bg-card p-5 transition-all duration-300 hover:border-primary/30 hover:shadow-lg"
+                  className="p-5 transition-all duration-300"
                 >
                   <c.icon className="h-5 w-5 text-primary/60 mb-3" />
                   <p className="text-sm font-bold text-foreground">{c.label}</p>

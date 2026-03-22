@@ -43,7 +43,7 @@ const EcosystemNetwork = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.3 + i * 0.08, duration: 0.5 }}
-                  className="flex items-center gap-4 rounded-xl border border-border/60 bg-card p-4 transition-all duration-300 hover:border-accent/30 hover:shadow-md"
+                  className="flex items-center gap-4 p-4 transition-all duration-300"
                 >
                   <div className={`h-10 w-10 rounded-lg ${node.bg} flex items-center justify-center`}>
                     <node.icon className={`h-5 w-5 ${node.color}`} />
@@ -110,7 +110,7 @@ const EcosystemNetwork = () => {
                 <motion.div key={node.label} className="absolute flex flex-col items-center gap-2" style={{ top, left, transform: "translate(-50%, -50%)" }}
                   initial={{ scale: 0, opacity: 0 }} animate={isInView ? { scale: 1, opacity: 1 } : {}} transition={{ delay: 0.5 + i * 0.15, type: "spring", stiffness: 200 }}>
                   <motion.div whileHover={{ scale: 1.15 }} animate={{ y: [0, -3, 0] }} transition={{ duration: 3, delay: i * 0.4, repeat: Infinity, ease: "easeInOut" }}
-                    className="h-16 w-16 rounded-full bg-card border border-border flex items-center justify-center transition-all duration-300 hover:border-accent/40 hover:shadow-xl hover:shadow-accent/10 shadow-lg">
+                    className="h-16 w-16 rounded-full bg-background/80 flex items-center justify-center transition-all duration-300 hover:shadow-xl hover:shadow-accent/10">
                     <node.icon className={`h-6 w-6 ${node.color}`} />
                   </motion.div>
                   <span className="text-[11px] font-bold text-foreground tracking-wider uppercase">{node.label}</span>
@@ -131,7 +131,7 @@ const EcosystemNetwork = () => {
           <div className="grid grid-cols-2 gap-4 md:hidden">
             {nodes.map((node, i) => (
               <motion.div key={`mobile-${node.label}`} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.6 }}
-                className="flex items-center gap-3 rounded-xl border border-border bg-card p-4 shadow-md">
+                className="flex items-center gap-3 p-4">
                 <node.icon className={`h-5 w-5 ${node.color}`} />
                 <span className="text-sm font-bold text-foreground">{node.label}</span>
               </motion.div>

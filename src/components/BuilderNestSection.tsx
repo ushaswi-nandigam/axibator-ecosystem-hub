@@ -36,7 +36,7 @@ const BuilderNestSection = () => {
             <div className="mt-12 grid grid-cols-2 gap-4">
               {features.map((f, i) => (
                 <motion.div key={f.title} initial={{ opacity: 0, y: 40 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.2 + i * 0.1 }}
-                  className="group rounded-xl bg-card border border-border p-5 transition-all duration-500 hover:shadow-xl hover:-translate-y-1 hover:border-accent/30">
+                  className="group p-5 transition-all duration-500 hover:-translate-y-1">
                   <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10 transition-all duration-300 group-hover:bg-accent/20">
                     <f.icon className="h-5 w-5 text-accent/70 transition-colors group-hover:text-accent" />
                   </div>
