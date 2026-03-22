@@ -6,6 +6,7 @@ import axibatorTextLogo from "@/assets/axibator-text-logo.png";
 
 const navItems = [
   { label: "Home", path: "/" },
+  { label: "About", path: "/about" },
   { label: "Programs", path: "/programs" },
   { label: "Builder Nest", path: "/builder-nest" },
   { label: "Startups", path: "/startups" },
