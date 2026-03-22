@@ -3,8 +3,6 @@ import { motion } from "framer-motion";
 import { Filter, Rocket } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 
 const industries = ["All", "AgriTech", "EdTech", "HealthTech", "CleanTech", "FinTech", "Logistics", "E-Commerce"];
 const stages = ["All", "Idea", "Early", "Growth", "Scale"];
