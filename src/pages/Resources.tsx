@@ -58,7 +58,6 @@ const Resources = () => {
           </div>
         </section>
       </main>
-      <Footer />
     </div>
   );
 };

@@ -77,7 +77,6 @@ const Startups = () => {
           </div>
         </section>
       </main>
-      <Footer />
     </div>
   );
 };

@@ -60,7 +60,6 @@ const Events = () => {
           </div>
         </section>
       </main>
-      <Footer />
     </div>
   );
 };

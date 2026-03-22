@@ -51,7 +51,6 @@ const Signup = () => {
           </p>
         </motion.div>
       </main>
-      <Footer />
     </div>
   );
 };
