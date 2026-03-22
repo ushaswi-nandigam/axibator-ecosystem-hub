@@ -91,7 +91,7 @@ const PartnersSection = () => {
         <motion.div initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} className="text-center mb-12">
           <span className="section-label">Allied Ports</span>
           <h2 className="section-title">Ecosystem Partners</h2>
-          <p className="section-desc mx-auto max-w-lg">45+ organizations powering the Axibator ecosystem — from dev tools to cloud infrastructure.</p>
+          <p className="section-desc mx-auto max-w-lg">90+ organizations powering the Axibator ecosystem — from dev tools to cloud infrastructure.</p>
         </motion.div>
       </div>
 
