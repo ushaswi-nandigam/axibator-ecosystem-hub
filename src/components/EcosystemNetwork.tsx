@@ -110,7 +110,7 @@ const EcosystemNetwork = () => {
                 <motion.div key={node.label} className="absolute flex flex-col items-center gap-2" style={{ top, left, transform: "translate(-50%, -50%)" }}
                   initial={{ scale: 0, opacity: 0 }} animate={isInView ? { scale: 1, opacity: 1 } : {}} transition={{ delay: 0.5 + i * 0.15, type: "spring", stiffness: 200 }}>
                   <motion.div whileHover={{ scale: 1.15 }} animate={{ y: [0, -3, 0] }} transition={{ duration: 3, delay: i * 0.4, repeat: Infinity, ease: "easeInOut" }}
-                    className="h-16 w-16 rounded-full bg-card border border-border flex items-center justify-center transition-all duration-300 hover:border-accent/40 hover:shadow-xl hover:shadow-accent/10 shadow-lg">
+                    className="h-16 w-16 rounded-full bg-background/80 flex items-center justify-center transition-all duration-300 hover:shadow-xl hover:shadow-accent/10">
                     <node.icon className={`h-6 w-6 ${node.color}`} />
                   </motion.div>
                   <span className="text-[11px] font-bold text-foreground tracking-wider uppercase">{node.label}</span>
