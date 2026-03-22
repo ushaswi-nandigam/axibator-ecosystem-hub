@@ -43,7 +43,7 @@ const ProgramsSection = () => {
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: "-30px" }}
               transition={{ delay: i * 0.1, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="group rounded-2xl bg-card border border-border p-8 md:p-10 transition-all duration-500 hover:border-accent/40 hover:-translate-y-2 hover:shadow-2xl hover:shadow-accent/10"
+              className="group p-8 md:p-10 transition-all duration-500 hover:-translate-y-1"
             >
               <div className="flex items-center justify-between">
                 <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 transition-all duration-300 group-hover:bg-accent/15 group-hover:shadow-lg group-hover:shadow-accent/10">

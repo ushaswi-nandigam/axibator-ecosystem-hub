@@ -30,7 +30,7 @@ const EventsSection = () => {
             </motion.div>
 
             <motion.div initial={{ opacity: 0, y: 30 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.3, duration: 0.7 }} className="mt-10 hidden lg:block">
-              <div className="relative rounded-2xl border border-border bg-card/50 p-8 overflow-hidden">
+              <div className="relative p-8 overflow-hidden">
                 <svg className="w-full h-32" viewBox="0 0 300 100">
                   <motion.path d="M 20 80 Q 80 20, 150 50 Q 220 80, 280 20" fill="none" stroke="hsl(var(--accent))" strokeWidth="2" strokeDasharray="6 4"
                     initial={{ pathLength: 0 }} animate={isInView ? { pathLength: 1 } : {}} transition={{ delay: 0.5, duration: 2 }} />

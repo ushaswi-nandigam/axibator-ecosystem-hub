@@ -74,7 +74,7 @@ const EcosystemStats = () => {
               initial={{ opacity: 0, y: 50, scale: 0.9 }}
               animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
               transition={{ delay: i * 0.15, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="relative text-center rounded-2xl bg-card/60 border border-border/50 p-6 md:p-8"
+              className="relative text-center p-6 md:p-8"
             >
               <motion.div initial={{ scale: 0 }} animate={isInView ? { scale: 1 } : {}} transition={{ delay: i * 0.15 + 0.3, type: "spring" }}
                 className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-accent/10">
