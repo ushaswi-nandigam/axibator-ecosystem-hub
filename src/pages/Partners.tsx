@@ -1,8 +1,7 @@
 import { motion } from "framer-motion";
 import { Building2, GraduationCap, Landmark, TrendingUp, Rocket, Home, Handshake } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import { Button } from "@/components/ui/button";
 
 const categories = [
   { label: "Corporate Partners", icon: Building2 },

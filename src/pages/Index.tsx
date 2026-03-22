@@ -1,4 +1,3 @@
-import Navbar from "@/components/Navbar";
 import InnovationBackground from "@/components/InnovationBackground";
 import HeroSection from "@/components/HeroSection";
 import ProblemSection from "@/components/ProblemSection";
@@ -12,13 +11,11 @@ import BuilderNestSection from "@/components/BuilderNestSection";
 import PartnersSection from "@/components/PartnersSection";
 import EventsSection from "@/components/EventsSection";
 import CTASection from "@/components/CTASection";
-import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
     <div className="relative min-h-screen">
       <InnovationBackground />
-      <Navbar />
       <main className="relative z-10">
         <HeroSection />
         <ProblemSection />
@@ -33,7 +30,6 @@ const Index = () => {
         <EventsSection />
         <CTASection />
       </main>
-      <Footer />
     </div>
   );
 };

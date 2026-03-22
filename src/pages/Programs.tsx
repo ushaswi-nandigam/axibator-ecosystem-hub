@@ -3,8 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Compass, GraduationCap, Rocket, TrendingUp, Users, Globe, Lightbulb, Leaf, Heart, Cpu, Palette, Building2, Award, Plane, Map, Home, RefreshCw, BarChart3 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import { Button } from "@/components/ui/button";
 
 const programCategories = [
   {

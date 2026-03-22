@@ -2,8 +2,6 @@ import { motion } from "framer-motion";
 import { Target, Eye, Zap, MapPin, Users, Rocket, Globe, Heart, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import axibatorIcon from "@/assets/axibator-icon.png";
 
 const fadeUp = {
