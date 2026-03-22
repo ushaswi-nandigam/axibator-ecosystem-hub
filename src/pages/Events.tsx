@@ -3,8 +3,6 @@ import { motion } from "framer-motion";
 import { Calendar, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 
 const Events = () => {
   const [tab, setTab] = useState<"upcoming" | "past">("upcoming");
