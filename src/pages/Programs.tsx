@@ -62,7 +62,6 @@ const Programs = () => {
 
   return (
     <div className="relative min-h-screen">
-      <Navbar />
       <main className="relative z-10">
         {/* Hero */}
         <section className="relative overflow-hidden pt-28 pb-20 md:pt-36 md:pb-28 hero-dark">
