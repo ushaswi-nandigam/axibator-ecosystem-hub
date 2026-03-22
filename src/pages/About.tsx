@@ -65,7 +65,6 @@ const partners = [
 const About = () => {
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
 
       {/* Hero */}
       <section className="hero-dark relative overflow-hidden pt-32 pb-24 md:pt-40 md:pb-32">
