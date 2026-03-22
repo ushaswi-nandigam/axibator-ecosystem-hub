@@ -2,8 +2,6 @@ import { motion } from "framer-motion";
 import { Target, Eye, Zap, MapPin, Users, Rocket, Globe, Heart, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import axibatorIcon from "@/assets/axibator-icon.png";
 
 const fadeUp = {
@@ -67,7 +65,6 @@ const partners = [
 const About = () => {
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
 
       {/* Hero */}
       <section className="hero-dark relative overflow-hidden pt-32 pb-24 md:pt-40 md:pb-32">
@@ -347,7 +344,6 @@ const About = () => {
         </div>
       </section>
 
-      <Footer />
     </div>
   );
 };

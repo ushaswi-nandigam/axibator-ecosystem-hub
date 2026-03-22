@@ -3,15 +3,12 @@ import { motion } from "framer-motion";
 import { Calendar, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 
 const Events = () => {
   const [tab, setTab] = useState<"upcoming" | "past">("upcoming");
 
   return (
     <div className="relative min-h-screen">
-      <Navbar />
       <main className="relative z-10">
         <section className="relative overflow-hidden pt-28 pb-20 md:pt-36 md:pb-28 hero-dark">
           <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: `radial-gradient(hsl(var(--accent)) 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
@@ -63,7 +60,6 @@ const Events = () => {
           </div>
         </section>
       </main>
-      <Footer />
     </div>
   );
 };

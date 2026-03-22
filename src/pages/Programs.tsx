@@ -3,8 +3,6 @@ import { motion } from "framer-motion";
 import { ArrowRight, Compass, GraduationCap, Rocket, TrendingUp, Users, Globe, Lightbulb, Leaf, Heart, Cpu, Palette, Building2, Award, Plane, Map, Home, RefreshCw, BarChart3 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 
 const programCategories = [
   {
@@ -64,7 +62,6 @@ const Programs = () => {
 
   return (
     <div className="relative min-h-screen">
-      <Navbar />
       <main className="relative z-10">
         {/* Hero */}
         <section className="relative overflow-hidden pt-28 pb-20 md:pt-36 md:pb-28 hero-dark">
@@ -173,7 +170,6 @@ const Programs = () => {
           </div>
         </section>
       </main>
-      <Footer />
     </div>
   );
 };

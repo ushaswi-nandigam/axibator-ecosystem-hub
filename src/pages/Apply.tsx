@@ -2,8 +2,6 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Send } from "lucide-react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import { toast } from "sonner";
 
 const programOptions = [
@@ -25,7 +23,6 @@ const Apply = () => {
 
   return (
     <div className="relative min-h-screen">
-      <Navbar />
       <main className="relative z-10">
         <section className="relative overflow-hidden pt-28 pb-20 md:pt-36 md:pb-28 hero-dark">
           <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: `radial-gradient(hsl(var(--accent)) 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
@@ -80,7 +77,6 @@ const Apply = () => {
           </div>
         </section>
       </main>
-      <Footer />
     </div>
   );
 };

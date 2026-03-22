@@ -3,8 +3,6 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import { LogIn } from "lucide-react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import { toast } from "sonner";
 
 const Login = () => {
@@ -22,7 +20,6 @@ const Login = () => {
 
   return (
     <div className="relative min-h-screen">
-      <Navbar />
       <main className="relative z-10 flex min-h-screen items-center justify-center px-4 pt-16 hero-dark">
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: `radial-gradient(hsl(var(--accent)) 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
         <div className="absolute top-10 right-0 w-[500px] h-[500px] rounded-full bg-accent/[0.06] blur-[120px]" />
@@ -51,7 +48,6 @@ const Login = () => {
           </p>
         </motion.div>
       </main>
-      <Footer />
     </div>
   );
 };
