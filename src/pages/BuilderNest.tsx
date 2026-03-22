@@ -577,7 +577,6 @@ const BuilderNest = () => {
           </div>
         </section>
       </main>
-      <Footer />
     </div>
   );
 };
