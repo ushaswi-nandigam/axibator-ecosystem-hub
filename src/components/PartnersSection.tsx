@@ -37,7 +37,7 @@ const partners = [
   { name: "MilesWeb", logo: "/partners/milesweb.png" },
   { name: "CIVO", logo: "/partners/civo.png" },
   { name: "OVHCloud", logo: "/partners/ovhcloud.png" },
-  { name: "Brevo", logo: null },
+  { name: "Brevo", logo: "/partners/brevo.png" },
   { name: "Stytch", logo: "/partners/stytch.png" },
   { name: "Exotel", logo: "/partners/exotel.png" },
   { name: "DronaHQ", logo: "/partners/dronahq.png" },
