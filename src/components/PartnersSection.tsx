@@ -57,9 +57,7 @@ const partners = [
   { name: "Z.ai", logo: "/partners/zai.png" },
   { name: "ElevenLabs", logo: "/partners/elevenlabs.png" },
   { name: "Cloudflare", logo: "/partners/cloudflare.png" },
-  { name: "OVHCloud", logo: "/partners/ovhcloud.png" },
   { name: "PayU", logo: "/partners/payu.png" },
-  { name: "JetBrains", logo: "/partners/jetbrains.png" },
   { name: "BuildNinja", logo: "/partners/buildninja.png" },
 ];
 
