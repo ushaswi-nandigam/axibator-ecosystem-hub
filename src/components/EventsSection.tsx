@@ -58,7 +58,7 @@ const EventsSection = () => {
             {upcomingEvents.map((event, i) => (
               <motion.div key={event.name} initial={{ opacity: 0, y: 50, scale: 0.95 }} animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
                 transition={{ delay: 0.2 + i * 0.12, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                className="group p-6 transition-all duration-500 hover:-translate-y-1"
+                className="group p-6 transition-all duration-500 hover:-translate-y-1">
                 <div className="flex items-center gap-2 mb-4">
                   <Calendar className="h-4 w-4 text-accent" />
                   <span className="text-[10px] font-bold uppercase tracking-wider text-accent bg-accent/10 px-3 py-1 rounded-full">{event.date}</span>

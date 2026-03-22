@@ -131,7 +131,7 @@ const EcosystemNetwork = () => {
           <div className="grid grid-cols-2 gap-4 md:hidden">
             {nodes.map((node, i) => (
               <motion.div key={`mobile-${node.label}`} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.6 }}
-                className="flex items-center gap-3 p-4"
+                className="flex items-center gap-3 p-4">
                 <node.icon className={`h-5 w-5 ${node.color}`} />
                 <span className="text-sm font-bold text-foreground">{node.label}</span>
               </motion.div>

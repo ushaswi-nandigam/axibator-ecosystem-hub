@@ -47,7 +47,7 @@ const StartupsSection = () => {
             </motion.div>
 
             <motion.div initial={{ opacity: 0, y: 40 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7, delay: 0.3 }}
-              className="mt-10 p-12 text-center"
+              className="mt-10 p-12 text-center">
               <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-accent/10">
                 <Navigation className="h-6 w-6 text-accent" />
               </div>
