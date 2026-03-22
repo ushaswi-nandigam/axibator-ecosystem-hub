@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Search, BookOpen } from "lucide-react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 
 const categories = ["All", "Playbooks", "Pitch Decks", "Funding", "Legal", "Toolkit"];
 
