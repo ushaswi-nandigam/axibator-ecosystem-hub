@@ -68,7 +68,6 @@ const Partners = () => {
           </div>
         </section>
       </main>
-      <Footer />
     </div>
   );
 };

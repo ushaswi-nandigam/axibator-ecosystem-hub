@@ -170,7 +170,6 @@ const Programs = () => {
           </div>
         </section>
       </main>
-      <Footer />
     </div>
   );
 };
