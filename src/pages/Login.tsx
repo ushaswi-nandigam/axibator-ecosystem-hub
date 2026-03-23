@@ -30,22 +30,22 @@ const Login = () => {
               <LogIn size={24} className="text-primary" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-secondary-foreground">Welcome back</h1>
-              <p className="text-sm text-secondary-foreground/50">Sign in to your Axibator account.</p>
+              <h1 className="text-2xl font-bold text-foreground">Welcome back</h1>
+              <p className="text-sm text-muted-foreground">Sign in to your Axibator account.</p>
             </div>
           </div>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-            <div><label className="text-sm font-bold text-secondary-foreground/80">Email</label>
+            <div><label className="text-sm font-bold text-foreground/80">Email</label>
               <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)}
-                className="mt-2 block w-full rounded-xl border border-white/10 bg-white/[0.06] px-4 py-3.5 text-sm font-medium text-secondary-foreground placeholder:text-secondary-foreground/30 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all" placeholder="you@example.com" /></div>
-            <div><label className="text-sm font-bold text-secondary-foreground/80">Password</label>
+                className="mt-2 block w-full rounded-xl border border-border bg-muted/50 px-4 py-3.5 text-sm font-medium text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all" placeholder="you@example.com" /></div>
+            <div><label className="text-sm font-bold text-foreground/80">Password</label>
               <input type="password" required value={password} onChange={(e) => setPassword(e.target.value)}
-                className="mt-2 block w-full rounded-xl border border-white/10 bg-white/[0.06] px-4 py-3.5 text-sm font-medium text-secondary-foreground placeholder:text-secondary-foreground/30 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all" placeholder="••••••••" /></div>
+                className="mt-2 block w-full rounded-xl border border-border bg-muted/50 px-4 py-3.5 text-sm font-medium text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all" placeholder="••••••••" /></div>
             <Button size="lg" type="submit" className="mt-2 w-full h-14 rounded-full bg-primary text-base font-bold text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25">Sign In</Button>
           </form>
 
-          <p className="mt-8 text-center text-sm text-secondary-foreground/40">
+          <p className="mt-8 text-center text-sm text-muted-foreground">
             Don't have an account? <Link to="/signup" className="font-bold text-primary hover:underline">Sign up</Link>
           </p>
         </motion.div>

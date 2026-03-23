@@ -21,7 +21,6 @@ const quickActions = [
 const Dashboard = () => {
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero */}
       <section className="hero-dark relative overflow-hidden pt-32 pb-24 md:pt-40 md:pb-32">
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--primary)) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
         <div className="absolute top-[30%] left-[10%] w-[400px] h-[400px] rounded-full bg-primary/[0.06] blur-[120px]" />
@@ -29,17 +28,16 @@ const Dashboard = () => {
 
         <div className="container relative text-center">
           <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
-            className="text-5xl md:text-7xl font-extrabold text-secondary-foreground leading-[1.05]">
+            className="text-5xl md:text-7xl font-extrabold text-foreground leading-[1.05]">
             Choose Your <span className="text-primary">Dashboard</span>
           </motion.h1>
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
-            className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-secondary-foreground/60 leading-relaxed">
+            className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground leading-relaxed">
             Access your personalized ecosystem hub.
           </motion.p>
         </div>
       </section>
 
-      {/* Dashboard Selection */}
       <section className="section-padding section-light">
         <div className="container">
           <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto mb-20">
@@ -72,7 +70,6 @@ const Dashboard = () => {
             </Link>
           </div>
 
-          {/* Quick Actions */}
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <h3 className="text-lg font-bold text-foreground mb-6">Quick Actions</h3>
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
