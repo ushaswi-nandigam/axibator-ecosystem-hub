@@ -17,6 +17,8 @@ import Apply from "./pages/Apply";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
+import StudentDashboard from "./pages/StudentDashboard";
+import AdminDashboard from "./pages/AdminDashboard";
 import BuilderNest from "./pages/BuilderNest";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
