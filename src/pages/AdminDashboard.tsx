@@ -90,36 +90,35 @@ const AdminDashboard = () => {
                 <Badge className="bg-primary/20 text-primary border-0 text-xs font-bold uppercase tracking-wider">Admin Panel</Badge>
               </motion.div>
               <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
-                className="text-3xl md:text-4xl font-extrabold text-secondary-foreground">
+                className="text-3xl md:text-4xl font-extrabold text-foreground">
                 Admin <span className="text-primary">Dashboard</span>
               </motion.h1>
               <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
-                className="mt-2 text-secondary-foreground/50">Manage your ecosystem, review applications, and monitor analytics.</motion.p>
+                className="mt-2 text-muted-foreground">Manage your ecosystem, review applications, and monitor analytics.</motion.p>
             </div>
 
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="flex items-center gap-3">
               <div className="relative">
-                <Bell className="h-5 w-5 text-secondary-foreground/50 cursor-pointer hover:text-secondary-foreground transition-colors" />
+                <Bell className="h-5 w-5 text-muted-foreground cursor-pointer hover:text-foreground transition-colors" />
                 <span className="absolute -top-1 -right-1 h-2.5 w-2.5 rounded-full bg-destructive" />
               </div>
               <Link to="/login">
-                <Button variant="ghost" size="sm" className="text-secondary-foreground/50 hover:text-secondary-foreground hover:bg-white/10">
+                <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground hover:bg-muted">
                   <LogOut className="h-4 w-4 mr-1" /> Logout
                 </Button>
               </Link>
             </motion.div>
           </div>
 
-          {/* Stats */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }} className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
             {stats.map((stat) => (
-              <div key={stat.label} className="rounded-xl border border-white/[0.08] bg-white/[0.04] backdrop-blur-sm px-5 py-4">
+              <div key={stat.label} className="rounded-xl border border-border/60 bg-muted/40 backdrop-blur-sm px-5 py-4">
                 <div className="flex items-center justify-between mb-1">
                   <stat.icon className="h-4 w-4 text-primary/60" />
-                  <span className="text-xs font-bold text-green-400">{stat.change}</span>
+                  <span className="text-xs font-bold text-green-600">{stat.change}</span>
                 </div>
-                <span className="text-2xl font-extrabold text-secondary-foreground">{stat.value}</span>
-                <p className="text-xs text-secondary-foreground/40 mt-0.5">{stat.label}</p>
+                <span className="text-2xl font-extrabold text-foreground">{stat.value}</span>
+                <p className="text-xs text-muted-foreground mt-0.5">{stat.label}</p>
               </div>
             ))}
           </motion.div>

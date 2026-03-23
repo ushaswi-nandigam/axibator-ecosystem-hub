@@ -355,14 +355,14 @@ const BuilderNest = () => {
       </section>
 
       {/* CTA */}
-      <section className="hero-dark py-20 md:py-28 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--primary)) 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+      <section className="section-warm py-20 md:py-28 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--primary)) 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
         <div className="container relative text-center">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
-            <h2 className="text-3xl md:text-5xl font-bold text-secondary-foreground">
+            <h2 className="text-3xl md:text-5xl font-bold text-foreground">
               Want to <span className="text-primary">Visit or Start One?</span>
             </h2>
-            <div className="mx-auto mt-6 max-w-lg space-y-2 text-left text-sm text-secondary-foreground/50">
+            <div className="mx-auto mt-6 max-w-lg space-y-2 text-left text-sm text-muted-foreground">
               <p>✅ Founders can co-work anytime (free or by invite)</p>
               <p>🖐️ Local leaders can apply to set up a Nest</p>
               <p>🧰 We'll help with setup, branding, and community playbooks</p>
