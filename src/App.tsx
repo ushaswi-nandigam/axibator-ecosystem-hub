@@ -17,6 +17,8 @@ import Apply from "./pages/Apply";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
+import StudentDashboard from "./pages/StudentDashboard";
+import AdminDashboard from "./pages/AdminDashboard";
 import BuilderNest from "./pages/BuilderNest";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
@@ -51,6 +53,8 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/student-dashboard" element={<StudentDashboard />} />
+            <Route path="/admin-dashboard" element={<AdminDashboard />} />
             <Route path="/builder-nest" element={<BuilderNest />} />
             <Route path="/about" element={<About />} />
             <Route path="*" element={<NotFound />} />
