@@ -22,26 +22,10 @@ const originPoints = [
 ];
 
 const differentiators = [
-  {
-    icon: Zap,
-    title: "Execution over theory",
-    desc: "You'll build, break, launch. No endless slides or theoretical frameworks.",
-  },
-  {
-    icon: MapPin,
-    title: "We meet you where you are",
-    desc: "Whether that's a tier-3 town or a college hostel. Geography doesn't limit ambition.",
-  },
-  {
-    icon: Users,
-    title: "Community-native",
-    desc: "Everything is peer-led, mentor-backed, founder-run. Real connections, not networking.",
-  },
-  {
-    icon: Rocket,
-    title: "Beyond slides",
-    desc: "From rural labs to Builder Nest sprints, this is real work with real impact.",
-  },
+  { icon: Zap, title: "Execution over theory", desc: "You'll build, break, launch. No endless slides or theoretical frameworks." },
+  { icon: MapPin, title: "We meet you where you are", desc: "Whether that's a tier-3 town or a college hostel. Geography doesn't limit ambition." },
+  { icon: Users, title: "Community-native", desc: "Everything is peer-led, mentor-backed, founder-run. Real connections, not networking." },
+  { icon: Rocket, title: "Beyond slides", desc: "From rural labs to Builder Nest sprints, this is real work with real impact." },
 ];
 
 const team = [
@@ -73,32 +57,19 @@ const About = () => {
         <div className="absolute bottom-[20%] right-[10%] w-[300px] h-[300px] rounded-full bg-accent/[0.04] blur-[100px]" />
 
         <div className="container relative text-center">
-          <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }} className="section-label-light">
+          <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }} className="section-label">
             About Axibator
           </motion.span>
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-5xl md:text-7xl font-extrabold text-secondary-foreground leading-[1.05] mt-4"
-          >
-            Why We{" "}
-            <span className="text-primary">Exist</span>
+          <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="text-5xl md:text-7xl font-extrabold text-foreground leading-[1.05] mt-4">
+            Why We <span className="text-primary">Exist</span>
           </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.25 }}
-            className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-secondary-foreground/60 leading-relaxed"
-          >
+          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.25 }}
+            className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground leading-relaxed">
             India is bursting with talent—but most incubators still cater to the privileged few.
           </motion.p>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="mt-4 max-w-2xl mx-auto text-base text-secondary-foreground/50 leading-relaxed"
-          >
+          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4 }}
+            className="mt-4 max-w-2xl mx-auto text-base text-muted-foreground leading-relaxed">
             Axibator exists to unlock the raw, gritty, unstoppable potential of student, rural, and small-town founders.{" "}
             <span className="text-accent font-semibold">We're the battleground for builders who start before they're ready.</span>
           </motion.p>
@@ -113,15 +84,7 @@ const About = () => {
               { icon: Target, title: "Mission", text: "To decentralize startup incubation by enabling grassroots and student founders with practical direction, peer-driven support, and execution-first infrastructure." },
               { icon: Eye, title: "Vision", text: "To be India's most action-first, inclusive, and premium incubation experience — made for underdog builders with global ambition." },
             ].map((item, i) => (
-              <motion.div
-                key={item.title}
-                custom={i}
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-60px" }}
-                className="relative"
-              >
+              <motion.div key={item.title} custom={i} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-60px" }} className="relative">
                 <div className="flex items-center gap-4 mb-5">
                   <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
                     <item.icon className="h-6 w-6 text-primary" />
@@ -139,25 +102,12 @@ const About = () => {
       <section className="section-padding section-light-alt">
         <div className="container">
           <div className="grid gap-16 lg:grid-cols-2 items-start">
-            <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            >
+            <motion.div initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-60px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
               <span className="section-label">Our Origin</span>
               <h2 className="section-title text-foreground">The Pattern<br />We Saw</h2>
               <div className="mt-10 space-y-5">
                 {originPoints.map((point, i) => (
-                  <motion.div
-                    key={i}
-                    custom={i}
-                    variants={fadeUp}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    className="flex items-start gap-4"
-                  >
+                  <motion.div key={i} custom={i} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="flex items-start gap-4">
                     <div className="mt-1.5 h-2.5 w-2.5 rounded-full bg-primary/60 shrink-0" />
                     <p className="text-muted-foreground text-lg">{point}</p>
                   </motion.div>
@@ -165,12 +115,7 @@ const About = () => {
               </div>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            >
+            <motion.div initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-60px" }} transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}>
               <h3 className="text-2xl font-bold text-foreground mb-6">
                 Axibator emerged to <span className="text-primary">flip the model.</span>
               </h3>
@@ -193,28 +138,13 @@ const About = () => {
       {/* What Makes Us Different */}
       <section className="section-padding section-light">
         <div className="container">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.7 }}
-            className="section-header"
-          >
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-60px" }} transition={{ duration: 0.7 }} className="section-header">
             <span className="section-label">What Sets Us Apart</span>
             <h2 className="section-title text-foreground">What Makes Us<br />Different</h2>
           </motion.div>
-
           <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
             {differentiators.map((d, i) => (
-              <motion.div
-                key={d.title}
-                custom={i}
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-40px" }}
-                className="group"
-              >
+              <motion.div key={d.title} custom={i} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-40px" }} className="group">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 mb-5 transition-colors group-hover:bg-primary/20">
                   <d.icon className="h-6 w-6 text-primary" />
                 </div>
@@ -227,44 +157,31 @@ const About = () => {
       </section>
 
       {/* Who's Behind */}
-      <section className="hero-dark section-padding relative overflow-hidden">
+      <section className="section-padding section-cool relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--accent)) 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
         <div className="container relative">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="section-header"
-          >
-            <span className="section-label-light">The Team</span>
-            <h2 className="section-title text-secondary-foreground">Who's Behind<br />Axibator?</h2>
-            <p className="section-desc text-secondary-foreground/50">
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="section-header">
+            <span className="section-label">The Team</span>
+            <h2 className="section-title text-foreground">Who's Behind<br />Axibator?</h2>
+            <p className="section-desc">
               Built by a team of young founders, operators, and ecosystem enablers at Wission Axis — a startup incubator that believes India's next great founders are sitting in classrooms and hostels, not boardrooms.
             </p>
           </motion.div>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {team.map((member, i) => (
-              <motion.div
-                key={member.name}
-                custom={i}
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-40px" }}
-                className="group p-6 rounded-2xl border border-white/[0.06] bg-white/[0.03] transition-all duration-300 hover:bg-white/[0.06] hover:-translate-y-1"
-              >
+              <motion.div key={member.name} custom={i} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-40px" }}
+                className="group p-6 rounded-2xl border border-border/40 bg-background/60 transition-all duration-300 hover:bg-background hover:-translate-y-1 hover:shadow-lg">
                 <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary/15 mb-4 text-xl font-bold text-primary">
                   {member.name.split(" ").map(n => n[0]).join("")}
                 </div>
-                <h3 className="text-lg font-bold text-secondary-foreground">{member.name}</h3>
+                <h3 className="text-lg font-bold text-foreground">{member.name}</h3>
                 <p className="text-sm font-semibold text-accent mt-1">{member.role}</p>
-                <div className="flex items-center gap-1.5 mt-2 text-xs text-secondary-foreground/40">
+                <div className="flex items-center gap-1.5 mt-2 text-xs text-muted-foreground">
                   <MapPin size={12} />
                   {member.location}
                 </div>
-                <p className="mt-3 text-sm text-secondary-foreground/50 leading-relaxed">{member.desc}</p>
+                <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{member.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -274,31 +191,17 @@ const About = () => {
       {/* Partners */}
       <section className="section-padding section-light">
         <div className="container">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="section-header"
-          >
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="section-header">
             <span className="section-label">Ecosystem</span>
             <h2 className="section-title text-foreground">Partners Who<br />Believe</h2>
             <p className="section-desc">
               Local innovation cells, global tech operators, campus clubs, rural NGOs, and ecosystem allies rooting for real Bharat founders.
             </p>
           </motion.div>
-
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {partners.map((p, i) => (
-              <motion.div
-                key={p.name}
-                custom={i}
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-40px" }}
-                className="flex items-center gap-4 p-5 rounded-xl border border-border/50 transition-all duration-300 hover:border-primary/30"
-              >
+              <motion.div key={p.name} custom={i} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-40px" }}
+                className="flex items-center gap-4 p-5 rounded-xl border border-border/50 transition-all duration-300 hover:border-primary/30">
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
                   <Globe className="h-5 w-5 text-primary" />
                 </div>
@@ -313,19 +216,14 @@ const About = () => {
       </section>
 
       {/* CTA */}
-      <section className="hero-dark py-20 md:py-28 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--primary)) 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+      <section className="section-warm py-20 md:py-28 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--primary)) 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
         <div className="container relative text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-          >
-            <h2 className="text-3xl md:text-5xl font-bold text-secondary-foreground">
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
+            <h2 className="text-3xl md:text-5xl font-bold text-foreground">
               Ready to <span className="text-primary">Build?</span>
             </h2>
-            <p className="mt-4 text-secondary-foreground/50 text-lg max-w-lg mx-auto">
+            <p className="mt-4 text-muted-foreground text-lg max-w-lg mx-auto">
               Join the movement of grassroots builders shaping India's startup future.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
@@ -335,7 +233,7 @@ const About = () => {
                 </Button>
               </Link>
               <Link to="/partners">
-                <Button size="lg" variant="outline" className="rounded-full border-accent/40 text-accent hover:bg-accent/10">
+                <Button size="lg" variant="outline" className="rounded-full border-border text-foreground hover:bg-muted">
                   Join as Mentor or Partner
                 </Button>
               </Link>
