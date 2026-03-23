@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Rocket, ArrowRight, LogIn, FileText, Calendar } from "lucide-react";
+import { Rocket, ArrowRight, GraduationCap, Shield, FileText, Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
@@ -27,39 +27,50 @@ const Dashboard = () => {
         <div className="absolute top-[30%] left-[10%] w-[400px] h-[400px] rounded-full bg-primary/[0.06] blur-[120px]" />
         <div className="absolute bottom-[20%] right-[10%] w-[300px] h-[300px] rounded-full bg-accent/[0.04] blur-[100px]" />
 
-        <div className="container relative">
-          <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        <div className="container relative text-center">
+          <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
             className="text-5xl md:text-7xl font-extrabold text-secondary-foreground leading-[1.05]">
-            Founder <span className="text-primary">Dashboard</span>
+            Choose Your <span className="text-primary">Dashboard</span>
           </motion.h1>
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
-            className="mt-6 max-w-2xl text-lg md:text-xl text-secondary-foreground/60 leading-relaxed">
-            Your ecosystem overview and progress tracker.
+            className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-secondary-foreground/60 leading-relaxed">
+            Access your personalized ecosystem hub.
           </motion.p>
         </div>
       </section>
 
-      {/* Content */}
+      {/* Dashboard Selection */}
       <section className="section-padding section-light">
         <div className="container">
-          {/* Sign in prompt */}
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} className="text-center py-16 mb-16">
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 mb-6">
-              <LogIn className="h-8 w-8 text-primary/60" />
-            </div>
-            <h3 className="text-xl font-bold text-foreground">Sign in to access your dashboard</h3>
-            <p className="mt-3 text-muted-foreground max-w-md mx-auto">Track your program progress, upcoming events, and applied programs all in one place.</p>
-            <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <Link to="/login">
-                <Button size="lg" className="rounded-full bg-primary text-primary-foreground font-bold hover:bg-primary/90 shadow-lg shadow-primary/25">
-                  Login <ArrowRight className="ml-2 h-4 w-4" />
+          <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto mb-20">
+            <Link to="/student-dashboard">
+              <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
+                className="group rounded-2xl border border-border/60 bg-background p-8 hover:border-primary/40 transition-all hover:-translate-y-1 cursor-pointer text-center">
+                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 mb-5 group-hover:bg-primary/20 transition-colors">
+                  <GraduationCap className="h-8 w-8 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold text-foreground mb-2">Student Dashboard</h3>
+                <p className="text-sm text-muted-foreground">Track your program progress, events, resources, and profile.</p>
+                <Button className="mt-6 rounded-full bg-primary text-primary-foreground font-bold hover:bg-primary/90 shadow-lg shadow-primary/25">
+                  Open <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
-              </Link>
-              <Link to="/signup">
-                <Button variant="outline" size="lg" className="rounded-full border-border font-semibold hover:border-primary/30">Create Account</Button>
-              </Link>
-            </div>
-          </motion.div>
+              </motion.div>
+            </Link>
+
+            <Link to="/admin-dashboard">
+              <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
+                className="group rounded-2xl border border-border/60 bg-background p-8 hover:border-primary/40 transition-all hover:-translate-y-1 cursor-pointer text-center">
+                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 mb-5 group-hover:bg-primary/20 transition-colors">
+                  <Shield className="h-8 w-8 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold text-foreground mb-2">Admin Dashboard</h3>
+                <p className="text-sm text-muted-foreground">Manage users, applications, analytics, and content.</p>
+                <Button className="mt-6 rounded-full bg-primary text-primary-foreground font-bold hover:bg-primary/90 shadow-lg shadow-primary/25">
+                  Open <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </motion.div>
+            </Link>
+          </div>
 
           {/* Quick Actions */}
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
