@@ -79,27 +79,28 @@ const StudentDashboard = () => {
                   {mockStudent.avatar}
                 </div>
                 <div>
-                  <h1 className="text-2xl md:text-3xl font-extrabold text-foreground">
+                  <h1 className="text-2xl md:text-3xl font-extrabold text-secondary-foreground">
                     Welcome back, <span className="text-primary">{mockStudent.name.split(" ")[0]}</span>
                   </h1>
-                  <p className="text-sm text-muted-foreground">{mockStudent.program} • {mockStudent.cohort}</p>
+                  <p className="text-sm text-secondary-foreground/50">{mockStudent.program} • {mockStudent.cohort}</p>
                 </div>
               </motion.div>
             </div>
 
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} className="flex items-center gap-3">
               <div className="relative">
-                <Bell className="h-5 w-5 text-muted-foreground cursor-pointer hover:text-foreground transition-colors" />
+                <Bell className="h-5 w-5 text-secondary-foreground/50 cursor-pointer hover:text-secondary-foreground transition-colors" />
                 <span className="absolute -top-1 -right-1 h-2.5 w-2.5 rounded-full bg-primary" />
               </div>
               <Link to="/login">
-                <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground hover:bg-muted">
+                <Button variant="ghost" size="sm" className="text-secondary-foreground/50 hover:text-secondary-foreground hover:bg-white/10">
                   <LogOut className="h-4 w-4 mr-1" /> Logout
                 </Button>
               </Link>
             </motion.div>
           </div>
 
+          {/* Stats row */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
               { label: "Program Progress", value: `${progressPercent}%`, icon: TrendingUp },
@@ -107,12 +108,12 @@ const StudentDashboard = () => {
               { label: "Upcoming Events", value: `${upcomingEvents.length}`, icon: Calendar },
               { label: "Resources Available", value: `${resources.length}`, icon: BookOpen },
             ].map((stat, i) => (
-              <div key={stat.label} className="rounded-xl border border-border/60 bg-muted/40 backdrop-blur-sm px-5 py-4">
+              <div key={stat.label} className="rounded-xl border border-white/[0.08] bg-white/[0.04] backdrop-blur-sm px-5 py-4">
                 <div className="flex items-center gap-2 mb-1">
                   <stat.icon className="h-4 w-4 text-primary/60" />
-                  <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">{stat.label}</span>
+                  <span className="text-xs font-medium text-secondary-foreground/40 uppercase tracking-wider">{stat.label}</span>
                 </div>
-                <span className="text-2xl font-extrabold text-foreground">{stat.value}</span>
+                <span className="text-2xl font-extrabold text-secondary-foreground">{stat.value}</span>
               </div>
             ))}
           </motion.div>

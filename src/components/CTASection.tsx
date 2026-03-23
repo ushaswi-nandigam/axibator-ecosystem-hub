@@ -16,10 +16,9 @@ const CTASection = () => {
           initial={{ opacity: 0, y: 60, scale: 0.95 }}
           animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          className="relative overflow-hidden rounded-3xl px-10 py-24 text-center md:px-20 md:py-32 border border-border/60"
-          style={{ background: 'linear-gradient(135deg, hsl(220 25% 96%), hsl(225 30% 93%), hsl(220 20% 96%))' }}
+          className="relative overflow-hidden rounded-3xl bg-secondary px-10 py-24 text-center text-secondary-foreground md:px-20 md:py-32"
         >
-          <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--primary)) 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
+          <div className="absolute inset-0 bg-gradient-to-br from-secondary via-secondary to-accent/5" />
 
           <svg className="absolute inset-0 w-full h-full opacity-[0.04]" viewBox="0 0 800 500" preserveAspectRatio="none">
             <motion.path d="M 0 250 Q 200 100, 400 250 Q 600 400, 800 250" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="8 6"
@@ -36,7 +35,7 @@ const CTASection = () => {
           ].map((pos, i) => (
             <motion.div key={i} className="absolute" style={{ left: pos.x, top: pos.y }}
               initial={{ opacity: 0, scale: 0 }} animate={isInView ? { opacity: 0.1, scale: 1 } : {}} transition={{ delay: pos.delay, type: "spring" }}>
-              <Navigation className="h-6 w-6 text-foreground/40" />
+              <Navigation className="h-6 w-6 text-secondary-foreground/40" />
             </motion.div>
           ))}
 
@@ -47,7 +46,7 @@ const CTASection = () => {
             className="relative mx-auto mb-8"
           >
             <motion.div className="absolute -inset-5 rounded-full bg-accent/10" animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} />
-            <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-muted border border-border shadow-lg mx-auto overflow-hidden">
+            <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-white/[0.08] border border-white/10 shadow-lg mx-auto overflow-hidden">
               <motion.div animate={{ rotate: [0, 360] }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }}>
                 <img src={axibatorIcon} alt="Axibator" className="h-14 w-14 object-contain" />
               </motion.div>
@@ -55,11 +54,11 @@ const CTASection = () => {
           </motion.div>
 
           <motion.h2 initial={{ opacity: 0, y: 30 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.4, duration: 0.7 }}
-            className="relative text-4xl font-bold md:text-5xl lg:text-6xl leading-[1.1] text-foreground">
+            className="relative text-4xl font-bold md:text-5xl lg:text-6xl leading-[1.1]">
             Ready to Set<br/>Your Course?
           </motion.h2>
           <motion.p initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.55, duration: 0.6 }}
-            className="relative mx-auto mt-6 max-w-lg text-muted-foreground text-lg md:text-xl">
+            className="relative mx-auto mt-6 max-w-lg text-secondary-foreground/60 text-lg md:text-xl">
             Join founders who are building the future with Axibator. Your journey from idea to impact starts here.
           </motion.p>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.7, duration: 0.6 }}
@@ -70,7 +69,7 @@ const CTASection = () => {
               </Button>
             </Link>
             <a href="mailto:connect@axibator.com">
-              <Button size="lg" variant="outline" className="h-14 rounded-full border-border px-10 text-base text-foreground hover:bg-muted transition-all duration-300">
+              <Button size="lg" variant="outline" className="h-14 rounded-full border-white/15 px-10 text-base text-secondary-foreground hover:bg-white/10 transition-all duration-300">
                 Join Community
               </Button>
             </a>
