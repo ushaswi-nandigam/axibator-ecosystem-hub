@@ -53,6 +53,8 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/student-dashboard" element={<StudentDashboard />} />
+            <Route path="/admin-dashboard" element={<AdminDashboard />} />
             <Route path="/builder-nest" element={<BuilderNest />} />
             <Route path="/about" element={<About />} />
             <Route path="*" element={<NotFound />} />
