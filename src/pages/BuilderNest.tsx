@@ -89,13 +89,13 @@ const BuilderNest = () => {
         <div className="absolute bottom-[20%] right-[10%] w-[300px] h-[300px] rounded-full bg-accent/[0.04] blur-[100px]" />
 
         <div className="container relative text-center">
-          <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="section-label-light">🛖 The Shipyard</motion.span>
+          <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="section-label">🛖 The Shipyard</motion.span>
           <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-5xl md:text-7xl font-extrabold text-secondary-foreground leading-[1.05] mt-4">
+            className="text-5xl md:text-7xl font-extrabold text-foreground leading-[1.05] mt-4">
             Axibator <span className="text-primary">Builder Nest</span>
           </motion.h1>
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}
-            className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-secondary-foreground/60 leading-relaxed">
+            className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground leading-relaxed">
             "Not a WeWork. Not an incubator. Not a rented lab. It's a home for founders to build bold things — together."
           </motion.p>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35 }} className="mt-8 flex flex-wrap justify-center gap-4">
@@ -105,7 +105,7 @@ const BuilderNest = () => {
               </Button>
             </Link>
             <Link to="/apply">
-              <Button size="lg" variant="outline" className="rounded-full border-accent/40 text-accent hover:bg-accent/10">Apply to Host</Button>
+              <Button size="lg" variant="outline" className="rounded-full border-border text-foreground hover:bg-muted">Apply to Host</Button>
             </Link>
           </motion.div>
         </div>
@@ -355,14 +355,14 @@ const BuilderNest = () => {
       </section>
 
       {/* CTA */}
-      <section className="hero-dark py-20 md:py-28 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--primary)) 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+      <section className="section-warm py-20 md:py-28 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--primary)) 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
         <div className="container relative text-center">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
-            <h2 className="text-3xl md:text-5xl font-bold text-secondary-foreground">
+            <h2 className="text-3xl md:text-5xl font-bold text-foreground">
               Want to <span className="text-primary">Visit or Start One?</span>
             </h2>
-            <div className="mx-auto mt-6 max-w-lg space-y-2 text-left text-sm text-secondary-foreground/50">
+            <div className="mx-auto mt-6 max-w-lg space-y-2 text-left text-sm text-muted-foreground">
               <p>✅ Founders can co-work anytime (free or by invite)</p>
               <p>🖐️ Local leaders can apply to set up a Nest</p>
               <p>🧰 We'll help with setup, branding, and community playbooks</p>
