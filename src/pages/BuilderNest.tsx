@@ -89,13 +89,13 @@ const BuilderNest = () => {
         <div className="absolute bottom-[20%] right-[10%] w-[300px] h-[300px] rounded-full bg-accent/[0.04] blur-[100px]" />
 
         <div className="container relative text-center">
-          <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="section-label-light">🛖 The Shipyard</motion.span>
+          <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="section-label">🛖 The Shipyard</motion.span>
           <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-5xl md:text-7xl font-extrabold text-secondary-foreground leading-[1.05] mt-4">
+            className="text-5xl md:text-7xl font-extrabold text-foreground leading-[1.05] mt-4">
             Axibator <span className="text-primary">Builder Nest</span>
           </motion.h1>
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}
-            className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-secondary-foreground/60 leading-relaxed">
+            className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground leading-relaxed">
             "Not a WeWork. Not an incubator. Not a rented lab. It's a home for founders to build bold things — together."
           </motion.p>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35 }} className="mt-8 flex flex-wrap justify-center gap-4">
@@ -105,7 +105,7 @@ const BuilderNest = () => {
               </Button>
             </Link>
             <Link to="/apply">
-              <Button size="lg" variant="outline" className="rounded-full border-accent/40 text-accent hover:bg-accent/10">Apply to Host</Button>
+              <Button size="lg" variant="outline" className="rounded-full border-border text-foreground hover:bg-muted">Apply to Host</Button>
             </Link>
           </motion.div>
         </div>
