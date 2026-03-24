@@ -64,7 +64,7 @@ const CompassGraphic = () => (
           transition={{ delay: 1 + i * 0.02, duration: 0.4 }}
         >
           <div
-            className={`${isMajor ? 'h-[2px] w-20 bg-accent/40' : isMid ? 'h-[1.5px] w-12 bg-accent/25' : 'h-px w-6 bg-white/10'}`}
+            className={`${isMajor ? 'h-[2px] w-20 bg-accent/40' : isMid ? 'h-[1.5px] w-12 bg-accent/25' : 'h-px w-6 bg-foreground/10'}`}
             style={{ marginLeft: isMajor ? '55px' : isMid ? '63px' : '69px' }}
           />
         </motion.div>
@@ -116,7 +116,7 @@ const CompassGraphic = () => (
       transition={{ delay: 0.8, type: "spring" }}
     >
       <div className="absolute inset-0 rounded-full bg-accent/20 animate-pulse" />
-      <div className="relative h-14 w-14 rounded-full bg-secondary flex items-center justify-center shadow-2xl shadow-accent/30 border border-accent/30">
+      <div className="relative h-14 w-14 rounded-full bg-background flex items-center justify-center shadow-2xl shadow-accent/30 border border-accent/30">
         <img src={axibatorIcon} alt="Axibator" className="h-10 w-10 object-contain" />
       </div>
     </motion.div>
@@ -206,19 +206,19 @@ const HeroSection = () => {
               EXECUTION-FIRST INCUBATOR
             </motion.div>
 
-            <h1 className="mt-8 text-4xl font-bold leading-[1.08] tracking-tight text-white md:text-5xl lg:text-6xl xl:text-7xl">
+            <h1 className="mt-8 text-4xl font-bold leading-[1.08] tracking-tight text-foreground md:text-5xl lg:text-6xl xl:text-7xl">
               <motion.span initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.7 }} className="block">
                 Where Founders
               </motion.span>
               <motion.span initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.45, duration: 0.7 }} className="block">
                 Find <span className="text-accent font-extrabold">Direction</span>
               </motion.span>
-              <motion.span initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.7 }} className="block text-white/50 text-2xl md:text-3xl lg:text-4xl mt-2 font-medium">
+              <motion.span initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.7 }} className="block text-muted-foreground text-2xl md:text-3xl lg:text-4xl mt-2 font-medium">
                 — and the Grit to Build Bold.
               </motion.span>
             </h1>
 
-            <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.75, duration: 0.6 }} className="mt-8 max-w-lg text-lg leading-relaxed text-white/50">
+            <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.75, duration: 0.6 }} className="mt-8 max-w-lg text-lg leading-relaxed text-muted-foreground">
               Axibator is an execution-first incubator helping student and grassroots founders navigate the journey from idea to startup.
             </motion.p>
 
@@ -230,17 +230,17 @@ const HeroSection = () => {
                 </Button>
               </Link>
               <Link to="/programs">
-                <Button variant="outline" size="lg" className="h-14 rounded-full px-10 text-base font-semibold border border-white/20 text-white hover:bg-white/10 transition-all duration-300">
+                <Button variant="outline" size="lg" className="h-14 rounded-full px-10 text-base font-semibold border border-border text-foreground hover:bg-muted transition-all duration-300">
                   Explore the Journey
                 </Button>
               </Link>
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.1, duration: 0.7 }} className="mt-14 grid grid-cols-2 gap-x-8 gap-y-6 sm:grid-cols-4 border-t border-white/10 pt-8">
+            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.1, duration: 0.7 }} className="mt-14 grid grid-cols-2 gap-x-8 gap-y-6 sm:grid-cols-4 border-t border-border/60 pt-8">
               {metrics.map((m, i) => (
                 <motion.div key={m.label} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.2 + i * 0.12, duration: 0.5 }} className="min-w-0">
-                  <p className="text-2xl font-extrabold text-white md:text-3xl whitespace-nowrap">{m.value}</p>
-                  <p className="mt-1.5 text-[11px] font-semibold text-white/40 tracking-wide leading-tight">{m.label}</p>
+                  <p className="text-2xl font-extrabold text-foreground md:text-3xl whitespace-nowrap">{m.value}</p>
+                  <p className="mt-1.5 text-[11px] font-semibold text-muted-foreground tracking-wide leading-tight">{m.label}</p>
                 </motion.div>
               ))}
             </motion.div>

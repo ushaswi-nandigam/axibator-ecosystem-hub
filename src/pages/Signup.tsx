@@ -15,7 +15,7 @@ const Signup = () => {
     navigate("/dashboard");
   };
 
-  const fieldClass = "mt-2 block w-full rounded-xl border border-white/10 bg-white/[0.06] px-4 py-3.5 text-sm font-medium text-secondary-foreground placeholder:text-secondary-foreground/30 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all";
+  const fieldClass = "mt-2 block w-full rounded-xl border border-border bg-muted/50 px-4 py-3.5 text-sm font-medium text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all";
 
   return (
     <div className="min-h-screen bg-background">
@@ -31,26 +31,26 @@ const Signup = () => {
               <UserPlus size={24} className="text-primary" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-secondary-foreground">Create your account</h1>
-              <p className="text-sm text-secondary-foreground/50">Join the Axibator founder community.</p>
+              <h1 className="text-2xl font-bold text-foreground">Create your account</h1>
+              <p className="text-sm text-muted-foreground">Join the Axibator founder community.</p>
             </div>
           </div>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-            <div><label className="text-sm font-bold text-secondary-foreground/80">Name</label>
+            <div><label className="text-sm font-bold text-foreground/80">Name</label>
               <input type="text" required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className={fieldClass} placeholder="Your full name" /></div>
-            <div><label className="text-sm font-bold text-secondary-foreground/80">Email</label>
+            <div><label className="text-sm font-bold text-foreground/80">Email</label>
               <input type="email" required value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className={fieldClass} placeholder="you@example.com" /></div>
-            <div><label className="text-sm font-bold text-secondary-foreground/80">Password</label>
+            <div><label className="text-sm font-bold text-foreground/80">Password</label>
               <input type="password" required value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} className={fieldClass} placeholder="••••••••" /></div>
-            <div><label className="text-sm font-bold text-secondary-foreground/80">Startup Stage</label>
+            <div><label className="text-sm font-bold text-foreground/80">Startup Stage</label>
               <select required value={form.stage} onChange={(e) => setForm({ ...form, stage: e.target.value })} className={fieldClass}>
                 <option value="">Select stage</option><option>Idea</option><option>Prototype</option><option>MVP</option><option>Early Revenue</option><option>Growth</option>
               </select></div>
             <Button size="lg" type="submit" className="mt-2 w-full h-14 rounded-full bg-primary text-base font-bold text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25">Create Account</Button>
           </form>
 
-          <p className="mt-8 text-center text-sm text-secondary-foreground/40">
+          <p className="mt-8 text-center text-sm text-muted-foreground">
             Already have an account? <Link to="/login" className="font-bold text-primary hover:underline">Sign in</Link>
           </p>
         </motion.div>

@@ -23,26 +23,24 @@ const Apply = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero */}
       <section className="hero-dark relative overflow-hidden pt-32 pb-24 md:pt-40 md:pb-32">
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--primary)) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
         <div className="absolute top-[30%] left-[10%] w-[400px] h-[400px] rounded-full bg-primary/[0.06] blur-[120px]" />
         <div className="absolute bottom-[20%] right-[10%] w-[300px] h-[300px] rounded-full bg-accent/[0.04] blur-[100px]" />
 
         <div className="container relative text-center">
-          <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="section-label-light">Begin Your Expedition</motion.span>
+          <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="section-label">Begin Your Expedition</motion.span>
           <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-5xl md:text-7xl font-extrabold text-secondary-foreground leading-[1.05] mt-4">
+            className="text-5xl md:text-7xl font-extrabold text-foreground leading-[1.05] mt-4">
             <span className="text-primary">Apply</span> to Axibator
           </motion.h1>
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}
-            className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-secondary-foreground/60 leading-relaxed">
+            className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground leading-relaxed">
             Tell us about yourself and your startup idea.
           </motion.p>
         </div>
       </section>
 
-      {/* Form */}
       <section className="section-padding section-light">
         <div className="container max-w-2xl">
           <motion.form initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
