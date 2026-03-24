@@ -4,13 +4,11 @@ import axibatorTextLogo from "@/assets/axibator-text-logo.png";
 
 const LoadingScreen = () => {
   return (
-    <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-background">
-      {/* Background pattern */}
-      <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--primary)) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
+    <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-secondary">
       {/* Background glow */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/[0.06] blur-[150px]"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/[0.08] blur-[150px]"
           animate={{ scale: [1, 1.2, 1], opacity: [0.4, 0.7, 0.4] }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         />
@@ -73,7 +71,7 @@ const LoadingScreen = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8 }}
-        className="mt-8 w-48 h-1 rounded-full bg-muted overflow-hidden"
+        className="mt-8 w-48 h-1 rounded-full bg-white/10 overflow-hidden"
       >
         <motion.div
           className="h-full rounded-full bg-primary"
@@ -88,7 +86,7 @@ const LoadingScreen = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.4 }}
         transition={{ delay: 1.2 }}
-        className="mt-4 text-[11px] font-bold uppercase tracking-[0.3em] text-muted-foreground"
+        className="mt-4 text-[11px] font-bold uppercase tracking-[0.3em] text-secondary-foreground/50"
       >
         Building the future
       </motion.p>
