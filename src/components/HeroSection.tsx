@@ -2,7 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useState } from "react";
+import axibatorIcon from "@/assets/axibator-icon.png";
 
 const HeroMesh = lazy(() => import("@/components/HeroMesh"));
 
@@ -12,6 +13,123 @@ const metrics = [
   { value: "75+", label: "Global Partners" },
   { value: "$500K+", label: "Credits Available" },
 ];
+
+/* ── 2D SVG Compass fallback ── */
+const CompassFallback = () => (
+  <div className="relative w-full max-w-[480px] mx-auto aspect-square flex items-center justify-center">
+    <motion.div className="absolute inset-[-10%] rounded-full bg-primary/[0.08] blur-[60px]"
+      animate={{ scale: [1, 1.05, 1], opacity: [0.6, 1, 0.6] }}
+      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} />
+    <motion.div className="absolute inset-0 rounded-full border-2 border-primary/25"
+      initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ duration: 1.2, delay: 0.5 }} />
+    <motion.div className="absolute inset-[6%] rounded-full border-2 border-primary/15"
+      initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ duration: 1, delay: 0.7 }} />
+    <motion.div className="absolute inset-[12%] rounded-full border border-primary/10"
+      initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ duration: 0.8, delay: 0.85 }} />
+    <div className="absolute inset-[3%] rounded-full bg-gradient-to-br from-primary/[0.06] via-transparent to-accent/[0.04]" />
+
+    {/* Tick marks */}
+    {Array.from({ length: 36 }).map((_, i) => {
+      const deg = i * 10;
+      const isMajor = deg % 90 === 0;
+      const isMid = deg % 45 === 0 && !isMajor;
+      return (
+        <motion.div key={deg} className="absolute top-1/2 left-1/2 origin-left"
+          style={{ transform: `translate(-50%, -50%) rotate(${deg}deg)` }}
+          initial={{ scaleX: 0, opacity: 0 }} animate={{ scaleX: 1, opacity: 1 }}
+          transition={{ delay: 1 + i * 0.02, duration: 0.4 }}>
+          <div className={`${isMajor ? 'h-[2px] w-20 bg-primary/30' : isMid ? 'h-[1.5px] w-12 bg-primary/18' : 'h-px w-6 bg-primary/8'}`}
+            style={{ marginLeft: isMajor ? '55px' : isMid ? '63px' : '69px' }} />
+        </motion.div>
+      );
+    })}
+
+    {/* Cardinal labels */}
+    {[
+      { label: "DISCOVER", pos: "top-[2%] left-1/2 -translate-x-1/2" },
+      { label: "SCALE", pos: "bottom-[2%] left-1/2 -translate-x-1/2" },
+      { label: "BUILD", pos: "right-[0%] top-1/2 -translate-y-1/2" },
+      { label: "LAUNCH", pos: "left-[0%] top-1/2 -translate-y-1/2" },
+    ].map((d, i) => (
+      <motion.span key={d.label} className={`absolute ${d.pos} text-[10px] font-extrabold tracking-[0.3em] text-primary`}
+        initial={{ opacity: 0 }} animate={{ opacity: 0.7 }} transition={{ delay: 1.5 + i * 0.15 }}>
+        {d.label}
+      </motion.span>
+    ))}
+
+    {/* Dashed rotating ring */}
+    <motion.div className="absolute inset-[24%] rounded-full border border-dashed border-primary/12"
+      animate={{ rotate: 360 }} transition={{ duration: 120, repeat: Infinity, ease: "linear" }} />
+
+    {/* Needle */}
+    <motion.div className="absolute inset-[22%] flex items-center justify-center"
+      animate={{ rotate: [0, 45, 25, 55, 35, 10, 40] }}
+      transition={{ duration: 12, ease: "easeInOut", repeat: Infinity }}>
+      <div className="relative h-full w-px">
+        <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[5px] border-r-[5px] border-b-[28px] border-l-transparent border-r-transparent border-b-primary/60" />
+        <div className="absolute bottom-[20%] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[4px] border-r-[4px] border-t-[20px] border-l-transparent border-r-transparent border-t-destructive/40" />
+      </div>
+    </motion.div>
+
+    {/* Center hub */}
+    <motion.div className="relative z-10 h-20 w-20 rounded-full flex items-center justify-center"
+      initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.8, type: "spring" }}>
+      <div className="absolute inset-0 rounded-full bg-primary/15 animate-pulse" />
+      <div className="relative h-14 w-14 rounded-full bg-background border border-primary/25 flex items-center justify-center shadow-2xl shadow-primary/15">
+        <img src={axibatorIcon} alt="Axibator" className="h-10 w-10 object-contain" />
+      </div>
+    </motion.div>
+
+    {/* Waypoints */}
+    {[
+      { x: 22, y: 18, delay: 1.8, label: "Ignite" },
+      { x: 78, y: 25, delay: 2.0, label: "LaunchPad" },
+      { x: 82, y: 72, delay: 2.2, label: "BuildLab" },
+      { x: 25, y: 78, delay: 2.4, label: "GrowthTrack" },
+      { x: 50, y: 10, delay: 2.6, label: "Global" },
+    ].map((dot, i) => (
+      <motion.div key={i} className="absolute flex flex-col items-center"
+        style={{ left: `${dot.x}%`, top: `${dot.y}%` }}
+        initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
+        transition={{ delay: dot.delay, duration: 0.5, type: "spring" }}>
+        <motion.div className="h-3.5 w-3.5 rounded-full bg-primary shadow-lg shadow-primary/30"
+          animate={{ scale: [1, 1.3, 1], opacity: [0.7, 1, 0.7] }}
+          transition={{ delay: dot.delay + 0.5, duration: 2, repeat: Infinity }} />
+        <span className="mt-1 text-[8px] font-bold text-primary/50 tracking-wider whitespace-nowrap">{dot.label}</span>
+      </motion.div>
+    ))}
+
+    {/* Orbiting satellite */}
+    <motion.div className="absolute inset-[5%]" animate={{ rotate: 360 }}
+      transition={{ duration: 30, repeat: Infinity, ease: "linear" }}>
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 h-2.5 w-2.5 rounded-full bg-primary shadow-lg shadow-primary/40" />
+    </motion.div>
+  </div>
+);
+
+const HeroMeshWithFallback = () => {
+  const [webglFailed, setWebglFailed] = useState(false);
+
+  if (webglFailed) return <CompassFallback />;
+
+  return (
+    <Suspense fallback={<CompassFallback />}>
+      <ErrorCatcher onError={() => setWebglFailed(true)}>
+        <HeroMesh />
+      </ErrorCatcher>
+    </Suspense>
+  );
+};
+
+/* Simple error boundary */
+import { Component, type ReactNode, type ErrorInfo } from "react";
+
+class ErrorCatcher extends Component<{ children: ReactNode; onError: () => void }, { hasError: boolean }> {
+  state = { hasError: false };
+  static getDerivedStateFromError() { return { hasError: true }; }
+  componentDidCatch(_: Error, __: ErrorInfo) { this.props.onError(); }
+  render() { return this.state.hasError ? null : this.props.children; }
+}
 
 const HeroSection = () => {
   return (
@@ -35,7 +153,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="inline-flex items-center gap-2.5 rounded-full border border-primary/20 bg-primary/[0.06] px-5 py-2 text-xs font-bold tracking-wide text-primary shadow-sm"
+              className="inline-flex items-center gap-2.5 rounded-full border border-primary/25 bg-primary/[0.08] px-5 py-2 text-xs font-bold tracking-wide text-primary shadow-sm"
             >
               <span className="h-2.5 w-2.5 rounded-full bg-primary animate-pulse" />
               EXECUTION-FIRST INCUBATOR
@@ -87,9 +205,7 @@ const HeroSection = () => {
             transition={{ duration: 1.4, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className="hidden lg:block aspect-square"
           >
-            <Suspense fallback={<div className="w-full h-full" />}>
-              <HeroMesh />
-            </Suspense>
+            <HeroMeshWithFallback />
           </motion.div>
         </div>
       </div>
