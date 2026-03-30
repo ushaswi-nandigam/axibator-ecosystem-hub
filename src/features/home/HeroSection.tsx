@@ -3,9 +3,8 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Suspense, lazy, useState } from "react";
-import axibatorIcon from "@/assets/axibator-icon.png";
 
-const HeroMesh = lazy(() => import("@/components/HeroMesh"));
+const HeroMesh = lazy(() => import("@/features/home/HeroMesh"));
 
 const metrics = [
   { value: "50+", label: "Startup Teams" },
@@ -76,7 +75,7 @@ const CompassFallback = () => (
       initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.8, type: "spring" }}>
       <div className="absolute inset-0 rounded-full bg-primary/15 animate-pulse" />
       <div className="relative h-14 w-14 rounded-full bg-background border border-primary/25 flex items-center justify-center shadow-2xl shadow-primary/15">
-        <img src={axibatorIcon} alt="Axibator" className="h-10 w-10 object-contain" />
+        <img src="/axibator-black-logo.png" alt="Axibator" className="h-10 w-10 object-contain" />
       </div>
     </motion.div>
 
@@ -134,7 +133,6 @@ class ErrorCatcher extends Component<{ children: ReactNode; onError: () => void 
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden pt-20 pb-24 hero-light">
-      {/* Subtle dot grid */}
       <div className="absolute inset-0 opacity-[0.04]" style={{
         backgroundImage: `radial-gradient(hsl(var(--primary)) 1px, transparent 1px)`,
         backgroundSize: '40px 40px'

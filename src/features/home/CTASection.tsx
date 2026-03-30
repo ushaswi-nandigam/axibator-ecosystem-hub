@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
 import { ArrowRight, Navigation } from "lucide-react";
 import { useRef } from "react";
-import axibatorIcon from "@/assets/axibator-icon.png";
 
 const CTASection = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -46,7 +45,7 @@ const CTASection = () => {
             <motion.div className="absolute -inset-5 rounded-full bg-white/10" animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} />
             <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-white/15 border border-white/20 shadow-lg mx-auto overflow-hidden">
               <motion.div animate={{ rotate: [0, 360] }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }}>
-                <img src={axibatorIcon} alt="Axibator" className="h-14 w-14 object-contain" />
+                <img src="/axibator-black-logo.png" alt="Axibator" className="h-14 w-14 object-contain" />
               </motion.div>
             </div>
           </motion.div>

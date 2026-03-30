@@ -1,7 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Users, Handshake, Calendar, BookOpen, Rocket, Navigation } from "lucide-react";
-import axibatorIcon from "@/assets/axibator-icon.png";
 
 const nodes = [
   { label: "Startups", icon: Rocket, angle: 0, color: "text-accent", bg: "bg-accent/15" },
@@ -55,7 +54,6 @@ const EcosystemNetwork = () => {
             </div>
           </motion.div>
 
-          {/* Network visualization */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -93,15 +91,13 @@ const EcosystemNetwork = () => {
                 initial={{ opacity: 0 }} animate={isInView ? { opacity: [0, 0.3, 0], r: [40, 80, 120] } : {}} transition={{ delay: 1.5, duration: 3, repeat: Infinity, ease: "easeOut" }} />
             </svg>
 
-            {/* Center hub */}
             <motion.div initial={{ scale: 0, opacity: 0 }} animate={isInView ? { scale: 1, opacity: 1 } : {}} transition={{ delay: 0.2, type: "spring", stiffness: 200 }} className="relative z-10">
               <motion.div className="absolute -inset-4 rounded-full bg-accent/5" animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }} transition={{ duration: 3, repeat: Infinity }} />
               <div className="relative h-16 w-16 rounded-full bg-secondary border border-accent/25 flex items-center justify-center shadow-lg shadow-accent/10 overflow-hidden">
-                <img src={axibatorIcon} alt="Axibator" className="h-12 w-12 object-contain" />
+                <img src="/axibator-black-logo.png" alt="Axibator" className="h-12 w-12 object-contain" />
               </div>
             </motion.div>
 
-            {/* Nodes */}
             {nodes.map((node, i) => {
               const radius = 40;
               const top = `${50 - radius * Math.cos((node.angle * Math.PI) / 180)}%`;
@@ -118,7 +114,6 @@ const EcosystemNetwork = () => {
               );
             })}
 
-            {/* Orbiting particles */}
             <motion.div className="absolute inset-[8%]" animate={{ rotate: 360 }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }}>
               <div className="absolute top-0 left-1/2 h-2 w-2 rounded-full bg-accent/50 shadow shadow-accent/30" />
             </motion.div>
@@ -127,7 +122,6 @@ const EcosystemNetwork = () => {
             </motion.div>
           </motion.div>
 
-          {/* Mobile grid */}
           <div className="grid grid-cols-2 gap-4 md:hidden">
             {nodes.map((node, i) => (
               <motion.div key={`mobile-${node.label}`} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.6 }}
