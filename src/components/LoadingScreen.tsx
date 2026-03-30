@@ -4,11 +4,11 @@ import axibatorTextLogo from "@/assets/axibator-text-logo.png";
 
 const LoadingScreen = () => {
   return (
-    <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-secondary">
+    <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-background">
       {/* Background glow */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/[0.08] blur-[150px]"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/[0.06] blur-[150px]"
           animate={{ scale: [1, 1.2, 1], opacity: [0.4, 0.7, 0.4] }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         />
@@ -17,7 +17,7 @@ const LoadingScreen = () => {
       {/* Compass rings */}
       <div className="relative flex items-center justify-center">
         <motion.div
-          className="absolute w-40 h-40 rounded-full border border-primary/20"
+          className="absolute w-40 h-40 rounded-full border border-primary/15"
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -30,7 +30,7 @@ const LoadingScreen = () => {
           style={{ borderStyle: "dashed" }}
         />
         <motion.div
-          className="absolute w-32 h-32 rounded-full border border-primary/15"
+          className="absolute w-32 h-32 rounded-full border border-primary/12"
           animate={{ rotate: -360 }}
           transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
           style={{ borderStyle: "dashed" }}
@@ -38,7 +38,7 @@ const LoadingScreen = () => {
 
         {/* Pulsing ring */}
         <motion.div
-          className="absolute w-28 h-28 rounded-full border-2 border-primary/30"
+          className="absolute w-28 h-28 rounded-full border-2 border-primary/20"
           animate={{ scale: [1, 1.5, 1.5], opacity: [0.6, 0, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
         />
@@ -50,7 +50,7 @@ const LoadingScreen = () => {
           transition={{ duration: 0.8, type: "spring", stiffness: 150, damping: 15 }}
           className="relative z-10"
         >
-          <div className="h-20 w-20 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center shadow-2xl shadow-primary/20">
+          <div className="h-20 w-20 rounded-full bg-primary/[0.08] border border-primary/20 flex items-center justify-center shadow-2xl shadow-primary/10">
             <img src={axibatorIcon} alt="Axibator" className="h-14 w-14 object-contain" />
           </div>
         </motion.div>
@@ -63,7 +63,7 @@ const LoadingScreen = () => {
         transition={{ delay: 0.5, duration: 0.6 }}
         className="mt-8"
       >
-        <img src={axibatorTextLogo} alt="Axibator" className="h-6 opacity-80" />
+        <img src={axibatorTextLogo} alt="Axibator" className="h-6 opacity-80 brightness-0" />
       </motion.div>
 
       {/* Loading bar */}
@@ -71,7 +71,7 @@ const LoadingScreen = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8 }}
-        className="mt-8 w-48 h-1 rounded-full bg-white/10 overflow-hidden"
+        className="mt-8 w-48 h-1 rounded-full bg-muted overflow-hidden"
       >
         <motion.div
           className="h-full rounded-full bg-primary"
@@ -84,9 +84,9 @@ const LoadingScreen = () => {
       {/* Tagline */}
       <motion.p
         initial={{ opacity: 0 }}
-        animate={{ opacity: 0.4 }}
+        animate={{ opacity: 0.5 }}
         transition={{ delay: 1.2 }}
-        className="mt-4 text-[11px] font-bold uppercase tracking-[0.3em] text-secondary-foreground/50"
+        className="mt-4 text-[11px] font-bold uppercase tracking-[0.3em] text-muted-foreground"
       >
         Building the future
       </motion.p>

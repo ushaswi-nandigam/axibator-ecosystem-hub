@@ -6,23 +6,23 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 220 30% 6%;
+    --background: 220 20% 98%;
+    --foreground: 220 30% 10%;
 
     --card: 0 0% 100%;
-    --card-foreground: 220 30% 6%;
+    --card-foreground: 220 30% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 30% 6%;
+    --popover-foreground: 220 30% 10%;
 
     --primary: 221 89% 61%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 60% 8%;
-    --secondary-foreground: 0 0% 92%;
+    --secondary: 220 25% 14%;
+    --secondary-foreground: 0 0% 95%;
 
-    --muted: 0 0% 92%;
-    --muted-foreground: 220 12% 45%;
+    --muted: 220 14% 93%;
+    --muted-foreground: 220 10% 45%;
 
     --accent: 221 85% 68%;
     --accent-foreground: 0 0% 100%;
@@ -30,8 +30,8 @@
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 85%;
-    --input: 0 0% 85%;
+    --border: 220 15% 90%;
+    --input: 220 15% 90%;
     --ring: 221 89% 61%;
 
     --radius: 0.75rem;
@@ -40,18 +40,18 @@
     --accent-blue: 221 85% 68%;
     --neutral-grey: 0 0% 85%;
     --neutral-grey-dark: 0 0% 65%;
-    --ecosystem-bg: 0 0% 96%;
-    --warm-bg: 0 0% 96%;
-    --cool-bg: 220 10% 96%;
-    --section-alt: 0 0% 95%;
+    --ecosystem-bg: 220 20% 97%;
+    --warm-bg: 220 15% 97%;
+    --cool-bg: 220 18% 96%;
+    --section-alt: 220 14% 96%;
 
-    --sidebar-background: 0 0% 97%;
-    --sidebar-foreground: 220 25% 8%;
+    --sidebar-background: 220 20% 97%;
+    --sidebar-foreground: 220 25% 10%;
     --sidebar-primary: 221 89% 61%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 221 85% 68%;
     --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 0 0% 85%;
+    --sidebar-border: 220 15% 90%;
     --sidebar-ring: 221 89% 61%;
   }
 }
@@ -107,25 +107,30 @@
     @apply rounded-2xl bg-card p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1;
   }
 
-  /* Dark hero for pages */
+  /* Light hero */
+  .hero-light {
+    background: linear-gradient(160deg, hsl(220 20% 98%) 0%, hsl(221 40% 96%) 40%, hsl(220 25% 97%) 100%);
+  }
+
+  /* Dark hero (kept for inner pages) */
   .hero-dark {
     background: linear-gradient(160deg, hsl(220 60% 6%) 0%, hsl(220 55% 10%) 40%, hsl(215 50% 8%) 100%);
   }
 
   /* Light content sections */
   .section-light {
-    background: linear-gradient(180deg, hsl(0 0% 98%) 0%, hsl(0 0% 96%) 100%);
+    background: linear-gradient(180deg, hsl(220 20% 98%) 0%, hsl(220 18% 96%) 100%);
   }
 
   .section-light-alt {
-    background: linear-gradient(180deg, hsl(0 0% 96%) 0%, hsl(0 0% 98%) 100%);
+    background: linear-gradient(180deg, hsl(220 18% 96%) 0%, hsl(220 20% 98%) 100%);
   }
 
   .section-warm {
-    background: linear-gradient(135deg, hsl(0 0% 97%), hsl(0 0% 95%));
+    background: linear-gradient(135deg, hsl(220 15% 97%), hsl(220 12% 95%));
   }
 
   .section-cool {
-    background: linear-gradient(135deg, hsl(220 10% 97%), hsl(220 8% 95%));
+    background: linear-gradient(135deg, hsl(220 18% 97%), hsl(220 15% 95%));
   }
 }

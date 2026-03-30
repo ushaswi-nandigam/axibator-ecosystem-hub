@@ -16,11 +16,9 @@ const CTASection = () => {
           initial={{ opacity: 0, y: 60, scale: 0.95 }}
           animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          className="relative overflow-hidden rounded-3xl bg-secondary px-10 py-24 text-center text-secondary-foreground md:px-20 md:py-32"
+          className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary via-primary to-accent px-10 py-24 text-center text-primary-foreground md:px-20 md:py-32"
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-secondary via-secondary to-accent/5" />
-
-          <svg className="absolute inset-0 w-full h-full opacity-[0.04]" viewBox="0 0 800 500" preserveAspectRatio="none">
+          <svg className="absolute inset-0 w-full h-full opacity-[0.08]" viewBox="0 0 800 500" preserveAspectRatio="none">
             <motion.path d="M 0 250 Q 200 100, 400 250 Q 600 400, 800 250" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="8 6"
               initial={{ pathLength: 0 }} animate={isInView ? { pathLength: 1 } : {}} transition={{ delay: 0.5, duration: 2 }} />
             <motion.path d="M 0 300 Q 200 150, 400 300 Q 600 450, 800 300" fill="none" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 8"
@@ -34,8 +32,8 @@ const CTASection = () => {
             { x: '80%', y: '80%', delay: 1.6 },
           ].map((pos, i) => (
             <motion.div key={i} className="absolute" style={{ left: pos.x, top: pos.y }}
-              initial={{ opacity: 0, scale: 0 }} animate={isInView ? { opacity: 0.1, scale: 1 } : {}} transition={{ delay: pos.delay, type: "spring" }}>
-              <Navigation className="h-6 w-6 text-secondary-foreground/40" />
+              initial={{ opacity: 0, scale: 0 }} animate={isInView ? { opacity: 0.15, scale: 1 } : {}} transition={{ delay: pos.delay, type: "spring" }}>
+              <Navigation className="h-6 w-6 text-primary-foreground/40" />
             </motion.div>
           ))}
 
@@ -45,8 +43,8 @@ const CTASection = () => {
             transition={{ delay: 0.3, type: "spring", stiffness: 150 }}
             className="relative mx-auto mb-8"
           >
-            <motion.div className="absolute -inset-5 rounded-full bg-accent/10" animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} />
-            <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-white/[0.08] border border-white/10 shadow-lg mx-auto overflow-hidden">
+            <motion.div className="absolute -inset-5 rounded-full bg-white/10" animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} />
+            <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-white/15 border border-white/20 shadow-lg mx-auto overflow-hidden">
               <motion.div animate={{ rotate: [0, 360] }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }}>
                 <img src={axibatorIcon} alt="Axibator" className="h-14 w-14 object-contain" />
               </motion.div>
@@ -58,18 +56,18 @@ const CTASection = () => {
             Ready to Set<br/>Your Course?
           </motion.h2>
           <motion.p initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.55, duration: 0.6 }}
-            className="relative mx-auto mt-6 max-w-lg text-secondary-foreground/60 text-lg md:text-xl">
+            className="relative mx-auto mt-6 max-w-lg text-primary-foreground/70 text-lg md:text-xl">
             Join founders who are building the future with Axibator. Your journey from idea to impact starts here.
           </motion.p>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.7, duration: 0.6 }}
             className="relative mt-12 flex flex-wrap justify-center gap-4">
             <Link to="/apply">
-              <Button size="lg" className="group h-14 rounded-full bg-accent px-10 text-base text-accent-foreground font-bold hover:bg-accent/90 shadow-xl shadow-accent/20 transition-all duration-300">
+              <Button size="lg" className="group h-14 rounded-full bg-white text-primary px-10 text-base font-bold hover:bg-white/90 shadow-xl shadow-black/10 transition-all duration-300">
                 Apply to Cohort <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Button>
             </Link>
             <a href="mailto:connect@axibator.com">
-              <Button size="lg" variant="outline" className="h-14 rounded-full border-white/15 px-10 text-base text-secondary-foreground hover:bg-white/10 transition-all duration-300">
+              <Button size="lg" variant="outline" className="h-14 rounded-full border-white/25 px-10 text-base text-primary-foreground hover:bg-white/10 transition-all duration-300">
                 Join Community
               </Button>
             </a>
