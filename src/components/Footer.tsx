@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin } from "lucide-react";
-import axibatorTextLogo from "@/assets/axibator-text-logo.png";
-import axibatorIcon from "@/assets/axibator-icon.png";
 
 const footerLinks = {
   Programs: [
@@ -27,8 +25,8 @@ const Footer = () => {
         <div className="grid gap-16 md:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
             <Link to="/" className="inline-flex items-center gap-3">
-              <img src={axibatorIcon} alt="Axibator" className="h-10" />
-              <img src={axibatorTextLogo} alt="Axibator" className="h-6" />
+              <img src="/axibator-white-logo.png" alt="Axibator" className="h-10" />
+              <img src="/axibator-white-text-logo.png" alt="Axibator" className="h-6" />
             </Link>
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-secondary-foreground/60">
               Building first-mile infrastructure for grassroots founders.

@@ -2,7 +2,6 @@ import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import axibatorTextLogo from "@/assets/axibator-text-logo.png";
 
 const navItems = [
   { label: "Home", path: "/" },
@@ -19,7 +18,6 @@ const Navbar = () => {
   const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  // Inner pages that use dark hero
   const darkPages = ["/about", "/programs", "/builder-nest", "/startups", "/partners", "/events", "/resources", "/apply", "/login", "/signup", "/student-dashboard", "/admin-dashboard", "/dashboard"];
   const isDarkHero = darkPages.some(p => location.pathname === p);
 
@@ -31,10 +29,13 @@ const Navbar = () => {
     }`}>
       <div className="container flex h-18 items-center justify-between py-4">
         <Link to="/" className="flex items-center">
-          <img src={axibatorTextLogo} alt="Axibator" className={`h-7 md:h-8 ${isDarkHero ? "" : "brightness-0"}`} />
+          <img
+            src={isDarkHero ? "/axibator-white-text-logo.png" : "/axibator-black-text-logo.png"}
+            alt="Axibator"
+            className="h-7 md:h-8"
+          />
         </Link>
 
-        {/* Desktop nav */}
         <div className="hidden items-center gap-1 lg:flex">
           {navItems.map((item) => (
             <Link
@@ -64,7 +65,6 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* Mobile */}
         <div className="flex items-center gap-2 lg:hidden">
           <button
             className={`flex h-10 w-10 items-center justify-center rounded-full ${isDarkHero ? "text-white hover:bg-white/10" : "text-foreground hover:bg-muted"}`}
