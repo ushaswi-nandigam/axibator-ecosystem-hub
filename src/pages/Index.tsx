@@ -14,7 +14,7 @@ import CTASection from "@/features/home/CTASection";
 
 const Index = () => {
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen dark-home">
       <InnovationBackground />
       <main className="relative z-10">
         <HeroSection />
