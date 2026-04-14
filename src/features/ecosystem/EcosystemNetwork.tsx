@@ -94,7 +94,7 @@ const EcosystemNetwork = () => {
             <motion.div initial={{ scale: 0, opacity: 0 }} animate={isInView ? { scale: 1, opacity: 1 } : {}} transition={{ delay: 0.2, type: "spring", stiffness: 200 }} className="relative z-10">
               <motion.div className="absolute -inset-4 rounded-full bg-accent/5" animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }} transition={{ duration: 3, repeat: Infinity }} />
               <div className="relative h-16 w-16 rounded-full bg-secondary border border-accent/25 flex items-center justify-center shadow-lg shadow-accent/10 overflow-hidden">
-                <img src="/axibator-white-logo.png" alt="Axibator" className="h-12 w-12 object-contain" />
+                <img src="/axibator-black-logo.png" alt="Axibator" className="h-12 w-12 object-contain" />
               </div>
             </motion.div>
 

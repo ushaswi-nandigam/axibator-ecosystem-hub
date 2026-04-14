@@ -18,7 +18,7 @@ const Navbar = () => {
   const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const darkPages = ["/", "/about", "/programs", "/builder-nest", "/startups", "/partners", "/events", "/resources", "/apply", "/login", "/signup", "/student-dashboard", "/admin-dashboard", "/dashboard"];
+  const darkPages = ["/about", "/programs", "/builder-nest", "/startups", "/partners", "/events", "/resources", "/apply", "/login", "/signup", "/student-dashboard", "/admin-dashboard", "/dashboard"];
   const isDarkHero = darkPages.some(p => location.pathname === p);
 
   return (

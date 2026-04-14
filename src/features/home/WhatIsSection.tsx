@@ -71,7 +71,7 @@ const WhatIsSection = () => {
                   className="h-28 w-28 rounded-full border-2 border-accent/25 flex items-center justify-center"
                 >
                   <div className="h-20 w-20 rounded-full bg-secondary/80 flex items-center justify-center shadow-xl shadow-accent/15 border border-accent/20">
-                    <img src="/axibator-white-logo.png" alt="Axibator" className="h-14 w-14 object-contain" />
+                    <img src="/axibator-black-logo.png" alt="Axibator" className="h-14 w-14 object-contain" />
                   </div>
                 </motion.div>
               </div>
