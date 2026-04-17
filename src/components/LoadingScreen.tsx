@@ -1,8 +1,11 @@
 import { motion } from "framer-motion";
+import axibatorIcon from "@/assets/axibator-icon.png";
+import axibatorTextLogo from "@/assets/axibator-text-logo.png";
 
 const LoadingScreen = () => {
   return (
     <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-background">
+      {/* Background glow */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/[0.06] blur-[150px]"
@@ -11,6 +14,7 @@ const LoadingScreen = () => {
         />
       </div>
 
+      {/* Compass rings */}
       <div className="relative flex items-center justify-center">
         <motion.div
           className="absolute w-40 h-40 rounded-full border border-primary/15"
@@ -31,11 +35,15 @@ const LoadingScreen = () => {
           transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
           style={{ borderStyle: "dashed" }}
         />
+
+        {/* Pulsing ring */}
         <motion.div
           className="absolute w-28 h-28 rounded-full border-2 border-primary/20"
           animate={{ scale: [1, 1.5, 1.5], opacity: [0.6, 0, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
         />
+
+        {/* Logo */}
         <motion.div
           initial={{ scale: 0, rotate: -180 }}
           animate={{ scale: 1, rotate: 0 }}
@@ -43,20 +51,22 @@ const LoadingScreen = () => {
           className="relative z-10"
         >
           <div className="h-20 w-20 rounded-full bg-primary/[0.08] border border-primary/20 flex items-center justify-center shadow-2xl shadow-primary/10">
-            <img src="/axibator-black-logo.png" alt="Axibator" className="h-14 w-14 object-contain" />
+            <img src={axibatorIcon} alt="Axibator" className="h-14 w-14 object-contain" />
           </div>
         </motion.div>
       </div>
 
+      {/* Text logo */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5, duration: 0.6 }}
         className="mt-8"
       >
-        <img src="/axibator-black-text-logo.png" alt="Axibator" className="h-6 opacity-80" />
+        <img src={axibatorTextLogo} alt="Axibator" className="h-6 opacity-80 brightness-0" />
       </motion.div>
 
+      {/* Loading bar */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -71,6 +81,7 @@ const LoadingScreen = () => {
         />
       </motion.div>
 
+      {/* Tagline */}
       <motion.p
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.5 }}

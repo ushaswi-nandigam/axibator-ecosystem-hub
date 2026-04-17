@@ -1,16 +1,16 @@
-import InnovationBackground from "@/features/home/InnovationBackground";
-import HeroSection from "@/features/home/HeroSection";
-import ProblemSection from "@/features/home/ProblemSection";
-import WhatIsSection from "@/features/home/WhatIsSection";
-import FounderJourney from "@/features/programs/FounderJourney";
-import ProgramsSection from "@/features/programs/ProgramsSection";
-import EcosystemNetwork from "@/features/ecosystem/EcosystemNetwork";
-import EcosystemStats from "@/features/ecosystem/EcosystemStats";
-import StartupsSection from "@/features/startups/StartupsSection";
-import BuilderNestSection from "@/features/builder-nest/BuilderNestSection";
-import PartnersSection from "@/features/partners/PartnersSection";
-import EventsSection from "@/features/events/EventsSection";
-import CTASection from "@/features/home/CTASection";
+import InnovationBackground from "@/components/InnovationBackground";
+import HeroSection from "@/components/HeroSection";
+import ProblemSection from "@/components/ProblemSection";
+import WhatIsSection from "@/components/WhatIsSection";
+import FounderJourney from "@/components/FounderJourney";
+import ProgramsSection from "@/components/ProgramsSection";
+import EcosystemNetwork from "@/components/EcosystemNetwork";
+import EcosystemStats from "@/components/EcosystemStats";
+import StartupsSection from "@/components/StartupsSection";
+import BuilderNestSection from "@/components/BuilderNestSection";
+import PartnersSection from "@/components/PartnersSection";
+import EventsSection from "@/components/EventsSection";
+import CTASection from "@/components/CTASection";
 
 const Index = () => {
   return (

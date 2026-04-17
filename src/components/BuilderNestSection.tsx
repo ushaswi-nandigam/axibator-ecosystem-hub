@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Home, Users, Wrench, Coffee, ArrowRight } from "lucide-react";
-import ExpansionMap from "@/features/builder-nest/ExpansionMap";
+import ExpansionMap from "@/components/ExpansionMap";
 
 const features = [
   { icon: Home, title: "Founder-First Spaces", desc: "Cozy, gritty houses — not corporate offices" },
