@@ -437,7 +437,7 @@ const Resources = () => {
               <h2 className="section-title text-foreground">Featured Guides</h2>
               <p className="section-desc">Hand-picked deep dives written specifically for Indian founders.</p>
             </div>
-            <Button variant="outline" size="lg" className="self-start md:self-end">
+            <Button variant="outline" size="lg" className="self-start md:self-end" onClick={() => openWaitlist("Full Guide Library")}>
               <BookOpen /> View all guides
             </Button>
           </div>
