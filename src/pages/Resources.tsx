@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
@@ -116,7 +117,44 @@ const fadeUp = {
   }),
 };
 
+const navItems = [
+  { id: "segments", label: "Overview" },
+  { id: "playbook", label: "Playbook" },
+  { id: "videos", label: "Videos" },
+  { id: "tools", label: "Tools" },
+  { id: "frameworks", label: "Frameworks" },
+  { id: "reports", label: "Reports" },
+  { id: "community", label: "Stories" },
+];
+
 const Resources = () => {
+  const [activeId, setActiveId] = useState("segments");
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible[0]) setActiveId(visible[0].target.id);
+      },
+      { rootMargin: "-40% 0px -55% 0px", threshold: [0, 0.25, 0.5, 1] }
+    );
+    navItems.forEach((n) => {
+      const el = document.getElementById(n.id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
+
+  const handleJump = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    const el = document.getElementById(id);
+    if (!el) return;
+    const top = el.getBoundingClientRect().top + window.scrollY - 120;
+    window.scrollTo({ top, behavior: "smooth" });
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Hero */}
@@ -156,6 +194,34 @@ const Resources = () => {
         </div>
       </section>
 
+      {/* Sticky in-page nav */}
+      <div className="sticky top-16 z-30 border-b border-border bg-background/85 backdrop-blur supports-[backdrop-filter]:bg-background/70">
+        <div className="container">
+          <nav
+            aria-label="Resource segments"
+            className="flex items-center gap-1 overflow-x-auto py-3 scrollbar-none"
+          >
+            {navItems.map((item) => {
+              const isActive = activeId === item.id;
+              return (
+                <a
+                  key={item.id}
+                  href={`#${item.id}`}
+                  onClick={(e) => handleJump(e, item.id)}
+                  className={`shrink-0 rounded-full px-4 py-2 text-xs font-bold tracking-wide uppercase transition-all duration-200 ${
+                    isActive
+                      ? "bg-primary text-primary-foreground shadow-md shadow-primary/20"
+                      : "text-muted-foreground hover:text-foreground hover:bg-primary/5"
+                  }`}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
+          </nav>
+        </div>
+      </div>
+
       {/* Segments */}
       <section id="segments" className="section-padding section-light">
         <div className="container">
@@ -174,7 +240,11 @@ const Resources = () => {
               return (
                 <motion.a
                   key={seg.id}
+                  id={seg.id}
                   href={seg.href}
+                  onClick={(e) => {
+                    if (seg.href.startsWith("#") && seg.href !== "#") handleJump(e, seg.href.slice(1));
+                  }}
                   variants={fadeUp}
                   initial="hidden"
                   whileInView="show"
