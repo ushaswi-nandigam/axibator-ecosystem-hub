@@ -778,9 +778,17 @@ const Resources = () => {
     let body = guideBodies[g.title];
     // 2. Fallback: match by featured guide title (handles the "Read the full guide" entries)
     if (!body) {
-      const featured = featuredGuides.find(
-        (fg) => fg.title === g.title || fg.title.startsWith(g.title) || g.title.startsWith(fg.title),
-      );
+      const norm = (s: string) =>
+        s.toLowerCase().replace(/[^a-z0-9\s]/g, " ").split(/\s+/).filter(Boolean);
+      const gWords = norm(g.title);
+      const featured = featuredGuides.find((fg) => {
+        if (fg.title === g.title) return true;
+        if (fg.title.startsWith(g.title) || g.title.startsWith(fg.title)) return true;
+        const fWords = norm(fg.title);
+        // Match if first 3 significant words align (e.g. "ESOP Pool Design 101" ↔ "ESOP Pool Design: ...")
+        const n = Math.min(3, gWords.length, fWords.length);
+        return n >= 2 && gWords.slice(0, n).join(" ") === fWords.slice(0, n).join(" ");
+      });
       if (featured) body = featured.body;
     }
     if (!body) {
