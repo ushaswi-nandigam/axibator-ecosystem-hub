@@ -187,8 +187,8 @@ const Resources = () => {
             Playbooks, videos, tools, and frameworks — everything Indian founders need, in one place.
           </motion.p>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.45 }} className="mt-10">
-            <Button asChild variant="hero" size="xl">
-              <a href="#segments">Explore Resources <ArrowRight /></a>
+            <Button variant="hero" size="xl" onClick={(e) => handleJump(e as unknown as React.MouseEvent<HTMLAnchorElement>, "segments")}>
+              Explore Resources <ArrowRight />
             </Button>
           </motion.div>
         </div>
