@@ -1058,7 +1058,18 @@ const Resources = () => {
     type: null,
     index: 0,
   });
-...
+  const [categoryDialog, setCategoryDialog] = useState<{ open: boolean; index: number }>({ open: false, index: 0 });
+  const [categorySearch, setCategorySearch] = useState("");
+  const activeCategory = categoryDialog.open ? categories[categoryDialog.index] : null;
+  const filteredCategoryGuides = useMemo(() => {
+    if (!activeCategory) return [];
+    const q = categorySearch.trim().toLowerCase();
+    const indexed = activeCategory.guides.map((g, idx) => ({ g, idx }));
+    if (!q) return indexed;
+    return indexed.filter(({ g }) =>
+      g.title.toLowerCase().includes(q) || g.summary.toLowerCase().includes(q),
+    );
+  }, [activeCategory, categorySearch]);
   const openGuide = (i: number) => setReader({ open: true, type: "guide", index: i });
   const openFramework = (i: number) => setReader({ open: true, type: "framework", index: i });
   const openTool = (i: number) => setReader({ open: true, type: "tool", index: i });
