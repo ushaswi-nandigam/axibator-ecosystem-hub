@@ -18,8 +18,20 @@ import {
   LayoutGrid,
   FileText,
   Megaphone,
+  Bell,
+  Mail,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
 
 // ---------- Top-level Resource Segments ----------
 const segments = [
@@ -129,6 +141,21 @@ const navItems = [
 
 const Resources = () => {
   const [activeId, setActiveId] = useState("segments");
+  const [waitlist, setWaitlist] = useState<{ open: boolean; topic: string }>({ open: false, topic: "" });
+  const [email, setEmail] = useState("");
+
+  const openWaitlist = (topic: string) => setWaitlist({ open: true, topic });
+
+  const submitWaitlist = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+      toast.error("Please enter a valid email address.");
+      return;
+    }
+    toast.success(`You're on the list for ${waitlist.topic}. We'll email you when it's live.`);
+    setEmail("");
+    setWaitlist({ open: false, topic: "" });
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -237,23 +264,29 @@ const Resources = () => {
             {segments.map((seg, i) => {
               const Icon = seg.icon;
               const isLive = seg.status === "Available";
+              const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+                e.preventDefault();
+                if (isLive) {
+                  handleJump(e as unknown as React.MouseEvent<HTMLAnchorElement>, seg.href.replace("#", ""));
+                } else {
+                  openWaitlist(seg.label);
+                }
+              };
               return (
-                <motion.a
+                <motion.button
                   key={seg.id}
                   id={seg.id}
-                  href={seg.href}
-                  onClick={(e) => {
-                    if (seg.href.startsWith("#") && seg.href !== "#") handleJump(e, seg.href.slice(1));
-                  }}
+                  type="button"
+                  onClick={handleClick}
                   variants={fadeUp}
                   initial="hidden"
                   whileInView="show"
                   viewport={{ once: true }}
                   custom={i}
-                  className={`group relative overflow-hidden rounded-2xl border p-7 transition-all duration-300 hover:-translate-y-1 ${
+                  className={`group relative overflow-hidden rounded-2xl border p-7 text-left transition-all duration-300 hover:-translate-y-1 ${
                     isLive
                       ? "bg-card border-primary/30 hover:border-primary/60 hover:shadow-xl hover:shadow-primary/10"
-                      : "bg-card/60 border-border hover:border-border/80"
+                      : "bg-card/60 border-border hover:border-primary/30 hover:shadow-lg"
                   }`}
                 >
                   <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full bg-primary/[0.04] group-hover:bg-primary/[0.08] transition-colors" />
@@ -272,13 +305,15 @@ const Resources = () => {
                       {seg.label}
                     </h3>
                     <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{seg.desc}</p>
-                    {isLive && (
-                      <div className="mt-5 inline-flex items-center gap-1.5 text-xs font-bold tracking-wide text-primary">
-                        OPEN SEGMENT <ArrowRight size={14} />
-                      </div>
-                    )}
+                    <div className="mt-5 inline-flex items-center gap-1.5 text-xs font-bold tracking-wide text-primary">
+                      {isLive ? (
+                        <>OPEN SEGMENT <ArrowRight size={14} /></>
+                      ) : (
+                        <><Bell size={14} /> NOTIFY ME</>
+                      )}
+                    </div>
                   </div>
-                </motion.a>
+                </motion.button>
               );
             })}
           </div>
@@ -359,15 +394,16 @@ const Resources = () => {
             {categories.map((cat, i) => {
               const Icon = cat.icon;
               return (
-                <motion.a
+                <motion.button
                   key={cat.title}
-                  href="#"
+                  type="button"
+                  onClick={() => openWaitlist(`Playbook: ${cat.title}`)}
                   variants={fadeUp}
                   initial="hidden"
                   whileInView="show"
                   viewport={{ once: true }}
                   custom={i}
-                  className="group relative overflow-hidden rounded-2xl bg-card border border-border p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/5 hover:border-primary/30"
+                  className="group relative overflow-hidden rounded-2xl bg-card border border-border p-7 text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/5 hover:border-primary/30"
                 >
                   <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full bg-primary/[0.04] group-hover:bg-primary/[0.08] transition-colors" />
                   <div className="relative">
@@ -375,14 +411,17 @@ const Resources = () => {
                       <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
                         <Icon className="h-6 w-6 text-primary" />
                       </div>
+                      <span className="text-[10px] font-bold tracking-[0.18em] uppercase px-2.5 py-1 rounded-full bg-muted text-muted-foreground">
+                        Coming soon
+                      </span>
                     </div>
                     <h3 className="mt-5 text-xl font-bold text-foreground group-hover:text-primary transition-colors">{cat.title}</h3>
                     <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{cat.desc}</p>
-                    <div className="mt-5 inline-flex items-center gap-1.5 text-xs font-bold tracking-wide text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                      EXPLORE <ArrowRight size={14} />
+                    <div className="mt-5 inline-flex items-center gap-1.5 text-xs font-bold tracking-wide text-primary">
+                      <Bell size={14} /> NOTIFY ME
                     </div>
                   </div>
-                </motion.a>
+                </motion.button>
               );
             })}
           </div>
@@ -398,21 +437,23 @@ const Resources = () => {
               <h2 className="section-title text-foreground">Featured Guides</h2>
               <p className="section-desc">Hand-picked deep dives written specifically for Indian founders.</p>
             </div>
-            <Button variant="outline" size="lg" className="self-start md:self-end">
+            <Button variant="outline" size="lg" className="self-start md:self-end" onClick={() => openWaitlist("Full Guide Library")}>
               <BookOpen /> View all guides
             </Button>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {featuredGuides.map((guide, i) => (
-              <motion.article
+              <motion.button
                 key={guide.title}
+                type="button"
+                onClick={() => openWaitlist(`Guide: ${guide.title}`)}
                 variants={fadeUp}
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true }}
                 custom={i}
-                className="group flex flex-col rounded-2xl bg-card border border-border overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/5 hover:border-primary/30"
+                className="group flex flex-col text-left rounded-2xl bg-card border border-border overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/5 hover:border-primary/30"
               >
                 <div className="relative h-40 bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 flex items-center justify-center overflow-hidden">
                   <div className="absolute inset-0 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 30% 30%, hsl(var(--primary)/0.2), transparent 60%)" }} />
@@ -425,11 +466,11 @@ const Resources = () => {
                   </div>
                   <h3 className="text-lg font-bold text-foreground leading-snug group-hover:text-primary transition-colors">{guide.title}</h3>
                   <p className="mt-2 text-sm text-muted-foreground leading-relaxed flex-1">{guide.desc}</p>
-                  <a href="#" className="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-primary group-hover:gap-2.5 transition-all">
-                    Read more <ArrowRight size={14} />
-                  </a>
+                  <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-primary group-hover:gap-2.5 transition-all">
+                    <Bell size={14} /> Notify me when published
+                  </span>
                 </div>
-              </motion.article>
+              </motion.button>
             ))}
           </div>
         </div>
@@ -466,6 +507,39 @@ const Resources = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* Waitlist Dialog */}
+      <Dialog open={waitlist.open} onOpenChange={(open) => setWaitlist((w) => ({ ...w, open }))}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 mb-2">
+              <Bell className="h-6 w-6 text-primary" />
+            </div>
+            <DialogTitle className="text-center text-2xl">Get notified</DialogTitle>
+            <DialogDescription className="text-center">
+              We're putting the finishing touches on <span className="font-semibold text-foreground">{waitlist.topic}</span>. Drop your email and we'll let you know the moment it's live.
+            </DialogDescription>
+          </DialogHeader>
+          <form onSubmit={submitWaitlist} className="space-y-4">
+            <div className="relative">
+              <Mail size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+              <Input
+                type="email"
+                placeholder="founder@yourstartup.in"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="pl-10 h-11"
+                autoFocus
+              />
+            </div>
+            <DialogFooter className="sm:justify-stretch">
+              <Button type="submit" variant="hero" className="w-full">
+                Notify me <ArrowRight />
+              </Button>
+            </DialogFooter>
+          </form>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
