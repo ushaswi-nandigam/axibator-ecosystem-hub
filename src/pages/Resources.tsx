@@ -117,7 +117,44 @@ const fadeUp = {
   }),
 };
 
+const navItems = [
+  { id: "segments", label: "Overview" },
+  { id: "playbook", label: "Playbook" },
+  { id: "videos", label: "Videos" },
+  { id: "tools", label: "Tools" },
+  { id: "frameworks", label: "Frameworks" },
+  { id: "reports", label: "Reports" },
+  { id: "community", label: "Stories" },
+];
+
 const Resources = () => {
+  const [activeId, setActiveId] = useState("segments");
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible[0]) setActiveId(visible[0].target.id);
+      },
+      { rootMargin: "-40% 0px -55% 0px", threshold: [0, 0.25, 0.5, 1] }
+    );
+    navItems.forEach((n) => {
+      const el = document.getElementById(n.id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
+
+  const handleJump = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    const el = document.getElementById(id);
+    if (!el) return;
+    const top = el.getBoundingClientRect().top + window.scrollY - 120;
+    window.scrollTo({ top, behavior: "smooth" });
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Hero */}
