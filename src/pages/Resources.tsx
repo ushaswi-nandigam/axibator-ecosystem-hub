@@ -745,6 +745,8 @@ const Resources = () => {
     type: null,
     index: 0,
   });
+  const [categoryDialog, setCategoryDialog] = useState<{ open: boolean; index: number }>({ open: false, index: 0 });
+  const activeCategory = categoryDialog.open ? categories[categoryDialog.index] : null;
 
   const openGuide = (i: number) => setReader({ open: true, type: "guide", index: i });
   const openFramework = (i: number) => setReader({ open: true, type: "framework", index: i });
