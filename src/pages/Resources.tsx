@@ -1460,30 +1460,29 @@ const Resources = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {tools.map((t, i) => (
-              <motion.a
+              <motion.button
                 key={t.title}
-                href={t.url}
-                target="_blank"
-                rel="noopener noreferrer"
+                type="button"
+                onClick={() => openTool(i)}
                 variants={fadeUp}
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true }}
                 custom={i}
-                className="group flex flex-col rounded-2xl bg-card border border-border p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/5 hover:border-primary/30"
+                className="group flex flex-col text-left rounded-2xl bg-card border border-border p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/5 hover:border-primary/30"
               >
                 <div className="flex items-center justify-between">
                   <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                    <Download className="h-6 w-6" />
+                    <BookOpen className="h-6 w-6" />
                   </div>
                   <span className="text-[10px] font-bold tracking-[0.18em] uppercase px-2.5 py-1 rounded-full bg-muted text-muted-foreground">{t.format}</span>
                 </div>
                 <h3 className="mt-5 text-xl font-bold text-foreground group-hover:text-primary transition-colors">{t.title}</h3>
                 <p className="mt-2 text-sm text-muted-foreground leading-relaxed flex-1">{t.desc}</p>
                 <span className="mt-5 inline-flex items-center gap-1.5 text-xs font-bold tracking-wide text-primary group-hover:gap-2.5 transition-all">
-                  GET TEMPLATE <ExternalLink size={12} />
+                  READ TEMPLATE GUIDE <ArrowRight size={12} />
                 </span>
-              </motion.a>
+              </motion.button>
             ))}
           </div>
         </div>
