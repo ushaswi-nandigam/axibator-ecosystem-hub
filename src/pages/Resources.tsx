@@ -103,13 +103,124 @@ const learningPath = [
   { num: "07", title: "Growth & Scaling", desc: "Expand & operate", icon: TrendingUp },
 ];
 
-const categories = [
-  { icon: Rocket, title: "Start Here", desc: "Mindset, idea validation, and the first 90 days. How to test whether your idea deserves your next 5 years.", count: 12 },
-  { icon: Building2, title: "Company Setup", desc: "Choosing an entity, registering with MCA, opening a current account, and structuring co-founder equity correctly.", count: 9 },
-  { icon: Scale, title: "Legal & Compliance", desc: "IP assignment, NDAs, vendor contracts, GST, ROC filings, and the compliance calendar every Indian startup needs.", count: 11 },
-  { icon: PieChart, title: "Finance & Cap Table", desc: "Modelling burn, building a cap table that survives 5 rounds, and understanding dilution math before investors do.", count: 8 },
-  { icon: Wallet, title: "Fundraising", desc: "From angel cheques to Series A — valuations, SAFEs, term sheets, due diligence, and closing without surprises.", count: 14 },
-  { icon: Users, title: "Hiring & ESOPs", desc: "Designing your ESOP pool, writing offer letters, vesting structures, and hiring playbooks for your first 25 employees.", count: 7 },
+type CategoryGuide = { title: string; readTime: string; summary: string };
+type Category = {
+  icon: typeof Rocket;
+  title: string;
+  desc: string;
+  guides: CategoryGuide[];
+  // Optional index into featuredGuides — if set, that guide opens the full long-form reader
+  featuredIndex?: number;
+};
+
+const categories: Category[] = [
+  {
+    icon: Rocket,
+    title: "Start Here",
+    desc: "Mindset, idea validation, and the first 90 days. How to test whether your idea deserves your next 5 years.",
+    guides: [
+      { title: "The Founder Mindset", readTime: "6 min", summary: "Why building a startup is closer to a 7-year marathon than a sprint — and how to mentally prepare for the first 18 months." },
+      { title: "Picking an Idea Worth 5 Years", readTime: "8 min", summary: "The four-question filter (market, founder fit, urgency, defensibility) every idea must pass before you commit." },
+      { title: "How to Validate an Idea in 30 Days", readTime: "10 min", summary: "Customer discovery interviews, problem-solution fit tests, and the smallest valid experiment to run before writing code." },
+      { title: "Finding Your First 10 Customers", readTime: "9 min", summary: "Manual outreach, founder-led sales, and turning early users into product believers." },
+      { title: "Solo Founder vs Co-founder", readTime: "7 min", summary: "When to go solo, how to find a co-founder, and the dangers of forced partnerships." },
+      { title: "Co-founder Equity Splits", readTime: "8 min", summary: "Why 50/50 isn't always fair, the slicing-pie method, and frameworks for splitting equity without resentment." },
+      { title: "Naming Your Startup", readTime: "5 min", summary: "Domain availability, trademark conflicts, MCA name approval, and what makes a name actually memorable." },
+      { title: "Your First 90 Days", readTime: "9 min", summary: "A week-by-week operating plan for the first quarter — what to build, who to talk to, what to ignore." },
+      { title: "Killing Ideas Without Regret", readTime: "6 min", summary: "How to recognise when an idea isn't working, and the structured kill-criteria to set before you start." },
+      { title: "Pre-incorporation Checklist", readTime: "5 min", summary: "The 12 things to do before you spend a rupee on registration." },
+      { title: "Building in Public vs Stealth", readTime: "6 min", summary: "When transparency accelerates traction and when it leaks moat — a practical guide." },
+      { title: "Avoiding First-Time Founder Mistakes", readTime: "8 min", summary: "The 10 mistakes 80% of first-time founders make in year one — and how to sidestep each." },
+    ],
+  },
+  {
+    icon: Building2,
+    title: "Company Setup",
+    desc: "Choosing an entity, registering with MCA, opening a current account, and structuring co-founder equity correctly.",
+    featuredIndex: 0,
+    guides: [
+      { title: "Choosing the Right Business Structure", readTime: "12 min", summary: "LLP vs Pvt Ltd vs OPC — the entity you pick on day one shapes every fundraise that follows. Read the full guide." },
+      { title: "Step-by-Step Pvt Ltd Incorporation", readTime: "10 min", summary: "DSC, DIN, name approval, SPICe+, AOA, MOA — every form, every fee, every timeline explained." },
+      { title: "Opening a Startup Bank Account", readTime: "6 min", summary: "Comparing ICICI iStartup, HDFC SmartUp, Kotak 811, Axis Easy Access — features, fees, and KYC reality." },
+      { title: "Founder Restricted Stock Agreement", readTime: "9 min", summary: "How to structure founder vesting at incorporation and what every clause actually means." },
+      { title: "DPIIT Recognition & Startup India Benefits", readTime: "7 min", summary: "Tax holidays, IP fast-track, government tenders — the real benefits and how to apply." },
+      { title: "Registered Office Setup", readTime: "5 min", summary: "Virtual offices, co-working spaces, home address — what's compliant and what triggers ROC notices." },
+      { title: "GST Registration for Startups", readTime: "8 min", summary: "When to register, voluntary vs mandatory, composition scheme, and the input tax credit playbook." },
+      { title: "PAN, TAN, and PF/ESIC Registration", readTime: "6 min", summary: "The post-incorporation registration sequence and which ones to delay until you actually need them." },
+      { title: "Co-founder Agreement Essentials", readTime: "9 min", summary: "Vesting, IP assignment, exit clauses, dispute resolution — the 8 sections every agreement must cover." },
+    ],
+  },
+  {
+    icon: Scale,
+    title: "Legal & Compliance",
+    desc: "IP assignment, NDAs, vendor contracts, GST, ROC filings, and the compliance calendar every Indian startup needs.",
+    guides: [
+      { title: "IP Assignment for Founders & Employees", readTime: "8 min", summary: "Why every contributor must assign IP to the company — and the clause that prevents future ownership disputes." },
+      { title: "NDAs That Actually Protect You", readTime: "6 min", summary: "Mutual vs one-way NDAs, enforceability in Indian courts, and when an NDA scares away the wrong investors." },
+      { title: "Trademark Registration in India", readTime: "9 min", summary: "Class selection, search, filing, opposition handling, and the 18-month timeline most founders underestimate." },
+      { title: "Patent Basics for Startups", readTime: "10 min", summary: "Patentable vs non-patentable, provisional applications, PCT route, and when patents actually create defensibility." },
+      { title: "Vendor & Customer Contract Templates", readTime: "7 min", summary: "Master Service Agreements, Statements of Work, payment terms, and indemnity clauses that survive disputes." },
+      { title: "Privacy Policy & Terms of Use", readTime: "6 min", summary: "DPDP Act 2023 compliance, what to include, and the legal exposure of using a generic template." },
+      { title: "Annual ROC Compliance Calendar", readTime: "5 min", summary: "MGT-7, AOC-4, DIR-3 KYC, DPT-3 — every annual filing, due date, and penalty for missing it." },
+      { title: "Statutory Audit & Tax Filings", readTime: "7 min", summary: "When audit is mandatory, choosing an auditor, ITR-6, Form 3CD — the annual finance compliance loop." },
+      { title: "Employment Contracts & Offer Letters", readTime: "8 min", summary: "Probation, notice periods, non-compete, confidentiality — the clauses that hold up in Indian labour courts." },
+      { title: "Handling Investor Due Diligence", readTime: "9 min", summary: "The 80-document checklist VCs request and how to prepare a clean data room in under a week." },
+      { title: "FEMA & Foreign Investment Compliance", readTime: "10 min", summary: "FCGPR filings, automatic vs approval route, and the rules for accepting cheques from foreign investors." },
+    ],
+  },
+  {
+    icon: PieChart,
+    title: "Finance & Cap Table",
+    desc: "Modelling burn, building a cap table that survives 5 rounds, and understanding dilution math before investors do.",
+    featuredIndex: 2,
+    guides: [
+      { title: "What is a Cap Table?", readTime: "11 min", summary: "Complete guide to ownership, dilution, ESOPs, convertibles, and keeping your equity stack clean. Read the full guide." },
+      { title: "Modelling Your Burn & Runway", readTime: "8 min", summary: "Monthly burn, runway months, the 18-month rule, and the spreadsheet structure investors expect to see." },
+      { title: "Reading a P&L, Balance Sheet, and Cash Flow", readTime: "10 min", summary: "Founder-friendly walkthrough of the three statements and what each one tells you about company health." },
+      { title: "SaaS Unit Economics: CAC, LTV, Payback", readTime: "9 min", summary: "How to calculate CAC properly, why LTV is often inflated, and the payback ratios that signal a sustainable business." },
+      { title: "Pricing Models for Indian SaaS", readTime: "8 min", summary: "Per-seat, usage-based, tiered, and freemium — when each works and the pricing pages that convert best." },
+      { title: "Setting up Accounting from Day One", readTime: "6 min", summary: "Zoho Books vs QuickBooks vs Tally, chart of accounts, and the bookkeeping discipline that prevents audit pain." },
+      { title: "Founder Salary & Tax Optimisation", readTime: "7 min", summary: "How much to pay yourself, salary vs dividend, and structuring compensation tax-efficiently." },
+      { title: "Convertible Notes vs SAFEs vs CCDs", readTime: "9 min", summary: "Indian-law constraints on SAFEs, CCD as the workaround, and the math behind valuation caps and discounts." },
+    ],
+  },
+  {
+    icon: Wallet,
+    title: "Fundraising",
+    desc: "From angel cheques to Series A — valuations, SAFEs, term sheets, due diligence, and closing without surprises.",
+    featuredIndex: 1,
+    guides: [
+      { title: "How Startup Valuation Actually Works", readTime: "14 min", summary: "Pre-money, post-money, dilution math, and the methods investors use at every stage. Read the full guide." },
+      { title: "Decoding Term Sheets", readTime: "15 min", summary: "Liquidation preferences, anti-dilution, board control — what's standard, what's hostile. Read the full guide." },
+      { title: "Building Your Pitch Deck", readTime: "10 min", summary: "The 12-slide structure that works, what each slide must answer, and the slides every Indian VC actually reads first." },
+      { title: "Mastering the 3-Minute Pitch", readTime: "7 min", summary: "Hook, problem, solution, traction, ask — the structure for cold meetings and demo days." },
+      { title: "Building Your Investor List", readTime: "8 min", summary: "How to research, qualify, and warm-intro your way to 50 relevant investors without wasting six months." },
+      { title: "Running a Tight Fundraise Process", readTime: "9 min", summary: "Parallel meetings, momentum management, and creating the competitive tension that closes rounds in 6 weeks." },
+      { title: "What Indian Angels Actually Want", readTime: "8 min", summary: "Cheque size, follow-on behaviour, value-add expectations, and the syndicate landscape from AngelList to LetsVenture." },
+      { title: "Pre-seed vs Seed vs Series A in India", readTime: "9 min", summary: "Stage definitions, milestone expectations, typical round sizes, and the active investor list at each stage." },
+      { title: "Handling Investor Rejection", readTime: "5 min", summary: "Why most rejections aren't about you, what to learn from each one, and how to keep the no's productive." },
+      { title: "Bridge Rounds and Down Rounds", readTime: "8 min", summary: "When to take a bridge, structuring it cleanly, and surviving a down round without destroying the cap table." },
+      { title: "Government Grants & Schemes", readTime: "7 min", summary: "SISFS, SIDBI Fund of Funds, BIRAC, MeitY grants — non-dilutive capital sources most founders miss." },
+      { title: "Closing Mechanics: From Term Sheet to Money", readTime: "10 min", summary: "Definitive agreements, conditions precedent, share allotment, FCGPR — the post-term-sheet workflow that delays closes." },
+      { title: "Investor Updates That Build Trust", readTime: "6 min", summary: "Monthly format, what to share, what to hide, and turning updates into your follow-on funding pipeline." },
+      { title: "Saying No to the Wrong Money", readTime: "7 min", summary: "Red flags in investor behaviour, why a bad investor is worse than no investor, and walk-away criteria." },
+    ],
+  },
+  {
+    icon: Users,
+    title: "Hiring & ESOPs",
+    desc: "Designing your ESOP pool, writing offer letters, vesting structures, and hiring playbooks for your first 25 employees.",
+    featuredIndex: 4,
+    guides: [
+      { title: "ESOP Pool Design 101", readTime: "13 min", summary: "Sizing, allocation benchmarks, vesting, exercise windows, and communication. Read the full guide." },
+      { title: "Founder Vesting Explained", readTime: "9 min", summary: "Why every co-founder needs vesting and how to structure it correctly. Read the full guide." },
+      { title: "Writing Job Descriptions That Attract A-Players", readTime: "6 min", summary: "Outcomes vs responsibilities, the 'must-have' filter, and JD structures that convert applicants 3x better." },
+      { title: "Sourcing Your First 10 Engineers", readTime: "9 min", summary: "Cuvette, CutShort, AngelList, LinkedIn outbound — the channels that work when you have no employer brand." },
+      { title: "Structured Interviewing & Hiring Scorecards", readTime: "8 min", summary: "The Topgrading method adapted for startups — scorecards, reference calls, and reducing hiring mistakes by 70%." },
+      { title: "Compensation Benchmarks (India, 2024)", readTime: "7 min", summary: "Cash and equity ranges by role, stage, and city — based on actual offers from 200+ funded Indian startups." },
+      { title: "Building Your First Sales Team", readTime: "10 min", summary: "When to hire your first AE, founder-led sales handoff, comp plans, and the 90-day ramp." },
+    ],
+  },
 ];
 
 type Guide = {
