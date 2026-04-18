@@ -212,7 +212,11 @@ const Resources = () => {
               return (
                 <motion.a
                   key={seg.id}
+                  id={seg.id}
                   href={seg.href}
+                  onClick={(e) => {
+                    if (seg.href.startsWith("#") && seg.href !== "#") handleJump(e, seg.href.slice(1));
+                  }}
                   variants={fadeUp}
                   initial="hidden"
                   whileInView="show"
