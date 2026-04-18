@@ -194,6 +194,34 @@ const Resources = () => {
         </div>
       </section>
 
+      {/* Sticky in-page nav */}
+      <div className="sticky top-16 z-30 border-b border-border bg-background/85 backdrop-blur supports-[backdrop-filter]:bg-background/70">
+        <div className="container">
+          <nav
+            aria-label="Resource segments"
+            className="flex items-center gap-1 overflow-x-auto py-3 scrollbar-none"
+          >
+            {navItems.map((item) => {
+              const isActive = activeId === item.id;
+              return (
+                <a
+                  key={item.id}
+                  href={`#${item.id}`}
+                  onClick={(e) => handleJump(e, item.id)}
+                  className={`shrink-0 rounded-full px-4 py-2 text-xs font-bold tracking-wide uppercase transition-all duration-200 ${
+                    isActive
+                      ? "bg-primary text-primary-foreground shadow-md shadow-primary/20"
+                      : "text-muted-foreground hover:text-foreground hover:bg-primary/5"
+                  }`}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
+          </nav>
+        </div>
+      </div>
+
       {/* Segments */}
       <section id="segments" className="section-padding section-light">
         <div className="container">
