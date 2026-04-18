@@ -1369,7 +1369,13 @@ const Resources = () => {
       </Dialog>
 
       {/* Category Guides Dialog */}
-      <Dialog open={categoryDialog.open} onOpenChange={(open) => setCategoryDialog((c) => ({ ...c, open }))}>
+      <Dialog
+        open={categoryDialog.open}
+        onOpenChange={(open) => {
+          setCategoryDialog((c) => ({ ...c, open }));
+          if (!open) setCategorySearch("");
+        }}
+      >
         <DialogContent className="sm:max-w-3xl max-h-[88vh] overflow-y-auto">
           {activeCategory && (
             <>
