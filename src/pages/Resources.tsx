@@ -444,14 +444,16 @@ const Resources = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {featuredGuides.map((guide, i) => (
-              <motion.article
+              <motion.button
                 key={guide.title}
+                type="button"
+                onClick={() => openWaitlist(`Guide: ${guide.title}`)}
                 variants={fadeUp}
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true }}
                 custom={i}
-                className="group flex flex-col rounded-2xl bg-card border border-border overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/5 hover:border-primary/30"
+                className="group flex flex-col text-left rounded-2xl bg-card border border-border overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/5 hover:border-primary/30"
               >
                 <div className="relative h-40 bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 flex items-center justify-center overflow-hidden">
                   <div className="absolute inset-0 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 30% 30%, hsl(var(--primary)/0.2), transparent 60%)" }} />
@@ -464,11 +466,11 @@ const Resources = () => {
                   </div>
                   <h3 className="text-lg font-bold text-foreground leading-snug group-hover:text-primary transition-colors">{guide.title}</h3>
                   <p className="mt-2 text-sm text-muted-foreground leading-relaxed flex-1">{guide.desc}</p>
-                  <a href="#" className="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-primary group-hover:gap-2.5 transition-all">
-                    Read more <ArrowRight size={14} />
-                  </a>
+                  <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-primary group-hover:gap-2.5 transition-all">
+                    <Bell size={14} /> Notify me when published
+                  </span>
                 </div>
-              </motion.article>
+              </motion.button>
             ))}
           </div>
         </div>
