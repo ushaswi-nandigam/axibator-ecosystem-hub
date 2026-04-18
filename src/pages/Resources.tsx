@@ -264,23 +264,29 @@ const Resources = () => {
             {segments.map((seg, i) => {
               const Icon = seg.icon;
               const isLive = seg.status === "Available";
+              const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+                e.preventDefault();
+                if (isLive) {
+                  handleJump(e as unknown as React.MouseEvent<HTMLAnchorElement>, seg.href.replace("#", ""));
+                } else {
+                  openWaitlist(seg.label);
+                }
+              };
               return (
-                <motion.a
+                <motion.button
                   key={seg.id}
                   id={seg.id}
-                  href={seg.href}
-                  onClick={(e) => {
-                    if (seg.href.startsWith("#") && seg.href !== "#") handleJump(e, seg.href.slice(1));
-                  }}
+                  type="button"
+                  onClick={handleClick}
                   variants={fadeUp}
                   initial="hidden"
                   whileInView="show"
                   viewport={{ once: true }}
                   custom={i}
-                  className={`group relative overflow-hidden rounded-2xl border p-7 transition-all duration-300 hover:-translate-y-1 ${
+                  className={`group relative overflow-hidden rounded-2xl border p-7 text-left transition-all duration-300 hover:-translate-y-1 ${
                     isLive
                       ? "bg-card border-primary/30 hover:border-primary/60 hover:shadow-xl hover:shadow-primary/10"
-                      : "bg-card/60 border-border hover:border-border/80"
+                      : "bg-card/60 border-border hover:border-primary/30 hover:shadow-lg"
                   }`}
                 >
                   <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full bg-primary/[0.04] group-hover:bg-primary/[0.08] transition-colors" />
@@ -299,13 +305,15 @@ const Resources = () => {
                       {seg.label}
                     </h3>
                     <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{seg.desc}</p>
-                    {isLive && (
-                      <div className="mt-5 inline-flex items-center gap-1.5 text-xs font-bold tracking-wide text-primary">
-                        OPEN SEGMENT <ArrowRight size={14} />
-                      </div>
-                    )}
+                    <div className="mt-5 inline-flex items-center gap-1.5 text-xs font-bold tracking-wide text-primary">
+                      {isLive ? (
+                        <>OPEN SEGMENT <ArrowRight size={14} /></>
+                      ) : (
+                        <><Bell size={14} /> NOTIFY ME</>
+                      )}
+                    </div>
                   </div>
-                </motion.a>
+                </motion.button>
               );
             })}
           </div>
