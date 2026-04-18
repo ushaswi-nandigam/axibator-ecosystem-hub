@@ -371,9 +371,10 @@ const Resources = () => {
                 >
                   <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full bg-primary/[0.04] group-hover:bg-primary/[0.08] transition-colors" />
                   <div className="relative">
-                    <div className="flex items-center gap-3">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-2xl">{cat.emoji}</div>
-                      <Icon className="h-5 w-5 text-primary/40 group-hover:text-primary transition-colors" />
+                    <div className="flex items-center justify-between">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
+                        <Icon className="h-6 w-6 text-primary" />
+                      </div>
                     </div>
                     <h3 className="mt-5 text-xl font-bold text-foreground group-hover:text-primary transition-colors">{cat.title}</h3>
                     <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{cat.desc}</p>
