@@ -741,7 +741,12 @@ const RenderBlock = ({ block }: { block: Block }) => {
 
 const Resources = () => {
   const [activeId, setActiveId] = useState("segments");
-  const [reader, setReader] = useState<{ open: boolean; type: "guide" | "framework" | null; index: number }>({
+  const [reader, setReader] = useState<{
+    open: boolean;
+    type: "guide" | "framework" | "categoryGuide" | null;
+    index: number;
+    categoryGuideKey?: { categoryIndex: number; guideIndex: number };
+  }>({
     open: false,
     type: null,
     index: 0,
@@ -751,6 +756,8 @@ const Resources = () => {
 
   const openGuide = (i: number) => setReader({ open: true, type: "guide", index: i });
   const openFramework = (i: number) => setReader({ open: true, type: "framework", index: i });
+  const openCategoryGuide = (categoryIndex: number, guideIndex: number) =>
+    setReader({ open: true, type: "categoryGuide", index: 0, categoryGuideKey: { categoryIndex, guideIndex } });
 
   const readerContent = useMemo(() => {
     if (!reader.type) return null;
@@ -758,8 +765,24 @@ const Resources = () => {
       const g = featuredGuides[reader.index];
       return { title: g.title, subtitle: `${g.tag} · ${g.readTime}`, body: g.body };
     }
-    const f = frameworks[reader.index];
-    return { title: f.title, subtitle: `${f.tag} framework`, body: f.body };
+    if (reader.type === "framework") {
+      const f = frameworks[reader.index];
+      return { title: f.title, subtitle: `${f.tag} framework`, body: f.body };
+    }
+    // categoryGuide
+    const key = reader.categoryGuideKey;
+    if (!key) return null;
+    const cat = categories[key.categoryIndex];
+    const g = cat.guides[key.guideIndex];
+    const body = guideBodies[g.title];
+    if (!body) {
+      return {
+        title: g.title,
+        subtitle: `${cat.title} · ${g.readTime}`,
+        body: [{ kind: "p" as const, text: g.summary }],
+      };
+    }
+    return { title: g.title, subtitle: `${cat.title} · ${g.readTime}`, body };
   }, [reader]);
 
   useEffect(() => {
