@@ -91,12 +91,12 @@ const learningPath = [
 ];
 
 const categories = [
-  { icon: Rocket, emoji: "🚀", title: "Start Here", desc: "Basics for first-time founders — mindset, validation, and getting started." },
-  { icon: Building2, emoji: "🏗️", title: "Company Setup", desc: "Business structure, registration, and co-founder agreements." },
-  { icon: Scale, emoji: "⚖️", title: "Legal & Compliance", desc: "IP protection, contracts, and Indian startup laws." },
-  { icon: PieChart, emoji: "📊", title: "Finance & Cap Table", desc: "Equity structure, dilution, and ownership management." },
-  { icon: Wallet, emoji: "💰", title: "Fundraising", desc: "Valuation methods, term sheets, and investor outreach." },
-  { icon: Users, emoji: "👥", title: "Hiring & ESOPs", desc: "Building your team and structuring employee equity." },
+  { icon: Rocket, title: "Start Here", desc: "Basics for first-time founders — mindset, validation, and getting started." },
+  { icon: Building2, title: "Company Setup", desc: "Business structure, registration, and co-founder agreements." },
+  { icon: Scale, title: "Legal & Compliance", desc: "IP protection, contracts, and Indian startup laws." },
+  { icon: PieChart, title: "Finance & Cap Table", desc: "Equity structure, dilution, and ownership management." },
+  { icon: Wallet, title: "Fundraising", desc: "Valuation methods, term sheets, and investor outreach." },
+  { icon: Users, title: "Hiring & ESOPs", desc: "Building your team and structuring employee equity." },
 ];
 
 const featuredGuides = [
@@ -187,8 +187,8 @@ const Resources = () => {
             Playbooks, videos, tools, and frameworks — everything Indian founders need, in one place.
           </motion.p>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.45 }} className="mt-10">
-            <Button asChild variant="hero" size="xl">
-              <a href="#segments">Explore Resources <ArrowRight /></a>
+            <Button variant="hero" size="xl" onClick={(e) => handleJump(e as unknown as React.MouseEvent<HTMLAnchorElement>, "segments")}>
+              Explore Resources <ArrowRight />
             </Button>
           </motion.div>
         </div>
@@ -371,9 +371,10 @@ const Resources = () => {
                 >
                   <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full bg-primary/[0.04] group-hover:bg-primary/[0.08] transition-colors" />
                   <div className="relative">
-                    <div className="flex items-center gap-3">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-2xl">{cat.emoji}</div>
-                      <Icon className="h-5 w-5 text-primary/40 group-hover:text-primary transition-colors" />
+                    <div className="flex items-center justify-between">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
+                        <Icon className="h-6 w-6 text-primary" />
+                      </div>
                     </div>
                     <h3 className="mt-5 text-xl font-bold text-foreground group-hover:text-primary transition-colors">{cat.title}</h3>
                     <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{cat.desc}</p>
