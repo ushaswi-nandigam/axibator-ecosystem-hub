@@ -474,14 +474,14 @@ const videos: Video[] = [
 // ---------- Tools & Templates ----------
 type Tool = { title: string; desc: string; format: string; url: string };
 const tools: Tool[] = [
-  { title: "Cap Table Template (India)", desc: "Track founder, ESOP, and investor equity across 5 rounds. Pre-built dilution math and SAFE conversion logic.", format: "Google Sheets", url: "https://docs.google.com/spreadsheets/d/1cN6tGqV2Z8M0nh-0YHc_6QnFc5rJfP0o/copy" },
-  { title: "Pitch Deck Template (Seed)", desc: "12-slide deck framework used by 50+ funded Indian startups. Includes guidance notes per slide.", format: "Google Slides", url: "https://docs.google.com/presentation/d/1FYFb7NEv6cT4r_T3J6jLqJlQpL2X_jw5/copy" },
-  { title: "SaaS Financial Model", desc: "3-year MRR, ARR, churn, CAC, payback, and burn projections. Bessemer-grade investor model.", format: "Excel", url: "https://www.bessemervp.com/atlas/saas-financial-model" },
+  { title: "Cap Table Template (India)", desc: "Track founder, ESOP, and investor equity across 5 rounds. Pre-built dilution math and SAFE conversion logic.", format: "Google Sheets", url: "https://www.qapita.com/blog/cap-table-template" },
+  { title: "Pitch Deck Template (Seed)", desc: "12-slide deck framework used by hundreds of funded startups. Includes guidance notes per slide.", format: "Google Slides", url: "https://www.ycombinator.com/library/4A-a-guide-to-seed-fundraising" },
+  { title: "SaaS Financial Model", desc: "3-year MRR, ARR, churn, CAC, payback, and burn projections. Bessemer-grade investor model.", format: "Excel", url: "https://www.bvp.com/atlas/the-bessemer-saas-financial-model" },
   { title: "Co-founder Agreement Template", desc: "Vesting, IP assignment, equity-split, exit clauses, and dispute resolution — drafted for Indian Pvt Ltd.", format: "PDF", url: "https://www.indiafilings.com/learn/co-founders-agreement-template/" },
-  { title: "ESOP Policy + Grant Letter Pack", desc: "Plan document, board resolution, grant letter, and exercise mechanics. India-specific tax notes included.", format: "Word", url: "https://www.qapita.com/blog/esop-policy-template" },
+  { title: "ESOP Policy + Grant Letter Pack", desc: "Plan document, board resolution, grant letter, and exercise mechanics. India-specific tax notes included.", format: "Word", url: "https://www.qapita.com/blog/esop-policy-template-india" },
   { title: "Y Combinator SAFE & Term Sheet Library", desc: "Standard SAFE, post-money SAFE, and seed term sheet templates used globally — adapt for India.", format: "Web tool", url: "https://www.ycombinator.com/documents" },
-  { title: "Investor Update Template (Monthly)", desc: "5-section monthly update format that keeps investors informed without burning your time.", format: "Google Doc", url: "https://www.firstround.com/review/the-monthly-investor-update-tactical-tips-and-templates/" },
-  { title: "Hiring Scorecard Template", desc: "Role outcomes, must-have competencies, and structured-interview rubric. Used by Topgrading-trained hiring managers.", format: "Google Sheets", url: "https://www.notion.so/templates/hiring-scorecard" },
+  { title: "Investor Update Template (Monthly)", desc: "5-section monthly update format that keeps investors informed without burning your time.", format: "Google Doc", url: "https://review.firstround.com/the-monthly-investor-update-tactical-tips-and-templates/" },
+  { title: "Hiring Scorecard Template", desc: "Role outcomes, must-have competencies, and structured-interview rubric. Used by Topgrading-trained hiring managers.", format: "Google Sheets", url: "https://www.lennysnewsletter.com/p/the-ultimate-guide-to-hiring" },
   { title: "Customer Discovery Interview Guide", desc: "30-question framework for early-stage user interviews. Validates problem before product.", format: "PDF", url: "https://www.strategyzer.com/library/the-customer-development-interview-guide" },
 ];
 
