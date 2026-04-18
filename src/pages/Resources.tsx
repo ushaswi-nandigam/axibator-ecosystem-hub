@@ -1371,12 +1371,9 @@ const Resources = () => {
                       key={g.title}
                       type="button"
                       onClick={() => {
-                        if (isReadable) {
-                          setCategoryDialog((c) => ({ ...c, open: false }));
-                          setTimeout(() => openGuide(fIdx), 150);
-                        } else {
-                          toast.success(`"${g.title}" — full guide coming soon. Saved for you.`);
-                        }
+                        const catIdx = categoryDialog.index;
+                        setCategoryDialog((c) => ({ ...c, open: false }));
+                        setTimeout(() => openCategoryGuide(catIdx, idx), 150);
                       }}
                       className="group w-full text-left py-4 flex items-start gap-4 hover:bg-primary/5 -mx-2 px-2 rounded-lg transition-colors"
                     >
