@@ -472,17 +472,323 @@ const videos: Video[] = [
 ];
 
 // ---------- Tools & Templates ----------
-type Tool = { title: string; desc: string; format: string; url: string };
+type Tool = { title: string; desc: string; format: string; body: Block[] };
 const tools: Tool[] = [
-  { title: "Cap Table Template (India)", desc: "Track founder, ESOP, and investor equity across 5 rounds. Pre-built dilution math and SAFE conversion logic.", format: "Google Sheets", url: "https://www.qapita.com/blog/cap-table-template" },
-  { title: "Pitch Deck Template (Seed)", desc: "12-slide deck framework used by hundreds of funded startups. Includes guidance notes per slide.", format: "Google Slides", url: "https://www.ycombinator.com/library/4A-a-guide-to-seed-fundraising" },
-  { title: "SaaS Financial Model", desc: "3-year MRR, ARR, churn, CAC, payback, and burn projections. Bessemer-grade investor model.", format: "Excel", url: "https://www.bvp.com/atlas/the-bessemer-saas-financial-model" },
-  { title: "Co-founder Agreement Template", desc: "Vesting, IP assignment, equity-split, exit clauses, and dispute resolution — drafted for Indian Pvt Ltd.", format: "PDF", url: "https://www.indiafilings.com/learn/co-founders-agreement-template/" },
-  { title: "ESOP Policy + Grant Letter Pack", desc: "Plan document, board resolution, grant letter, and exercise mechanics. India-specific tax notes included.", format: "Word", url: "https://www.qapita.com/blog/esop-policy-template-india" },
-  { title: "Y Combinator SAFE & Term Sheet Library", desc: "Standard SAFE, post-money SAFE, and seed term sheet templates used globally — adapt for India.", format: "Web tool", url: "https://www.ycombinator.com/documents" },
-  { title: "Investor Update Template (Monthly)", desc: "5-section monthly update format that keeps investors informed without burning your time.", format: "Google Doc", url: "https://review.firstround.com/the-monthly-investor-update-tactical-tips-and-templates/" },
-  { title: "Hiring Scorecard Template", desc: "Role outcomes, must-have competencies, and structured-interview rubric. Used by Topgrading-trained hiring managers.", format: "Google Sheets", url: "https://www.lennysnewsletter.com/p/the-ultimate-guide-to-hiring" },
-  { title: "Customer Discovery Interview Guide", desc: "30-question framework for early-stage user interviews. Validates problem before product.", format: "PDF", url: "https://www.strategyzer.com/library/the-customer-development-interview-guide" },
+  {
+    title: "Cap Table Template (India)",
+    desc: "Track founder, ESOP, and investor equity across 5 rounds. Pre-built dilution math and SAFE conversion logic.",
+    format: "Spreadsheet",
+    body: [
+      { kind: "p", text: "A cap table is the single source of truth for who owns how much of your company. This template structure works for any Indian Pvt Ltd from incorporation through Series B." },
+      { kind: "h", text: "Sheet 1 — Shareholder Register" },
+      { kind: "list", items: [
+        "Columns: Name, PAN, Address, Shareholder type (Founder / ESOP / Investor / Advisor), Share class, # of shares, % fully diluted, Issue date, Vesting start, Cliff, Vesting end, Exercise price.",
+        "One row per share grant — never aggregate. A founder with 4 grants gets 4 rows.",
+        "Always reconcile total shares × face value = paid-up capital reported to MCA.",
+      ] },
+      { kind: "h", text: "Sheet 2 — Round Modeller" },
+      { kind: "steps", items: [
+        "Input pre-money valuation and round size.",
+        "Calculate post-money = pre-money + round size.",
+        "Calculate price per share = pre-money ÷ fully-diluted shares.",
+        "Calculate new shares issued = round size ÷ price per share.",
+        "Apply ESOP top-up (pre-money standard) and recalculate ownership.",
+        "Output: ownership % for every existing shareholder + new investor.",
+      ] },
+      { kind: "h", text: "Sheet 3 — SAFE / CCD Conversion" },
+      { kind: "p", text: "For each SAFE: principal, valuation cap, discount, MFN status. At qualified financing, conversion price = min(round price × (1 − discount), cap ÷ pre-money fully-diluted)." },
+      { kind: "h", text: "Sheet 4 — Vesting Schedule" },
+      { kind: "list", items: [
+        "Standard: 4-year vesting, 1-year cliff, monthly thereafter.",
+        "On the cliff date 25% vests; remaining 75% vests in 36 monthly tranches.",
+        "Show vested vs unvested for every grant on the report date.",
+      ] },
+      { kind: "example", title: "Worked round", text: "Pre-money ₹40 Cr, raise ₹10 Cr, ESOP top-up to 12% post-money. Post-money = ₹50 Cr → investor 20%. ESOP top-up dilutes founders pre-money by ~3.5%. Founder block goes from 78% to 64.5% post-round." },
+      { kind: "tip", text: "Reconcile your cap table with MCA filings (SH-7, PAS-3) every quarter. The #1 reason cap tables break is paper grants that were never filed." },
+      { kind: "warn", text: "Never store the cap table only in a spreadsheet long-term. From Series A onwards, use Qapita, Carta, or Trica — the source of truth must be enforceable, exportable, and auditable." },
+    ],
+  },
+  {
+    title: "Pitch Deck Template (Seed)",
+    desc: "12-slide deck framework used by hundreds of funded startups. Includes the exact content prompts for every slide.",
+    format: "Slide outline",
+    body: [
+      { kind: "p", text: "A seed deck is read in 3 minutes. Every slide must answer one question and earn the next slide. This is the 12-slide structure most Indian seed funds expect." },
+      { kind: "h", text: "Slide-by-slide structure" },
+      { kind: "steps", items: [
+        "1. Cover — Company name, one-line positioning, founder names, round you're raising.",
+        "2. Problem — Who hurts, how much, how often. One specific persona, not a market.",
+        "3. Solution — Your product in one sentence + a screenshot or 3-step flow.",
+        "4. Why now — The shift (regulation, tech, behaviour) that makes this possible today.",
+        "5. Market — TAM/SAM/SOM with bottom-up math, not McKinsey reports.",
+        "6. Product — 2–3 screens that show the core loop. No feature lists.",
+        "7. Traction — One chart that goes up and to the right. Revenue, users, retention, or LOIs.",
+        "8. Business model — Unit economics: ARPU, gross margin, CAC payback assumption.",
+        "9. GTM — How the next ₹1 Cr of revenue gets acquired. Concrete channels, not 'organic + content'.",
+        "10. Competition — 2x2 or feature matrix. Show why incumbents won't catch up.",
+        "11. Team — Why this team, this problem, now. Past wins relevant to the thesis.",
+        "12. Ask — Round size, runway it buys, key milestones to next round, use of funds (4 buckets).",
+      ] },
+      { kind: "tip", text: "Cut every word that doesn't change a decision. Investors skim — bold the 5 numbers that matter and let the rest support them." },
+      { kind: "h", text: "What kills seed decks" },
+      { kind: "list", items: [
+        "12-point fonts and 8 bullets per slide.",
+        "Hockey-stick projections with no path to year 1's number.",
+        "TAM = ₹50,000 Cr without explaining your wedge.",
+        "'No competition' (read: nobody wants this).",
+        "Team slide that lists colleges instead of relevant outcomes.",
+      ] },
+      { kind: "warn", text: "Never send the same deck to seed funds and angels. Angels need conviction in the founder; funds need conviction in the model. Lead the deck differently." },
+      { kind: "example", title: "Use of funds template", text: "₹4 Cr raise = 12 months runway. Allocation: 55% engineering & product, 25% GTM (1 AE + paid pilots), 12% founder + ops salaries, 8% legal/compliance/buffer. Outcome by month 12: ₹X ARR, Y paying customers, ready for Series A conversation." },
+    ],
+  },
+  {
+    title: "SaaS Financial Model",
+    desc: "3-year MRR, ARR, churn, CAC, payback, and burn projections — the structure VCs actually expect.",
+    format: "Spreadsheet",
+    body: [
+      { kind: "p", text: "A seed SaaS model has 4 tabs: Assumptions, Revenue build, P&L, and Cash. If your model has 14 tabs, you're hiding the assumptions that matter." },
+      { kind: "h", text: "Tab 1 — Assumptions (the only tab investors actually read)" },
+      { kind: "list", items: [
+        "Pricing: ACV by plan, % mix per plan.",
+        "Sales capacity: # AEs per quarter, ramp curve, quota per AE.",
+        "Conversion: lead → MQL → SQL → close rate, sales cycle days.",
+        "Churn: gross monthly logo churn %, net dollar retention %.",
+        "Hiring plan: headcount by function by quarter, average fully-loaded cost.",
+      ] },
+      { kind: "h", text: "Tab 2 — Revenue build" },
+      { kind: "steps", items: [
+        "New MRR = (new customers × ACV) ÷ 12.",
+        "Churned MRR = previous MRR × monthly churn.",
+        "Expansion MRR = previous MRR × (NDR^(1/12) − 1 − churn).",
+        "Ending MRR = previous + new − churned + expansion.",
+        "ARR = ending MRR × 12.",
+      ] },
+      { kind: "h", text: "Tab 3 — P&L" },
+      { kind: "list", items: [
+        "Revenue: recognised ratably (not booked).",
+        "COGS: hosting, customer success, payment processing → gross margin (target >75% for SaaS).",
+        "S&M, R&D, G&A as % of revenue with benchmarks.",
+        "EBITDA, burn rate (negative EBITDA + capex).",
+      ] },
+      { kind: "h", text: "Tab 4 — Cash & runway" },
+      { kind: "p", text: "Opening cash + monthly net cash flow = closing cash. Runway = closing cash ÷ trailing-3-month average burn. Trigger fundraise at 9 months runway, not 6." },
+      { kind: "example", title: "Sanity-check ratios", text: "CAC payback < 18 months. Magic Number > 0.7. Burn multiple < 2.0 (burn ÷ net new ARR). Rule of 40: revenue growth % + EBITDA margin % > 40." },
+      { kind: "warn", text: "Never present a model where year-3 revenue is 100x year-1 with no proportional sales hiring. Investors back-calculate quota attainment per AE — the lie shows up in 30 seconds." },
+    ],
+  },
+  {
+    title: "Co-founder Agreement Template",
+    desc: "Vesting, IP assignment, equity-split, exit clauses, and dispute resolution — drafted for Indian Pvt Ltd.",
+    format: "Document outline",
+    body: [
+      { kind: "p", text: "The co-founder agreement is the single document that prevents 80% of founder break-ups. Sign it before incorporation, not after the first conflict. Keep it under 12 pages." },
+      { kind: "h", text: "Required clauses" },
+      { kind: "steps", items: [
+        "Parties & roles — Each founder's title, scope, full-time commitment.",
+        "Equity split & share class — % ownership, share certificate numbers.",
+        "Vesting — 4 years, 1-year cliff, monthly thereafter. Same for every founder.",
+        "Acceleration — Single-trigger on death/disability; double-trigger on acquisition + termination without cause.",
+        "IP assignment — All work product (past 12 months + future) assigned to the company.",
+        "Confidentiality — Survives termination by 3 years.",
+        "Non-compete — 12 months post-exit, India + named geographies.",
+        "Decision rights — What requires unanimity vs majority vs CEO call.",
+        "Drag-along & tag-along — Standard with 75% threshold.",
+        "Right of first refusal — On any founder share transfer.",
+        "Termination for cause — Definition (fraud, conviction, material breach) + unvested forfeiture.",
+        "Termination without cause — Vested shares retained, board option to repurchase at FMV.",
+        "Dispute resolution — Mediation → arbitration in [city]. Avoid courts.",
+        "Governing law — Indian Companies Act 2013 + Contract Act 1872.",
+      ] },
+      { kind: "tip", text: "Get this reviewed by a startup-specialised lawyer (₹25–50k). Generic templates miss the founder-specific clauses (acceleration mechanics, leaver definitions) that cause 90% of disputes." },
+      { kind: "warn", text: "Never sign without vesting. Equity without vesting means a co-founder who quits in month 6 keeps 33% forever — and your next investor walks away." },
+      { kind: "example", title: "Bad-leaver clause", text: "If a founder is terminated for cause (fraud, conviction of moral turpitude, material uncured breach), 100% of unvested shares are forfeited and the company has the option to repurchase vested shares at face value (₹10/share) within 90 days." },
+    ],
+  },
+  {
+    title: "ESOP Policy + Grant Letter Pack",
+    desc: "Plan document, board resolution, grant letter, and exercise mechanics — India Companies Act 2013 compliant.",
+    format: "Document outline",
+    body: [
+      { kind: "p", text: "An ESOP scheme has 3 layers: the Plan (rules), the Grant (specific allotment to one employee), and the Exercise (turning options into shares). Each layer needs its own document." },
+      { kind: "h", text: "Document 1 — ESOP Plan" },
+      { kind: "list", items: [
+        "Pool size as % of fully-diluted capital.",
+        "Eligibility: full-time employees, advisors (separate sub-plan), no promoters/independent directors (Cos Act bar).",
+        "Vesting: 4 years, 1-year cliff, monthly. Acceleration on M&A.",
+        "Exercise window: 90 days post-resignation (good leaver), longer for liquidity events.",
+        "Exercise price: typically face value (₹10) for early-stage; FMV later.",
+        "Administration: Board / Compensation Committee.",
+      ] },
+      { kind: "h", text: "Document 2 — Board & Shareholder Resolutions" },
+      { kind: "p", text: "Special resolution at EGM (Section 62(1)(b)). File MGT-14 within 30 days. Annual disclosure in Board Report (Rule 12, Cos Share Capital Rules)." },
+      { kind: "h", text: "Document 3 — Grant Letter (per employee)" },
+      { kind: "steps", items: [
+        "Number of options granted.",
+        "Grant date, vesting start, vesting schedule.",
+        "Exercise price.",
+        "Exercise window (in service + post-termination).",
+        "Tax explanation: perquisite tax at exercise (FMV − exercise price), capital gains at sale.",
+        "Acceleration triggers, leaver definitions.",
+        "Acceptance signature.",
+      ] },
+      { kind: "h", text: "Allocation benchmarks" },
+      { kind: "list", items: [
+        "Co-founder hire (employee #2): 1.5–4%.",
+        "VP Engineering (#5–10): 0.75–2%.",
+        "Senior engineer / first PM: 0.25–0.75%.",
+        "Mid-level engineer: 0.05–0.2%.",
+        "Junior: 0.01–0.05%.",
+      ] },
+      { kind: "tip", text: "Recalibrate the pool at every funding round. Top up before the round closes — top-ups after dilute investors and create awkward conversations." },
+      { kind: "warn", text: "Don't issue ESOPs to non-employees as 'employees' — it violates the Companies Act. Use a separate Stock Appreciation Rights (SAR) or equivalent scheme for advisors and contractors." },
+    ],
+  },
+  {
+    title: "SAFE & Term Sheet Clause Library",
+    desc: "Standard SAFE, post-money SAFE, and seed term sheet clauses — what's standard, what's pushable, what's hostile.",
+    format: "Clause library",
+    body: [
+      { kind: "p", text: "A SAFE is faster than equity but converts later — sometimes painfully. A term sheet is non-binding except for 2–3 clauses. Knowing which clauses are standard vs hostile is the difference between a 1.5% legal bill and a 6% one." },
+      { kind: "h", text: "SAFE essentials" },
+      { kind: "list", items: [
+        "Principal: amount invested.",
+        "Valuation cap: maximum pre-money for conversion (lower cap = more dilution at conversion).",
+        "Discount: % off the next-round price (typical 15–20%).",
+        "Most-favoured nation (MFN): if you issue a better SAFE later, this one upgrades.",
+        "Pro-rata rights: investor can maintain ownership in the priced round.",
+      ] },
+      { kind: "h", text: "Pre-money vs post-money SAFE" },
+      { kind: "p", text: "Post-money SAFE (the YC 2018+ default) is investor-friendly: dilution from later SAFEs falls only on the founder. Pre-money SAFE distributes dilution across all SAFE-holders. Most Indian seed rounds now use post-money — model both before signing." },
+      { kind: "h", text: "Term sheet — standard clauses" },
+      { kind: "list", items: [
+        "1x non-participating liquidation preference (standard; participating is hostile).",
+        "Broad-based weighted-average anti-dilution (standard; full-ratchet is hostile).",
+        "Pro-rata rights for major investors (standard).",
+        "Information rights, inspection rights (standard).",
+        "1 board seat for lead (standard at Series A; observer at seed).",
+        "Founder vesting: 4 years, 1-year cliff, with credit for time served (standard).",
+        "ROFR + co-sale on founder transfers (standard).",
+      ] },
+      { kind: "h", text: "Hostile clauses to push back on" },
+      { kind: "list", items: [
+        "Participating preference (1x + share of common).",
+        "Full-ratchet anti-dilution.",
+        "Multiple-times liquidation preference (2x, 3x).",
+        "Cumulative dividends.",
+        "Veto on operational matters (hiring, budget).",
+        "Founder reverse-vesting that resets the clock to zero.",
+      ] },
+      { kind: "tip", text: "Only the exclusivity clause and confidentiality clause in a term sheet are legally binding. Use the 30-day exclusivity window to do reference calls on the investor." },
+      { kind: "warn", text: "If a seed term sheet has a participating preference + full-ratchet anti-dilution, walk away. These two clauses together can wipe out the founder block in a flat round." },
+    ],
+  },
+  {
+    title: "Investor Update Template (Monthly)",
+    desc: "5-section monthly update format that keeps investors informed without burning your time.",
+    format: "Email template",
+    body: [
+      { kind: "p", text: "A great investor update takes 45 minutes to write and 90 seconds to read. Send it monthly, on the 5th, without fail. The discipline is more valuable than the content." },
+      { kind: "h", text: "The 5-section structure" },
+      { kind: "steps", items: [
+        "1. TL;DR — 3 bullets. The most important things that happened this month.",
+        "2. Metrics — MRR, customers, runway, headcount. Same 4–6 numbers every month, with M-o-M deltas.",
+        "3. Wins — 3–5 specific outcomes (deals closed, hires made, product shipped).",
+        "4. Lowlights — What broke, what we got wrong, what we're worried about. This is where investors lean in.",
+        "5. Asks — Specific introductions, specific advice, specific hires. Always have at least one.",
+      ] },
+      { kind: "h", text: "Format rules" },
+      { kind: "list", items: [
+        "Plain-text email > attachments. Investors read on phones.",
+        "Subject line: '[Company] update — [Month] [Year]'.",
+        "Numbers as a fixed table at the top, not buried in prose.",
+        "Length: 400–600 words. If you're at 1200, you're hiding the bad stuff.",
+        "Send to one BCC list named 'Investors'. Never To: or CC: — investors learn each other's emails.",
+      ] },
+      { kind: "h", text: "Asks that actually work" },
+      { kind: "list", items: [
+        "'Looking for a Head of Sales who has scaled $1M → $10M ARR in Indian SaaS — 3 names appreciated.'",
+        "'Customer intro into [Specific Company] — head of operations is the buyer.'",
+        "'Anyone who has navigated FEMA filings for a US holdco flip — 30-min call?'",
+      ] },
+      { kind: "tip", text: "Ship the first update within 30 days of the round closing. The investors who wrote the cheque will reply with intros — that's how you compound the round into actual help." },
+      { kind: "warn", text: "Never skip a month because the news is bad. The investor whose 12th update is the bankruptcy filing has lost the room. Bad news shared early is shared support." },
+      { kind: "example", title: "Sample TL;DR", text: "1) Closed $42K MRR in net new this month — best month ever, but came from one large deal. 2) Lost our VP Engineering — backfill is the #1 priority for April. 3) Runway: 11 months at current burn; raise process starting in May." },
+    ],
+  },
+  {
+    title: "Hiring Scorecard Template",
+    desc: "Role outcomes, must-have competencies, and structured-interview rubric. The Topgrading-inspired format.",
+    format: "Structured form",
+    body: [
+      { kind: "p", text: "A scorecard is the contract between you and the hire. Written before the JD, used as the interview rubric, and the basis for the 90-day review. No scorecard = no role." },
+      { kind: "h", text: "The 4-part scorecard" },
+      { kind: "steps", items: [
+        "1. Mission — One paragraph: why this role exists and what success looks like in 12 months.",
+        "2. Outcomes — 3–5 measurable results (e.g. 'Ship onboarding v2 with <5% drop-off by Q2'). Each has an owner, deadline, and metric.",
+        "3. Competencies — 5–8 skills + behaviours required to hit the outcomes. Rated 1–5 with a behavioural definition for each level.",
+        "4. Cultural & values fit — 3–5 anchored behaviours mapped to your company values.",
+      ] },
+      { kind: "h", text: "Interview loop using the scorecard" },
+      { kind: "list", items: [
+        "Screen (30 min) — Mission match + 2 highest-priority competencies.",
+        "Topgrading interview (90 min) — Career walk: each role's why-joined / why-left / accomplishments / failures.",
+        "Functional deep-dive (60 min) — Technical / domain assessment by a peer.",
+        "Outcomes interview (45 min) — 'How would you achieve outcome #1 in 90 days?' Scored on plan quality.",
+        "Reference calls (3 × 30 min) — Backdoor + provided. Always speak to past managers, not peers.",
+        "Final score — Each interviewer scores against the scorecard. Aggregate >4.0 to extend offer.",
+      ] },
+      { kind: "h", text: "Sample competency definition (Ownership)" },
+      { kind: "list", items: [
+        "1 — Waits for instructions; escalates blockers.",
+        "3 — Owns assigned outcomes; raises blockers with proposed solutions.",
+        "5 — Defines outcomes with leadership; removes blockers across teams; treats the company's problems as their own.",
+      ] },
+      { kind: "tip", text: "Score after every interview, before debriefing with peers. Group debriefs anchor on the loudest opinion — independent scores prevent groupthink." },
+      { kind: "warn", text: "Never hire on 'culture fit' without behavioural anchors. Unanchored culture-fit interviews are how teams become monocultures." },
+    ],
+  },
+  {
+    title: "Customer Discovery Interview Guide",
+    desc: "30-question framework for early-stage user interviews. Validates problem before product.",
+    format: "Interview guide",
+    body: [
+      { kind: "p", text: "The Mom Test in 12 questions. Customer discovery interviews are not sales calls — your only job is to extract the truth about how the customer currently solves the problem, not to validate your idea." },
+      { kind: "h", text: "Setup" },
+      { kind: "list", items: [
+        "30 minutes max. Recorded (with permission) + transcribed.",
+        "Goal: 20 interviews per problem. Stop when you stop hearing new things.",
+        "Never pitch in the first 25 minutes. Save your idea for the last 5.",
+      ] },
+      { kind: "h", text: "Section 1 — Context (5 min)" },
+      { kind: "list", items: [
+        "Walk me through your role and what a typical week looks like.",
+        "Which parts of the job take the most time? Which are the most frustrating?",
+        "What have you tried to fix [problem area] in the last 6 months?",
+      ] },
+      { kind: "h", text: "Section 2 — The problem in their words (10 min)" },
+      { kind: "list", items: [
+        "Tell me about the last time [problem] happened. Walk me through it step by step.",
+        "How did you handle it? What tools did you use?",
+        "How long did it take? How much did it cost?",
+        "What did you do after — did you change anything?",
+        "Have you searched for a solution? What did you find?",
+        "What did you almost buy but didn't? Why?",
+      ] },
+      { kind: "h", text: "Section 3 — Workarounds & willingness to pay (10 min)" },
+      { kind: "list", items: [
+        "What's your current workaround? How well does it work?",
+        "If a tool fixed [specific outcome], what would your life look like?",
+        "Who else on your team has this problem? Who would champion it?",
+        "What's your budget process for tools like this? Who signs?",
+      ] },
+      { kind: "h", text: "Section 4 — Pitch (last 5 min, optional)" },
+      { kind: "p", text: "Only if the conversation has surfaced a real problem. Pitch in 60 seconds. Then ask: 'Would you pay for this?' followed by 'Would you pay $X today for early access?'. The second answer is the only honest one." },
+      { kind: "tip", text: "Ask 'tell me about the last time' instead of 'do you ever'. Past behaviour is data; hypothetical behaviour is fiction." },
+      { kind: "warn", text: "If 18 of 20 interviews say 'cool idea, would use it' but none have a current workaround, the problem isn't acute enough. Don't build it." },
+      { kind: "example", title: "The 3 signals you found a real problem", text: "1) The customer has a workaround they hate. 2) They've spent money or time trying to fix it in the last 6 months. 3) They volunteer to be a design partner before you ask." },
+    ],
+  },
 ];
 
 // ---------- Frameworks ----------
@@ -744,7 +1050,7 @@ const Resources = () => {
   const [activeId, setActiveId] = useState("segments");
   const [reader, setReader] = useState<{
     open: boolean;
-    type: "guide" | "framework" | "categoryGuide" | null;
+    type: "guide" | "framework" | "tool" | "categoryGuide" | null;
     index: number;
     categoryGuideKey?: { categoryIndex: number; guideIndex: number };
   }>({
@@ -752,21 +1058,10 @@ const Resources = () => {
     type: null,
     index: 0,
   });
-  const [categoryDialog, setCategoryDialog] = useState<{ open: boolean; index: number }>({ open: false, index: 0 });
-  const [categorySearch, setCategorySearch] = useState("");
-  const activeCategory = categoryDialog.open ? categories[categoryDialog.index] : null;
-  const filteredCategoryGuides = useMemo(() => {
-    if (!activeCategory) return [];
-    const q = categorySearch.trim().toLowerCase();
-    const indexed = activeCategory.guides.map((g, idx) => ({ g, idx }));
-    if (!q) return indexed;
-    return indexed.filter(({ g }) =>
-      g.title.toLowerCase().includes(q) || g.summary.toLowerCase().includes(q),
-    );
-  }, [activeCategory, categorySearch]);
-
+...
   const openGuide = (i: number) => setReader({ open: true, type: "guide", index: i });
   const openFramework = (i: number) => setReader({ open: true, type: "framework", index: i });
+  const openTool = (i: number) => setReader({ open: true, type: "tool", index: i });
   const openCategoryGuide = (categoryIndex: number, guideIndex: number) =>
     setReader({ open: true, type: "categoryGuide", index: 0, categoryGuideKey: { categoryIndex, guideIndex } });
 
@@ -779,6 +1074,10 @@ const Resources = () => {
     if (reader.type === "framework") {
       const f = frameworks[reader.index];
       return { title: f.title, subtitle: `${f.tag} framework`, body: f.body };
+    }
+    if (reader.type === "tool") {
+      const t = tools[reader.index];
+      return { title: t.title, subtitle: `${t.format} · Template guide`, body: t.body };
     }
     // categoryGuide
     const key = reader.categoryGuideKey;
