@@ -1316,6 +1316,78 @@ const Resources = () => {
           )}
         </DialogContent>
       </Dialog>
+
+      {/* Category Guides Dialog */}
+      <Dialog open={categoryDialog.open} onOpenChange={(open) => setCategoryDialog((c) => ({ ...c, open }))}>
+        <DialogContent className="sm:max-w-3xl max-h-[88vh] overflow-y-auto">
+          {activeCategory && (
+            <>
+              <DialogHeader>
+                <div className="flex items-center gap-3">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                    <activeCategory.icon className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-primary">
+                      {activeCategory.guides.length} guides
+                    </span>
+                    <DialogTitle className="text-2xl md:text-3xl leading-tight">{activeCategory.title}</DialogTitle>
+                  </div>
+                </div>
+                <DialogDescription className="pt-2 text-sm leading-relaxed">{activeCategory.desc}</DialogDescription>
+              </DialogHeader>
+
+              <div className="mt-2 divide-y divide-border">
+                {activeCategory.guides.map((g, idx) => {
+                  // Match by title to a featured long-form guide if available
+                  const fIdx = featuredGuides.findIndex((fg) => fg.title === g.title);
+                  const isReadable = fIdx >= 0;
+                  return (
+                    <button
+                      key={g.title}
+                      type="button"
+                      onClick={() => {
+                        if (isReadable) {
+                          setCategoryDialog((c) => ({ ...c, open: false }));
+                          setTimeout(() => openGuide(fIdx), 150);
+                        } else {
+                          toast.success(`"${g.title}" — full guide coming soon. Saved for you.`);
+                        }
+                      }}
+                      className="group w-full text-left py-4 flex items-start gap-4 hover:bg-primary/5 -mx-2 px-2 rounded-lg transition-colors"
+                    >
+                      <span className="shrink-0 mt-0.5 flex h-7 w-7 items-center justify-center rounded-full bg-muted text-muted-foreground text-xs font-bold group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                        {idx + 1}
+                      </span>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <h4 className="text-base font-bold text-foreground group-hover:text-primary transition-colors">{g.title}</h4>
+                          {isReadable && (
+                            <span className="text-[9px] font-bold tracking-[0.18em] uppercase px-2 py-0.5 rounded-full bg-primary/10 text-primary">
+                              Full guide
+                            </span>
+                          )}
+                          <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
+                            <Clock size={11} /> {g.readTime}
+                          </span>
+                        </div>
+                        <p className="mt-1 text-sm text-muted-foreground leading-relaxed">{g.summary}</p>
+                      </div>
+                      <ArrowRight size={16} className="shrink-0 mt-1 text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 transition-all" />
+                    </button>
+                  );
+                })}
+              </div>
+
+              <div className="pt-4 mt-4 border-t border-border flex flex-col sm:flex-row gap-3">
+                <Button asChild variant="outline" className="flex-1">
+                  <Link to="/apply">Talk to a mentor about {activeCategory.title.toLowerCase()}</Link>
+                </Button>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
