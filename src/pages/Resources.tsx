@@ -774,7 +774,15 @@ const Resources = () => {
     if (!key) return null;
     const cat = categories[key.categoryIndex];
     const g = cat.guides[key.guideIndex];
-    const body = guideBodies[g.title];
+    // 1. Direct match in categoryGuides bodies
+    let body = guideBodies[g.title];
+    // 2. Fallback: match by featured guide title (handles the "Read the full guide" entries)
+    if (!body) {
+      const featured = featuredGuides.find(
+        (fg) => fg.title === g.title || fg.title.startsWith(g.title) || g.title.startsWith(fg.title),
+      );
+      if (featured) body = featured.body;
+    }
     if (!body) {
       return {
         title: g.title,
