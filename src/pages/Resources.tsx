@@ -141,6 +141,21 @@ const navItems = [
 
 const Resources = () => {
   const [activeId, setActiveId] = useState("segments");
+  const [waitlist, setWaitlist] = useState<{ open: boolean; topic: string }>({ open: false, topic: "" });
+  const [email, setEmail] = useState("");
+
+  const openWaitlist = (topic: string) => setWaitlist({ open: true, topic });
+
+  const submitWaitlist = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+      toast.error("Please enter a valid email address.");
+      return;
+    }
+    toast.success(`You're on the list for ${waitlist.topic}. We'll email you when it's live.`);
+    setEmail("");
+    setWaitlist({ open: false, topic: "" });
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
