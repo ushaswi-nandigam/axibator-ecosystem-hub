@@ -91,12 +91,12 @@ const learningPath = [
 ];
 
 const categories = [
-  { icon: Rocket, emoji: "🚀", title: "Start Here", desc: "Basics for first-time founders — mindset, validation, and getting started." },
-  { icon: Building2, emoji: "🏗️", title: "Company Setup", desc: "Business structure, registration, and co-founder agreements." },
-  { icon: Scale, emoji: "⚖️", title: "Legal & Compliance", desc: "IP protection, contracts, and Indian startup laws." },
-  { icon: PieChart, emoji: "📊", title: "Finance & Cap Table", desc: "Equity structure, dilution, and ownership management." },
-  { icon: Wallet, emoji: "💰", title: "Fundraising", desc: "Valuation methods, term sheets, and investor outreach." },
-  { icon: Users, emoji: "👥", title: "Hiring & ESOPs", desc: "Building your team and structuring employee equity." },
+  { icon: Rocket, title: "Start Here", desc: "Basics for first-time founders — mindset, validation, and getting started." },
+  { icon: Building2, title: "Company Setup", desc: "Business structure, registration, and co-founder agreements." },
+  { icon: Scale, title: "Legal & Compliance", desc: "IP protection, contracts, and Indian startup laws." },
+  { icon: PieChart, title: "Finance & Cap Table", desc: "Equity structure, dilution, and ownership management." },
+  { icon: Wallet, title: "Fundraising", desc: "Valuation methods, term sheets, and investor outreach." },
+  { icon: Users, title: "Hiring & ESOPs", desc: "Building your team and structuring employee equity." },
 ];
 
 const featuredGuides = [
