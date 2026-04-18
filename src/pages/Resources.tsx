@@ -507,6 +507,39 @@ const Resources = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* Waitlist Dialog */}
+      <Dialog open={waitlist.open} onOpenChange={(open) => setWaitlist((w) => ({ ...w, open }))}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 mb-2">
+              <Bell className="h-6 w-6 text-primary" />
+            </div>
+            <DialogTitle className="text-center text-2xl">Get notified</DialogTitle>
+            <DialogDescription className="text-center">
+              We're putting the finishing touches on <span className="font-semibold text-foreground">{waitlist.topic}</span>. Drop your email and we'll let you know the moment it's live.
+            </DialogDescription>
+          </DialogHeader>
+          <form onSubmit={submitWaitlist} className="space-y-4">
+            <div className="relative">
+              <Mail size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+              <Input
+                type="email"
+                placeholder="founder@yourstartup.in"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="pl-10 h-11"
+                autoFocus
+              />
+            </div>
+            <DialogFooter className="sm:justify-stretch">
+              <Button type="submit" variant="hero" className="w-full">
+                Notify me <ArrowRight />
+              </Button>
+            </DialogFooter>
+          </form>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
