@@ -966,14 +966,16 @@ const Resources = () => {
             {categories.map((cat, i) => {
               const Icon = cat.icon;
               return (
-                <motion.div
+                <motion.button
                   key={cat.title}
+                  type="button"
+                  onClick={() => setCategoryDialog({ open: true, index: i })}
                   variants={fadeUp}
                   initial="hidden"
                   whileInView="show"
                   viewport={{ once: true }}
                   custom={i}
-                  className="group relative overflow-hidden rounded-2xl bg-card border border-border p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/5 hover:border-primary/30"
+                  className="group relative overflow-hidden rounded-2xl bg-card border border-border p-7 text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/5 hover:border-primary/30"
                 >
                   <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full bg-primary/[0.04] group-hover:bg-primary/[0.08] transition-colors" />
                   <div className="relative">
@@ -982,13 +984,16 @@ const Resources = () => {
                         <Icon className="h-6 w-6 text-primary" />
                       </div>
                       <span className="text-[10px] font-bold tracking-[0.18em] uppercase px-2.5 py-1 rounded-full bg-primary/10 text-primary">
-                        {cat.count} guides
+                        {cat.guides.length} guides
                       </span>
                     </div>
-                    <h3 className="mt-5 text-xl font-bold text-foreground">{cat.title}</h3>
+                    <h3 className="mt-5 text-xl font-bold text-foreground group-hover:text-primary transition-colors">{cat.title}</h3>
                     <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{cat.desc}</p>
+                    <span className="mt-5 inline-flex items-center gap-1.5 text-xs font-bold tracking-wide text-primary group-hover:gap-2.5 transition-all">
+                      VIEW GUIDES <ArrowRight size={14} />
+                    </span>
                   </div>
-                </motion.div>
+                </motion.button>
               );
             })}
           </div>
